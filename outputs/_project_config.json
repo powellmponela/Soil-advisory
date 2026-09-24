@@ -1,0 +1,49 @@
+{
+  "project_root": "D:\\dss\\SOIL ADVISORY",
+  "created_or_updated_at": "2026-09-05T17:48:09+00:00",
+  "data_dir": "D:\\dss\\SOIL ADVISORY\\Data",
+  "outputs_dir": "D:\\dss\\SOIL ADVISORY\\outputs",
+  "logs_dir": "D:\\dss\\SOIL ADVISORY\\logs",
+  "scripts_dir": "D:\\dss\\SOIL ADVISORY\\scripts",
+  "soil_policy": {
+    "publication_soil_priority": 1,
+    "local_dsm_priority": 2,
+    "isric_supplement_priority": 3,
+    "use_dsm_api": false,
+    "preserve_native_dsm_resolution": true,
+    "local_dsm_folder": "D:\\dss\\SOIL ADVISORY\\Data\\dsm",
+    "isric_supplement_folder": "D:\\dss\\SOIL ADVISORY\\Data\\isric_soilgrids",
+    "notes": "Use soil reported in publications first. Fill missing values from local downloaded DSM. Use ISRIC SoilGrids only for supplemental variables such as CEC, bulk density, soil depth/depth-to-bedrock proxy and volumetric water content. Do not call DSM API."
+  },
+  "spatial_frame": {
+    "regions": [
+      "Terai",
+      "Churia/Siwalik",
+      "Mid-hills"
+    ],
+    "seasons": [
+      "spring",
+      "winter",
+      "summer_monsoon"
+    ],
+    "hubs": [
+      "east_terai_hub",
+      "west_terai_hub",
+      "national_combined"
+    ],
+    "administrative_units": [
+      "ward",
+      "municipality",
+      "district",
+      "province",
+      "country"
+    ]
+  },
+  "stage_subfolders": [
+    "00_data",
+    "01_descriptive_tables",
+    "02_plots",
+    "03_stage_report",
+    "04_inputs_for_next_stage"
+  ]
+}

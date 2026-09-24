@@ -1,0 +1,12 @@
+script_name,io_type,path,exists,is_file,is_dir,notes
+0a_prepare_input_inventory.py,input,D:\dss\SOIL ADVISORY,True,False,True,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,input,D:\dss\SOIL ADVISORY\Data,True,False,True,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,input,D:\dss\SOIL ADVISORY\Data\m_n_publications,True,False,True,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,input,D:\dss\SOIL ADVISORY\Data\dsm,True,False,True,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,input,D:\dss\SOIL ADVISORY\Data\ecological zones\Cross_sections_of_Nepal_s_physiographic_regions.shp,True,True,False,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,input,D:\dss\SOIL ADVISORY\Data\boundary,True,False,True,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,output,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\00_data\stage0_input_inventory.csv,True,True,False,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,output,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\01_descriptive_tables\stage0_dsm_layer_inventory.csv,True,True,False,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,output,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\01_descriptive_tables\stage0_m_n_publications_quick_summary.csv,True,True,False,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,output,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\04_inputs_for_next_stage\stage0_input_inventory.csv,True,True,False,Stage 0a input inventory and static input policy check.
+0a_prepare_input_inventory.py,output,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\03_stage_report\stage0_input_inventory_report.md,True,True,False,Stage 0a input inventory and static input policy check.

@@ -1,0 +1,42 @@
+metric,value,notes
+maize_csv_exists,True,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize.csv
+n_rows,3023,Rows in m_n_publications maize.csv
+n_columns,598,Columns in m_n_publications maize.csv
+n_unique_source_id,53,Column used: source_id
+n_unique_year,27,Column used: year
+n_unique_season,24,Column used: season
+n_unique_district,20,Column used: district
+n_unique_agroecology,1,Column used: agroecology
+n_unique_treatment_group,39,Column used: treatment_group
+grain_yield_Mg_ha_n_non_missing,2696,
+grain_yield_Mg_ha_median,7.490500000000001,
+grain_yield_Mg_ha_min,0.0,
+grain_yield_Mg_ha_max,111.5,
+grain_yield_kg_ha_n_non_missing,2981,
+grain_yield_kg_ha_median,7327.0,
+grain_yield_kg_ha_min,0.0,
+grain_yield_kg_ha_max,111500.0,
+N_rate_kg_ha_n_non_missing,167,
+N_rate_kg_ha_median,60.0,
+N_rate_kg_ha_min,0.0,
+N_rate_kg_ha_max,240.0,
+N_fert_kg_ha_n_non_missing,2289,
+N_fert_kg_ha_median,120.0,
+N_fert_kg_ha_min,0.0,
+N_fert_kg_ha_max,240.0,
+P2O5_rate_kg_ha_n_non_missing,110,
+P2O5_rate_kg_ha_median,40.0,
+P2O5_rate_kg_ha_min,0.0,
+P2O5_rate_kg_ha_max,89.82288,
+P2O5_fert_kg_ha_n_non_missing,2292,
+P2O5_fert_kg_ha_median,60.0,
+P2O5_fert_kg_ha_min,0.0,
+P2O5_fert_kg_ha_max,231.5,
+K2O_rate_kg_ha_n_non_missing,110,
+K2O_rate_kg_ha_median,40.0,
+K2O_rate_kg_ha_min,0.0,
+K2O_rate_kg_ha_max,99.9818,
+K2O_fert_kg_ha_n_non_missing,2292,
+K2O_fert_kg_ha_median,40.0,
+K2O_fert_kg_ha_min,0.0,
+K2O_fert_kg_ha_max,360.89816,

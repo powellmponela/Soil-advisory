@@ -1,0 +1,79 @@
+Protocol on ISFM field trials and demonstrations
+Objectives
+Demonstrate the agronomic and economic benefits of Integrated Soil Fertility Management (ISFM) practices, particularly maize–legume intercropping and Best Management Practices (BMPs), compared to conventional monocropping and traditional farmer practices.
+Evaluate and demonstrate the effectiveness of alternative fertilizer options, such as nano urea, as a potential solution to recurring fertilizer shortages in Nepal while improving nutrient use efficiency.
+Promote climate-smart and labor-saving agricultural mechanization, including equipment such as zero or minimum till machine and weeders, to address labor shortages and enhance production efficiency.
+Facilitate the scaling and wider adoption of ISFM and improved BMPs through farmer field days and knowledge-sharing events in collaboration with local governments and private sector partners.
+Field demonstration
+One demonstration in each farmer field consisting of three sub-demonstrations:
+1) Maize-legume intercropping: ½ katha (169 sq.m: 13.2 m * 12.8 m)
+2) Best Management Practices (BMPs):  ½ katha
+3) Nano urea: 100 m²
+Thus, about 1.3 katha will be used for demonstrations in each farmer’s field. Composite soil samples will be collected before land preparation. 
+Target districts: Banke, Bardiya,………
+On-station demonstration: Khajura Banke 
+Demonstration layout and details 
+Sub-demo1. Maize-legume intercropping 
+A paired-row maize–cowpea intercropping system (2:2) will be demonstrated in a ½ katha plot. Two rows of cowpea will be planted between paired maize rows as shown in figure 1 below (M -40- M -30- CP- 20- CP -30- M -40- M). 
+Maize spacing: 40 cm × 20 cm
+Cowpea spacing: 20 cm × 10 cm
+Distance between maize and cowpea rows: 30 cm
+This arrangement maintains the same maize plant population (≈83,333 plants/ha) as in sole maize (60 cm × 20 cm).
+Figure 1. Layout of planting geometry of maize paired row and cowpea (2:2)
+Crop management
+Varieties: RH-10 maize (120 days) and Prakash cowpea (75–90 days)
+Seed rate: maize 25 kg/ha; cowpea 60 kg/ha
+Sowing time: February–March
+Fertilizer management
+Fertilizer applications for maize will be based on the new domain specific fertilizer recommendations. Fertilizer rate (NPK) for maize will be reduced by 34% compared to recommended BMPs plot (sole cropping) under intercropping systems.  
+Banke, Bardiya, Kailali and Kanchanpur - Maize: 100:40:40 N:P: K kg/ha (3.4:1.4:1.4 N:P: K kg per katha)
+Dang and Kapilvastu- Maize: 119:40:40 N:P: K kg/ha (3.9: 1.4:1.4 kg per katha)
+Cow pea (all domain): 13.3 : 26.6 : 13.3 N:P:K kg/ha (443:886:443 gram per katha )
+On the day of seed sowing a full dose of DAP, MOP and 1/3rd nitrogen (N) in the form of urea will be applied in line approx. 5-7 cm apart from seed sowing line and 5 cm below the soil surface for maize. The remaining 1/3rd N will be top dressed at V6 leaf stages, and the final 1/3rd N will be top dressed at V10 leaf stages. In the case of legumes, full dose of N, P and K will be applied during seed sowing. 
+Other management practices
+Gap filling: within 7–10 days after sowing
+Weeding: during urea top-dressing operations and as required
+Irrigation: at knee-high, tasseling, and silking stages or as needed (5-6 irrigations depending on soil and weather)
+Harvesting: Crop and legumes will be harvested after reaching at maturity. A border row will be excluded, and plot will be divided into 3 sub plots of 3 m2 (3 m x 1 m) and the crop growth parameters and yield will be measured. All cobs from 9 m2 sampling plots from each treatment plot will be harvested and kept into cotton bags for threshing later.  
+Sub-demo 2. Nano urea 
+Based on the findings from two years of multilocation trials conducted by CIMMYT in collaboration with NARC and government partners, as well as feedback gathered during the multistakeholder sharing workshop, the best-performing nano urea formulation will be demonstrated in farmers’ fields during the spring maize season. 
+Recommended fertilizer. 1/3 N with urea top dressing at V6 stages + 1/3 N with NU top dressing at V10 stages + 1/3 N with NU top dressing at V12 stages. 
+Crop management
+Variety: RH-10 
+Seed rate: 25 kg/ha
+Seeding date: February/March
+Spacing: 75 cm X 25 cm
+Fertilizer management
+Basal: Full DAP + MOP + ⅓ N from urea
+Top dressing:
+⅓ N as urea at V6
+Nano urea spray at V10
+Nano urea spray at V12
+Nano urea application
+Nano urea (manufactured by IFFCO) will be used.
+1 bottle (500 ml) nano urea (4% N) ≈ 45 kg conventional urea
+Solution preparation: 3 ml nano urea per liter of water
+Application: Foliar spray using knapsack sprayer 
+Harvesting: Crop will be harvested after reaching at maturity (grain moisture 15-20%). Each plot will be divided into 3 sub plots of 3 m2 (3 m x 1 m) and the crop growth parameters and yield will be measured. A border row will be excluded from all plots. All cobs from 9 m2 sampling plots from each treatment plot will be harvested and kept into cotton bags for threshing later. 
+Sub-demo 3. Best management practices (BMPs) 
+Based on five years of multilocation trials by CIMMYT with NARC and government partners, and validated as BMPs by the Government of Nepal, improved maize production practices will be demonstrated to reduce yield gaps. 
+ BMP package includes
+Improved maize variety
+Balanced fertilization following 4R Nutrient Stewardship
+Split nitrogen application (V6 and V10 stages)
+Improved irrigation management
+Pest and disease management
+Timely intercultural operations
+Use of appropriate farm machinery (row seeder, zero/minimum tillage equipment, and mechanical weeders)
+Crop management 
+Variety: RH-10 
+Seed rate: 25 kg/ha
+Seeding date: February/March
+Spacing: 75 cm X 25 cm 60cm 
+Fertilizers: urea, DAP, MOP, organic manure (FYM)
+Fertilizer application: 
+Well decomposed FYM or compost (10 ton per hectare) should be applied two weeks prior to planting. At sowing, full DAP + MOP + ⅓ urea will be band-applied 5–7 cm away from the seed row and 5 cm below soil surface. The remaining nitrogen will be applied in two equal splits at V6 and V10 stages.
+Gap filling: Normally seed will germinate within 7-10 days after sowing. Gap must be filled while problem in germination or emergence.
+Irrigation: Maize fields should be irrigated as and when required to ensure the optimum moisture content required for crop growth and development.  
+Pest and disease management: Pest and disease will be controlled as and when required, using similar methods across the districts. 
+Harvesting: Three 3 m² sampling subplots will be used for measuring grain yield and biomass. Border rows will be excluded. A border row will be excluded from all plots. All cobs from 9 m2 sampling plots from each treatment plot will be harvested and kept into cotton bags for threshing later. 

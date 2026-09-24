@@ -1,0 +1,76 @@
+year,source_file,source_variable,aligned_variable,note
+2017,maize_trials_2017.xlsx,Yield_kg_ha,adjusted_yield_kg_ha,
+2017,maize_trials_2017.xlsx,District,district,
+2017,maize_trials_2017.xlsx,Farmer's name,farmer,
+2017,maize_trials_2017.xlsx,latitude,latitude,
+2017,maize_trials_2017.xlsx,longitude,longitude,
+2017,maize_trials_2017.xlsx,VDC,site,
+2017,maize_trials_2017.xlsx,treatment,source_treatment_label,
+2017,maize_trials_2017.xlsx,treatment_code,treatment_code,
+2018,maize_trials-2018.csv,Yield_kg_ha,adjusted_yield_kg_ha,
+2018,maize_trials-2018.csv,District,district,
+2018,maize_trials-2018.csv,Farmer's name,farmer,
+2018,maize_trials-2018.csv,latitude,latitude,
+2018,maize_trials-2018.csv,longitude,longitude,
+2018,maize_trials-2018.csv,VDC,site,
+2018,maize_trials-2018.csv,treatment,treatment_code,
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,1000 grain weight (gm) Grain moisture(%) moisture corrected_grain yield (kg/ha),adjusted_yield_kg_ha,treatment block T2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,Grain moisture(%) moisture corrected_grain yield (kg/ha),adjusted_yield_kg_ha,treatment block T1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha),adjusted_yield_kg_ha,treatment block T3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).1,adjusted_yield_kg_ha,treatment block T4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).10,adjusted_yield_kg_ha,treatment block A3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).11,adjusted_yield_kg_ha,treatment block A4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).12,adjusted_yield_kg_ha,treatment block A5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).13,adjusted_yield_kg_ha,treatment block B1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).14,adjusted_yield_kg_ha,treatment block B2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).15,adjusted_yield_kg_ha,treatment block B3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).16,adjusted_yield_kg_ha,treatment block B4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).17,adjusted_yield_kg_ha,treatment block B5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).2,adjusted_yield_kg_ha,treatment block T5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).3,adjusted_yield_kg_ha,treatment block T6
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).4,adjusted_yield_kg_ha,treatment block T7
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).5,adjusted_yield_kg_ha,treatment block T8
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).6,adjusted_yield_kg_ha,treatment block T9
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).7,adjusted_yield_kg_ha,treatment block T10
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).8,adjusted_yield_kg_ha,treatment block A1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,moisture corrected_grain yield (kg/ha).9,adjusted_yield_kg_ha,treatment block A2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A1_latitude,latitude,treatment block A1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A2_latitude,latitude,treatment block A2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A3_latitude,latitude,treatment block A3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A4_latitude,latitude,treatment block A4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A5_latitude,latitude,treatment block A5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B1_latitude,latitude,treatment block B1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B2_latitude,latitude,treatment block B2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B3_latitude,latitude,treatment block B3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B4_latitude,latitude,treatment block B4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B5_latitude,latitude,treatment block B5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T10_latitude,latitude,treatment block T10
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T1_latitude,latitude,treatment block T1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T2_latitude,latitude,treatment block T2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T3_latitude,latitude,treatment block T3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T4_latitude,latitude,treatment block T4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T5_latitude,latitude,treatment block T5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T6_latitude,latitude,treatment block T6
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T7_latitude,latitude,treatment block T7
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T8_latitude,latitude,treatment block T8
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T9_latitude,latitude,treatment block T9
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A1_longitude,longitude,treatment block A1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A2_longitude,longitude,treatment block A2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A3_longitude,longitude,treatment block A3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A4_longitude,longitude,treatment block A4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_A5_longitude,longitude,treatment block A5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B1_longitude,longitude,treatment block B1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B2_longitude,longitude,treatment block B2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B3_longitude,longitude,treatment block B3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B4_longitude,longitude,treatment block B4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_B5_longitude,longitude,treatment block B5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T10_longitude,longitude,treatment block T10
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T1_longitude,longitude,treatment block T1
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T2_longitude,longitude,treatment block T2
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T3_longitude,longitude,treatment block T3
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T4_longitude,longitude,treatment block T4
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T5_longitude,longitude,treatment block T5
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T6_longitude,longitude,treatment block T6
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T7_longitude,longitude,treatment block T7
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T8_longitude,longitude,treatment block T8
+2019,Maize_postharvest_2019 - all versions - labels - 2020-01-23-04-01-40.xlsx,_T9_longitude,longitude,treatment block T9

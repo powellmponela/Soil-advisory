@@ -1,8 +1,14 @@
+.Rhistory
 .env
+
 Data/
 data/
+Literature/
+Other- ideas/
+logs/
 models/
-outputs/
+
+*.zip
 *.joblib
 *.pkl
 *.pickle
@@ -10,6 +16,7 @@ outputs/
 *.gpkg
 *.tif
 *.tiff
+
 __pycache__/
 *.pyc
 .venv/

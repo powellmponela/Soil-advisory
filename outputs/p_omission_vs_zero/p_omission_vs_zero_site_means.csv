@@ -1,0 +1,141 @@
+year,study,district,site,variety_group,treatment_role,mean_yield_t_ha,latitude,longitude,n
+2017,2017 core trial,Dang,Dhikpur,Hybrid,p_omission,6.375666666666667,28.048365,82.39328111,3
+2017,2017 core trial,Dang,Dhikpur,Hybrid,soil_background,5.216,28.048357776666666,82.39325444333333,3
+2017,2017 core trial,Dang,Dhuruwa,Hybrid,p_omission,6.045999999999999,28.02733222,82.32578666666667,3
+2017,2017 core trial,Dang,Dhuruwa,Hybrid,soil_background,7.4126666666666665,28.02734666666667,82.32579055333333,3
+2017,2017 core trial,Dang,Hapur,Hybrid,p_omission,3.5595,28.092539164999998,82.42740917,2
+2017,2017 core trial,Dang,Hapur,Hybrid,soil_background,3.718,28.092568335000003,82.427464165,2
+2017,2017 core trial,Dang,Laxmipur,Hybrid,p_omission,7.274,27.979812776666666,82.49199778,3
+2017,2017 core trial,Dang,Laxmipur,Hybrid,soil_background,5.128333333333333,27.979784446666667,82.49197833666666,3
+2017,2017 core trial,Dang,Panchakule,Hybrid,p_omission,7.7405,28.133735835000003,82.1133075,2
+2017,2017 core trial,Dang,Panchakule,Hybrid,soil_background,6.879,28.13302667,82.10547167,1
+2017,2017 core trial,Dang,Pawannagar,Hybrid,p_omission,6.1370000000000005,28.163773889999998,82.25668,3
+2017,2017 core trial,Dang,Pawannagar,Hybrid,soil_background,5.758,28.16375555666667,82.25674944333333,3
+2017,2017 core trial,Dang,Purandhara,Hybrid,p_omission,7.813,28.19165111,82.09889389,3
+2017,2017 core trial,Dang,Purandhara,Hybrid,soil_background,7.0045,28.18838167,82.09627166499999,2
+2017,2017 core trial,Dang,Shantinagar,Hybrid,p_omission,9.297666666666666,28.165434443333336,82.23003278,3
+2017,2017 core trial,Dang,Shantinagar,Hybrid,soil_background,2.909,28.163495835,82.227500835,2
+2017,2017 core trial,Dang,Shreegau,Hybrid,p_omission,5.853333333333334,28.106334446666665,82.17913944333333,3
+2017,2017 core trial,Dang,Shreegau,Hybrid,soil_background,4.123666666666667,28.10635222,82.17907222000001,3
+2017,2017 core trial,Surkhet,Babiyachaur,Hybrid,p_omission,9.989966666666668,28.818690633333333,81.40620513333333,3
+2017,2017 core trial,Surkhet,Babiyachaur,Hybrid,soil_background,7.4583,28.81500655,81.4036959,2
+2017,2017 core trial,Surkhet,Gadhi,Hybrid,p_omission,10.825,28.646149275,81.60290366999999,2
+2017,2017 core trial,Surkhet,Gadhi,Hybrid,soil_background,4.58,28.646166535,81.602908275,2
+2017,2017 core trial,Surkhet,Ghumkhare,Hybrid,p_omission,10.535566666666668,28.439443833333332,81.89755083333334,3
+2017,2017 core trial,Surkhet,Ghumkhare,Hybrid,soil_background,7.76,28.4405855,81.897729,1
+2017,2017 core trial,Surkhet,Guthu,Hybrid,p_omission,11.611133333333333,28.84390053333333,81.30400353333333,3
+2017,2017 core trial,Surkhet,Guthu,Hybrid,soil_background,6.74995,28.84796725,81.30250335,2
+2017,2017 core trial,Surkhet,Kalyan,Hybrid,p_omission,9.67,28.502915599999998,81.73766496666667,3
+2017,2017 core trial,Surkhet,Kalyan,Hybrid,soil_background,6.695533333333334,28.502932533333333,81.7376539,3
+2017,2017 core trial,Surkhet,Lekhpharsa,Hybrid,p_omission,9.0489,28.473851433333333,81.8085775,3
+2017,2017 core trial,Surkhet,Lekhpharsa,Hybrid,soil_background,6.666666666666667,28.4738802,81.8085626,3
+2017,2017 core trial,Surkhet,Maintada-3,Hybrid,p_omission,7.746666666666667,28.444808573333333,81.80525974,3
+2017,2017 core trial,Surkhet,Maintada-3,Hybrid,soil_background,4.3917,28.44182313,81.811789725,2
+2017,2017 core trial,Surkhet,Maintada-4,Hybrid,p_omission,8.488866666666667,28.41979259,81.79543064333335,3
+2017,2017 core trial,Surkhet,Maintada-4,Hybrid,soil_background,6.1444333333333345,28.41983702666667,81.79545996,3
+2017,2017 core trial,Surkhet,Neta,Hybrid,p_omission,12.621133333333333,28.54510636666667,81.79164686666667,3
+2017,2017 core trial,Surkhet,Neta,Hybrid,soil_background,6.24165,28.5500672,81.79385289999999,2
+2017,2017 core trial,Surkhet,Ramghat,Hybrid,p_omission,11.373366666666668,28.489570633333333,81.74293586666666,3
+2017,2017 core trial,Surkhet,Ramghat,Hybrid,soil_background,3.565,28.48765855,81.74367765,2
+2018,"2018 N source, timing and FYM trial",Dang,Dhikpur,All maize,p_omission,8.039666666666667,28.033883709999998,82.37337878,3
+2018,"2018 N source, timing and FYM trial",Dang,Dhikpur,All maize,soil_background,6.764,28.03391279666667,82.37340188666666,3
+2018,"2018 N source, timing and FYM trial",Dang,Dhuruwa,All maize,p_omission,6.328,28.02138044,82.32478682,2
+2018,"2018 N source, timing and FYM trial",Dang,Dhuruwa,All maize,soil_background,7.84,28.0214401,82.324663355,2
+2018,"2018 N source, timing and FYM trial",Dang,Hapur,All maize,p_omission,5.367333333333334,28.090530610000002,82.42109393666667,3
+2018,"2018 N source, timing and FYM trial",Dang,Hapur,All maize,soil_background,5.077,28.09042332333333,82.42107370666666,3
+2018,"2018 N source, timing and FYM trial",Dang,Laxmipur,All maize,p_omission,7.480666666666667,27.97782377,82.46362986000001,3
+2018,"2018 N source, timing and FYM trial",Dang,Laxmipur,All maize,soil_background,4.576,27.977860356666667,82.46365075666667,3
+2018,"2018 N source, timing and FYM trial",Dang,Panchakaule,All maize,p_omission,7.5035,28.116182165,82.166317405,4
+2018,"2018 N source, timing and FYM trial",Dang,Panchakaule,All maize,soil_background,5.73725,28.1161630325,82.1663612875,4
+2018,"2018 N source, timing and FYM trial",Dang,Pawannagar,All maize,p_omission,7.480333333333334,28.170490793333332,82.26030517333334,3
+2018,"2018 N source, timing and FYM trial",Dang,Pawannagar,All maize,soil_background,5.823666666666667,28.170461486666667,82.26025555333332,3
+2018,"2018 N source, timing and FYM trial",Dang,Purandhara,All maize,p_omission,7.9655000000000005,28.18367142,82.095813715,2
+2018,"2018 N source, timing and FYM trial",Dang,Purandhara,All maize,soil_background,6.321000000000001,28.18757538,82.09799106999999,3
+2018,"2018 N source, timing and FYM trial",Dang,Shantinagar,All maize,p_omission,7.060666666666667,28.165580353333336,82.22546266333333,3
+2018,"2018 N source, timing and FYM trial",Dang,Shantinagar,All maize,soil_background,5.864999999999999,28.165601226666666,82.22548920666667,3
+2018,"2018 N source, timing and FYM trial",Doti,Chattiwan,All maize,p_omission,7.152,29.082116786666663,80.59344661666667,3
+2018,"2018 N source, timing and FYM trial",Doti,Chattiwan,All maize,soil_background,5.692666666666667,29.082114223333335,80.59343073666666,3
+2018,"2018 N source, timing and FYM trial",Doti,Ghantesori,All maize,p_omission,7.4576666666666656,29.144243743333334,80.60338146666668,3
+2018,"2018 N source, timing and FYM trial",Doti,Ghantesori,All maize,soil_background,6.147333333333333,29.14426466,80.60338441,3
+2018,"2018 N source, timing and FYM trial",Kavre,Anekot,All maize,p_omission,6.163,27.660582693333335,85.58990640999998,3
+2018,"2018 N source, timing and FYM trial",Kavre,Anekot,All maize,soil_background,4.339666666666667,27.660109935,85.58735226499999,3
+2018,"2018 N source, timing and FYM trial",Kavre,Bhakundebesi,All maize,p_omission,8.392999999999999,27.558025156666663,85.66628879,3
+2018,"2018 N source, timing and FYM trial",Kavre,Bhakundebesi,All maize,soil_background,6.609999999999999,27.55796954,85.66623484333333,3
+2018,"2018 N source, timing and FYM trial",Kavre,Rabiopi,All maize,p_omission,9.125666666666667,27.647599193333335,85.56455267000001,3
+2018,"2018 N source, timing and FYM trial",Kavre,Rabiopi,All maize,soil_background,6.636,27.647593686666667,85.56457121666666,3
+2018,"2018 N source, timing and FYM trial",Palpa,Chidipani,All maize,p_omission,5.2445,,,2
+2018,"2018 N source, timing and FYM trial",Palpa,Chidipani,All maize,soil_background,4.1345,,,2
+2018,"2018 N source, timing and FYM trial",Palpa,Devinagar,All maize,p_omission,6.285333333333333,,,3
+2018,"2018 N source, timing and FYM trial",Palpa,Devinagar,All maize,soil_background,4.800333333333334,,,3
+2018,"2018 N source, timing and FYM trial",Palpa,Khasyauli,All maize,p_omission,6.228666666666666,,,3
+2018,"2018 N source, timing and FYM trial",Palpa,Khasyauli,All maize,soil_background,4.608666666666667,,,3
+2018,"2018 N source, timing and FYM trial",Palpa,Madanpokhara,All maize,p_omission,5.888333333333333,,,3
+2018,"2018 N source, timing and FYM trial",Palpa,Madanpokhara,All maize,soil_background,4.177333333333333,,,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Babiyachaur,All maize,p_omission,8.661,28.804889683333332,81.39949015,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Babiyachaur,All maize,soil_background,7.1049999999999995,28.80487094,81.39947722333334,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Gadhi,All maize,p_omission,8.015,28.639583623333333,81.59304155333334,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Gadhi,All maize,soil_background,5.639666666666667,28.639586156666667,81.59303340000001,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Guthu,All maize,p_omission,8.705,28.83356418,81.30618851,1
+2018,"2018 N source, timing and FYM trial",Surkhet,Guthu,All maize,soil_background,5.606,28.83355282,81.30625304,1
+2018,"2018 N source, timing and FYM trial",Surkhet,Kalyan,All maize,p_omission,8.452,28.50487771,81.73678593666666,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Kalyan,All maize,soil_background,6.9993333333333325,28.504863209999996,81.73678872666666,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Kunathari,All maize,p_omission,8.192333333333334,28.712999359999998,81.51047152,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Kunathari,All maize,soil_background,6.386,28.712912793333334,81.51043158,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Lekhpharsa,All maize,p_omission,8.298,28.46496256,81.79501972333334,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Lekhpharsa,All maize,soil_background,6.067333333333333,28.464980496666666,81.79504277666666,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-1,All maize,p_omission,7.914,28.44308084,81.796419225,2
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-1,All maize,soil_background,7.2225,28.443077035,81.796519225,2
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-2,All maize,p_omission,8.425,28.423912125,81.796917055,2
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-2,All maize,soil_background,5.8614999999999995,28.423924309999997,81.79686587,2
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-6,All maize,p_omission,7.38,28.44630107,81.81800988,1
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-7,All maize,p_omission,8.381,28.43198303,81.80341728,1
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-8,All maize,soil_background,6.202,28.44624253,81.81802132,1
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-9,All maize,soil_background,7.539,28.43196607,81.80337762,1
+2018,"2018 N source, timing and FYM trial",Surkhet,Ramghat,All maize,p_omission,7.574666666666666,28.488485210000004,81.74244171333333,3
+2018,"2018 N source, timing and FYM trial",Surkhet,Ramghat,All maize,soil_background,6.749333333333333,28.488468549999997,81.74245902,3
+2019,2019 T1-T10 core trial,Dang,Dhikpur,All maize,p_omission,7.6635,28.040324044413865,82.37346241716295,2
+2019,2019 T1-T10 core trial,Dang,Dhikpur,All maize,soil_background,5.545,28.04030436789617,82.37343949265778,2
+2019,2019 T1-T10 core trial,Dang,Laxmipur,All maize,p_omission,12.036999999999999,27.97842142637819,82.466268860735,2
+2019,2019 T1-T10 core trial,Dang,Laxmipur,All maize,soil_background,5.8759999999999994,27.978472283575684,82.46626035310328,2
+2019,2019 T1-T10 core trial,Dang,Panchakule,All maize,p_omission,8.974499999999999,28.134351416956633,82.12082054000348,2
+2019,2019 T1-T10 core trial,Dang,Panchakule,All maize,soil_background,6.28,28.133885068818927,82.11858672089875,1
+2019,2019 T1-T10 core trial,Dang,Shantinagar,All maize,p_omission,8.6585,28.165790364146233,82.22749731503427,2
+2019,2019 T1-T10 core trial,Dang,Shantinagar,All maize,soil_background,5.739,28.165736510418355,82.22757803276181,2
+2019,2019 T1-T10 core trial,Dang,Shreegau,All maize,p_omission,8.36,28.109746696427464,82.18612952157855,2
+2019,2019 T1-T10 core trial,Dang,Shreegau,All maize,soil_background,4.588,28.109726223628968,82.1861732751131,2
+2019,2019 T1-T10 core trial,Doti,Chhatiwan,All maize,p_omission,9.931275,29.0807247790508,80.59058509301394,2
+2019,2019 T1-T10 core trial,Doti,Chhatiwan,All maize,soil_background,6.86934,29.080732406582683,80.59062398504466,2
+2019,2019 T1-T10 core trial,Doti,Dipayal,All maize,p_omission,8.980846666666666,29.254679842852056,80.93244566582143,3
+2019,2019 T1-T10 core trial,Doti,Dipayal,All maize,soil_background,7.31943,29.254705177154392,80.93250538688153,2
+2019,2019 T1-T10 core trial,Doti,Ghanteshwor,All maize,p_omission,8.5764,29.12442215066403,80.58119198866189,5
+2019,2019 T1-T10 core trial,Doti,Ghanteshwor,All maize,soil_background,7.226999999999999,29.124270781874657,80.58113303035498,5
+2019,2019 T1-T10 core trial,Kavre,Bhakundebesi,All maize,p_omission,6.529806000000001,27.5570691889152,85.66758468747139,2
+2019,2019 T1-T10 core trial,Kavre,Bhakundebesi,All maize,soil_background,2.926757,27.55687133409083,85.66755250096321,2
+2019,2019 T1-T10 core trial,Kavre,Rabiopi,All maize,p_omission,6.6314915,27.650258601643145,85.57617927901447,4
+2019,2019 T1-T10 core trial,Kavre,Rabiopi,All maize,soil_background,3.3426345,27.65032968018204,85.57625262066722,4
+2019,2019 T1-T10 core trial,Makwanpur,Radha Tiwari,All maize,p_omission,6.05596,,,1
+2019,2019 T1-T10 core trial,Makwanpur,Radha Tiwari,All maize,soil_background,2.7423200000000003,,,1
+2019,2019 T1-T10 core trial,Nuwakot,Dip Acharya,All maize,p_omission,9.900775,,,1
+2019,2019 T1-T10 core trial,Nuwakot,Dip Acharya,All maize,soil_background,6.008915,27.88490277249366,85.15011859126389,1
+2019,2019 T1-T10 core trial,Nuwakot,Ramchandra Acharya,All maize,p_omission,6.911395000000001,27.88438292685896,85.15036032535136,1
+2019,2019 T1-T10 core trial,Nuwakot,Ramchandra Acharya,All maize,soil_background,1.620814,27.88436595350504,85.15049275942147,1
+2019,2019 T1-T10 core trial,Palpa,Chidi pani,All maize,p_omission,9.5013352285,27.866838702466342,83.54845822323114,2
+2019,2019 T1-T10 core trial,Palpa,Chidi pani,All maize,soil_background,8.049409091000001,27.866792811546475,83.54835881385952,2
+2019,2019 T1-T10 core trial,Palpa,Devinagar,All maize,p_omission,8.6774261365,27.809418076649308,83.69688953272998,2
+2019,2019 T1-T10 core trial,Palpa,Devinagar,All maize,soil_background,5.6600776515,27.80927832936868,83.69689271785319,2
+2019,2019 T1-T10 core trial,Palpa,Khasyauli,All maize,p_omission,6.936787879000001,27.88476426154375,83.47864790819585,2
+2019,2019 T1-T10 core trial,Palpa,Khasyauli,All maize,soil_background,5.869181818,27.884576926007867,83.47849837504327,2
+2019,2019 T1-T10 core trial,Salyan,Jhuplal gharti,All maize,p_omission,9.273,28.21800563950092,82.38493535667658,1
+2019,2019 T1-T10 core trial,Salyan,Jhuplal gharti,All maize,soil_background,6.973,28.21787660010159,82.38465665839612,1
+2019,2019 T1-T10 core trial,Salyan,Sharadha sharma,All maize,p_omission,12.759,28.229041462764144,82.35286384820938,1
+2019,2019 T1-T10 core trial,Surkhet,Babiyachaur,All maize,p_omission,13.11209,28.80516952369362,81.39991752337664,2
+2019,2019 T1-T10 core trial,Surkhet,Kalyan,All maize,p_omission,9.067499999999999,28.50148703204468,81.7419516434893,2
+2019,2019 T1-T10 core trial,Surkhet,Kalyan,All maize,soil_background,6.977,28.501449334435165,81.74196999985725,2
+2019,2019 T1-T10 core trial,Surkhet,Kunathari,All maize,p_omission,9.8205,28.71422273106873,81.5084069268778,2
+2019,2019 T1-T10 core trial,Surkhet,Kunathari,All maize,soil_background,6.712999999999999,28.714268475305285,81.50840390939265,2
+2019,2019 T1-T10 core trial,Surkhet,Lekhpharsa,All maize,p_omission,9.9405,28.465096245054156,81.7904939269647,2
+2019,2019 T1-T10 core trial,Surkhet,Lekhpharsa,All maize,soil_background,5.964499999999999,28.465115900617093,81.79057833272964,2
+2019,2019 T1-T10 core trial,Surkhet,Maintada-2,All maize,p_omission,7.3165,28.447808444034308,81.7964073177427,2
+2019,2019 T1-T10 core trial,Surkhet,Maintada-2,All maize,soil_background,4.5675,28.447788599878553,81.79641825612634,2
+2019,2019 T1-T10 core trial,Surkhet,Ramghat,All maize,p_omission,9.0472,28.48995533119887,81.74419364333153,5
+2019,2019 T1-T10 core trial,Surkhet,Ramghat,All maize,soil_background,5.5158000000000005,28.489945985376835,81.74423437938094,5

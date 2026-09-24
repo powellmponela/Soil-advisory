@@ -1,0 +1,32 @@
+category,path,name,expected,exists,is_file,is_dir,size_mb,n_files_recursive,extensions_detected,notes
+project_root,D:\dss\SOIL ADVISORY,SOIL ADVISORY,True,True,False,True,,11873,.bat;.cjs;.cmd;.cpg;.css;.cst;.csv;.cts;.dbf;.docx;.flow;.geojson;.gpkg;.html;.joblib;.js;.json;.jsx;.leafdoc;.log;.map;.markdown;.md;.mjs;.mts;.node;.pdf;.png;.prj;.ps1;.py;.pyc;.qmd;.r;.sbn;.sbx;.shp;.shx;.svg;.tag;.tif;.ts;.tsx;.txt;.xlsx;.xml;.yml;.zip,Main project folder.
+data_root,D:\dss\SOIL ADVISORY\Data,Data,True,True,False,True,,87,.cpg;.cst;.csv;.dbf;.docx;.gpkg;.prj;.qmd;.sbn;.sbx;.shp;.shx;.tif;.xlsx;.xml;.zip,Main data folder.
+outputs_root,D:\dss\SOIL ADVISORY\outputs,outputs,True,True,False,True,,82,.csv;.joblib;.json;.md;.png;.xlsx;.zip,Main output folder.
+m_n_publications_dir,D:\dss\SOIL ADVISORY\Data\m_n_publications,m_n_publications,True,True,False,True,,12,.csv;.xlsx,Harmonized Nepal maize publication data.
+local_dsm_dir,D:\dss\SOIL ADVISORY\Data\dsm,dsm,True,True,False,True,,22,.cpg;.dbf;.prj;.sbn;.sbx;.shp;.shx;.tif;.xml,Static local DSM files. Do not call DSM API.
+ecological_zones_dir,D:\dss\SOIL ADVISORY\Data\ecological zones,ecological zones,True,True,False,True,,7,.cpg;.dbf;.prj;.shp;.shx;.xml,"Terai, Churia/Siwalik and Mid-hill clipping boundary."
+ecological_zones_shapefile,D:\dss\SOIL ADVISORY\Data\ecological zones\Cross_sections_of_Nepal_s_physiographic_regions.shp,Cross_sections_of_Nepal_s_physiographic_regions.shp,True,True,True,False,0.846,1,.shp,Physiographic-region shapefile.
+boundary_dir,D:\dss\SOIL ADVISORY\Data\boundary,boundary,True,True,False,True,,13,.cpg;.cst;.csv;.dbf;.gpkg;.prj;.qmd;.shp;.shx,Ward/municipality/district/province boundaries.
+literature_dir,D:\dss\SOIL ADVISORY\Literature,Literature,False,True,False,True,,154,.pdf;.txt,Optional publication PDFs/text files.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize.csv,maize.csv,True,True,True,False,5.6984,1,.csv,Expected m_n_publications input.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize.xlsx,maize.xlsx,True,True,True,False,5.2891,1,.xlsx,Expected m_n_publications input.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize_treatment_crosswalk.csv,maize_treatment_crosswalk.csv,True,True,True,False,0.0553,1,.csv,Expected m_n_publications input.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize_unit_crosswalk.csv,maize_unit_crosswalk.csv,True,True,True,False,0.0108,1,.csv,Expected m_n_publications input.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize_variable_dictionary.csv,maize_variable_dictionary.csv,True,True,True,False,0.0673,1,.csv,Expected m_n_publications input.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize_qa.csv,maize_qa.csv,True,True,True,False,0.0026,1,.csv,Expected m_n_publications input.
+m_n_publications_file,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize_data_refresh_summary.csv,maize_data_refresh_summary.csv,True,True,True,False,0.0002,1,.csv,Expected m_n_publications input.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\boron,boron,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\clay,clay,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\nitrogen,nitrogen,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\organic,organic,True,True,False,True,,2,.tif;.xml,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\parentsoil,parentsoil,True,True,False,True,,9,.cpg;.dbf;.prj;.sbn;.sbx;.shp;.shx;.tif;.xml,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\ph,ph,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\phosphorus,phosphorus,True,True,False,True,,2,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\potassium,potassium,True,True,False,True,,2,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\sand,sand,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\silt,silt,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+dsm_layer_folder,D:\dss\SOIL ADVISORY\Data\dsm\zinc,zinc,True,True,False,True,,1,.tif,Expected static local DSM layer folder at native/original resolution.
+boundary_input,D:\dss\SOIL ADVISORY\Data\boundary\ward_level_boundary.gpkg,ward_level_boundary.gpkg,True,True,True,False,45.5156,1,.gpkg,Boundary input for overlay or aggregation.
+boundary_input,D:\dss\SOIL ADVISORY\Data\boundary\wards.shp,wards.shp,True,True,True,False,39.9351,1,.shp,Boundary input for overlay or aggregation.
+boundary_input,D:\dss\SOIL ADVISORY\Data\boundary\province_district_municipality\local_unit.shp,local_unit.shp,True,True,True,False,17.1209,1,.shp,Boundary input for overlay or aggregation.
+boundary_input,D:\dss\SOIL ADVISORY\Data\boundary\known_sites\nepal_research_sites.csv,nepal_research_sites.csv,True,True,True,False,0.0023,1,.csv,Boundary input for overlay or aggregation.

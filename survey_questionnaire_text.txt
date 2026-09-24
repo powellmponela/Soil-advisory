@@ -1,0 +1,58 @@
+ DRAFT for REVIEW
+Beneficiary Based Survey – 2024
+8 August 2024
+Informant’s consent for interview (अन्तर्बार्ताको लागि सहमति)
+Section 1: Respondent and HH information  खण्ड १: उत्तरदाता तथा घरधुरीसम्बन्धी जानकारी
+Questions to ascertain if the household’s eligibility for the survey 
+सर्वेक्षण घरपरिवारको सहभागितामा निरक्यौल गर्नका लागि प्रश्नहरु
+Name and address/ contact/ location of the respondent and household
+उत्तरदाताको नाम ठेगाना तथा सम्पर्क नम्बर र घरधुरी जानकारी
+Section 2: Area, production, and income from target NSAF crop in the past 12 month
+खण्ड २: विगत १२ महिनामा लगाएको (NSAF बालीको क्षेत्रफल्, उत्पादन तथा आय)
+Area, Variety, Production and Sale of NSAF Crop as selected in Q1
+बालीको क्षेत्रफल्, किसिम, उत्पादन तथा बेचबिखन
+2.2. Fertilizer use मलखाद प्रयोग
+Sowing, harvesting, variety performance, stresses etc.
+बाली लगाउने,  बाली भित्र्याउने, बालीमा प्रभावकारिता, असर तथा समस्याहरु
+Q.61 Were there any problems or difficulties  in growing crop Was there any stress(problem) in growing main variety? 
+के यो बालीमा कुनै समस्या अथवा अप्ठ्याराहरु थियो ?
+Yes
+No
+ के यो मुख्य जात को बाली  लगाउदा कुनै समस्या अथवा अप्ठ्याराहरु थियो ?
+- थियो
+- थिएन
+Q. 62 If so, what problems or difficulties were associated? (multiple answers)
+Flood/Earthquake
+Drought
+Fall Armyworm
+Locust insect
+Other insects
+Disease
+Hailstones/ heavy rain
+High Temperature/Low Temperature
+Micro-nutrient issues
+Other
+ यदि थियो भने, समस्या अथवा अप्ठ्याराहरु के सँग सम्बन्धित थिए ? ( बहु उत्तर)
+बाढी/पहिरो
+खडेरी
+फौजी किरा
+सलह किरा
+अन्य किरा
+रोग
+असिना/ अधिक वर्षा
+उच्च तापक्रम/न्युन तापक्रम
+पोषण तत्वको समस्या
+अन्य
+Section 3: Access to credit खण्ड ३ ऋणमा पहुँच
+Section 4 Overlap with USAID’s other projects  खण्ड ४: USAID का अन्य परियोजनाहरूसँग ओभरल्याप 
+4.1 Overlap with KISAN-II  ४.१ KISAN-II परियोजनासँग ओभरल्याप 
+4.2 Overlap with SUAAHARA-II  परियोजनासँग ओभरल्याप
+Overlap with CSISA शिशा परियोजनासँग ओभरल्याप
+Section 5: Use of climate information and or risk reduction actions 
+5.1.  Climate information access and use in the past 12 months (for NSAF crops)? 5.1.  Climate information access and use in the past 12 months (for NSAF crops)?
+बिगत १२ महिनामा जलवायुसम्बन्धी जानकारिमा पहुच तथा प्रयोग (NSAF ले सहयोग गर्ने बालीहरुकालागि)
+5.2 Risk minimizing actions taken in the past 12 months (for NSAF crops)?	
+विगत १२ महिनामा जोखिम न्युनिकरणका लागि गरिएका प्रयासहरु (NSAF ले सहयोग गर्ने निश्चित बालीहरुका लागि)
+Annex: Codes used in the survey
+Codes for various crop varieties (code 1 to 6):
+${Rice_variety_code_001}${Maize_variety_code_001}${Lentil_variety_code_001}${Tomato_variety_code_001}${Cauliflower_variety_code_001}${Onion_variety_code_001}${Specify_005}?

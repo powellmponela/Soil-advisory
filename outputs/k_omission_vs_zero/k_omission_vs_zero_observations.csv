@@ -1,0 +1,273 @@
+year,study,dataset_type,district,site,latitude,longitude,variety,variety_group,treatment_code,treatment,treatment_role,N_rate_kg_ha,P_rate_kg_ha,K_rate_kg_ha,adjusted_yield_kg_ha,yield_t_ha
+2017,2017 core trial,trial,Dang,Dhikpur,28.02714833,82.37515833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5043.0,5.043
+2017,2017 core trial,trial,Dang,Dhikpur,28.02572,82.377395,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6460.0,6.46
+2017,2017 core trial,trial,Dang,Dhikpur,28.092205,82.42721,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,4145.0,4.145
+2017,2017 core trial,trial,Dang,Dhikpur,28.02720333,82.37545333,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8184.0,8.184
+2017,2017 core trial,trial,Dang,Dhikpur,28.02555667,82.37725833,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,2437.0,2.437
+2017,2017 core trial,trial,Dang,Dhikpur,28.092295,82.42707333,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,4244.0,4.244
+2017,2017 core trial,trial,Dang,Dhuruwa,28.02137333,82.32474333,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7180.0,7.18
+2017,2017 core trial,trial,Dang,Dhuruwa,28.03805,82.32935833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7575.0,7.575
+2017,2017 core trial,trial,Dang,Dhuruwa,28.02261667,82.32327,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7483.0,7.483
+2017,2017 core trial,trial,Dang,Dhuruwa,28.02143167,82.324665,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7414.0,7.414
+2017,2017 core trial,trial,Dang,Dhuruwa,28.037935,82.329285,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,6821.0,6.821
+2017,2017 core trial,trial,Dang,Dhuruwa,28.022535,82.32320167,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,4838.0,4.838
+2017,2017 core trial,trial,Dang,Hapur,28.09140667,82.42664333,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,3490.0,3.49
+2017,2017 core trial,trial,Dang,Hapur,28.09373,82.428285,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,3946.0,3.946
+2017,2017 core trial,trial,Dang,Hapur,28.09138,82.42654,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,4506.0,4.506
+2017,2017 core trial,trial,Dang,Hapur,28.09362333,82.42826833,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,3959.0,3.959
+2017,2017 core trial,trial,Dang,Laxmipur,27.98058167,82.46868667,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,4450.0,4.45
+2017,2017 core trial,trial,Dang,Laxmipur,27.99098667,82.51826167,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5545.0,5.545
+2017,2017 core trial,trial,Dang,Laxmipur,27.967785,82.48898667,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5390.0,5.39
+2017,2017 core trial,trial,Dang,Laxmipur,27.98074667,82.468625,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,4832.0,4.832
+2017,2017 core trial,trial,Dang,Laxmipur,27.990985,82.51819333,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,5450.0,5.45
+2017,2017 core trial,trial,Dang,Laxmipur,27.967715,82.48896667,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7185.0,7.185
+2017,2017 core trial,trial,Dang,Panchakule,28.13302667,82.10547167,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6879.0,6.879
+2017,2017 core trial,trial,Dang,Panchakule,28.13447167,82.12121833,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7767.0,7.767
+2017,2017 core trial,trial,Dang,Panchakule,28.13308167,82.10536,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7719.0,7.719
+2017,2017 core trial,trial,Dang,Pawannagar,28.16120167,82.25547167,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5303.0,5.303
+2017,2017 core trial,trial,Dang,Pawannagar,28.15935167,82.25444833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5899.0,5.899
+2017,2017 core trial,trial,Dang,Pawannagar,28.17071333,82.26032833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6072.0,6.072
+2017,2017 core trial,trial,Dang,Pawannagar,28.16116167,82.25545667,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,5681.0,5.681
+2017,2017 core trial,trial,Dang,Pawannagar,28.15912167,82.2545,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7746.0,7.746
+2017,2017 core trial,trial,Dang,Pawannagar,28.17065167,82.260205,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7402.0,7.402
+2017,2017 core trial,trial,Dang,Purandhara,28.19366167,82.09409,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6509.0,6.509
+2017,2017 core trial,trial,Dang,Purandhara,28.18310167,82.09845333,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7500.0,7.5
+2017,2017 core trial,trial,Dang,Purandhara,28.19853167,82.10404333,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,6286.0,6.286
+2017,2017 core trial,trial,Dang,Purandhara,28.19369667,82.094035,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7362.0,7.362
+2017,2017 core trial,trial,Dang,Purandhara,28.18281333,82.098295,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,6721.0,6.721
+2017,2017 core trial,trial,Dang,Shantinagar,28.15926667,82.22875167,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,2648.0,2.648
+2017,2017 core trial,trial,Dang,Shantinagar,28.167725,82.22625,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,3170.0,3.17
+2017,2017 core trial,trial,Dang,Shantinagar,28.16909333,82.235045,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8975.0,8.975
+2017,2017 core trial,trial,Dang,Shantinagar,28.15931167,82.22882833,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,9125.0,9.125
+2017,2017 core trial,trial,Dang,Shantinagar,28.167775,82.22629167,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8114.0,8.114
+2017,2017 core trial,trial,Dang,Shreegau,28.09885833,82.16455,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,4056.0,4.056
+2017,2017 core trial,trial,Dang,Shreegau,28.11214333,82.18997833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5003.0,5.003
+2017,2017 core trial,trial,Dang,Shreegau,28.108055,82.18268833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,3312.0,3.312
+2017,2017 core trial,trial,Dang,Shreegau,28.09896833,82.164575,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,5613.0,5.613
+2017,2017 core trial,trial,Dang,Shreegau,28.112235,82.19002833,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,5919.0,5.919
+2017,2017 core trial,trial,Dang,Shreegau,28.10803667,82.18280167,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7463.0,7.463
+2017,2017 core trial,trial,Surkhet,Babiyachaur,28.8088505,81.3939897,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7166.6,7.166600000000001
+2017,2017 core trial,trial,Surkhet,Babiyachaur,28.8211626,81.4134021,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7750.0,7.75
+2017,2017 core trial,trial,Surkhet,Babiyachaur,28.8088469,81.3939938,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11936.6,11.9366
+2017,2017 core trial,trial,Surkhet,Babiyachaur,28.8260309,81.4111856,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,12133.3,12.133299999999998
+2017,2017 core trial,trial,Surkhet,Babiyachaur,28.82111,81.413371,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11263.3,11.2633
+2017,2017 core trial,trial,Surkhet,Gadhi,28.65119517,81.60158525,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7016.7,7.0167
+2017,2017 core trial,trial,Surkhet,Gadhi,28.6411379,81.6042313,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,2143.3,2.1433
+2017,2017 core trial,trial,Surkhet,Gadhi,28.65119118,81.60159924,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,9886.7,9.886700000000001
+2017,2017 core trial,trial,Surkhet,Gadhi,28.6411099,81.6042283,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,13000.0,13.0
+2017,2017 core trial,trial,Surkhet,Ghumkhare,28.4405855,81.897729,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7760.0,7.76
+2017,2017 core trial,trial,Surkhet,Ghumkhare,28.4403528,81.8985279,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,10573.3,10.5733
+2017,2017 core trial,trial,Surkhet,Ghumkhare,28.4373577,81.8965341,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,10976.7,10.976700000000001
+2017,2017 core trial,trial,Surkhet,Ghumkhare,28.4406521,81.8976365,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,9920.0,9.92
+2017,2017 core trial,trial,Surkhet,Guthu,28.8512093,81.2906702,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6666.6,6.666600000000001
+2017,2017 core trial,trial,Surkhet,Guthu,28.8447252,81.3143365,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6833.3,6.8333
+2017,2017 core trial,trial,Surkhet,Guthu,28.8357099,81.3070776,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,13333.3,13.3333
+2017,2017 core trial,trial,Surkhet,Guthu,28.8513065,81.290645,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11666.7,11.6667
+2017,2017 core trial,trial,Surkhet,Guthu,28.8446832,81.3143124,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8533.3,8.533299999999999
+2017,2017 core trial,trial,Surkhet,Kalyan,28.5031584,81.7380663,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7750.0,7.75
+2017,2017 core trial,trial,Surkhet,Kalyan,28.5036559,81.7378121,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5653.3,5.6533
+2017,2017 core trial,trial,Surkhet,Kalyan,28.5019833,81.7370833,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6683.3,6.6833
+2017,2017 core trial,trial,Surkhet,Kalyan,28.5031423,81.7380956,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11263.3,11.2633
+2017,2017 core trial,trial,Surkhet,Kalyan,28.5036384,81.737801,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8846.7,8.8467
+2017,2017 core trial,trial,Surkhet,Kalyan,28.501959,81.7371378,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8390.0,8.39
+2017,2017 core trial,trial,Surkhet,Lekhpharsa,28.4743615,81.8018271,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5313.3,5.3133
+2017,2017 core trial,trial,Surkhet,Lekhpharsa,28.4777842,81.8152825,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7166.7,7.1667
+2017,2017 core trial,trial,Surkhet,Lekhpharsa,28.4694949,81.8085782,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,7520.0,7.52
+2017,2017 core trial,trial,Surkhet,Lekhpharsa,28.4743871,81.8018858,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8593.3,8.5933
+2017,2017 core trial,trial,Surkhet,Lekhpharsa,28.4777829,81.8153468,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11936.7,11.9367
+2017,2017 core trial,trial,Surkhet,Lekhpharsa,28.4694382,81.8085568,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,10330.0,10.33
+2017,2017 core trial,trial,Surkhet,Maintada-3,28.43492997,81.81850476,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,3176.7,3.1767
+2017,2017 core trial,trial,Surkhet,Maintada-3,28.44871629,81.80507469,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5606.7,5.6067
+2017,2017 core trial,trial,Surkhet,Maintada-3,28.43493603,81.81848194,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,4690.0,4.69
+2017,2017 core trial,trial,Surkhet,Maintada-3,28.45076174,81.79223735,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,9946.7,9.9467
+2017,2017 core trial,trial,Surkhet,Maintada-3,28.44871857,81.80508549,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,9420.0,9.42
+2017,2017 core trial,trial,Surkhet,Maintada-4,28.42060723,81.79859145,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6700.0,6.7
+2017,2017 core trial,trial,Surkhet,Maintada-4,28.42142047,81.79066701,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5900.0,5.9
+2017,2017 core trial,trial,Surkhet,Maintada-4,28.41748338,81.79712142,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5833.3,5.8333
+2017,2017 core trial,trial,Surkhet,Maintada-4,28.42062554,81.7985362,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,10666.7,10.6667
+2017,2017 core trial,trial,Surkhet,Maintada-4,28.42130959,81.79066165,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,7800.0,7.8
+2017,2017 core trial,trial,Surkhet,Maintada-4,28.41742904,81.79714719,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8700.0,8.7
+2017,2017 core trial,trial,Surkhet,Neta,28.5514112,81.7951889,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,5770.0,5.77
+2017,2017 core trial,trial,Surkhet,Neta,28.5487232,81.7925169,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,6713.3,6.7133
+2017,2017 core trial,trial,Surkhet,Neta,28.5514173,81.7952014,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,12796.7,12.796700000000001
+2017,2017 core trial,trial,Surkhet,Neta,28.5351988,81.7872069,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11033.3,11.033299999999999
+2017,2017 core trial,trial,Surkhet,Neta,28.5487276,81.7925342,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,12770.0,12.77
+2017,2017 core trial,trial,Surkhet,Ramghat,28.4888079,81.7436679,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,2696.7,2.6967
+2017,2017 core trial,trial,Surkhet,Ramghat,28.4865092,81.7436874,Hybrid-Rajkumar,Hybrid,1,N0-P0-K0,soil_background,0.0,0.0,0.0,4433.3,4.4333
+2017,2017 core trial,trial,Surkhet,Ramghat,28.4886847,81.7436749,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,14633.3,14.633299999999998
+2017,2017 core trial,trial,Surkhet,Ramghat,28.4934707,81.7414186,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,11246.7,11.2467
+2017,2017 core trial,trial,Surkhet,Ramghat,28.4865312,81.7437037,Hybrid-Rajkumar,Hybrid,4,N120-P60-K0,k_omission,120.0,60.0,0.0,8390.0,8.39
+2018,"2018 N source, timing and FYM trial",trial,Dang,Dhikpur,28.02603797,82.37731428,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6822.0,6.822
+2018,"2018 N source, timing and FYM trial",trial,Dang,Dhikpur,28.02234231,82.36645259,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7188.0,7.188
+2018,"2018 N source, timing and FYM trial",trial,Dang,Dhikpur,28.05335811,82.37643879,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6282.0,6.282
+2018,"2018 N source, timing and FYM trial",trial,Dang,Dhuruwa,28.02155143,82.32441039,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7375.0,7.375
+2018,"2018 N source, timing and FYM trial",trial,Dang,Dhuruwa,28.02132877,82.32491632,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,8305.0,8.305
+2018,"2018 N source, timing and FYM trial",trial,Dang,Hapur,28.08769307,82.42310411,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5525.0,5.525
+2018,"2018 N source, timing and FYM trial",trial,Dang,Hapur,28.09181693,82.41416255,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3810.0,3.81
+2018,"2018 N source, timing and FYM trial",trial,Dang,Hapur,28.09175997,82.42595446,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5896.0,5.896
+2018,"2018 N source, timing and FYM trial",trial,Dang,Laxmipur,27.97651597,82.46350346,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3180.0,3.18
+2018,"2018 N source, timing and FYM trial",trial,Dang,Laxmipur,27.98068224,82.46866956,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5033.0,5.033
+2018,"2018 N source, timing and FYM trial",trial,Dang,Laxmipur,27.97638286,82.45877925,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5515.0,5.515
+2018,"2018 N source, timing and FYM trial",trial,Dang,Panchakaule,28.11207976,82.17598625,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3204.0,3.204
+2018,"2018 N source, timing and FYM trial",trial,Dang,Panchakaule,28.10644745,82.17772549,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5942.0,5.942
+2018,"2018 N source, timing and FYM trial",trial,Dang,Panchakaule,28.11101442,82.18944641,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6160.0,6.16
+2018,"2018 N source, timing and FYM trial",trial,Dang,Panchakaule,28.1351105,82.122287,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7643.0,7.643
+2018,"2018 N source, timing and FYM trial",trial,Dang,Pawannagar,28.17019049,82.26093063,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4984.0,4.984
+2018,"2018 N source, timing and FYM trial",trial,Dang,Pawannagar,28.17088765,82.26043132,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6312.0,6.312
+2018,"2018 N source, timing and FYM trial",trial,Dang,Pawannagar,28.17030632,82.25940471,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6175.0,6.175
+2018,"2018 N source, timing and FYM trial",trial,Dang,Purandhara,28.18212368,82.09919116,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6252.0,6.252
+2018,"2018 N source, timing and FYM trial",trial,Dang,Purandhara,28.19538209,82.10246547,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5520.0,5.52
+2018,"2018 N source, timing and FYM trial",trial,Dang,Purandhara,28.18522037,82.09231658,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7191.0,7.191
+2018,"2018 N source, timing and FYM trial",trial,Dang,Shantinagar,28.16910721,82.22765582,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5553.0,5.553
+2018,"2018 N source, timing and FYM trial",trial,Dang,Shantinagar,28.15941651,82.22264838,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5951.0,5.951
+2018,"2018 N source, timing and FYM trial",trial,Dang,Shantinagar,28.16827996,82.22616342,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6091.0,6.091
+2018,"2018 N source, timing and FYM trial",trial,Doti,Chattiwan,29.08326987,80.59331328,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4924.0,4.924
+2018,"2018 N source, timing and FYM trial",trial,Doti,Chattiwan,29.08356178,80.5955264,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7720.0,7.72
+2018,"2018 N source, timing and FYM trial",trial,Doti,Chattiwan,29.07951102,80.59145253,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4434.0,4.434
+2018,"2018 N source, timing and FYM trial",trial,Doti,Ghantesori,29.14446111,80.6017681,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5327.0,5.327
+2018,"2018 N source, timing and FYM trial",trial,Doti,Ghantesori,29.14404606,80.60298644,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7720.0,7.72
+2018,"2018 N source, timing and FYM trial",trial,Doti,Ghantesori,29.14428681,80.60539869,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5395.0,5.395
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Anekot,27.65010811,85.59363108,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3517.0,3.517
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Anekot,27.67011176,85.58107345,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4775.0,4.775
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Anekot,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4727.0,4.727
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Bhakundebesi,27.56058799,85.66485975,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6784.0,6.784
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Bhakundebesi,27.55455024,85.66750406,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6586.0,6.586
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Bhakundebesi,27.55877039,85.66634072,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6460.0,6.46
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Rabiopi,27.64560389,85.55464565,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6119.0,6.119
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Rabiopi,27.64701915,85.56237879,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7000.0,7.0
+2018,"2018 N source, timing and FYM trial",trial,Kavre,Rabiopi,27.65015802,85.57668921,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6789.0,6.789
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Chidipani,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3759.0,3.759
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Chidipani,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4510.0,4.51
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Devinagar,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5097.0,5.097
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Devinagar,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4180.0,4.18
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Devinagar,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5124.0,5.124
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Khasyauli,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5030.0,5.03
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Khasyauli,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4455.0,4.455
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Khasyauli,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4341.0,4.341
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Madanpokhara,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4906.0,4.906
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Madanpokhara,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3645.0,3.645
+2018,"2018 N source, timing and FYM trial",trial,Palpa,Madanpokhara,,,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,3981.0,3.981
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Babiyachaur,28.80448862,81.39839939,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7366.0,7.366
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Babiyachaur,28.80563497,81.40025471,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6091.0,6.091
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Babiyachaur,28.80448923,81.39977757,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7858.0,7.858
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Gadhi,28.6406062,81.5920645,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5739.0,5.739
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Gadhi,28.63693923,81.58270607,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5103.0,5.103
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Gadhi,28.64121304,81.60432963,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6077.0,6.077
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Guthu,28.83355282,81.30625304,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5606.0,5.606
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Kalyan,28.50407675,81.73590332,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6260.0,6.26
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Kalyan,28.50843152,81.72644885,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6541.0,6.541
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Kalyan,28.50208136,81.74801401,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,8197.0,8.197
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Kunathari,28.71708589,81.51117943,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5951.0,5.951
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Kunathari,28.71305566,81.50806219,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7105.0,7.105
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Kunathari,28.70859683,81.51205312,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6102.0,6.102
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Lekhpharsa,28.46666504,81.80203798,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7278.0,7.278
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Lekhpharsa,28.458972,81.78546624,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6673.0,6.673
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Lekhpharsa,28.46930445,81.79762411,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,4251.0,4.251
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Maintada-1,28.43690916,81.80009407,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,8037.0,8.037
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Maintada-1,28.44924491,81.79294438,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6408.0,6.408
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Maintada-2,28.41951416,81.79047363,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6116.0,6.116
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Maintada-2,28.42833446,81.80325811,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,5607.0,5.607
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Maintada-8,28.44624253,81.81802132,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6202.0,6.202
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Maintada-9,28.43196607,81.80337762,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7539.0,7.539
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Ramghat,28.48771316,81.73949597,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6388.0,6.388
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Ramghat,28.48760256,81.74483375,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,7545.0,7.545
+2018,"2018 N source, timing and FYM trial",trial,Surkhet,Ramghat,28.49008993,81.74304734,,All maize,8,N0-P0-K0,soil_background,0.0,0.0,0.0,6315.0,6.315
+2019,2019 T1-T10 core trial,trial,Dang,Dhikpur,28.027227194979787,82.3704420402646,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5030.0,5.03
+2019,2019 T1-T10 core trial,trial,Dang,Dhikpur,28.053381540812552,82.37643694505095,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6060.0,6.06
+2019,2019 T1-T10 core trial,trial,Dang,Dhikpur,28.027188135311007,82.37052233889699,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,7869.0,7.869
+2019,2019 T1-T10 core trial,trial,Dang,Dhikpur,28.05335861630737,82.37639956176281,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6832.0,6.832
+2019,2019 T1-T10 core trial,trial,Dang,Laxmipur,27.97621116042137,82.46378995478153,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6250.0,6.25
+2019,2019 T1-T10 core trial,trial,Dang,Laxmipur,27.98073340673,82.46873075142503,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5502.0,5.502
+2019,2019 T1-T10 core trial,trial,Dang,Laxmipur,27.976134256459773,82.46390495449305,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,12734.0,12.734
+2019,2019 T1-T10 core trial,trial,Dang,Laxmipur,27.98077858518809,82.46864022687078,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,11368.0,11.368
+2019,2019 T1-T10 core trial,trial,Dang,Panchakule,28.133885068818927,82.11858672089875,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6280.0,6.28
+2019,2019 T1-T10 core trial,trial,Dang,Panchakule,28.13374944962561,82.11875645443797,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9238.0,9.238
+2019,2019 T1-T10 core trial,trial,Dang,Panchakule,28.13467824831605,82.12285059504211,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9953.0,9.953
+2019,2019 T1-T10 core trial,trial,Dang,Shantinagar,28.157768421806395,82.22700856626034,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5979.0,5.979
+2019,2019 T1-T10 core trial,trial,Dang,Shantinagar,28.17370459903032,82.22814749926329,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5499.0,5.499
+2019,2019 T1-T10 core trial,trial,Dang,Shantinagar,28.15775815397501,82.22708542831242,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8165.0,8.165
+2019,2019 T1-T10 core trial,trial,Dang,Shantinagar,28.17380916327238,82.22798639908433,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8425.0,8.425
+2019,2019 T1-T10 core trial,trial,Dang,Shreegau,28.112202384509143,82.18938488513231,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,4486.0,4.486
+2019,2019 T1-T10 core trial,trial,Dang,Shreegau,28.10725006274879,82.1829616650939,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,4690.0,4.69
+2019,2019 T1-T10 core trial,trial,Dang,Shreegau,28.11188890133053,82.18928312882781,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9183.0,9.183
+2019,2019 T1-T10 core trial,trial,Dang,Shreegau,28.10730898752809,82.18278346583247,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,10284.0,10.284
+2019,2019 T1-T10 core trial,trial,Doti,Chhatiwan,29.08019632101059,80.59007694013417,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6923.0,6.923
+2019,2019 T1-T10 core trial,trial,Doti,Chhatiwan,29.081268492154777,80.59117102995515,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6815.68,6.81568
+2019,2019 T1-T10 core trial,trial,Doti,Chhatiwan,29.08034539315849,80.58986345306039,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8564.0,8.564
+2019,2019 T1-T10 core trial,trial,Doti,Chhatiwan,29.08136010635644,80.59109316207469,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9117.64,9.11764
+2019,2019 T1-T10 core trial,trial,Doti,Dipayal,29.254670538939536,80.93258094973862,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6523.0,6.523
+2019,2019 T1-T10 core trial,trial,Doti,Dipayal,29.25473981536925,80.93242982402444,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,8115.86,8.11586
+2019,2019 T1-T10 core trial,trial,Doti,Dipayal,29.25468323752284,80.93263702467084,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9973.21,9.97321
+2019,2019 T1-T10 core trial,trial,Doti,Dipayal,29.25471923779696,80.9325769264251,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9448.58,9.44858
+2019,2019 T1-T10 core trial,trial,Doti,Dipayal,29.25476781092584,80.93248095363379,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9188.23,9.188229999999999
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.11762692499906,80.59968645684421,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,8141.0,8.141
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.12973345257342,80.57958221063018,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6505.0,6.505
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.12357355002314,80.57457234710455,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,7333.0,7.333
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.125495604239404,80.57586953043938,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6423.0,6.423
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.124924377538264,80.57595460675657,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,7733.0,7.733
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.11759675014764,80.59954949654639,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9452.0,9.452
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.12973043508828,80.57961179874837,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,12705.0,12.705
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.12592748180032,80.57585871778429,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,12088.0,12.088
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.125497448258105,80.57587271556258,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,10843.0,10.843
+2019,2019 T1-T10 core trial,trial,Doti,Ghanteshwor,29.124845839105543,80.57600431144238,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,11562.0,11.562
+2019,2019 T1-T10 core trial,trial,Kavre,Bhakundebesi,,,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3172.093,3.172093
+2019,2019 T1-T10 core trial,trial,Kavre,Bhakundebesi,27.55687133409083,85.66755250096321,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,2681.421,2.681421
+2019,2019 T1-T10 core trial,trial,Kavre,Bhakundebesi,,,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6321.628,6.321628
+2019,2019 T1-T10 core trial,trial,Kavre,Bhakundebesi,27.557067177258432,85.6676068995148,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6145.89,6.1458900000000005
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,27.65032968018204,85.57625262066722,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3415.116,3.415116
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,,,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3197.67,3.19767
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,,,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3197.674,3.197674
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,,,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3560.078,3.560078
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,27.6502989185974,85.57615798898041,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6949.612,6.949612
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,,,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6813.178,6.813178
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,,,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6813.178,6.813178
+2019,2019 T1-T10 core trial,trial,Kavre,Rabiopi,,,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,5720.93,5.72093
+2019,2019 T1-T10 core trial,trial,Makwanpur,Radha Tiwari,,,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,2742.32,2.7423200000000003
+2019,2019 T1-T10 core trial,trial,Makwanpur,Radha Tiwari,,,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6313.06,6.31306
+2019,2019 T1-T10 core trial,trial,Nuwakot,Dip Acharya,27.88490277249366,85.15011859126389,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6008.915,6.008915
+2019,2019 T1-T10 core trial,trial,Nuwakot,Dip Acharya,27.88483466953039,85.14994843862951,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,7509.767,7.509767
+2019,2019 T1-T10 core trial,trial,Nuwakot,Ramchandra Acharya,27.88436595350504,85.15049275942147,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,1620.814,1.620814
+2019,2019 T1-T10 core trial,trial,Nuwakot,Ramchandra Acharya,27.884380035102367,85.15034993179142,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8165.233,8.165233
+2019,2019 T1-T10 core trial,trial,Palpa,Chidi pani,27.845119703561068,83.63194227218628,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,8080.0,8.08
+2019,2019 T1-T10 core trial,trial,Palpa,Chidi pani,27.88846591953188,83.46477535553277,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,8018.818182,8.018818182
+2019,2019 T1-T10 core trial,trial,Palpa,Chidi pani,27.845211569219828,83.63196012564003,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8972.727273,8.972727273
+2019,2019 T1-T10 core trial,trial,Palpa,Chidi pani,27.88853880017996,83.46480175852776,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9473.94697,9.47394697
+2019,2019 T1-T10 core trial,trial,Palpa,Devinagar,27.808234803378586,83.69885492138565,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,4836.30303,4.83630303
+2019,2019 T1-T10 core trial,trial,Palpa,Devinagar,27.81032185535878,83.69493051432073,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6483.852273,6.483852273
+2019,2019 T1-T10 core trial,trial,Palpa,Devinagar,27.808345276862383,83.69880236685276,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,7792.333333,7.792333332999999
+2019,2019 T1-T10 core trial,trial,Palpa,Devinagar,27.808131161145862,83.69382192380726,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8055.0,8.055
+2019,2019 T1-T10 core trial,trial,Palpa,Khasyauli,,,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5869.181818,5.869181818
+2019,2019 T1-T10 core trial,trial,Palpa,Khasyauli,27.884576926007867,83.47849837504327,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5869.181818,5.869181818
+2019,2019 T1-T10 core trial,trial,Palpa,Khasyauli,,,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,3576.761364,3.5767613639999998
+2019,2019 T1-T10 core trial,trial,Palpa,Khasyauli,27.88487980607897,83.47851279191673,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,3576.7613,3.5767613000000003
+2019,2019 T1-T10 core trial,trial,Salyan,Jhuplal gharti,28.21787660010159,82.38465665839612,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6973.0,6.973
+2019,2019 T1-T10 core trial,trial,Salyan,Jhuplal gharti,28.217901745811105,82.38466445356607,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9579.0,9.579
+2019,2019 T1-T10 core trial,trial,Salyan,Sharadha sharma,28.22900190018117,82.3529542889446,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,11624.0,11.624
+2019,2019 T1-T10 core trial,trial,Surkhet,Babiyachaur,28.80519948899746,81.40049465931952,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,13887.31,13.88731
+2019,2019 T1-T10 core trial,trial,Surkhet,Babiyachaur,28.80511013790965,81.39939973130822,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,12416.96,12.41696
+2019,2019 T1-T10 core trial,trial,Surkhet,Kalyan,28.504110923968256,81.73823112621903,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6816.0,6.816
+2019,2019 T1-T10 core trial,trial,Surkhet,Kalyan,28.498787744902074,81.74570887349546,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,7138.0,7.138
+2019,2019 T1-T10 core trial,trial,Surkhet,Kalyan,28.504180451855063,81.7382069863379,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8677.0,8.677
+2019,2019 T1-T10 core trial,trial,Surkhet,Kalyan,28.498821440152824,81.74569864757359,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,8672.0,8.672
+2019,2019 T1-T10 core trial,trial,Surkhet,Kunathari,28.71532666962593,81.50968914851546,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6278.0,6.278
+2019,2019 T1-T10 core trial,trial,Surkhet,Kunathari,28.71321028098464,81.50711867026985,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,7148.0,7.148
+2019,2019 T1-T10 core trial,trial,Surkhet,Kunathari,28.71548412367701,81.50972502306104,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,7934.0,7.934
+2019,2019 T1-T10 core trial,trial,Surkhet,Kunathari,28.713016659021378,81.50706008076668,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,7650.0,7.65
+2019,2019 T1-T10 core trial,trial,Surkhet,Lekhpharsa,28.462252663448453,81.78157168440521,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6659.0,6.659
+2019,2019 T1-T10 core trial,trial,Surkhet,Lekhpharsa,28.467979137785733,81.79958498105407,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,5270.0,5.27
+2019,2019 T1-T10 core trial,trial,Surkhet,Lekhpharsa,28.46210296265781,81.78138292394578,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6944.0,6.944
+2019,2019 T1-T10 core trial,trial,Surkhet,Lekhpharsa,28.46799565013498,81.79955271072686,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,10403.0,10.403
+2019,2019 T1-T10 core trial,trial,Surkhet,Maintada-2,28.448478640057147,81.79668023250997,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,4447.0,4.447
+2019,2019 T1-T10 core trial,trial,Surkhet,Maintada-2,28.44709855969996,81.79615627974272,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,4688.0,4.688
+2019,2019 T1-T10 core trial,trial,Surkhet,Maintada-2,28.4485147241503,81.79667009040713,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6393.0,6.393
+2019,2019 T1-T10 core trial,trial,Surkhet,Maintada-2,28.447096799500287,81.79615829139948,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,6247.0,6.247
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.488185559399422,81.7456082906574,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6244.0,6.244
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.488267324864864,81.74409845843911,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3376.0,3.376
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.492348263971508,81.74318784847856,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,3458.0,3.458
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.488538186065853,81.74532640725374,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,6216.0,6.216
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.492390592582524,81.7429508920759,All maize,All maize,T1,N0-P0-K0,soil_background,0.0,0.0,0.0,8285.0,8.285
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.48813665099442,81.7456775251776,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,9672.0,9.672
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.488228474743664,81.74401086755097,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,10665.0,10.665
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.49245890509337,81.74311693757772,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,10442.0,10.442
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.48862854298204,81.74528089351952,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,11542.0,11.542
+2019,2019 T1-T10 core trial,trial,Surkhet,Ramghat,28.49243962671608,81.74295701086521,All maize,All maize,T4,N120-P60-K0,k_omission,120.0,60.0,0.0,12195.0,12.195

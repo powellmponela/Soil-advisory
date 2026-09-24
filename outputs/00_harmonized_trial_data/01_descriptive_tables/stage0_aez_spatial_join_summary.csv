@@ -1,0 +1,10 @@
+metric,value
+input_maize_csv,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\04_inputs_for_next_stage\maize.csv
+aez_shapefile,D:\dss\SOIL ADVISORY\Data\ecological zones\Cross_sections_of_Nepal_s_physiographic_regions.shp
+aez_polygon_attribute_used,AEZ
+maize_rows,3023
+rows_with_valid_coordinates,3017
+rows_with_polygon_match,3017
+rows_in_target_aez_scope,1597
+output_maize_csv,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\00_data\maize.csv
+next_stage_maize_csv,D:\dss\SOIL ADVISORY\outputs\00_harmonized_trial_data\04_inputs_for_next_stage\maize.csv

@@ -1,0 +1,171 @@
+# METHODOLOGY: MAIZE FERTILIZER ADVISORY & YIELD OPTIMIZATION (NEPAL)
+Date: 2026-05-13
+
+## 1. Project Setup
+- Created a reproducible repository at `c:\SOIL ADVISORY` with Git version control.
+- Managed dependencies via a Conda environment (`environment.yml`) containing Python 3.11, R 4.3, and required libraries (`pandas`, `geopandas`, `sf`, `terra`, `scikit‑learn`, `rvest`).
+- Established a standardized folder hierarchy: `Data/`, `Literature/`, `scripts/`, `outputs/`, `reports/`.
+
+## 2. Data Ingestion & Harmonisation
+1. **NSAF & AURORA trial data** – Loaded CSV files covering 2017‑2019 NSAF trials and the latest AURORA field demonstrations (including multi‑crop intercropping blocks and nano urea foliar logs).
+2. **NARC soil mapping** – Imported high‑resolution raster and pixel‑centroid CSV providing soil pH, organic matter, and macro‑nutrients at a 2km resolution.
+3. **Identifier standardisation** – Generated unique `farmer_id` and `plot_id` to separate sole BMP plots from intercropped sub‑demonstrations.
+4. **Spatial join** – Performed a nearest‑neighbour join to attach high-res soil attributes to each AURORA demonstration coordinate.
+5. **Control set** – Maintained the 119-plot control baseline while integrating new sole-maize BMP benchmarks for 2026 comparisons.
+
+## 3. QUEFTS Mechanistic Modelling
+- Prepared input tables (soil fertility, weather normals, crop coefficient) for the QUEFTS model.
+- Executed the model in R (`run_quefts_model_western.R`) for 1,290 pixels (~2 km resolution) across Western Nepal.
+- Generated per‑pixel fertilizer recommendations (N, P, K) and stored results in `maize_quefts_western_highres_pixels.csv`.
+- Conducted sanity checks: median recommended N ≈ 235 kg ha⁻¹, K ≈ 414 kg ha⁻¹ for average soils.
+
+## 4. Empirical Random Forest Model
+1. **Feature engineering** – Extracted soil pH, organic matter, total N/P/K, elevation, hybrid genotype, and management flags from the merged dataset.
+2. **Target variable** – Agronomic Efficiency of nitrogen (AE‑N = grain kg / N kg applied).
+3. **Model training** – Split 679 records (80 % train, 20 % test); trained `RandomForestRegressor` (scikit‑learn) achieving R² = 0.739.
+4. **Model persistence** – Saved model as `nue_rf_model.joblib`.
+5. **Spatial prediction** – Applied the model to all pixel centroids, producing `AE_N_predicted.csv` and raster maps of predicted NUE.
+
+## 5. Literature Mining & Synthesis
+- Processed 24 peer‑reviewed articles using a multi‑engine NLP pipeline (PyMuPDF, pdfplumber, pdfminer, pypdf).
+- Extracted full text into `extracted_text_*.txt`; identified keywords and management recommendations (e.g., PCU, UDP, biochar, 4R principles).
+- Summarised findings in a reference table linking each practice to expected impacts on yield, NUE, and pest management (FAW control).
+
+## 6. Integrated Advisory Generation
+- Combined QUEFTS mechanistic rates with RF‑predicted AE‑N to compute farmer‑specific dosage adjustments.
+- Applied agronomic constraints: minimum N ≥ 80 kg ha⁻¹; K ≥ 300 kg ha⁻¹ where soil K < 1 cmol c kg⁻¹.
+- Produced advisory cards (`soil_health_advisory_2026.csv`) containing GPS, soil attributes, recommended N-P-K rates (adhering to AURORA domain rates: 100:40:40 or 119:40:40), expected yield, and concise management tips (e.g., "Nano Urea at V10/V12" or "Paired-row intercropping").
+
+## 7. Reporting & Visualisation
+- Generated spatial impact maps (AE‑N, N‑demand, Yield‑Gap) via `generate_spatial_impact_maps.py`; saved as GeoTIFF/PNG in `outputs/maps`.
+- Compiled summary statistics and key metrics in this report (Section 4 of the full document).
+
+## 8. Quality Assurance & Re‑producibility
+- Implemented automated integrity checks after each pipeline stage (row counts, missing‑value audits, coordinate validation).
+- Maintained all scripts and data dictionaries under Git; tagged releases (e.g., `v2026.1`).
+- Planned annual re‑training of the Random Forest model when new NSAF data become available.
+
+*The methodology outlined above provides a fully reproducible, end‑to‑end workflow for generating spatially explicit fertilizer advisory services in Western Nepal.*
+
+## 0. PROCEDURE OVERVIEW
+1. Project Setup
+2. Data Ingestion & Harmonisation
+3. QUEFTS Mechanistic Modelling
+4. Empirical Random Forest Model
+5. Literature Mining & Synthesis
+6. Integrated Advisory Generation
+7. Reporting & Visualisation
+8. Quality Assurance & Re‑producibility
+
+
+## 1. PROJECT OVERVIEW
+This project aims to optimize maize fertilizer recommendations in Western Nepal by integrating multi-year trial data (NSAF 2017-2019) with high-resolution NARC soil mapping. The ultimate goal is to bridge the yield gap and improve nutrient use efficiency (NUE) at the farmer level.
+
+## 2. RECENT PROGRESS (STEP 1: PIPELINE REFRESH)
+The data processing pipeline is refreshed to synchronize results with the latest soil data and trial records.
+- **Matched 2019 & AURORA Demos**: 271 demo plots from 2019 and the latest AURORA blocks (Banke, Bardiya, etc.) are successfully matched with NARC soil data.
+- **Pooled Controls**: Establishes a robust yield baseline using 119 control records, supplemented by local AURORA BMP sole-cropping benchmarks.
+- **Intercropping Data Structure**: Implements a nested data structure to capture paired-row yields for both Maize (RH-10) and Legume (Prakash Cowpea) within a single demonstration unit.
+- **High-Res Modeling**: Runs the QUEFTS model for 1,290 pixels to generate localized recommendations (100:40:40 or 119:40:40 NPK domains).
+- **Farmer Density**: Tracks 160 unique farmers, verifying coverage across the Western Terai and Mid-hill regions.
+
+## 3. STEP-WISE INNOVATION DESIGN & ANALYTICAL FRAMING (ISFM RADAR)
+The experimental design across the multi-year (2017-2019) NSAF trials follows a step-wise innovation framework, structured as an Integrated Soil Fertility Management (ISFM) Radar. This framing evaluates agronomic innovations progressively:
+- **Baseline Diagnostics (Step 1; 2017-2018)**: Absolute control plots (0-0-0) and Nutrient Omission Trials (0-P-K, N-0-K, N-P-0) are compared against the full N120-P60-K40 baseline to establish inherent soil nutrient supply and identify primary limiting factors.
+- **Rate Optimization / 4R Rates (Step 2; 2017)**: Evaluating varying Nitrogen rates (60, 120, 180, 210 kg N/ha) against fixed P (60) and K (40) to determine optimal agronomic efficiency and the point of diminishing returns.
+- **Micronutrient Integration (Step 3; 2017, 2019)**: Supplementing standard NPK with secondary and micronutrients (e.g., 6.6 kg Zn and 3 kg S in 2017; 20 kg ZnSO4 in 2019) to evaluate additional yield responses and nutrient balance.
+- **Application Timing / 4R Time (Step 4; 2018)**: Optimizing application schedules by splitting N application across critical growth stages (V6, V10, and Knee & Shoulder high).
+- **Organic Integration (Step 5; 2018-2019, AURORA)**: Combining inorganic fertilizers with Farm Yard Manure (e.g., CIMMYT-validated 10 ton FYM per hectare) to evaluate the holistic ISFM impact on yield stability and nutrient substitution.
+- **Advanced Fertilizer Technologies (Step 6; 2018-2019, AURORA)**: Introducing next-generation products like Urea Deep Placement (UDP), Polymer Coated Urea (PCU), and **Nano Urea** (foliar spray at V10/V12 stages) to minimize volatilization and enhance Nitrogen Use Efficiency (NUE).
+- **System Diversification (Step 7; AURORA Protocol)**: Implementing paired-row maize-legume intercropping systems (e.g., 2:2 Maize-Cowpea) to evaluate land productivity and the potential for Nitrogen reduction (34% N-saving targets) in diversified cropping systems.
+
+## 4. YIELD GAP & EFFICIENCY EVALUATION METHODOLOGY (BY INNOVATION STEP)
+Due to the absence of consistent "Farmer Practice" yield data across all trials, yield gaps and Nitrogen demand are systematically evaluated by benchmarking every ISFM innovation/treatment against the Government Recommended Full NPK baseline (**120 kg N, 60 kg P2O5, 40 kg K2O/ha**). The computation defines specific evaluation metrics for each treatment step:
+
+### 4.1 Baseline Diagnostics (Step 1)
+- **Objective**: To establish the yield floor and inherent soil nutrient supply.
+- **Workflow**: The mean yield of the absolute control (0-0-0) and single nutrient omissions (0-P-K, N-0-K, N-P-0) is compared against the full NPK baseline. This difference isolates and quantifies the absolute yield penalty associated specifically with N, P, or K deficiency.
+- **Equation (Yield Gap)**:  
+  $YG = Y_{Target} - Y_{Baseline}$  
+  *(where $Y_{Target}$ is the full NPK baseline and $Y_{Baseline}$ is the nutrient omission yield)*
+
+### 4.2 Rate Optimization (Step 2)
+- **Objective**: To determine the zone of optimal Nitrogen Use Efficiency (NUE) and identify yield plateaus.
+- **Workflow**: The inflection points of the Nitrogen response curve (60, 120, 180, 210 kg N/ha) are analyzed. The workflow evaluates the baseline agronomic efficiency (AE-N) at sub-optimal rates and quantifies the diminishing returns (efficiency loss) of supra-optimal N application.
+- **Equation (Agronomic Efficiency of Nitrogen, AE-N)**:  
+  $AE_N = \frac{Y_N - Y_0}{N_{applied}}$  
+  *(where $Y_N$ is the yield with applied N, $Y_0$ is the control yield, and $N_{applied}$ is the fertilizer N rate)*
+
+### 4.3 Micronutrient Integration (Step 3)
+- **Objective**: To assess the marginal yield gain from secondary and micronutrients.
+- **Workflow**: The standard NPK regime is supplemented with secondary nutrients (e.g., Sulfur, Zinc). The specific Agronomic Efficiency of these additions is computed by measuring the incremental yield gain against the standard NPK baseline.
+- **Equation (Micronutrient Agronomic Efficiency)**:  
+  $AE_{Micro} = \frac{Y_{NPK+Micro} - Y_{NPK}}{Micro_{applied}}$  
+  *(where $Y_{NPK+Micro}$ is the yield with micronutrients, $Y_{NPK}$ is the standard NPK yield, and $Micro_{applied}$ is the application rate of the specific micronutrient)*
+
+### 4.4 Application Timing (Step 4)
+- **Objective**: To maximize N-recovery and minimize leaching through temporal management.
+- **Workflow**: Identical N-rates are applied using varied split-application schedules (e.g., V6, V10, Knee-high). The resulting yields are compared to determine which temporal distribution curve maximizes crop Nitrogen uptake.
+- **Equation (Timing Yield Gain)**:  
+  $\Delta Y_{Timing} = Y_{Split} - Y_{Basal}$  
+  *(where $Y_{Split}$ is the yield from an optimized split application, and $Y_{Basal}$ is the yield from a single basal application of the same N rate)*
+
+### 4.5 Organic Integration (Step 5)
+- **Objective**: To evaluate the holistic soil fertility impact of combining organic and inorganic sources.
+- **Workflow**: Inorganic fertilizers are combined with Farm Yard Manure (FYM). The workflow measures yield stability across site-years and computes the nutrient substitution value (yield-gap reduction) provided by the organic component.
+- **Equation (Nutrient Substitution Value)**:  
+  $NSV = Y_{NPK+FYM} - Y_{NPK}$  
+  *(where $Y_{NPK+FYM}$ is the yield under integrated management, and $Y_{NPK}$ is the yield with only inorganic fertilizers at matching rates)*
+
+### 4.6 Advanced Fertilizer Technologies (Step 6)
+- **Objective**: To quantify Nitrogen savings derived from high-efficiency fertilizer formulations (UDP, PCU, Nano Urea).
+- **Workflow**: Yields from advanced formulations are compared to standard urea. For **Nano Urea**, the workflow specifically evaluates the efficacy of foliar application at V10 and V12 growth stages against the standard 1/3rd top-dressing baseline.
+- **Equation (Nano Urea Efficiency Index)**:  
+  $NUE_{Nano} = \frac{Y_{NU} - Y_{Control}}{N_{Equivalent}}$  
+  *(where $Y_{NU}$ is the yield from Nano Urea plots and $N_{Equivalent}$ is the urea-substitution rate (e.g., 500ml NU ≈ 45kg Urea))*
+
+### 4.7 System Diversification (Step 7)
+- **Objective**: To evaluate the land productivity and nutrient efficiency of maize-legume intercropping.
+- **Workflow**: A paired-row (2:2) maize-cowpea system is evaluated against sole maize. The workflow computes the Land Equivalent Ratio (LER) and identifies the yield impact of a 34% reduction in maize Nitrogen application facilitated by legume integration.
+- **Equation (Land Equivalent Ratio, LER)**:  
+  $LER = \frac{Y_{Maize, Inter}}{Y_{Maize, Sole}} + \frac{Y_{Legume, Inter}}{Y_{Legume, Sole}}$  
+  *(where $LER > 1$ indicates a land-use advantage in the diversified system)*
+
+## 5. N-DEMAND FORECAST METHODOLOGY FOR YIELD TARGETS
+- **Objective**: To forecast spatial Nitrogen demand required to hit specific regional yield targets (e.g., 8.0 t/ha).
+- **Workflow**: Using the optimal AE-N derived from the rate response analysis (Step 2), the theoretical N-Demand is calculated by dividing the required yield gap (Target Yield minus Indigenous Soil Supply Yield) by the AE-N. The forecast incorporates sensitivity analyses to account for variations in hybrid responsiveness and moisture.
+- **Equation (N-Demand)**:  
+  $N_{Demand} = \frac{Y_{Target} - Y_{0}}{AE_{N_{opt}}}$  
+  *(where $Y_{Target}$ is the regional goal, $Y_0$ is indigenous soil supply yield, and $AE_{N_{opt}}$ is the optimal Agronomic Efficiency)*
+
+## 6. NATIONAL IMPACT & POLICY IMPLICATIONS
+- **Objective**: To translate experimental plot-level findings into macroeconomic national policy advisories.
+- **Workflow**: The potential Nitrogen savings are extrapolated across the entire national maize area (950,000 ha). The analytical workflow identifies the aggregate tonnage of N-savings achievable by optimizing timing and placement, feeding directly into the "Balanced 4R" national extension messaging.
+- **Equation (National N-Savings Potential)**:  
+  $\Sigma N_{saved} = Area_{National} \times (N_{Standard} - N_{Optimized})$  
+  *(where $Area_{National}$ is the total maize cultivation area, $N_{Standard}$ is the current standard recommendation rate, and $N_{Optimized}$ is the model-derived optimized rate via 4R)*
+
+## 7. ADVANCED SPATIAL ANALYTICS & MACHINE LEARNING
+- **Objective**: To extrapolate site-specific trial data into a continuous, high-resolution regional advisory map.
+- **Workflow**: A Random Forest (RF) machine learning pipeline integrates 679 trial records with NARC soil attributes (pH, Organic Matter, macronutrients). The trained model is applied to 1,290 high-resolution pixels in Western Nepal to predict spatial variations in AE-N. This output is used to generate continuous spatial maps detailing local N-Demand and High-Density Yield Gap zones.
+- **Equation (Random Forest Ensemble Prediction)**:  
+  $\hat{y} = \frac{1}{B} \sum_{b=1}^{B} f_b(X)$  
+  *(where $\hat{y}$ is the predicted $AE_N$, $B$ is the number of decision trees in the ensemble, $f_b(X)$ is the prediction of the $b$-th tree, and $X$ represents the spatial soil predictors $[pH, OM, N, P, K]$)*
+
+## 8. EXTERNAL FARMER PRACTICE VALIDATION
+- **Objective**: To establish a spatially explicit "Farmer Practice" (FP) baseline for yield and Nitrogen application using external survey data.
+- **Workflow**: 308 records from the **BBS 2024 Household Survey** and **Crop-Cut dataset** are geotagged and spatially matched to the nearest trial plots (within 0.5 degrees). The workflow calculates the actual Nitrogen applied by farmers (derived from Urea and DAP rates) and compares it with crop-cut yields.
+- **Findings**:
+    - **FP Yield**: 6.17 t/ha (average across matched records).
+    - **FP Nitrogen Application**: 33.93 kg/ha N (significant deficit compared to the 120 kg/ha N recommendation).
+    - **Yield Gap (Trial - FP)**: 1.81 t/ha, confirming a substantial opportunity for yield improvement through 4R Nitrogen management.
+- **Equation (Farmer N-Application Calculation)**:  
+  $N_{FP} = (Urea_{kg} \times 0.46) + (DAP_{kg} \times 0.18)$
+
+## 9. SUMMARY FOR STAKEHOLDER ENGAGEMENT
+The combination of QUEFTS mechanistic modeling, Random Forest spatial prediction, and **External FP Validation** provides a powerful dual-approach for Nepal's soil health advisory:
+- **Mechanistic Insights**: QUEFTS identifies the theoretical native supply and balanced nutrition requirements.
+- **Empirical Evidence**: 3-year trial data confirms high responsiveness to N, with optimal performance at 78 kg/ha under current P/K management.
+- **Farmer Practice Baseline**: External BBS 2024 data reveals a critical Nitrogen application gap, with farmers applying only ~34 kg/ha N, resulting in a 1.8 t/ha yield gap.
+- **Regional Scalability**: Machine learning allows us to "bridge the gap" between isolated trial plots and continuous regional maps.
+- **Visual Evidence**: Generated spatial maps for AE-N, N-demand, and Yield Gaps are available for district-level planning and policy formulation.

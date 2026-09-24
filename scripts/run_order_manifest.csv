@@ -1,0 +1,29 @@
+run_order,numbered_filename,original_filename,purpose
+0a,0a_organize_literature.py,organize_literature.py,optional evidence benchmarking; not required for core numeric pipeline
+0b,0b_clean_personal_info.py,clean_personal_info.py,optional data sanitisation for shareable outputs
+0c,0c_nsaf_data_legacy.R,NSAF data.R,legacy NSAF exploratory script moved from project root
+1a,1a_extract_narc_data_representative.py,extract_narc_data.py,optional representative NARC extraction
+1b,1b_extract_narc_western_coarse.py,extract_narc_western.py,optional western/coarse NARC extraction
+1c,1c_extract_narc_western_highres_primary.py,extract_narc_western_highres.py,primary DSM/NARC high-resolution soil extraction
+2a,2a_match_2018_trials_to_narc.py,match_trials_narc.py,links 2018 maize trials to NARC/DSM soil covariates
+2b,2b_match_2019_demos_and_controls.py,match_2019_trials.py,links 2019 demos to soil covariates and creates pooled controls
+2c,2c_assign_farmer_ids.py,assign_farmer_ids.py,standardises farmer IDs after soil-linked files exist
+3a,3a_summarize_farmers.py,summarize_farmers.py,farmer-count QA/summary
+3b,3b_count_unique_sites.py,count_unique_sites.py,site-count QA
+3c,3c_count_sites_per_pixel.py,count_sites_per_pixel.py,site-per-pixel QA
+3d,3d_count_farmers_per_pixel.py,count_farmers_per_pixel.py,farmer-per-pixel QA
+3e,3e_check_pixel_coverage.py,check_pixel_coverage.py,checks trial coverage against DSM pixels
+4a,4a_run_quefts_representative.R,run_quefts_model.R,optional representative QUEFTS run
+4b,4b_run_quefts_western_coarse.R,run_quefts_model_western.R,optional western/coarse QUEFTS run
+4c,4c_run_quefts_western_highres_primary.R,run_quefts_model_western_highres.R,primary QUEFTS/DSM pixel run
+5a,5a_analyze_2018_n_efficiency_by_pk.py,analyze_n_efficiency_by_pk.py,N-use-efficiency analysis by P/K context
+5b,5b_analyze_2019_demos.R,analyze_2019_demos.R,2019 demonstration analysis; required before 5c and 9
+5c,5c_analyze_2019_n_response.py,analyze_n_response_2019.py,summarises 2019 N-response outputs from 5b
+5d,5d_compare_cimmyt_strategies.R,compare_cimmyt_strategies.R,strategy comparison using soil-linked trial data
+6,6_consolidate_3year_trials.py,consolidate_3year_trials.py,creates 3-year harmonised dataset for RF/NUE modelling
+7,7_train_nue_rf_model.py,train_nue_rf_model.py,trains Random Forest AE-N model
+8,8_generate_spatial_impact_maps.py,generate_spatial_impact_maps.py,"applies RF model and generates spatial AE-N, N demand and maps"
+9,9_calculate_national_impact.py,calculate_national_impact.py,national N-demand/N-saving summary
+10,10_external_fp_validation_optional.py,external_fp_validation.py,optional external farmer-practice validation using survey data
+11,11_update_project_doc.py,update_project_doc.py,updates the project Word report/document
+99,99_run_full_pipeline_reference.py,run_full_pipeline.py,standalone prototype/reference moved from project root; not part of stepwise core run order

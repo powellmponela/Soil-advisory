@@ -1,0 +1,6 @@
+input_name,path,exists,type,note
+m_n_publications,D:\dss\SOIL ADVISORY\Data\m_n_publications,True,directory,Required for Stage 00 multi-year maize trial evidence
+m_n_publications_maize_csv,D:\dss\SOIL ADVISORY\Data\m_n_publications\maize.csv,True,file,Main maize publication database
+dsm,D:\dss\SOIL ADVISORY\Data\dsm,True,directory,Required local downloaded DSM rasters; no DSM API use
+ecological_zones,D:\dss\SOIL ADVISORY\Data\ecological zones,True,directory,Required for clipping/cropping DSM to Terai/Churia/Mid-hill
+boundary,D:\dss\SOIL ADVISORY\Data\boundary,True,directory,Required for ward/municipality/district/province overlay

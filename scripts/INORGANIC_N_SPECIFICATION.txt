@@ -1,0 +1,18 @@
+INORGANIC-N CONVENTION
+
+For all N-management strategies, including FYM + mineral N:
+
+AE-N of inorganic N =
+    (Y_treatment - Y_0PK) * 1000 / N_inorganic
+
+Reference:
+    0PK = N0-P60-K40
+
+For FYM + N60:
+    denominator = 60 kg inorganic N ha-1
+    FYM-N is not added to the denominator.
+
+Advisory metrics:
+    AE-N gain (%) = 100 * (AE-N_strategy - AE-N_GR) / AE-N_GR
+    Inorganic-N reduction (%) = 100 * (120 - N_inorganic_strategy) / 120
+    Yield change (%) = 100 * (Y_strategy - Y_GR) / Y_GR

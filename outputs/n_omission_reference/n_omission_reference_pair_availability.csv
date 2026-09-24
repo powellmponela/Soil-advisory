@@ -1,0 +1,73 @@
+year,study,district,site,N0-P0-K0,N0-P60-K40,has_control,has_pk_no_n,has_both
+2017,2017 core trial,Dang,Dhikpur,5.216,4.394333333333333,True,True,True
+2017,2017 core trial,Dang,Dhuruwa,7.4126666666666665,5.299,True,True,True
+2017,2017 core trial,Dang,Hapur,3.718,4.099,True,True,True
+2017,2017 core trial,Dang,Laxmipur,5.128333333333333,5.8389999999999995,True,True,True
+2017,2017 core trial,Dang,Panchakule,6.879,8.108,True,True,True
+2017,2017 core trial,Dang,Pawannagar,5.758,5.611999999999999,True,True,True
+2017,2017 core trial,Dang,Purandhara,7.0045,6.9205000000000005,True,True,True
+2017,2017 core trial,Dang,Shantinagar,2.909,5.816000000000001,True,True,True
+2017,2017 core trial,Dang,Shreegau,4.123666666666667,5.164666666666666,True,True,True
+2017,2017 core trial,Surkhet,Babiyachaur,7.4583,8.68665,True,True,True
+2017,2017 core trial,Surkhet,Gadhi,4.58,7.11665,True,True,True
+2017,2017 core trial,Surkhet,Ghumkhare,7.76,5.92,True,True,True
+2017,2017 core trial,Surkhet,Guthu,6.74995,6.8667,True,True,True
+2017,2017 core trial,Surkhet,Kalyan,6.695533333333334,7.6499,True,True,True
+2017,2017 core trial,Surkhet,Lekhpharsa,6.666666666666667,7.815533333333334,True,True,True
+2017,2017 core trial,Surkhet,Maintada-3,4.3917,6.782233333333334,True,True,True
+2017,2017 core trial,Surkhet,Maintada-4,6.1444333333333345,6.811133333333334,True,True,True
+2017,2017 core trial,Surkhet,Neta,6.24165,9.89,True,True,True
+2017,2017 core trial,Surkhet,Ramghat,3.565,7.975,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Dhikpur,6.764,7.778666666666666,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Dhuruwa,7.84,9.516,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Hapur,5.077,5.213,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Laxmipur,4.576,6.291,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Panchakaule,5.73725,7.408499999999999,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Pawannagar,5.823666666666667,5.853000000000001,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Purandhara,6.321000000000001,7.886333333333333,True,True,True
+2018,"2018 N source, timing and FYM trial",Dang,Shantinagar,5.864999999999999,6.428999999999999,True,True,True
+2018,"2018 N source, timing and FYM trial",Doti,Chattiwan,5.692666666666667,5.561333333333333,True,True,True
+2018,"2018 N source, timing and FYM trial",Doti,Ghantesori,6.147333333333333,7.978666666666666,True,True,True
+2018,"2018 N source, timing and FYM trial",Kavre,Anekot,4.339666666666667,4.996333333333333,True,True,True
+2018,"2018 N source, timing and FYM trial",Kavre,Bhakundebesi,6.609999999999999,7.976333333333334,True,True,True
+2018,"2018 N source, timing and FYM trial",Kavre,Rabiopi,6.636,8.972333333333333,True,True,True
+2018,"2018 N source, timing and FYM trial",Palpa,Chidipani,4.1345,5.2705,True,True,True
+2018,"2018 N source, timing and FYM trial",Palpa,Devinagar,4.800333333333334,5.6706666666666665,True,True,True
+2018,"2018 N source, timing and FYM trial",Palpa,Khasyauli,4.608666666666667,5.349666666666667,True,True,True
+2018,"2018 N source, timing and FYM trial",Palpa,Madanpokhara,4.177333333333333,4.7523333333333335,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Babiyachaur,7.1049999999999995,8.804,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Gadhi,5.639666666666667,7.068333333333334,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Guthu,5.606,7.191,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Kalyan,6.9993333333333325,7.539000000000001,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Kunathari,6.386,7.904,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Lekhpharsa,6.067333333333333,8.210333333333333,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-1,7.2225,7.1899999999999995,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-2,5.8614999999999995,5.986,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-7,,6.551,False,True,False
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-8,6.202,8.593,True,True,True
+2018,"2018 N source, timing and FYM trial",Surkhet,Maintada-9,7.539,,True,False,False
+2018,"2018 N source, timing and FYM trial",Surkhet,Ramghat,6.749333333333333,7.943666666666666,True,True,True
+2019,2019 T1-T10 core trial,Dang,Dhikpur,5.545,7.065,True,True,True
+2019,2019 T1-T10 core trial,Dang,Laxmipur,5.8759999999999994,8.4195,True,True,True
+2019,2019 T1-T10 core trial,Dang,Panchakule,6.28,8.639,True,True,True
+2019,2019 T1-T10 core trial,Dang,Shantinagar,5.739,7.3795,True,True,True
+2019,2019 T1-T10 core trial,Dang,Shreegau,4.588,6.268000000000001,True,True,True
+2019,2019 T1-T10 core trial,Doti,Chhatiwan,6.86934,8.194165,True,True,True
+2019,2019 T1-T10 core trial,Doti,Dipayal,7.31943,8.738366666666666,True,True,True
+2019,2019 T1-T10 core trial,Doti,Ghanteshwor,7.226999999999999,8.432599999999999,True,True,True
+2019,2019 T1-T10 core trial,Kavre,Bhakundebesi,2.926757,4.507761500000001,True,True,True
+2019,2019 T1-T10 core trial,Kavre,Rabiopi,3.3426345,3.7852705,True,True,True
+2019,2019 T1-T10 core trial,Makwanpur,Radha Tiwari,2.7423200000000003,4.57054,True,True,True
+2019,2019 T1-T10 core trial,Nuwakot,Dip Acharya,6.008915,8.418527,True,True,True
+2019,2019 T1-T10 core trial,Nuwakot,Ramchandra Acharya,1.620814,1.773721,True,True,True
+2019,2019 T1-T10 core trial,Palpa,Chidi pani,8.049409091000001,4.5995,True,True,True
+2019,2019 T1-T10 core trial,Palpa,Devinagar,5.6600776515,7.692537879,True,True,True
+2019,2019 T1-T10 core trial,Palpa,Khasyauli,5.869181818,5.0151515075,True,True,True
+2019,2019 T1-T10 core trial,Salyan,Jhuplal gharti,6.973,9.213,True,True,True
+2019,2019 T1-T10 core trial,Salyan,Sharadha sharma,,13.129,False,True,False
+2019,2019 T1-T10 core trial,Surkhet,Babiyachaur,,9.988320000000002,False,True,False
+2019,2019 T1-T10 core trial,Surkhet,Kalyan,6.977,7.865,True,True,True
+2019,2019 T1-T10 core trial,Surkhet,Kunathari,6.712999999999999,7.3705,True,True,True
+2019,2019 T1-T10 core trial,Surkhet,Lekhpharsa,5.964499999999999,7.2765,True,True,True
+2019,2019 T1-T10 core trial,Surkhet,Maintada-2,4.5675,5.1370000000000005,True,True,True
+2019,2019 T1-T10 core trial,Surkhet,Ramghat,5.5158000000000005,8.2078,True,True,True

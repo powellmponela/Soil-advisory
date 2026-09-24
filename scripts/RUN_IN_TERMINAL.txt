@@ -1,0 +1,9 @@
+cd "D:\dss\SOIL ADVISORY\scripts"
+
+python .\1f_nsaf_omissions_000_gr.py
+python .\2a_nsaf_2017_n_rate_vs_0PK.py
+python .\3a_nsaf_timing_vs_gr_0PK.py
+python .\3b_nsaf_pcu_vs_gr_0PK.py
+python .\3c_nsaf_udp_vs_gr_0PK.py
+python .\3d_nsaf_fym_vs_gr_0PK.py
+python .\4a_nsaf_demo_hybrid_vs_opv.py

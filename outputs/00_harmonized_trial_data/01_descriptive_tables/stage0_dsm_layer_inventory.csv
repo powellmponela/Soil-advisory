@@ -1,0 +1,12 @@
+dsm_layer,folder,folder_exists,n_files,n_raster_files,n_vector_files,n_table_files,primary_raster_file,primary_vector_file,extensions_detected,soil_role
+boron,D:\dss\SOIL ADVISORY\Data\dsm\boron,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\boron\boron.tif,,.tif,micronutrient
+clay,D:\dss\SOIL ADVISORY\Data\dsm\clay,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\clay\clay.tif,,.tif,texture fraction
+nitrogen,D:\dss\SOIL ADVISORY\Data\dsm\nitrogen,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\nitrogen\nitrogen.tif,,.tif,total nitrogen
+organic,D:\dss\SOIL ADVISORY\Data\dsm\organic,True,2,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\organic\organic.tif,,.tif;.xml,soil organic matter or carbon proxy
+parentsoil,D:\dss\SOIL ADVISORY\Data\dsm\parentsoil,True,9,1,1,1,D:\dss\SOIL ADVISORY\Data\dsm\parentsoil\parentsoil.tif,D:\dss\SOIL ADVISORY\Data\dsm\parentsoil\soilparent.shp,.cpg;.dbf;.prj;.sbn;.sbx;.shp;.shx;.tif;.xml,parent soil / soil class vector
+ph,D:\dss\SOIL ADVISORY\Data\dsm\ph,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\ph\ph.tif,,.tif,soil reaction / acidity
+phosphorus,D:\dss\SOIL ADVISORY\Data\dsm\phosphorus,True,2,2,0,0,D:\dss\SOIL ADVISORY\Data\dsm\phosphorus\p2o5.tif,,.tif,available phosphorus
+potassium,D:\dss\SOIL ADVISORY\Data\dsm\potassium,True,2,2,0,0,D:\dss\SOIL ADVISORY\Data\dsm\potassium\k.tif,,.tif,available/exchangeable potassium
+sand,D:\dss\SOIL ADVISORY\Data\dsm\sand,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\sand\sand.tif,,.tif,texture fraction
+silt,D:\dss\SOIL ADVISORY\Data\dsm\silt,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\silt\silt.tif,,.tif,texture fraction
+zinc,D:\dss\SOIL ADVISORY\Data\dsm\zinc,True,1,1,0,0,D:\dss\SOIL ADVISORY\Data\dsm\zinc\zinc.tif,,.tif,micronutrient

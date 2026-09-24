@@ -1,0 +1,6 @@
+study,year,variety,n_sites,stage1_n_sites,stage1_available,stage2_n_sites,stage2_available,stage3_n_sites,stage3_available,stage4_n_sites,stage4_available,stage5_n_sites,stage5_available,stage6_n_sites,stage6_available
+2017 core trial,2017,All maize,19,19,True,19,True,0,False,19,True,19,True,19,True
+"2018 N source, timing and FYM trial",2018,All maize,34,28,True,28,True,28,True,26,True,0,False,31,True
+2019 Hybrid strategy block,2019,Hybrid,20,0,False,0,False,0,False,20,True,0,False,20,True
+2019 OPV strategy block,2019,OPV,20,0,False,0,False,0,False,20,True,0,False,20,True
+2019 T1-T10 core trial,2019,All maize,22,22,True,22,True,0,False,22,True,22,True,22,True

@@ -1,0 +1,6 @@
+qc_type,year,source_dataset,study,site,treatment_code,treatment,N_kg_ha,n_sites_total,n_sites_with_government_reference
+government_reference_coverage,2017,nsaf_maize_trials_2017,2017 core trial,,,All maize,,19,19
+government_reference_coverage,2018,nsaf_maize_trials_2018,"2018 N source, timing and FYM trial",,,All maize,,34,26
+government_reference_coverage,2019,maize_postharvest_2019,2019 Hybrid strategy block,,,Hybrid,,20,20
+government_reference_coverage,2019,maize_postharvest_2019,2019 OPV strategy block,,,OPV,,20,20
+government_reference_coverage,2019,maize_postharvest_2019,2019 T1-T10 core trial,,,All maize,,22,22

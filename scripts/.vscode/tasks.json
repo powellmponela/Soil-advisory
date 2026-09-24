@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "NSAF: audit study-year availability",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "07_audit_study_year_stage_availability.py",
+        "${input:nsafWorkbook}",
+        "--out",
+        "${input:nsafOutput}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NSAF: run stages 1-6 by study-year",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "run_all.py",
+        "${input:nsafWorkbook}",
+        "--out",
+        "${input:nsafOutput}",
+        "--retention",
+        "${input:retention}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "nsafWorkbook",
+      "type": "promptString",
+      "description": "Full path to NSAF_spatial_trial_and_response_contrast_datasets.xlsx"
+    },
+    {
+      "id": "nsafOutput",
+      "type": "promptString",
+      "description": "Output folder",
+      "default": "output_descriptives"
+    },
+    {
+      "id": "retention",
+      "type": "promptString",
+      "description": "Yield-retention threshold",
+      "default": "0.95"
+    }
+  ]
+}

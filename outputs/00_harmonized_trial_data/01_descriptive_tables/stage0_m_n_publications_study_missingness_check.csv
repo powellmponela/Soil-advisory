@@ -1,0 +1,913 @@
+study_key,study_id,source_file,field,column_used,n_rows,n_non_missing,n_missing,pct_missing
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,grain_yield,grain_yield_Mg_ha,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,n_rate,N_rate_kg_ha,14,14,0,0.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,p_rate,P2O5_rate_kg_ha,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,k_rate,K2O_rate_kg_ha,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,treatment_group,treatment_group,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,season,season,14,14,0,0.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,district,district,14,14,0,0.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,site,site,14,14,0,0.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,agroecology,agroecology,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,latitude,latitude,14,14,0,0.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,longitude,longitude,14,14,0,0.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,soil_ph,,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,soil_organic,,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,soil_n,,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,soil_p,,14,0,14,100.0
+12.pilbeam_2002_n15labelled_m_n,12.pilbeam_2002_n15labelled_m_n,,soil_k,,14,0,14,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,grain_yield,grain_yield_Mg_ha,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,n_rate,N_rate_kg_ha,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,p_rate,P2O5_rate_kg_ha,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,k_rate,K2O_rate_kg_ha,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,treatment_group,treatment_group,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,season,season,24,24,0,0.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,district,district,24,24,0,0.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,site,site,24,24,0,0.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,agroecology,agroecology,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,latitude,latitude,24,24,0,0.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,longitude,longitude,24,24,0,0.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,soil_ph,,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,soil_organic,,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,soil_n,,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,soil_p,,24,0,24,100.0
+25.baral_2014_azotobacter_m_n,25.baral_2014_azotobacter_m_n,,soil_k,,24,0,24,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,grain_yield,grain_yield_Mg_ha,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,n_rate,N_rate_kg_ha,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,treatment_group,treatment_group,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,season,season,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,district,district,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,site,site,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,agroecology,agroecology,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,latitude,latitude,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,longitude,longitude,8,8,0,0.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,soil_ph,,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,soil_organic,,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,soil_n,,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,soil_p,,8,0,8,100.0
+5.dawadi_2012_m_n | 4659-1-16587-1-10-20120919.pdf,5.dawadi_2012_m_n,4659-1-16587-1-10-20120919.pdf,soil_k,,8,0,8,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,grain_yield,grain_yield_Mg_ha,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,n_rate,N_rate_kg_ha,16,8,8,50.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,p_rate,P2O5_rate_kg_ha,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,k_rate,K2O_rate_kg_ha,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,treatment_group,treatment_group,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,season,season,16,16,0,0.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,district,district,16,16,0,0.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,site,site,16,16,0,0.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,agroecology,agroecology,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,latitude,latitude,16,16,0,0.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,longitude,longitude,16,16,0,0.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,soil_ph,,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,soil_organic,,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,soil_n,,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,soil_p,,16,0,16,100.0
+43.marahatta_2020_n-var_m_n,43.marahatta_2020_n-var_m_n,,soil_k,,16,0,16,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,grain_yield,grain_yield_Mg_ha,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,n_rate,N_rate_kg_ha,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,treatment_group,treatment_group,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,season,season,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,district,district,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,site,site,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,agroecology,agroecology,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,latitude,latitude,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,longitude,longitude,8,8,0,0.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,soil_ph,,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,soil_organic,,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,soil_n,,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,soil_p,,8,0,8,100.0
+15.baral_2016_fert-rate_m_n | 209-763-1-PB.pdf,15.baral_2016_fert-rate_m_n,209-763-1-PB.pdf,soil_k,,8,0,8,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,grain_yield,grain_yield_Mg_ha,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,n_rate,N_rate_kg_ha,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,p_rate,P2O5_rate_kg_ha,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,k_rate,K2O_rate_kg_ha,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,treatment_group,treatment_group,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,season,season,24,9,15,62.5
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,district,district,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,site,site,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,agroecology,agroecology,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,latitude,latitude,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,longitude,longitude,24,24,0,0.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,soil_ph,,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,soil_organic,,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,soil_n,,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,soil_p,,24,0,24,100.0
+2.adhikari_2016_ntime-season_m_n,2.adhikari_2016_ntime-season_m_n,,soil_k,,24,0,24,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,grain_yield,grain_yield_Mg_ha,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,n_rate,N_rate_kg_ha,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,p_rate,P2O5_rate_kg_ha,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,k_rate,K2O_rate_kg_ha,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,treatment_group,treatment_group,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,season,season,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,district,district,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,site,site,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,agroecology,agroecology,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,latitude,latitude,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,longitude,longitude,28,28,0,0.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,soil_ph,,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,soil_organic,,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,soil_n,,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,soil_p,,28,0,28,100.0
+20.devkota2016_nrate-variety_m_n,20.devkota2016_nrate-variety_m_n,,soil_k,,28,0,28,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,grain_yield,grain_yield_Mg_ha,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,n_rate,N_rate_kg_ha,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,p_rate,P2O5_rate_kg_ha,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,k_rate,K2O_rate_kg_ha,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,treatment_group,treatment_group,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,season,season,14,14,0,0.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,district,district,14,14,0,0.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,site,site,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,agroecology,agroecology,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,latitude,latitude,14,14,0,0.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,longitude,longitude,14,14,0,0.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,soil_ph,,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,soil_organic,,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,soil_n,,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,soil_p,,14,0,14,100.0
+26.devkota_2015_npkrates-variety-weed-density_m_n,26.devkota_2015_npkrates-variety-weed-density_m_n,,soil_k,,14,0,14,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,grain_yield,grain_yield_Mg_ha,8,8,0,0.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,n_rate,N_rate_kg_ha,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,treatment_group,treatment_group,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,season,season,8,8,0,0.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,district,district,8,8,0,0.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,site,site,8,8,0,0.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,agroecology,agroecology,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,latitude,latitude,8,8,0,0.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,longitude,longitude,8,8,0,0.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,soil_ph,,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,soil_organic,,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,soil_n,,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,soil_p,,8,0,8,100.0
+13.dahal_2014_fert-till-weed_m_n,13.dahal_2014_fert-till-weed_m_n,,soil_k,,8,0,8,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,grain_yield,grain_yield_Mg_ha,460,460,0,0.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,n_rate,N_rate_kg_ha,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,p_rate,P2O5_rate_kg_ha,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,k_rate,K2O_rate_kg_ha,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,treatment_group,treatment_group,460,460,0,0.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,season,season,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,district,district,460,460,0,0.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,site,site,460,460,0,0.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,agroecology,agroecology,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,latitude,latitude,460,460,0,0.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,longitude,longitude,460,460,0,0.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,soil_ph,,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,soil_organic,,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,soil_n,,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,soil_p,,460,0,460,100.0
+1.timsina_2021_ne_mwr_n | Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,1.timsina_2021_ne_mwr_n,Maize Wheat Rice 2014-16_JT_workingfile_KDWorking_JT.xlsx,soil_k,,460,0,460,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,grain_yield,grain_yield_Mg_ha,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,n_rate,N_rate_kg_ha,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,p_rate,P2O5_rate_kg_ha,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,k_rate,K2O_rate_kg_ha,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,treatment_group,treatment_group,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,season,season,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,district,district,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,site,site,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,agroecology,agroecology,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,latitude,latitude,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,longitude,longitude,2,2,0,0.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,soil_ph,,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,soil_organic,,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,soil_n,,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,soil_p,,2,0,2,100.0
+4.bogati_2021_NE_m_n | PIIS240584402102199X.pdf,4.bogati_2021_NE_m_n,PIIS240584402102199X.pdf,soil_k,,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,grain_yield,grain_yield_Mg_ha,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,n_rate,N_rate_kg_ha,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,p_rate,P2O5_rate_kg_ha,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,k_rate,K2O_rate_kg_ha,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,treatment_group,treatment_group,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,season,season,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,district,district,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,site,site,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,agroecology,agroecology,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,latitude,latitude,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,longitude,longitude,2,2,0,0.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,soil_ph,,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,soil_organic,,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,soil_n,,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,soil_p,,2,0,2,100.0
+6.khanal_2018_ne_m_n | 40-IJEAB-DEC-2018-21-Productivityand.pdf,6.khanal_2018_ne_m_n,40-IJEAB-DEC-2018-21-Productivityand.pdf,soil_k,,2,0,2,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",grain_yield,grain_yield_Mg_ha,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",n_rate,N_rate_kg_ha,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",p_rate,P2O5_rate_kg_ha,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",k_rate,K2O_rate_kg_ha,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",treatment_group,treatment_group,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",season,season,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",district,district,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",site,site,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",agroecology,agroecology,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",latitude,latitude,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",longitude,longitude,10,10,0,0.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",soil_ph,,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",soil_organic,,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",soil_n,,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",soil_p,,10,0,10,100.0
+"19.adhikary_2020_fert-rate_m_n | jibanshrestha1,+Article-31 (1).pdf",19.adhikary_2020_fert-rate_m_n,"jibanshrestha1,+Article-31 (1).pdf",soil_k,,10,0,10,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,grain_yield,grain_yield_Mg_ha,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,n_rate,N_rate_kg_ha,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,p_rate,P2O5_rate_kg_ha,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,k_rate,K2O_rate_kg_ha,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,treatment_group,treatment_group,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,season,season,4,4,0,0.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,district,district,4,4,0,0.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,site,site,4,4,0,0.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,agroecology,agroecology,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,latitude,latitude,4,4,0,0.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,longitude,longitude,4,4,0,0.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,soil_ph,,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,soil_organic,,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,soil_n,,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,soil_p,,4,0,4,100.0
+33.dahal_2018_ne_m-w_n,33.dahal_2018_ne_m-w_n,,soil_k,,4,0,4,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,grain_yield,grain_yield_Mg_ha,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,n_rate,N_rate_kg_ha,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,p_rate,P2O5_rate_kg_ha,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,k_rate,K2O_rate_kg_ha,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,treatment_group,treatment_group,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,season,season,3,3,0,0.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,district,district,3,3,0,0.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,site,site,3,3,0,0.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,agroecology,agroecology,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,latitude,latitude,3,3,0,0.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,longitude,longitude,3,3,0,0.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,soil_ph,,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,soil_organic,,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,soil_n,,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,soil_p,,3,0,3,100.0
+46.gautam_2018_ne_m_n,46.gautam_2018_ne_m_n,,soil_k,,3,0,3,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,grain_yield,grain_yield_Mg_ha,264,263,1,0.3787878787878788
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,n_rate,N_rate_kg_ha,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,p_rate,P2O5_rate_kg_ha,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,k_rate,K2O_rate_kg_ha,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,treatment_group,treatment_group,264,264,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,season,season,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,district,district,264,264,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,site,site,264,264,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,agroecology,agroecology,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,latitude,latitude,264,264,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,longitude,longitude,264,264,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,soil_ph,,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,soil_organic,,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,soil_n,,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,soil_p,,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2017.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2017.csv,soil_k,,264,0,264,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,grain_yield,grain_yield_Mg_ha,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,n_rate,N_rate_kg_ha,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,p_rate,P2O5_rate_kg_ha,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,k_rate,K2O_rate_kg_ha,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,treatment_group,treatment_group,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,season,season,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,district,district,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,site,site,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,agroecology,agroecology,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,latitude,latitude,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,longitude,longitude,512,512,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,soil_ph,,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,soil_organic,,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,soil_n,,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,soil_p,,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials_2017.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials_2017.xlsx,soil_k,,512,0,512,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,grain_yield,grain_yield_Mg_ha,330,330,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,n_rate,N_rate_kg_ha,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,p_rate,P2O5_rate_kg_ha,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,k_rate,K2O_rate_kg_ha,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,treatment_group,treatment_group,330,330,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,season,season,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,district,district,330,330,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,site,site,330,330,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,agroecology,agroecology,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,latitude,latitude,330,330,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,longitude,longitude,330,330,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,soil_ph,,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,soil_organic,,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,soil_n,,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,soil_p,,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo-2018.csv,soil_k,,330,0,330,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,grain_yield,grain_yield_Mg_ha,611,610,1,0.16366612111292964
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,n_rate,N_rate_kg_ha,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,p_rate,P2O5_rate_kg_ha,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,k_rate,K2O_rate_kg_ha,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,treatment_group,treatment_group,611,611,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,season,season,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,district,district,611,611,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,site,site,611,611,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,agroecology,agroecology,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,latitude,latitude,611,611,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,longitude,longitude,611,611,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,soil_ph,,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,soil_organic,,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,soil_n,,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,soil_p,,611,0,611,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_trials-2018.csv,8.pandit_2025_nrate-ntime-udp_m_n,maize_trials-2018.csv,soil_k,,611,0,611,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,grain_yield,grain_yield_Mg_ha,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,n_rate,N_rate_kg_ha,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,treatment_group,treatment_group,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,season,season,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,district,district,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,site,site,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,agroecology,agroecology,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,latitude,latitude,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,longitude,longitude,8,8,0,0.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,soil_ph,,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,soil_organic,,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,soil_n,,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,soil_p,,8,0,8,100.0
+10.sapkota_2025_inm_m_n,10.sapkota_2025_inm_m_n,,soil_k,,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,grain_yield,grain_yield_Mg_ha,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,n_rate,N_rate_kg_ha,8,4,4,50.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,p_rate,P2O5_rate_kg_ha,8,4,4,50.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,k_rate,K2O_rate_kg_ha,8,4,4,50.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,treatment_group,treatment_group,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,season,season,8,8,0,0.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,district,district,8,8,0,0.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,site,site,8,8,0,0.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,agroecology,agroecology,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,latitude,latitude,8,8,0,0.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,longitude,longitude,8,8,0,0.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,soil_ph,,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,soil_organic,,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,soil_n,,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,soil_p,,8,0,8,100.0
+18.rawal_2023_legume_m_n,18.rawal_2023_legume_m_n,,soil_k,,8,0,8,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,grain_yield,grain_yield_Mg_ha,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,n_rate,N_rate_kg_ha,7,4,3,42.857142857142854
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,p_rate,P2O5_rate_kg_ha,7,4,3,42.857142857142854
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,k_rate,K2O_rate_kg_ha,7,4,3,42.857142857142854
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,treatment_group,treatment_group,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,season,season,7,7,0,0.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,district,district,7,7,0,0.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,site,site,7,7,0,0.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,agroecology,agroecology,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,latitude,latitude,7,7,0,0.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,longitude,longitude,7,7,0,0.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,soil_ph,,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,soil_organic,,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,soil_n,,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,soil_p,,7,0,7,100.0
+22.adhikari_2021_n-rate-var_m_n,22.adhikari_2021_n-rate-var_m_n,,soil_k,,7,0,7,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,grain_yield,grain_yield_Mg_ha,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,n_rate,N_rate_kg_ha,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,p_rate,P2O5_rate_kg_ha,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,k_rate,K2O_rate_kg_ha,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,treatment_group,treatment_group,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,season,season,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,district,district,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,site,site,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,agroecology,agroecology,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,latitude,latitude,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,longitude,longitude,21,21,0,0.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,soil_ph,,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,soil_organic,,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,soil_n,,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,soil_p,,21,0,21,100.0
+32.rawal_2024_nrate_m_n,32.rawal_2024_nrate_m_n,,soil_k,,21,0,21,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,grain_yield,grain_yield_Mg_ha,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,n_rate,N_rate_kg_ha,18,6,12,66.66666666666667
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,p_rate,P2O5_rate_kg_ha,18,6,12,66.66666666666667
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,k_rate,K2O_rate_kg_ha,18,6,12,66.66666666666667
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,treatment_group,treatment_group,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,season,season,18,18,0,0.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,district,district,18,18,0,0.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,site,site,18,18,0,0.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,agroecology,agroecology,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,latitude,latitude,18,18,0,0.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,longitude,longitude,18,18,0,0.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,soil_ph,,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,soil_organic,,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,soil_n,,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,soil_p,,18,0,18,100.0
+39.rawal_2022_fert_m-w_n,39.rawal_2022_fert_m-w_n,,soil_k,,18,0,18,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,grain_yield,grain_yield_Mg_ha,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,n_rate,N_rate_kg_ha,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,p_rate,P2O5_rate_kg_ha,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,k_rate,K2O_rate_kg_ha,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,treatment_group,treatment_group,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,season,season,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,district,district,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,site,site,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,agroecology,agroecology,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,latitude,latitude,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,longitude,longitude,24,24,0,0.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,soil_ph,,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,soil_organic,,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,soil_n,,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,soil_p,,24,0,24,100.0
+40.adhikari_2022_fert-manure_m_n,40.adhikari_2022_fert-manure_m_n,,soil_k,,24,0,24,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,grain_yield,grain_yield_Mg_ha,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,n_rate,N_rate_kg_ha,12,12,0,0.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,p_rate,P2O5_rate_kg_ha,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,k_rate,K2O_rate_kg_ha,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,treatment_group,treatment_group,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,season,season,12,12,0,0.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,district,district,12,12,0,0.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,site,site,12,12,0,0.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,agroecology,agroecology,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,latitude,latitude,12,12,0,0.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,longitude,longitude,12,12,0,0.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,soil_ph,,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,soil_organic,,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,soil_n,,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,soil_p,,12,0,12,100.0
+49.marahatta_2020_fert-mulch_m_n,49.marahatta_2020_fert-mulch_m_n,,soil_k,,12,0,12,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",grain_yield,grain_yield_Mg_ha,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",n_rate,N_rate_kg_ha,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",p_rate,P2O5_rate_kg_ha,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",k_rate,K2O_rate_kg_ha,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",treatment_group,treatment_group,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",season,season,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",district,district,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",site,site,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",agroecology,agroecology,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",latitude,latitude,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",longitude,longitude,7,7,0,0.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",soil_ph,,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",soil_organic,,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",soil_n,,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",soil_p,,7,0,7,100.0
+"7.marahatta_2021_nrate-density_m_n | 63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",7.marahatta_2021_nrate-density_m_n,"63-78+Agronomy+Journal+of+Nepal+Vol-5,+2021-68-83.pdf",soil_k,,7,0,7,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,grain_yield,grain_yield_Mg_ha,320,320,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,n_rate,N_rate_kg_ha,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,p_rate,P2O5_rate_kg_ha,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,k_rate,K2O_rate_kg_ha,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,treatment_group,treatment_group,320,320,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,season,season,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,district,district,320,320,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,site,site,320,290,30,9.375
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,agroecology,agroecology,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,latitude,latitude,320,320,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,longitude,longitude,320,320,0,0.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,soil_ph,,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,soil_organic,,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,soil_n,,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,soil_p,,320,0,320,100.0
+8.pandit_2025_nrate-ntime-udp_m_n | maize_demo_2019.xlsx,8.pandit_2025_nrate-ntime-udp_m_n,maize_demo_2019.xlsx,soil_k,,320,0,320,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,grain_yield,grain_yield_Mg_ha,21,7,14,66.66666666666667
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,n_rate,N_rate_kg_ha,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,p_rate,P2O5_rate_kg_ha,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,k_rate,K2O_rate_kg_ha,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,treatment_group,treatment_group,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,season,season,21,21,0,0.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,district,district,21,21,0,0.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,site,site,21,21,0,0.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,agroecology,agroecology,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,latitude,latitude,21,21,0,0.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,longitude,longitude,21,21,0,0.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,soil_ph,,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,soil_organic,,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,soil_n,,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,soil_p,,21,0,21,100.0
+14.gautam_2022_nslowrelease_m_n,14.gautam_2022_nslowrelease_m_n,,soil_k,,21,0,21,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,grain_yield,grain_yield_Mg_ha,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,n_rate,N_rate_kg_ha,8,8,0,0.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,treatment_group,treatment_group,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,season,season,8,8,0,0.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,district,district,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,site,site,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,agroecology,agroecology,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,latitude,latitude,8,8,0,0.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,longitude,longitude,8,8,0,0.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,soil_ph,,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,soil_organic,,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,soil_n,,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,soil_p,,8,0,8,100.0
+47.bhatt_2020_fert-manure_m_n,47.bhatt_2020_fert-manure_m_n,,soil_k,,8,0,8,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,grain_yield,grain_yield_Mg_ha,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,n_rate,N_rate_kg_ha,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,p_rate,P2O5_rate_kg_ha,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,k_rate,K2O_rate_kg_ha,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,treatment_group,treatment_group,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,season,season,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,district,district,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,site,site,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,agroecology,agroecology,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,latitude,latitude,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,longitude,longitude,54,54,0,0.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,soil_ph,,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,soil_organic,,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,soil_n,,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,soil_p,,54,0,54,100.0
+3.amgain_2023_ne_m_n | 7.+Lal+P.+Amgain+(1).pdf,3.amgain_2023_ne_m_n,7.+Lal+P.+Amgain+(1).pdf,soil_k,,54,0,54,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,grain_yield,grain_yield_Mg_ha,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,n_rate,N_rate_kg_ha,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,p_rate,P2O5_rate_kg_ha,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,k_rate,K2O_rate_kg_ha,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,treatment_group,treatment_group,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,season,season,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,district,district,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,site,site,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,agroecology,agroecology,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,latitude,latitude,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,longitude,longitude,8,8,0,0.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,soil_ph,,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,soil_organic,,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,soil_n,,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,soil_p,,8,0,8,100.0
+48.yadav_2024_fert-manure_m_n,48.yadav_2024_fert-manure_m_n,,soil_k,,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,grain_yield,grain_yield_Mg_ha,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,n_rate,N_rate_kg_ha,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,p_rate,P2O5_rate_kg_ha,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,k_rate,K2O_rate_kg_ha,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,treatment_group,treatment_group,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,season,season,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,district,district,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,site,site,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,agroecology,agroecology,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,latitude,latitude,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,longitude,longitude,8,8,0,0.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,soil_ph,,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,soil_organic,,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,soil_n,,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,soil_p,,8,0,8,100.0
+31.dotel_2025_nrate-nslowrelease_m_n,31.dotel_2025_nrate-nslowrelease_m_n,,soil_k,,8,0,8,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,grain_yield,grain_yield_Mg_ha,15,0,15,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,n_rate,N_rate_kg_ha,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,p_rate,P2O5_rate_kg_ha,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,k_rate,K2O_rate_kg_ha,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,treatment_group,treatment_group,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,season,season,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,district,district,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,site,site,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,agroecology,agroecology,15,0,15,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,latitude,latitude,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,longitude,longitude,15,15,0,0.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,soil_ph,,15,0,15,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,soil_organic,,15,0,15,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,soil_n,,15,0,15,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,soil_p,,15,0,15,100.0
+36.shrestha_azotobacter-fert-var_m_n | 07_7469_H2.pdf,36.shrestha_azotobacter-fert-var_m_n,07_7469_H2.pdf,soil_k,,15,0,15,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,grain_yield,grain_yield_Mg_ha,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,n_rate,N_rate_kg_ha,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,p_rate,P2O5_rate_kg_ha,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,k_rate,K2O_rate_kg_ha,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,treatment_group,treatment_group,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,season,season,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,district,district,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,site,site,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,agroecology,agroecology,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,latitude,latitude,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,longitude,longitude,7,7,0,0.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,soil_ph,,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,soil_organic,,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,soil_n,,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,soil_p,,7,0,7,100.0
+37.sigdel_psb-npk_m_n,37.sigdel_psb-npk_m_n,,soil_k,,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,grain_yield,grain_yield_Mg_ha,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,n_rate,N_rate_kg_ha,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,p_rate,P2O5_rate_kg_ha,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,k_rate,K2O_rate_kg_ha,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,treatment_group,treatment_group,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,season,season,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,district,district,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,site,site,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,agroecology,agroecology,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,latitude,latitude,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,longitude,longitude,7,7,0,0.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,soil_ph,,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,soil_organic,,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,soil_n,,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,soil_p,,7,0,7,100.0
+50.neupane_2024_biofert_m_n,50.neupane_2024_biofert_m_n,,soil_k,,7,0,7,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,grain_yield,grain_yield_Mg_ha,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,n_rate,N_rate_kg_ha,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,p_rate,P2O5_rate_kg_ha,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,k_rate,K2O_rate_kg_ha,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,treatment_group,treatment_group,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,season,season,6,6,0,0.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,district,district,6,6,0,0.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,site,site,6,6,0,0.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,agroecology,agroecology,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,latitude,latitude,6,6,0,0.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,longitude,longitude,6,6,0,0.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,soil_ph,,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,soil_organic,,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,soil_n,,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,soil_p,,6,0,6,100.0
+51.nayak_2024_ssnm_m_n,51.nayak_2024_ssnm_m_n,,soil_k,,6,0,6,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,grain_yield,grain_yield_Mg_ha,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,n_rate,N_rate_kg_ha,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,treatment_group,treatment_group,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,season,season,8,8,0,0.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,district,district,8,8,0,0.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,site,site,8,8,0,0.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,agroecology,agroecology,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,latitude,latitude,8,8,0,0.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,longitude,longitude,8,8,0,0.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,soil_ph,,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,soil_organic,,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,soil_n,,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,soil_p,,8,0,8,100.0
+53.timilsina_2025_lcc-tillage_m_n,53.timilsina_2025_lcc-tillage_m_n,,soil_k,,8,0,8,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,grain_yield,grain_yield_Mg_ha,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,n_rate,N_rate_kg_ha,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,p_rate,P2O5_rate_kg_ha,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,k_rate,K2O_rate_kg_ha,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,treatment_group,treatment_group,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,season,season,6,6,0,0.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,district,district,6,6,0,0.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,site,site,6,6,0,0.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,agroecology,agroecology,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,latitude,latitude,6,6,0,0.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,longitude,longitude,6,6,0,0.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,soil_ph,,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,soil_organic,,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,soil_n,,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,soil_p,,6,0,6,100.0
+54.pandey_2025_tillage-fert-fym_m_n,54.pandey_2025_tillage-fert-fym_m_n,,soil_k,,6,0,6,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,grain_yield,grain_yield_Mg_ha,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,n_rate,N_rate_kg_ha,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,p_rate,P2O5_rate_kg_ha,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,k_rate,K2O_rate_kg_ha,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,treatment_group,treatment_group,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,season,season,7,7,0,0.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,district,district,7,7,0,0.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,site,site,7,7,0,0.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,agroecology,agroecology,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,latitude,latitude,7,7,0,0.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,longitude,longitude,7,7,0,0.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,soil_ph,,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,soil_organic,,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,soil_n,,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,soil_p,,7,0,7,100.0
+55.ghimire_2025_nrate_m_n,55.ghimire_2025_nrate_m_n,,soil_k,,7,0,7,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,grain_yield,grain_yield_Mg_ha,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,n_rate,N_rate_kg_ha,3,3,0,0.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,p_rate,P2O5_rate_kg_ha,3,3,0,0.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,k_rate,K2O_rate_kg_ha,3,3,0,0.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,treatment_group,treatment_group,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,season,season,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,district,district,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,site,site,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,agroecology,agroecology,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,latitude,latitude,3,3,0,0.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,longitude,longitude,3,3,0,0.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,soil_ph,,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,soil_organic,,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,soil_n,,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,soil_p,,3,0,3,100.0
+0_carob_base_m_n | carob_agronomy-cc.csv,0_carob_base_m_n,carob_agronomy-cc.csv,soil_k,,3,0,3,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,grain_yield,grain_yield_Mg_ha,8,8,0,0.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,n_rate,N_rate_kg_ha,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,treatment_group,treatment_group,8,8,0,0.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,season,season,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,district,district,8,8,0,0.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,site,site,8,8,0,0.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,agroecology,agroecology,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,latitude,latitude,8,8,0,0.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,longitude,longitude,8,8,0,0.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,soil_ph,,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,soil_organic,,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,soil_n,,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,soil_p,,8,0,8,100.0
+11.sherchan_1999_fert-manure_mwr_n,11.sherchan_1999_fert-manure_mwr_n,,soil_k,,8,0,8,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,grain_yield,grain_yield_Mg_ha,16,16,0,0.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,n_rate,N_rate_kg_ha,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,p_rate,P2O5_rate_kg_ha,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,k_rate,K2O_rate_kg_ha,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,treatment_group,treatment_group,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,season,season,16,16,0,0.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,district,district,16,16,0,0.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,site,site,16,16,0,0.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,agroecology,agroecology,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,latitude,latitude,16,16,0,0.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,longitude,longitude,16,16,0,0.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,soil_ph,,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,soil_organic,,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,soil_n,,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,soil_p,,16,0,16,100.0
+17.adhikary_2007_fert-lime_m_n,17.adhikary_2007_fert-lime_m_n,,soil_k,,16,0,16,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,grain_yield,grain_yield_Mg_ha,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,n_rate,N_rate_kg_ha,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,p_rate,P2O5_rate_kg_ha,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,k_rate,K2O_rate_kg_ha,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,treatment_group,treatment_group,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,season,season,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,district,district,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,site,site,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,agroecology,agroecology,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,latitude,latitude,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,longitude,longitude,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,soil_ph,,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,soil_organic,,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,soil_n,,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,soil_p,,1,0,1,100.0
+21.shrestha_2013_water-soilfert_mw_n,21.shrestha_2013_water-soilfert_mw_n,,soil_k,,1,0,1,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,grain_yield,grain_yield_Mg_ha,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,n_rate,N_rate_kg_ha,15,15,0,0.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,p_rate,P2O5_rate_kg_ha,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,k_rate,K2O_rate_kg_ha,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,treatment_group,treatment_group,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,season,season,15,15,0,0.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,district,district,15,15,0,0.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,site,site,15,15,0,0.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,agroecology,agroecology,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,latitude,latitude,15,15,0,0.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,longitude,longitude,15,15,0,0.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,soil_ph,,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,soil_organic,,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,soil_n,,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,soil_p,,15,0,15,100.0
+23.shrestha_2018_n-density_m_n,23.shrestha_2018_n-density_m_n,,soil_k,,15,0,15,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,grain_yield,grain_yield_Mg_ha,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,n_rate,N_rate_kg_ha,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,p_rate,P2O5_rate_kg_ha,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,k_rate,K2O_rate_kg_ha,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,treatment_group,treatment_group,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,season,season,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,district,district,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,site,site,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,agroecology,agroecology,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,latitude,latitude,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,longitude,longitude,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,soil_ph,,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,soil_organic,,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,soil_n,,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,soil_p,,1,0,1,100.0
+24.pandit_2016_biochar_m_n,24.pandit_2016_biochar_m_n,,soil_k,,1,0,1,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,grain_yield,grain_yield_Mg_ha,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,n_rate,N_rate_kg_ha,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,p_rate,P2O5_rate_kg_ha,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,k_rate,K2O_rate_kg_ha,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,treatment_group,treatment_group,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,season,season,8,8,0,0.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,district,district,8,8,0,0.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,site,site,8,8,0,0.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,agroecology,agroecology,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,latitude,latitude,8,8,0,0.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,longitude,longitude,8,8,0,0.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,soil_ph,,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,soil_organic,,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,soil_n,,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,soil_p,,8,0,8,100.0
+27.sapkota_2017_nprate_m_n,27.sapkota_2017_nprate_m_n,,soil_k,,8,0,8,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,grain_yield,grain_yield_Mg_ha,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,n_rate,N_rate_kg_ha,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,p_rate,P2O5_rate_kg_ha,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,k_rate,K2O_rate_kg_ha,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,treatment_group,treatment_group,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,season,season,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,district,district,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,site,site,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,agroecology,agroecology,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,latitude,latitude,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,longitude,longitude,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,soil_ph,,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,soil_organic,,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,soil_n,,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,soil_p,,1,0,1,100.0
+30.karki_2014_notill_m_n,30.karki_2014_notill_m_n,,soil_k,,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,grain_yield,grain_yield_Mg_ha,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,n_rate,N_rate_kg_ha,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,p_rate,P2O5_rate_kg_ha,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,k_rate,K2O_rate_kg_ha,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,treatment_group,treatment_group,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,season,season,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,district,district,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,site,site,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,agroecology,agroecology,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,latitude,latitude,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,longitude,longitude,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,soil_ph,,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,soil_organic,,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,soil_n,,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,soil_p,,1,0,1,100.0
+34.dahal_2014_ca-weeds_m_n,34.dahal_2014_ca-weeds_m_n,,soil_k,,1,0,1,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,grain_yield,grain_yield_Mg_ha,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,n_rate,N_rate_kg_ha,9,3,6,66.66666666666667
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,p_rate,P2O5_rate_kg_ha,9,3,6,66.66666666666667
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,k_rate,K2O_rate_kg_ha,9,3,6,66.66666666666667
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,treatment_group,treatment_group,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,season,season,9,9,0,0.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,district,district,9,9,0,0.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,site,site,9,9,0,0.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,agroecology,agroecology,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,latitude,latitude,9,9,0,0.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,longitude,longitude,9,9,0,0.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,soil_ph,,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,soil_organic,,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,soil_n,,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,soil_p,,9,0,9,100.0
+35.rawal_2021_npkrates_n_n,35.rawal_2021_npkrates_n_n,,soil_k,,9,0,9,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,grain_yield,grain_yield_Mg_ha,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,n_rate,N_rate_kg_ha,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,p_rate,P2O5_rate_kg_ha,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,k_rate,K2O_rate_kg_ha,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,treatment_group,treatment_group,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,season,season,2,2,0,0.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,district,district,2,2,0,0.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,site,site,2,2,0,0.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,agroecology,agroecology,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,latitude,latitude,2,2,0,0.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,longitude,longitude,2,2,0,0.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,soil_ph,,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,soil_organic,,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,soil_n,,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,soil_p,,2,0,2,100.0
+38.khanal_2017_ne_m_n,38.khanal_2017_ne_m_n,,soil_k,,2,0,2,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,grain_yield,grain_yield_Mg_ha,5,5,0,0.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,n_rate,N_rate_kg_ha,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,p_rate,P2O5_rate_kg_ha,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,k_rate,K2O_rate_kg_ha,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,treatment_group,treatment_group,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,season,season,5,5,0,0.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,district,district,5,5,0,0.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,site,site,5,5,0,0.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,agroecology,agroecology,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,latitude,latitude,5,5,0,0.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,longitude,longitude,5,5,0,0.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,soil_ph,,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,soil_organic,,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,soil_n,,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,soil_p,,5,0,5,100.0
+41.ghimire_2015_ssnm_m_n,41.ghimire_2015_ssnm_m_n,,soil_k,,5,0,5,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,grain_yield,grain_yield_Mg_ha,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,n_rate,N_rate_kg_ha,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,p_rate,P2O5_rate_kg_ha,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,k_rate,K2O_rate_kg_ha,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,treatment_group,treatment_group,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,season,season,7,7,0,0.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,district,district,7,7,0,0.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,site,site,7,7,0,0.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,agroecology,agroecology,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,latitude,latitude,7,7,0,0.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,longitude,longitude,7,7,0,0.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,soil_ph,,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,soil_organic,,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,soil_n,,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,soil_p,,7,0,7,100.0
+42.nepali_2020_biofer_m_n,42.nepali_2020_biofer_m_n,,soil_k,,7,0,7,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,grain_yield,grain_yield_Mg_ha,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,n_rate,N_rate_kg_ha,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,p_rate,P2O5_rate_kg_ha,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,k_rate,K2O_rate_kg_ha,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,treatment_group,treatment_group,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,season,season,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,district,district,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,site,site,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,agroecology,agroecology,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,latitude,latitude,16,16,0,0.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,longitude,longitude,16,16,0,0.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,soil_ph,,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,soil_organic,,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,soil_n,,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,soil_p,,16,0,16,100.0
+44.pandit_2025_4r_m_n,44.pandit_2025_4r_m_n,,soil_k,,16,0,16,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,grain_yield,grain_yield_Mg_ha,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,n_rate,N_rate_kg_ha,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,p_rate,P2O5_rate_kg_ha,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,k_rate,K2O_rate_kg_ha,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,treatment_group,treatment_group,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,season,season,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,district,district,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,site,site,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,agroecology,agroecology,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,latitude,latitude,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,longitude,longitude,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,soil_ph,,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,soil_organic,,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,soil_n,,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,soil_p,,1,0,1,100.0
+45.pal_2017_fert-manure_m_n,45.pal_2017_fert-manure_m_n,,soil_k,,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,grain_yield,grain_yield_Mg_ha,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,n_rate,N_rate_kg_ha,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,p_rate,P2O5_rate_kg_ha,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,k_rate,K2O_rate_kg_ha,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,treatment_group,treatment_group,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,season,season,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,district,district,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,site,site,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,agroecology,agroecology,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,latitude,latitude,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,longitude,longitude,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,soil_ph,,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,soil_organic,,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,soil_n,,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,soil_p,,1,0,1,100.0
+52.dhital_2023_fert-density_m_n,52.dhital_2023_fert-density_m_n,,soil_k,,1,0,1,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,grain_yield,grain_yield_Mg_ha,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,n_rate,N_rate_kg_ha,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,p_rate,P2O5_rate_kg_ha,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,k_rate,K2O_rate_kg_ha,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,treatment_group,treatment_group,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,season,season,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,district,district,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,site,site,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,agroecology,agroecology,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,latitude,latitude,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,longitude,longitude,6,6,0,0.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,soil_ph,,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,soil_organic,,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,soil_n,,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,soil_p,,6,0,6,100.0
+9.pokharel_2016_npkrate_m_n,9.pokharel_2016_npkrate_m_n,,soil_k,,6,0,6,100.0

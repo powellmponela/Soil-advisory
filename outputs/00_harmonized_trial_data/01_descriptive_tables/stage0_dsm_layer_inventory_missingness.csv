@@ -1,0 +1,12 @@
+variable,n_missing,pct_missing
+dsm_layer,0,0.0
+folder,0,0.0
+folder_exists,0,0.0
+n_files,0,0.0
+n_raster_files,0,0.0
+n_vector_files,0,0.0
+n_table_files,0,0.0
+primary_raster_file,0,0.0
+primary_vector_file,0,0.0
+extensions_detected,0,0.0
+soil_role,0,0.0

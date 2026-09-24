@@ -1,0 +1,161 @@
+========================================================================================
+NSAF MAIZE SEQUENTIAL RERUN
+Project root: D:\dss\SOIL ADVISORY
+Started:      2026-09-06 21:28:22.494423
+========================================================================================
+
+========================================================================================
+STEP 1/3: 0c_nsaf_data_legacy.py
+========================================================================================
+Merge completed: 2037 rows; summary: 859 rows.
+Outputs saved under: D:\dss\SOIL ADVISORY\outputs
+COMPLETED: 0c_nsaf_data_legacy.py
+
+========================================================================================
+STEP 2/3: 1a_nsaf_stage1_6_descriptives.py
+========================================================================================
+D:\dss\SOIL ADVISORY\scripts\1a_nsaf_stage1_6_descriptives.py:8: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  D:\dss\SOIL ADVISORY
+
+================================================================================================================
+NSAF MAIZE STAGE 1-6 AGRONOMIC DESCRIPTIVES
+================================================================================================================
+Input rows:      859
+Stage rows:      749
+Years:           [2017, 2018, 2019]
+Study blocks:    5
+Unique sites:    45
+Relative-yield threshold for lower-N screening: 95%
+
+ year                               study   variety  stage                                      stage_name                   treatment_role  n_sites  mean_yield_kg_ha  mean_N_rate_kg_ha  mean_AE_N_kg_grain_per_kg_N  mean_PFP_N_kg_grain_per_kg_N  mean_relative_yield_to_government_reference_pct  mean_potential_mineral_N_reduction_kg_ha
+ 2017                     2017 core trial All maize      1                              No-input reference                         N0-P0-K0       19       5705.389474                0.0                          NaN                           NaN                                        65.529984                                       NaN
+ 2017                     2017 core trial All maize      2                      N-zero agronomic reference                       N0-P60-K40       19       6671.910526                0.0                          NaN                           NaN                                        74.701634                                       NaN
+ 2017                     2017 core trial All maize      4            Government-recommended NPK reference                     N120-P60-K40       19       9062.577193              120.0                    19.922222                     75.521477                                       100.000000                                       NaN
+ 2017                     2017 core trial All maize      5                  N-rate response and adjustment                     N180-P60-K40       19       9022.852632              180.0                    13.060789                     50.126959                                        99.886237                                       NaN
+ 2017                     2017 core trial All maize      5                  N-rate response and adjustment                     N210-P60-K40       19       8699.721930              210.0                     9.656245                     41.427247                                        97.006277                                       NaN
+ 2017                     2017 core trial All maize      5                  N-rate response and adjustment                      N60-P60-K40       19       8290.491228               60.0                    26.976345                    138.174854                                        92.090180                                 31.578947
+ 2017                     2017 core trial All maize      6 Efficiency and nutrient-management alternatives               N120-P60-K40 + K/S       19       8896.437719              120.0                    18.537727                     74.136981                                        98.080567                                       NaN
+ 2017                     2017 core trial All maize      6 Efficiency and nutrient-management alternatives    N120-P60-K40 + micronutrients       19       8699.598246              120.0                    16.897398                     72.496652                                        95.334209                                       NaN
+ 2018 2018 N source, timing and FYM trial All maize      1                              No-input reference                         N0-P0-K0       28       5947.431548                0.0                          NaN                           NaN                                        77.349109                                       NaN
+ 2018 2018 N source, timing and FYM trial All maize      2                      N-zero agronomic reference                       N0-P60-K40       28       6995.857143                0.0                          NaN                           NaN                                        91.003208                                       NaN
+ 2018 2018 N source, timing and FYM trial All maize      3                                 Farmer practice         FYM 6 t/ha + N60-P60-K40       28       7758.324405               60.0                          NaN                           NaN                                       100.985764                                 43.846154
+ 2018 2018 N source, timing and FYM trial All maize      4            Government-recommended NPK reference                     N120-P60-K40       26       7655.701923              120.0                     5.868029                     63.797516                                       100.000000                                       NaN
+ 2018 2018 N source, timing and FYM trial All maize      6 Efficiency and nutrient-management alternatives           N120-P60-K40 at V6/V10       28       9002.898810              120.0                    17.253259                     75.024157                                       115.567283                                       NaN
+ 2018 2018 N source, timing and FYM trial All maize      6 Efficiency and nutrient-management alternatives                 PCU N120-P60-K40       27       7824.895062              120.0                     6.885310                     65.207459                                       101.708946                                       NaN
+ 2018 2018 N source, timing and FYM trial All maize      6 Efficiency and nutrient-management alternatives                  PCU N60-P60-K40       28       7587.955357               60.0                     9.201763                    126.465923                                        98.115439                                 43.846154
+ 2018 2018 N source, timing and FYM trial All maize      6 Efficiency and nutrient-management alternatives                  UDP N78-P60-K40       28       7826.940476               78.0                    10.709237                    100.345391                                       102.405759                                 37.153846
+ 2019          2019 Hybrid strategy block    Hybrid      4            Government-recommended NPK reference              Hybrid N120-P60-K40       20       8305.324256              120.0                          NaN                     69.211035                                       100.000000                                       NaN
+ 2019          2019 Hybrid strategy block    Hybrid      6 Efficiency and nutrient-management alternatives Hybrid FYM 6 t/ha + N120-P60-K40       20       8692.392071              120.0                          NaN                           NaN                                       107.802894                                       NaN
+ 2019          2019 Hybrid strategy block    Hybrid      6 Efficiency and nutrient-management alternatives           Hybrid PCU N60-P60-K40       20       8570.191976               60.0                          NaN                    142.836533                                       107.776466                                 39.000000
+ 2019          2019 Hybrid strategy block    Hybrid      6 Efficiency and nutrient-management alternatives           Hybrid UDP N78-P60-K40       20       9860.283626               78.0                          NaN                    126.413893                                       122.650247                                 33.600000
+ 2019          2019 Hybrid strategy block    Hybrid      6 Efficiency and nutrient-management alternatives         Hybrid Zn + N120-P60-K40       20       8899.562561              120.0                          NaN                     74.163021                                       111.000141                                       NaN
+ 2019             2019 OPV strategy block       OPV      4            Government-recommended NPK reference                 OPV N120-P60-K40       20       7165.709329              120.0                          NaN                     59.714244                                       100.000000                                       NaN
+ 2019             2019 OPV strategy block       OPV      6 Efficiency and nutrient-management alternatives    OPV FYM 6 t/ha + N120-P60-K40       20       7343.836000              120.0                          NaN                           NaN                                       102.933458                                       NaN
+ 2019             2019 OPV strategy block       OPV      6 Efficiency and nutrient-management alternatives              OPV PCU N60-P60-K40       20       7061.833621               60.0                          NaN                    117.697227                                        98.058905                                 33.000000
+ 2019             2019 OPV strategy block       OPV      6 Efficiency and nutrient-management alternatives              OPV UDP N78-P60-K40       20       7060.508712               78.0                          NaN                     90.519342                                        98.228639                                 25.200000
+ 2019             2019 OPV strategy block       OPV      6 Efficiency and nutrient-management alternatives            OPV Zn + N120-P60-K40       20       8730.579545              120.0                          NaN                     72.754830                                       115.304772                                       NaN
+ 2019              2019 T1-T10 core trial All maize      1                              No-input reference                         N0-P0-K0       22       5874.308919                0.0                          NaN                           NaN                                        64.724214                                       NaN
+ 2019              2019 T1-T10 core trial All maize      2                      N-zero agronomic reference                       N0-P60-K40       22       7064.506230                0.0                          NaN                           NaN                                        77.050915                                       NaN
+ 2019              2019 T1-T10 core trial All maize      4            Government-recommended NPK reference                     N120-P60-K40       22       9103.689702              120.0                    16.993196                     75.864081                                       100.000000                                       NaN
+ 2019              2019 T1-T10 core trial All maize      5                  N-rate response and adjustment                     N180-P60-K40       22       9058.249906              180.0                    11.076354                     50.323611                                        99.912160                                       NaN
+ 2019              2019 T1-T10 core trial All maize      5                  N-rate response and adjustment                     N210-P60-K40       22       8926.445455              210.0                     8.866377                     42.506883                                        98.084187                                       NaN
+ 2019              2019 T1-T10 core trial All maize      5                  N-rate response and adjustment                      N60-P60-K40       22       8808.362768               60.0                    29.064276                    146.806046                                        97.013449                                 46.363636
+ 2019              2019 T1-T10 core trial All maize      6 Efficiency and nutrient-management alternatives           N120-P60-K40 at V6/V10       22       9090.799626              120.0                    16.885778                     75.756664                                       100.396353                                       NaN
+ 2019              2019 T1-T10 core trial All maize      6 Efficiency and nutrient-management alternatives               N120-P60-K40 at V8       22       8513.361814              120.0                    12.073797                     70.944682                                        94.295898                                       NaN
+
+STAGE 5: N-RATE ADJUSTMENT
+----------------------------------------------------------------------------------------------------------------
+                              study  year   variety N_rate_adjustment_direction  n_sites  mean_selected_N_rate_kg_ha  mean_potential_mineral_N_reduction_kg_ha  mean_additional_N_requirement_kg_ha
+                    2017 core trial  2017 All maize                 higher rate        6                  190.000000                                  0.000000                                 70.0
+                    2017 core trial  2017 All maize                  lower rate        5                   48.000000                                 72.000000                                  0.0
+                    2017 core trial  2017 All maize               maintain N120        8                  120.000000                                  0.000000                                  0.0
+2018 N source, timing and FYM trial  2018 All maize                  lower rate        7                    0.000000                                120.000000                                  0.0
+2018 N source, timing and FYM trial  2018 All maize               maintain N120       19                  120.000000                                  0.000000                                  0.0
+             2019 T1-T10 core trial  2019 All maize                 higher rate        5                  180.000000                                  0.000000                                 60.0
+             2019 T1-T10 core trial  2019 All maize                  lower rate       13                   55.384615                                 64.615385                                  0.0
+             2019 T1-T10 core trial  2019 All maize               maintain N120        4                  120.000000                                  0.000000                                  0.0
+
+Outputs:
+  D:\dss\SOIL ADVISORY\outputs\nsaf_stage1_6_study_year_site.csv
+  D:\dss\SOIL ADVISORY\outputs\nsaf_stage1_6_study_year_summary.csv
+  D:\dss\SOIL ADVISORY\outputs\nsaf_stage5_n_rate_target_by_study_year_site.csv
+  D:\dss\SOIL ADVISORY\outputs\nsaf_stage1_6_availability_matrix.csv
+  D:\dss\SOIL ADVISORY\outputs\nsaf_stage1_6_qc.csv
+
+Agronomic interpretation:
+  Relative yield (%) = treatment yield / government-reference yield x 100.
+  AE-N uses the N0-P60-K40 reference.
+  PFP-N is not calculated for FYM treatments because organic N is not quantified.
+  Potential mineral-N reduction is reported only for lower-N treatments with >= 95% relative yield.
+  Stage 5 uses the lowest tested N rate achieving >=95% relative yield to the maximum observed yield in the tested N-rate response.
+  No DSM extrapolation or crop-area scaling is applied.
+COMPLETED: 1a_nsaf_stage1_6_descriptives.py
+
+========================================================================================
+STEP 3/3: 1b_nsaf_stage1_6_maps_figures.py
+========================================================================================
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:8: SyntaxWarning: "\d" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\d"? A raw string is also an option.
+  D:\dss\SOIL ADVISORY
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+D:\dss\SOIL ADVISORY\scripts\1b_nsaf_stage1_6_maps_figures.py:769: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+
+============================================================================================================
+NSAF STAGE 1-6 MAPS AND INDIVIDUAL-SITE AGRONOMIC DISTRIBUTIONS
+============================================================================================================
+Stage rows:             749
+Unique sites:           45
+Sites with coordinates: 42
+Ward boundary:          D:\dss\SOIL ADVISORY\Data\boundary\ward_level_boundary.gpkg
+CRS:                    EPSG:4326 (degrees)
+Map clipping:           study districts only
+
+Study boundary subsets:
+  2017 | 2017 core trial | All maize -> Dang;Surkhet [field=DISTRICT; wards=199]
+  2018 | 2018 N source, timing and FYM trial | All maize -> Dang;Doti;Kavre;Palpa;Surkhet [field=DISTRICT; wards=346]
+  2019 | 2019 Hybrid strategy block | Hybrid -> Dang;Doti;Kavre;Makwanpur;Nuwakot;Palpa;Salyan;Surkhet [field=DISTRICT; wards=519]
+  2019 | 2019 OPV strategy block | OPV -> Dang;Doti;Kavre;Makwanpur;Nuwakot;Palpa;Salyan;Surkhet [field=DISTRICT; wards=519]
+  2019 | 2019 T1-T10 core trial | All maize -> Dang;Doti;Kavre;Makwanpur;Nuwakot;Palpa;Salyan;Surkhet [field=DISTRICT; wards=519]
+
+Maps:                    D:\dss\SOIL ADVISORY\outputs\maps\stage1_6
+Distribution figures:    D:\dss\SOIL ADVISORY\outputs\figures\stage1_6
+Manifest:                D:\dss\SOIL ADVISORY\outputs\nsaf_stage1_6_figure_manifest.csv
+Figures/maps recorded:    67
+
+All maps show measured trial sites only.
+No DSM interpolation/extrapolation is applied.
+COMPLETED: 1b_nsaf_stage1_6_maps_figures.py
+
+========================================================================================
+ALL NSAF STEPS COMPLETED
+Finished: 2026-09-06 21:29:40.051441
+Elapsed:  0:01:17.557018
+Log:      D:\dss\SOIL ADVISORY\outputs\run_nsaf_stage1_6.log
+========================================================================================

@@ -1,0 +1,7 @@
+stage,label,main_reference,primary_question,main_N_metric_kg_ha
+1,N0-P0-K0,N0-P0-K0,What is the no-input farmer yield floor?,0
+2,N0-P-K,N0-P0-K0,What does P+K support without mineral N?,0
+3,FYM + N60,N120-P-K and N0-P-K,Can farmer-practice proxy maintain yield with 60 kg mineral N/ha?,60
+4,Government N120-P-K,N0-P-K and FYM+N60,What is the response to government N and can the target move down?,120
+5,N-rate target adjustment,N0/60/120/180/210,Should the N target move down hold or move up?,site-specific
+6,Efficiency alternatives,N120-P-K,Can timing UDP PCU or nutrient support maintain yield/NUE at same or lower N?,alternative-specific

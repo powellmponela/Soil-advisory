@@ -1,0 +1,1283 @@
+FULL CODES: 1a to 2c, DSM nearest-8 updated
+================================================================================
+
+
+================================================================================
+1a_extract_narc_data_representative.py
+================================================================================
+
+import os
+import re
+import time
+
+import numpy as np
+import pandas as pd
+import requests
+
+# Configuration
+OUTPUT_FILE = r"c:\SOIL ADVISORY\Data\narc_baseline_maize.csv"
+API_URL = "https://soil.narc.gov.np/soil/api/soildata"
+
+# Representative coordinates for Eastern Nepal regions
+REPRESENTATIVE_COORDS = [
+    {"dist": "Jhapa", "lat": 26.635, "lon": 87.985},
+    {"dist": "Jhapa", "lat": 26.560, "lon": 87.720},
+    {"dist": "Jhapa", "lat": 26.672, "lon": 87.684},
+    {"dist": "Jhapa", "lat": 26.549, "lon": 88.089},
+    {"dist": "Jhapa", "lat": 26.673, "lon": 87.973},
+    {"dist": "Morang", "lat": 26.485, "lon": 87.285},
+    {"dist": "Morang", "lat": 26.666, "lon": 87.592},
+    {"dist": "Morang", "lat": 26.658, "lon": 87.410},
+    {"dist": "Morang", "lat": 26.655, "lon": 87.545},
+    {"dist": "Morang", "lat": 26.745, "lon": 87.497},
+    {"dist": "Sunsari", "lat": 26.665, "lon": 87.272},
+    {"dist": "Sunsari", "lat": 26.790, "lon": 87.290},
+    {"dist": "Sunsari", "lat": 26.603, "lon": 87.148},
+    {"dist": "Sunsari", "lat": 26.573, "lon": 87.274},
+    {"dist": "Sunsari", "lat": 26.653, "lon": 87.171},
+    {"dist": "Saptari", "lat": 26.542, "lon": 86.757},
+    {"dist": "Saptari", "lat": 26.638, "lon": 86.912},
+    {"dist": "Saptari", "lat": 26.611, "lon": 86.681},
+    {"dist": "Saptari", "lat": 26.615, "lon": 86.765},
+    {"dist": "Saptari", "lat": 26.621, "lon": 86.519},
+    {"dist": "Dhankuta", "lat": 26.983, "lon": 87.333},
+    {"dist": "Dhankuta", "lat": 27.049, "lon": 87.294},
+    {"dist": "Dhankuta", "lat": 27.144, "lon": 87.274},
+    {"dist": "Dhankuta", "lat": 27.025, "lon": 87.241},
+    {"dist": "Dhankuta", "lat": 26.960, "lon": 87.230},
+    {"dist": "Ilam", "lat": 26.911, "lon": 87.924},
+    {"dist": "Ilam", "lat": 26.857, "lon": 88.087},
+    {"dist": "Ilam", "lat": 26.897, "lon": 88.071},
+    {"dist": "Ilam", "lat": 26.946, "lon": 88.115},
+    {"dist": "Ilam", "lat": 26.903, "lon": 87.732},
+    {"dist": "Panchthar", "lat": 27.152, "lon": 87.761},
+    {"dist": "Panchthar", "lat": 27.051, "lon": 87.625},
+    {"dist": "Panchthar", "lat": 26.930, "lon": 87.670},
+    {"dist": "Panchthar", "lat": 27.266, "lon": 87.730},
+    {"dist": "Panchthar", "lat": 26.883, "lon": 87.609},
+]
+
+
+DSM_COLS = [
+    "ph",
+    "om_pct",
+    "n_total_pct",
+    "p_olsen_mg_kg",
+    "k_exch_mg_kg",
+    "sand_pct",
+    "clay_pct",
+    "silt_pct",
+]
+
+
+def available_dsm_cols(df):
+    return [col for col in DSM_COLS if col in df.columns]
+
+
+def fill_missing_dsm_from_nearest8(
+    df,
+    lat_col="lat",
+    lon_col="lon",
+    dsm_cols=None,
+    k=8,
+    min_neighbors=3,
+):
+    """Fill missing DSM covariates from the mean of the nearest valid neighbours.
+
+    Only DSM covariates are imputed. Yield, treatment, fertilizer rates,
+    farmer identifiers, and management variables are never changed.
+    """
+    if dsm_cols is None:
+        dsm_cols = available_dsm_cols(df)
+
+    out = df.copy()
+    if "dsm_imputed" not in out.columns:
+        out["dsm_imputed"] = False
+    if "dsm_imputation_n_neighbors" not in out.columns:
+        out["dsm_imputation_n_neighbors"] = 0
+    if "dsm_source" not in out.columns:
+        out["dsm_source"] = np.where(
+            out[dsm_cols].notna().any(axis=1), "direct_overlay", "api_no_match"
+        )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+
+    if lat_col not in out.columns or lon_col not in out.columns:
+        return out
+
+    coord_mask = out[lat_col].notna() & out[lon_col].notna()
+    if not coord_mask.any():
+        return out
+
+    lat = out[lat_col].astype(float).to_numpy()
+    lon = out[lon_col].astype(float).to_numpy()
+    # Approximate local planar distance in metres. Good enough for nearest
+    # neighbour selection over Nepal at plot/pixel scales.
+    mean_lat_rad = np.deg2rad(np.nanmean(lat))
+    x = lon * 111_320.0 * np.cos(mean_lat_rad)
+    y = lat * 110_540.0
+
+    for col in dsm_cols:
+        valid_mask = out[col].notna() & coord_mask
+        missing_mask = out[col].isna() & coord_mask
+        if valid_mask.sum() < min_neighbors or not missing_mask.any():
+            continue
+
+        valid_indices = np.where(valid_mask.to_numpy())[0]
+        missing_indices = np.where(missing_mask.to_numpy())[0]
+        valid_values = out.iloc[valid_indices][col].astype(float).to_numpy()
+
+        for idx in missing_indices:
+            dx = x[valid_indices] - x[idx]
+            dy = y[valid_indices] - y[idx]
+            distances = np.sqrt(dx * dx + dy * dy)
+            nearest_order = np.argsort(distances)[: min(k, len(distances))]
+            neighbour_values = valid_values[nearest_order]
+            neighbour_values = neighbour_values[~np.isnan(neighbour_values)]
+
+            if len(neighbour_values) >= min_neighbors:
+                out.iat[idx, out.columns.get_loc(col)] = float(np.mean(neighbour_values))
+                out.iat[idx, out.columns.get_loc("dsm_imputed")] = True
+                current_n = out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")]
+                out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")] = max(
+                    int(current_n), len(neighbour_values)
+                )
+
+    out["dsm_source"] = np.where(
+        out["dsm_imputed"] & (out["dsm_source"] == "direct_overlay"),
+        "direct_overlay_plus_nearest8",
+        np.where(out["dsm_imputed"], "nearest8_mean", out["dsm_source"]),
+    )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+    return out
+
+
+
+def clean_value(val):
+    """Extract a numeric value from NARC HTML/string values."""
+    if val is None or val == "NA":
+        return None
+    clean_text = re.sub("<[^<]+?>", "", str(val))
+    match = re.search(r"[-+]?\d*\.\d+|\d+", clean_text)
+    if match:
+        return float(match.group())
+    return None
+
+
+def nz(val):
+    return clean_value(val) or 0.0
+
+
+def empty_row(item, source):
+    return {
+        "district_requested": item["dist"],
+        "district_actual": None,
+        "lat": item["lat"],
+        "lon": item["lon"],
+        "ph": None,
+        "om_pct": None,
+        "n_total_pct": None,
+        "p_olsen_mg_kg": None,
+        "k_exch_mg_kg": None,
+        "sand_pct": None,
+        "clay_pct": None,
+        "silt_pct": None,
+        "maize_urea_total": None,
+        "maize_dap": None,
+        "maize_mop": None,
+        "dsm_source": source,
+    }
+
+
+def fetch_narc_data(coords_list):
+    """Fetch and clean soil and maize data from the NARC API."""
+    results = []
+    print(f"Fetching data from NARC API for {len(coords_list)} locations...")
+
+    for item in coords_list:
+        lat, lon, dist_req = item["lat"], item["lon"], item["dist"]
+        params = {"lat": lat, "lon": lon}
+
+        try:
+            response = requests.get(API_URL, params=params, timeout=15)
+            if response.status_code != 200:
+                print(f"Error {response.status_code} for {lat}, {lon}")
+                results.append(empty_row(item, "api_no_match"))
+                time.sleep(0.5)
+                continue
+
+            data = response.json()
+            maize_rec = data.get("fertilizerData", {}).get("Maize", {}).get("Hybrid", {})
+            if not maize_rec:
+                maize_rec = data.get("fertilizerData", {}).get("Maize", {}).get("OPV", {})
+
+            flat_data = {
+                "district_requested": dist_req,
+                "district_actual": data.get("district"),
+                "lat": lat,
+                "lon": lon,
+                "ph": clean_value(data.get("ph")),
+                "om_pct": clean_value(data.get("organic_matter")),
+                "n_total_pct": clean_value(data.get("total_nitrogen")),
+                "p_olsen_mg_kg": clean_value(data.get("p2o5")),
+                "k_exch_mg_kg": clean_value(data.get("potassium")),
+                "sand_pct": clean_value(data.get("sand")),
+                "clay_pct": clean_value(data.get("clay")),
+                "silt_pct": clean_value(data.get("slit")),
+                "maize_urea_total": nz(maize_rec.get("UREA1"))
+                + nz(maize_rec.get("UREA2"))
+                + nz(maize_rec.get("UREA3")),
+                "maize_dap": clean_value(maize_rec.get("DAP")),
+                "maize_mop": clean_value(maize_rec.get("MOP")),
+                "dsm_source": "direct_overlay",
+            }
+            results.append(flat_data)
+            print(f"Fetched and cleaned data for {dist_req} ({lat}, {lon})")
+            time.sleep(0.5)
+        except (requests.RequestException, ValueError) as exc:
+            print(f"Request failed for {lat}, {lon}: {exc}")
+            results.append(empty_row(item, "api_failed"))
+
+    return pd.DataFrame(results)
+
+
+if __name__ == "__main__":
+    baseline_data = fetch_narc_data(REPRESENTATIVE_COORDS)
+    if not baseline_data.empty:
+        baseline_data = fill_missing_dsm_from_nearest8(
+            baseline_data,
+            lat_col="lat",
+            lon_col="lon",
+            dsm_cols=available_dsm_cols(baseline_data),
+        )
+        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+        baseline_data.to_csv(OUTPUT_FILE, index=False)
+        n_imputed = int(baseline_data["dsm_imputed"].sum())
+        print(f"\nSaved {len(baseline_data)} records to {OUTPUT_FILE}")
+        print(f"DSM nearest-8 gap-filled records: {n_imputed}")
+    else:
+        print("No data fetched from API.")
+
+
+
+================================================================================
+1b_extract_narc_western_coarse.py
+================================================================================
+
+import os
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import numpy as np
+import pandas as pd
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# Configuration
+OUTPUT_FILE = r"c:\SOIL ADVISORY\Data\narc_baseline_maize_pixel_western.csv"
+API_URL = "https://soil.narc.gov.np/soil/api/soildata"
+WESTERN_PROVINCES = {
+    "Province 5",
+    "Province 6",
+    "Province 7",
+    "Lumbini",
+    "Karnali",
+    "Sudurpashchim",
+    "5",
+    "6",
+    "7",
+}
+
+# Bounding box for Western Nepal
+LON_RANGE = np.arange(80.0, 84.6, 0.05)
+LAT_RANGE = np.arange(27.5, 30.1, 0.05)
+GRID_POINTS = [(round(lat, 3), round(lon, 3)) for lat in LAT_RANGE for lon in LON_RANGE]
+
+
+DSM_COLS = [
+    "ph",
+    "om_pct",
+    "n_total_pct",
+    "p_olsen_mg_kg",
+    "k_exch_mg_kg",
+    "sand_pct",
+    "clay_pct",
+    "silt_pct",
+]
+
+
+def available_dsm_cols(df):
+    return [col for col in DSM_COLS if col in df.columns]
+
+
+def fill_missing_dsm_from_nearest8(
+    df,
+    lat_col="lat",
+    lon_col="lon",
+    dsm_cols=None,
+    k=8,
+    min_neighbors=3,
+):
+    """Fill missing DSM covariates from the mean of the nearest valid neighbours.
+
+    Only DSM covariates are imputed. Yield, treatment, fertilizer rates,
+    farmer identifiers, and management variables are never changed.
+    """
+    if dsm_cols is None:
+        dsm_cols = available_dsm_cols(df)
+
+    out = df.copy()
+    if "dsm_imputed" not in out.columns:
+        out["dsm_imputed"] = False
+    if "dsm_imputation_n_neighbors" not in out.columns:
+        out["dsm_imputation_n_neighbors"] = 0
+    if "dsm_source" not in out.columns:
+        out["dsm_source"] = np.where(
+            out[dsm_cols].notna().any(axis=1), "direct_overlay", "api_no_match"
+        )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+
+    if lat_col not in out.columns or lon_col not in out.columns:
+        return out
+
+    coord_mask = out[lat_col].notna() & out[lon_col].notna()
+    if not coord_mask.any():
+        return out
+
+    lat = out[lat_col].astype(float).to_numpy()
+    lon = out[lon_col].astype(float).to_numpy()
+    # Approximate local planar distance in metres. Good enough for nearest
+    # neighbour selection over Nepal at plot/pixel scales.
+    mean_lat_rad = np.deg2rad(np.nanmean(lat))
+    x = lon * 111_320.0 * np.cos(mean_lat_rad)
+    y = lat * 110_540.0
+
+    for col in dsm_cols:
+        valid_mask = out[col].notna() & coord_mask
+        missing_mask = out[col].isna() & coord_mask
+        if valid_mask.sum() < min_neighbors or not missing_mask.any():
+            continue
+
+        valid_indices = np.where(valid_mask.to_numpy())[0]
+        missing_indices = np.where(missing_mask.to_numpy())[0]
+        valid_values = out.iloc[valid_indices][col].astype(float).to_numpy()
+
+        for idx in missing_indices:
+            dx = x[valid_indices] - x[idx]
+            dy = y[valid_indices] - y[idx]
+            distances = np.sqrt(dx * dx + dy * dy)
+            nearest_order = np.argsort(distances)[: min(k, len(distances))]
+            neighbour_values = valid_values[nearest_order]
+            neighbour_values = neighbour_values[~np.isnan(neighbour_values)]
+
+            if len(neighbour_values) >= min_neighbors:
+                out.iat[idx, out.columns.get_loc(col)] = float(np.mean(neighbour_values))
+                out.iat[idx, out.columns.get_loc("dsm_imputed")] = True
+                current_n = out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")]
+                out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")] = max(
+                    int(current_n), len(neighbour_values)
+                )
+
+    out["dsm_source"] = np.where(
+        out["dsm_imputed"] & (out["dsm_source"] == "direct_overlay"),
+        "direct_overlay_plus_nearest8",
+        np.where(out["dsm_imputed"], "nearest8_mean", out["dsm_source"]),
+    )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+    return out
+
+
+
+def get_session():
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=1)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+
+def clean_value(val):
+    if val is None or val == "NA":
+        return None
+    clean_text = re.sub("<[^<]+?>", "", str(val))
+    match = re.search(r"[-+]?\d*\.\d+|\d+", clean_text)
+    if match:
+        return float(match.group())
+    return None
+
+
+def nz(val):
+    return clean_value(val) or 0.0
+
+
+def fetch_point(session, lat, lon):
+    params = {"lat": lat, "lon": lon}
+    try:
+        response = session.get(API_URL, params=params, timeout=15)
+        if response.status_code != 200:
+            return None
+
+        data = response.json()
+        province = data.get("province")
+        if province not in WESTERN_PROVINCES:
+            return None
+
+        maize_rec = data.get("fertilizerData", {}).get("Maize", {}).get("Hybrid", {})
+        if not maize_rec:
+            maize_rec = data.get("fertilizerData", {}).get("Maize", {}).get("OPV", {})
+
+        return {
+            "province": province,
+            "district": data.get("district"),
+            "palika": data.get("palika"),
+            "lat": lat,
+            "lon": lon,
+            "ph": clean_value(data.get("ph")),
+            "om_pct": clean_value(data.get("organic_matter")),
+            "n_total_pct": clean_value(data.get("total_nitrogen")),
+            "p_olsen_mg_kg": clean_value(data.get("p2o5")),
+            "k_exch_mg_kg": clean_value(data.get("potassium")),
+            "sand_pct": clean_value(data.get("sand")),
+            "clay_pct": clean_value(data.get("clay")),
+            "silt_pct": clean_value(data.get("slit")),
+            "maize_urea_total": nz(maize_rec.get("UREA1"))
+            + nz(maize_rec.get("UREA2"))
+            + nz(maize_rec.get("UREA3")),
+            "maize_dap": clean_value(maize_rec.get("DAP")),
+            "maize_mop": clean_value(maize_rec.get("MOP")),
+            "dsm_source": "direct_overlay",
+        }
+    except (requests.RequestException, ValueError):
+        return None
+
+
+def fetch_regional_data_parallel():
+    results = []
+    session = get_session()
+    print(f"Starting parallel Western extraction for {len(GRID_POINTS)} points...")
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {
+            executor.submit(fetch_point, session, lat, lon): (lat, lon)
+            for lat, lon in GRID_POINTS
+        }
+
+        count = 0
+        found_count = 0
+        for future in as_completed(futures):
+            count += 1
+            res = future.result()
+            if res:
+                results.append(res)
+                found_count += 1
+
+            if count % 100 == 0:
+                print(f"Progress: {count}/{len(GRID_POINTS)} (Found {found_count} pixels)")
+
+    return pd.DataFrame(results)
+
+
+if __name__ == "__main__":
+    baseline_data = fetch_regional_data_parallel()
+    if not baseline_data.empty:
+        baseline_data = fill_missing_dsm_from_nearest8(
+            baseline_data,
+            lat_col="lat",
+            lon_col="lon",
+            dsm_cols=available_dsm_cols(baseline_data),
+        )
+        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+        baseline_data.to_csv(OUTPUT_FILE, index=False)
+        n_imputed = int(baseline_data["dsm_imputed"].sum())
+        print(f"\nSuccessfully saved {len(baseline_data)} Western pixels to {OUTPUT_FILE}")
+        print(f"DSM nearest-8 gap-filled pixels: {n_imputed}")
+    else:
+        print("No data fetched.")
+
+
+
+================================================================================
+1c_extract_narc_western_highres_primary.py
+================================================================================
+
+import os
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import numpy as np
+import pandas as pd
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# Configuration
+OUTPUT_FILE = r"c:\SOIL ADVISORY\Data\dsm_western_terai_midhill_pixel-centroid.csv"
+API_URL = "https://soil.narc.gov.np/soil/api/soildata"
+WESTERN_PROVINCES = {
+    "Province 5",
+    "Province 6",
+    "Province 7",
+    "Lumbini",
+    "Karnali",
+    "Sudurpashchim",
+    "5",
+    "6",
+    "7",
+}
+
+# Extended Strategic Grid
+# Region 1: Terai (27.5 - 28.0)
+LON_RANGE = np.arange(80.0, 84.6, 0.02)
+LAT_RANGE_TERAI = np.arange(27.5, 28.0, 0.02)
+POINTS_TERAI = [(round(lat, 4), round(lon, 4)) for lat in LAT_RANGE_TERAI for lon in LON_RANGE]
+
+# Region 2: Mid-Hills (28.0 - 28.6), specifically for trials
+LAT_RANGE_HILLS = np.arange(28.0, 28.6, 0.02)
+POINTS_HILLS = [(round(lat, 4), round(lon, 4)) for lat in LAT_RANGE_HILLS for lon in LON_RANGE]
+
+# Sample 5000 from Terai and 5000 from Hills for a balanced high-res dataset
+GRID_POINTS = POINTS_TERAI[:5000] + POINTS_HILLS[:5000]
+
+
+DSM_COLS = [
+    "ph",
+    "om_pct",
+    "n_total_pct",
+    "p_olsen_mg_kg",
+    "k_exch_mg_kg",
+    "sand_pct",
+    "clay_pct",
+    "silt_pct",
+]
+
+
+def available_dsm_cols(df):
+    return [col for col in DSM_COLS if col in df.columns]
+
+
+def fill_missing_dsm_from_nearest8(
+    df,
+    lat_col="lat",
+    lon_col="lon",
+    dsm_cols=None,
+    k=8,
+    min_neighbors=3,
+):
+    """Fill missing DSM covariates from the mean of the nearest valid neighbours.
+
+    Only DSM covariates are imputed. Yield, treatment, fertilizer rates,
+    farmer identifiers, and management variables are never changed.
+    """
+    if dsm_cols is None:
+        dsm_cols = available_dsm_cols(df)
+
+    out = df.copy()
+    if "dsm_imputed" not in out.columns:
+        out["dsm_imputed"] = False
+    if "dsm_imputation_n_neighbors" not in out.columns:
+        out["dsm_imputation_n_neighbors"] = 0
+    if "dsm_source" not in out.columns:
+        out["dsm_source"] = np.where(
+            out[dsm_cols].notna().any(axis=1), "direct_overlay", "api_no_match"
+        )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+
+    if lat_col not in out.columns or lon_col not in out.columns:
+        return out
+
+    coord_mask = out[lat_col].notna() & out[lon_col].notna()
+    if not coord_mask.any():
+        return out
+
+    lat = out[lat_col].astype(float).to_numpy()
+    lon = out[lon_col].astype(float).to_numpy()
+    # Approximate local planar distance in metres. Good enough for nearest
+    # neighbour selection over Nepal at plot/pixel scales.
+    mean_lat_rad = np.deg2rad(np.nanmean(lat))
+    x = lon * 111_320.0 * np.cos(mean_lat_rad)
+    y = lat * 110_540.0
+
+    for col in dsm_cols:
+        valid_mask = out[col].notna() & coord_mask
+        missing_mask = out[col].isna() & coord_mask
+        if valid_mask.sum() < min_neighbors or not missing_mask.any():
+            continue
+
+        valid_indices = np.where(valid_mask.to_numpy())[0]
+        missing_indices = np.where(missing_mask.to_numpy())[0]
+        valid_values = out.iloc[valid_indices][col].astype(float).to_numpy()
+
+        for idx in missing_indices:
+            dx = x[valid_indices] - x[idx]
+            dy = y[valid_indices] - y[idx]
+            distances = np.sqrt(dx * dx + dy * dy)
+            nearest_order = np.argsort(distances)[: min(k, len(distances))]
+            neighbour_values = valid_values[nearest_order]
+            neighbour_values = neighbour_values[~np.isnan(neighbour_values)]
+
+            if len(neighbour_values) >= min_neighbors:
+                out.iat[idx, out.columns.get_loc(col)] = float(np.mean(neighbour_values))
+                out.iat[idx, out.columns.get_loc("dsm_imputed")] = True
+                current_n = out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")]
+                out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")] = max(
+                    int(current_n), len(neighbour_values)
+                )
+
+    out["dsm_source"] = np.where(
+        out["dsm_imputed"] & (out["dsm_source"] == "direct_overlay"),
+        "direct_overlay_plus_nearest8",
+        np.where(out["dsm_imputed"], "nearest8_mean", out["dsm_source"]),
+    )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+    return out
+
+
+
+def get_session():
+    session = requests.Session()
+    retry = Retry(connect=2, backoff_factor=0.5)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+
+def clean_value(val):
+    if val is None or val == "NA":
+        return None
+    clean_text = re.sub("<[^<]+?>", "", str(val))
+    match = re.search(r"[-+]?\d*\.\d+|\d+", clean_text)
+    if match:
+        return float(match.group())
+    return None
+
+
+def nz(val):
+    return clean_value(val) or 0.0
+
+
+def fetch_point(session, lat, lon):
+    params = {"lat": lat, "lon": lon}
+    try:
+        response = session.get(API_URL, params=params, timeout=12)
+        if response.status_code != 200:
+            return None
+
+        data = response.json()
+        province = data.get("province")
+        if province not in WESTERN_PROVINCES:
+            return None
+
+        maize_rec = data.get("fertilizerData", {}).get("Maize", {}).get("Hybrid", {})
+        if not maize_rec:
+            maize_rec = data.get("fertilizerData", {}).get("Maize", {}).get("OPV", {})
+
+        return {
+            "province": province,
+            "district": data.get("district"),
+            "palika": data.get("palika"),
+            "lat": lat,
+            "lon": lon,
+            "ph": clean_value(data.get("ph")),
+            "om_pct": clean_value(data.get("organic_matter")),
+            "n_total_pct": clean_value(data.get("total_nitrogen")),
+            "p_olsen_mg_kg": clean_value(data.get("p2o5")),
+            "k_exch_mg_kg": clean_value(data.get("potassium")),
+            "sand_pct": clean_value(data.get("sand")),
+            "clay_pct": clean_value(data.get("clay")),
+            "silt_pct": clean_value(data.get("slit")),
+            "maize_urea_total": nz(maize_rec.get("UREA1"))
+            + nz(maize_rec.get("UREA2"))
+            + nz(maize_rec.get("UREA3")),
+            "maize_dap": clean_value(maize_rec.get("DAP")),
+            "maize_mop": clean_value(maize_rec.get("MOP")),
+            "dsm_source": "direct_overlay",
+        }
+    except (requests.RequestException, ValueError):
+        return None
+
+
+def fetch_extended_data_parallel():
+    results = []
+    session = get_session()
+    print(f"Starting Extended High-Res Extraction (~2km) for {len(GRID_POINTS)} points...")
+    print("Targeting Terai (up to 28.0N) and Mid-Hills (up to 28.6N)")
+
+    with ThreadPoolExecutor(max_workers=30) as executor:
+        futures = {
+            executor.submit(fetch_point, session, lat, lon): (lat, lon)
+            for lat, lon in GRID_POINTS
+        }
+
+        count = 0
+        found_count = 0
+        for future in as_completed(futures):
+            count += 1
+            res = future.result()
+            if res:
+                results.append(res)
+                found_count += 1
+
+            if count % 1000 == 0:
+                print(f"Progress: {count}/{len(GRID_POINTS)} (Pixels Found: {found_count})")
+
+    return pd.DataFrame(results)
+
+
+if __name__ == "__main__":
+    baseline_data = fetch_extended_data_parallel()
+    if not baseline_data.empty:
+        baseline_data = fill_missing_dsm_from_nearest8(
+            baseline_data,
+            lat_col="lat",
+            lon_col="lon",
+            dsm_cols=available_dsm_cols(baseline_data),
+        )
+        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+        baseline_data.to_csv(OUTPUT_FILE, index=False)
+        n_imputed = int(baseline_data["dsm_imputed"].sum())
+        print(f"\nSaved {len(baseline_data)} extended high-res pixels to {OUTPUT_FILE}")
+        print(f"DSM nearest-8 gap-filled pixels: {n_imputed}")
+    else:
+        print("No data fetched.")
+
+
+
+================================================================================
+2a_match_2018_trials_to_narc.py
+================================================================================
+
+import os
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import numpy as np
+import pandas as pd
+import requests
+
+# Configuration
+TRIAL_DATA = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_trials-2018.csv"
+OUTPUT_FILE = r"c:\SOIL ADVISORY\Data\nsaf_plots_narc_soil.csv"
+API_URL = "https://soil.narc.gov.np/soil/api/soildata"
+
+
+DSM_COLS = [
+    "ph",
+    "om_pct",
+    "n_total_pct",
+    "p_olsen_mg_kg",
+    "k_exch_mg_kg",
+    "sand_pct",
+    "clay_pct",
+    "silt_pct",
+]
+
+
+def available_dsm_cols(df):
+    return [col for col in DSM_COLS if col in df.columns]
+
+
+def fill_missing_dsm_from_nearest8(
+    df,
+    lat_col="lat",
+    lon_col="lon",
+    dsm_cols=None,
+    k=8,
+    min_neighbors=3,
+):
+    """Fill missing DSM covariates from the mean of the nearest valid neighbours.
+
+    Only DSM covariates are imputed. Yield, treatment, fertilizer rates,
+    farmer identifiers, and management variables are never changed.
+    """
+    if dsm_cols is None:
+        dsm_cols = available_dsm_cols(df)
+
+    out = df.copy()
+    if "dsm_imputed" not in out.columns:
+        out["dsm_imputed"] = False
+    if "dsm_imputation_n_neighbors" not in out.columns:
+        out["dsm_imputation_n_neighbors"] = 0
+    if "dsm_source" not in out.columns:
+        out["dsm_source"] = np.where(
+            out[dsm_cols].notna().any(axis=1), "direct_overlay", "api_no_match"
+        )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+
+    if lat_col not in out.columns or lon_col not in out.columns:
+        return out
+
+    coord_mask = out[lat_col].notna() & out[lon_col].notna()
+    if not coord_mask.any():
+        return out
+
+    lat = out[lat_col].astype(float).to_numpy()
+    lon = out[lon_col].astype(float).to_numpy()
+    # Approximate local planar distance in metres. Good enough for nearest
+    # neighbour selection over Nepal at plot/pixel scales.
+    mean_lat_rad = np.deg2rad(np.nanmean(lat))
+    x = lon * 111_320.0 * np.cos(mean_lat_rad)
+    y = lat * 110_540.0
+
+    for col in dsm_cols:
+        valid_mask = out[col].notna() & coord_mask
+        missing_mask = out[col].isna() & coord_mask
+        if valid_mask.sum() < min_neighbors or not missing_mask.any():
+            continue
+
+        valid_indices = np.where(valid_mask.to_numpy())[0]
+        missing_indices = np.where(missing_mask.to_numpy())[0]
+        valid_values = out.iloc[valid_indices][col].astype(float).to_numpy()
+
+        for idx in missing_indices:
+            dx = x[valid_indices] - x[idx]
+            dy = y[valid_indices] - y[idx]
+            distances = np.sqrt(dx * dx + dy * dy)
+            nearest_order = np.argsort(distances)[: min(k, len(distances))]
+            neighbour_values = valid_values[nearest_order]
+            neighbour_values = neighbour_values[~np.isnan(neighbour_values)]
+
+            if len(neighbour_values) >= min_neighbors:
+                out.iat[idx, out.columns.get_loc(col)] = float(np.mean(neighbour_values))
+                out.iat[idx, out.columns.get_loc("dsm_imputed")] = True
+                current_n = out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")]
+                out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")] = max(
+                    int(current_n), len(neighbour_values)
+                )
+
+    out["dsm_source"] = np.where(
+        out["dsm_imputed"] & (out["dsm_source"] == "direct_overlay"),
+        "direct_overlay_plus_nearest8",
+        np.where(out["dsm_imputed"], "nearest8_mean", out["dsm_source"]),
+    )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+    return out
+
+
+
+def clean_value(val):
+    if val is None or val == "NA":
+        return None
+    clean_text = re.sub("<[^<]+?>", "", str(val))
+    match = re.search(r"[-+]?\d*\.\d+|\d+", clean_text)
+    if match:
+        return float(match.group())
+    return None
+
+
+def fetch_point(session, lat, lon):
+    params = {"lat": lat, "lon": lon}
+    try:
+        response = session.get(API_URL, params=params, timeout=15)
+        if response.status_code != 200:
+            return None
+
+        data = response.json()
+        return {
+            "lat": lat,
+            "lon": lon,
+            "ph": clean_value(data.get("ph")),
+            "om_pct": clean_value(data.get("organic_matter")),
+            "n_total_pct": clean_value(data.get("total_nitrogen")),
+            "p_olsen_mg_kg": clean_value(data.get("p2o5")),
+            "k_exch_mg_kg": clean_value(data.get("potassium")),
+            "sand_pct": clean_value(data.get("sand")),
+            "clay_pct": clean_value(data.get("clay")),
+            "silt_pct": clean_value(data.get("slit")),
+            "narc_dist": data.get("district"),
+            "dsm_source": "direct_overlay",
+        }
+    except (requests.RequestException, ValueError):
+        return None
+
+
+if __name__ == "__main__":
+    df_trials = pd.read_csv(TRIAL_DATA)
+    plots = df_trials[["latitude", "longitude"]].dropna().drop_duplicates()
+    print(f"Found {len(plots)} unique 2018 trial plot locations.")
+
+    results = []
+    session = requests.Session()
+    print(f"Fetching NARC soil data for {len(plots)} plots...")
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {
+            executor.submit(fetch_point, session, row.latitude, row.longitude): row
+            for _, row in plots.iterrows()
+        }
+
+        count = 0
+        for future in as_completed(futures):
+            count += 1
+            res = future.result()
+            if res:
+                results.append(res)
+            if count % 20 == 0:
+                print(f"Processed {count}/{len(plots)} locations...")
+
+    df_soil = pd.DataFrame(results)
+    plots_soil = plots.rename(columns={"latitude": "lat", "longitude": "lon"})
+    if not df_soil.empty:
+        plots_soil = plots_soil.merge(df_soil, on=["lat", "lon"], how="left")
+    else:
+        for col in DSM_COLS + ["narc_dist", "dsm_source"]:
+            plots_soil[col] = np.nan
+        plots_soil["dsm_source"] = "api_no_match"
+
+    plots_soil["dsm_source"] = plots_soil["dsm_source"].fillna("api_no_match")
+    plots_soil = fill_missing_dsm_from_nearest8(
+        plots_soil,
+        lat_col="lat",
+        lon_col="lon",
+        dsm_cols=available_dsm_cols(plots_soil),
+    )
+
+    df_final = df_trials.merge(
+        plots_soil,
+        left_on=["latitude", "longitude"],
+        right_on=["lat", "lon"],
+        how="left",
+    )
+
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    df_final.to_csv(OUTPUT_FILE, index=False)
+    n_direct = int((plots_soil["dsm_source"] == "direct_overlay").sum())
+    n_imputed = int(plots_soil["dsm_imputed"].sum())
+    print(f"\nSaved {len(df_final)} 2018 records with DSM covariates.")
+    print(f"Direct DSM plot matches: {n_direct}; nearest-8 imputed plots: {n_imputed}")
+    print(f"Saved to {OUTPUT_FILE}")
+
+
+
+================================================================================
+2b_match_2019_demos_and_controls.py
+================================================================================
+
+import os
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import numpy as np
+import pandas as pd
+import requests
+
+# Configuration
+TRIAL_2017 = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_trials_2017.xlsx"
+TRIAL_2018 = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_trials-2018.csv"
+DEMO_2019 = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_demo_2019.xlsx"
+OUTPUT_SOIL_2019 = r"c:\SOIL ADVISORY\Data\nsaf_plots_narc_soil_2019.csv"
+OUTPUT_CONTROLS = r"c:\SOIL ADVISORY\Data\nsaf_pooled_controls_2017_2019.csv"
+API_URL = "https://soil.narc.gov.np/soil/api/soildata"
+
+
+DSM_COLS = [
+    "ph",
+    "om_pct",
+    "n_total_pct",
+    "p_olsen_mg_kg",
+    "k_exch_mg_kg",
+    "sand_pct",
+    "clay_pct",
+    "silt_pct",
+]
+
+
+def available_dsm_cols(df):
+    return [col for col in DSM_COLS if col in df.columns]
+
+
+def fill_missing_dsm_from_nearest8(
+    df,
+    lat_col="lat",
+    lon_col="lon",
+    dsm_cols=None,
+    k=8,
+    min_neighbors=3,
+):
+    """Fill missing DSM covariates from the mean of the nearest valid neighbours.
+
+    Only DSM covariates are imputed. Yield, treatment, fertilizer rates,
+    farmer identifiers, and management variables are never changed.
+    """
+    if dsm_cols is None:
+        dsm_cols = available_dsm_cols(df)
+
+    out = df.copy()
+    if "dsm_imputed" not in out.columns:
+        out["dsm_imputed"] = False
+    if "dsm_imputation_n_neighbors" not in out.columns:
+        out["dsm_imputation_n_neighbors"] = 0
+    if "dsm_source" not in out.columns:
+        out["dsm_source"] = np.where(
+            out[dsm_cols].notna().any(axis=1), "direct_overlay", "api_no_match"
+        )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+
+    if lat_col not in out.columns or lon_col not in out.columns:
+        return out
+
+    coord_mask = out[lat_col].notna() & out[lon_col].notna()
+    if not coord_mask.any():
+        return out
+
+    lat = out[lat_col].astype(float).to_numpy()
+    lon = out[lon_col].astype(float).to_numpy()
+    # Approximate local planar distance in metres. Good enough for nearest
+    # neighbour selection over Nepal at plot/pixel scales.
+    mean_lat_rad = np.deg2rad(np.nanmean(lat))
+    x = lon * 111_320.0 * np.cos(mean_lat_rad)
+    y = lat * 110_540.0
+
+    for col in dsm_cols:
+        valid_mask = out[col].notna() & coord_mask
+        missing_mask = out[col].isna() & coord_mask
+        if valid_mask.sum() < min_neighbors or not missing_mask.any():
+            continue
+
+        valid_indices = np.where(valid_mask.to_numpy())[0]
+        missing_indices = np.where(missing_mask.to_numpy())[0]
+        valid_values = out.iloc[valid_indices][col].astype(float).to_numpy()
+
+        for idx in missing_indices:
+            dx = x[valid_indices] - x[idx]
+            dy = y[valid_indices] - y[idx]
+            distances = np.sqrt(dx * dx + dy * dy)
+            nearest_order = np.argsort(distances)[: min(k, len(distances))]
+            neighbour_values = valid_values[nearest_order]
+            neighbour_values = neighbour_values[~np.isnan(neighbour_values)]
+
+            if len(neighbour_values) >= min_neighbors:
+                out.iat[idx, out.columns.get_loc(col)] = float(np.mean(neighbour_values))
+                out.iat[idx, out.columns.get_loc("dsm_imputed")] = True
+                current_n = out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")]
+                out.iat[idx, out.columns.get_loc("dsm_imputation_n_neighbors")] = max(
+                    int(current_n), len(neighbour_values)
+                )
+
+    out["dsm_source"] = np.where(
+        out["dsm_imputed"] & (out["dsm_source"] == "direct_overlay"),
+        "direct_overlay_plus_nearest8",
+        np.where(out["dsm_imputed"], "nearest8_mean", out["dsm_source"]),
+    )
+    out["dsm_imputation_method"] = np.where(
+        out["dsm_imputed"], "nearest_8_valid_mean", out["dsm_source"]
+    )
+    return out
+
+
+
+def parse_coords(row):
+    """Parse 2019 coordinate string: 'lat lon alt prec'."""
+    try:
+        val = str(row["latitude"])
+        parts = val.split()
+        if len(parts) >= 2:
+            return float(parts[0]), float(parts[1])
+    except (KeyError, TypeError, ValueError):
+        pass
+    return None, None
+
+
+def clean_value(val):
+    if val is None or val == "NA":
+        return None
+    clean_text = re.sub("<[^<]+?>", "", str(val))
+    match = re.search(r"[-+]?\d*\.\d+|\d+", clean_text)
+    if match:
+        return float(match.group())
+    return None
+
+
+def fetch_point(session, lat, lon):
+    params = {"lat": lat, "lon": lon}
+    try:
+        response = session.get(API_URL, params=params, timeout=15)
+        if response.status_code != 200:
+            return None
+
+        data = response.json()
+        return {
+            "lat_key": lat,
+            "lon_key": lon,
+            "ph": clean_value(data.get("ph")),
+            "om_pct": clean_value(data.get("organic_matter")),
+            "n_total_pct": clean_value(data.get("total_nitrogen")),
+            "p_olsen_mg_kg": clean_value(data.get("p2o5")),
+            "k_exch_mg_kg": clean_value(data.get("potassium")),
+            "sand_pct": clean_value(data.get("sand")),
+            "clay_pct": clean_value(data.get("clay")),
+            "silt_pct": clean_value(data.get("slit")),
+            "narc_dist": data.get("district"),
+            "dsm_source": "direct_overlay",
+        }
+    except (requests.RequestException, ValueError):
+        return None
+
+
+if __name__ == "__main__":
+    df17 = pd.read_excel(TRIAL_2017)
+    df18 = pd.read_csv(TRIAL_2018)
+    df19 = pd.read_excel(DEMO_2019)
+
+    df19["lat_fixed"], df19["lon_fixed"] = zip(*df19.apply(parse_coords, axis=1))
+
+    c17 = df17[(df17.N_kg_ha == 0) & (df17.P2O5_kg_ha == 0) & (df17.K2O_kg_ha == 0)][
+        ["District", "Yield_t_ha"]
+    ]
+    c18 = df18[(df18.N_kg_ha == 0) & (df18.P2O5_kg_ha == 0) & (df18.K2O_kg_ha == 0)][
+        ["District", "Yield_t_ha"]
+    ]
+    c19 = df19[(df19.N_kg_ha == 0) & (df19.P2O5_kg_ha == 0) & (df19.K2O_kg_ha == 0)][
+        ["District", "Yield_t_ha"]
+    ]
+
+    os.makedirs(os.path.dirname(OUTPUT_CONTROLS), exist_ok=True)
+    pooled_controls = pd.concat([c17, c18, c19], ignore_index=True)
+    pooled_controls.to_csv(OUTPUT_CONTROLS, index=False)
+    print(f"Pooled {len(pooled_controls)} control records.")
+
+    plots19 = df19[["lat_fixed", "lon_fixed"]].dropna().drop_duplicates()
+    print(f"Fetching NARC soil data for {len(plots19)} plots from 2019...")
+
+    results = []
+    session = requests.Session()
+    with ThreadPoolExecutor(max_workers=15) as executor:
+        futures = {
+            executor.submit(fetch_point, session, lat, lon): (lat, lon)
+            for lat, lon in plots19.itertuples(index=False)
+        }
+        for future in as_completed(futures):
+            res = future.result()
+            if res:
+                results.append(res)
+
+    df_soil19 = pd.DataFrame(results)
+    plots_soil19 = plots19.rename(columns={"lat_fixed": "lat_key", "lon_fixed": "lon_key"})
+    if not df_soil19.empty:
+        plots_soil19 = plots_soil19.merge(df_soil19, on=["lat_key", "lon_key"], how="left")
+    else:
+        for col in DSM_COLS + ["narc_dist", "dsm_source"]:
+            plots_soil19[col] = np.nan
+        plots_soil19["dsm_source"] = "api_no_match"
+
+    plots_soil19["dsm_source"] = plots_soil19["dsm_source"].fillna("api_no_match")
+    plots_soil19 = fill_missing_dsm_from_nearest8(
+        plots_soil19,
+        lat_col="lat_key",
+        lon_col="lon_key",
+        dsm_cols=available_dsm_cols(plots_soil19),
+    )
+
+    df_final19 = df19.merge(
+        plots_soil19,
+        left_on=["lat_fixed", "lon_fixed"],
+        right_on=["lat_key", "lon_key"],
+        how="left",
+    )
+    os.makedirs(os.path.dirname(OUTPUT_SOIL_2019), exist_ok=True)
+    df_final19.to_csv(OUTPUT_SOIL_2019, index=False)
+
+    n_direct = int((plots_soil19["dsm_source"] == "direct_overlay").sum())
+    n_imputed = int(plots_soil19["dsm_imputed"].sum())
+    print(f"Matched/saved {len(df_final19)} records for 2019.")
+    print(f"Direct DSM plot matches: {n_direct}; nearest-8 imputed plots: {n_imputed}")
+
+
+
+================================================================================
+2c_assign_farmer_ids.py
+================================================================================
+
+import os
+
+import pandas as pd
+
+# File Paths
+TRIAL_2017 = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_trials_2017.xlsx"
+TRIAL_2018 = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_trials-2018.csv"
+DEMO_2019 = r"c:\SOIL ADVISORY\Data\NSAF Crops Trial Data\Maize\maize_demo_2019.xlsx"
+
+# Processed files to update
+FILE_2018_PROCESSED = r"c:\SOIL ADVISORY\Data\nsaf_plots_narc_soil.csv"
+FILE_2019_PROCESSED = r"c:\SOIL ADVISORY\Data\nsaf_plots_narc_soil_2019.csv"
+
+ID_COLUMNS = ["Farmer's name", "District", "VDC"]
+
+
+def make_key(df):
+    missing = [col for col in ID_COLUMNS if col not in df.columns]
+    if missing:
+        return pd.Series([pd.NA] * len(df), index=df.index)
+    return (
+        df["Farmer's name"].astype(str).str.strip().str.lower()
+        + "_"
+        + df["District"].astype(str).str.strip().str.lower()
+        + "_"
+        + df["VDC"].astype(str).str.strip().str.lower()
+    )
+
+
+def read_farmer_frame(path, reader):
+    df = reader(path)
+    available_cols = [col for col in ID_COLUMNS if col in df.columns]
+    if len(available_cols) != len(ID_COLUMNS):
+        print(f"Skipping farmer ID source with missing columns: {path}")
+        return pd.DataFrame(columns=ID_COLUMNS)
+    return df[ID_COLUMNS].dropna()
+
+
+def add_farmer_ids_to_processed(path, id_map):
+    if not os.path.exists(path):
+        print(f"Processed file not found, skipped: {path}")
+        return
+
+    df_proc = pd.read_csv(path)
+    if "farmer_id" in df_proc.columns and "Farmer's name" not in df_proc.columns:
+        print(f"Farmer IDs already assigned or farmer names already removed: {path}")
+        return
+
+    key = make_key(df_proc)
+    df_proc["farmer_id"] = key.map(id_map)
+    drop_cols = [col for col in ["Farmer's name", "key"] if col in df_proc.columns]
+    df_proc_clean = df_proc.drop(columns=drop_cols)
+    df_proc_clean.to_csv(path, index=False)
+    print(f"Updated processed file: {path}")
+
+
+def generate_farmer_ids():
+    df17 = read_farmer_frame(TRIAL_2017, pd.read_excel)
+    df18 = read_farmer_frame(TRIAL_2018, pd.read_csv)
+    df19 = read_farmer_frame(DEMO_2019, pd.read_excel)
+
+    all_raw = pd.concat([df17, df18, df19], ignore_index=True)
+    all_raw["key"] = make_key(all_raw)
+    unique_keys = sorted(k for k in all_raw["key"].dropna().unique())
+    id_map = {key: f"FMR_{i + 1:03d}" for i, key in enumerate(unique_keys)}
+    print(f"Generated {len(id_map)} unique Farmer IDs.")
+
+    add_farmer_ids_to_processed(FILE_2018_PROCESSED, id_map)
+    add_farmer_ids_to_processed(FILE_2019_PROCESSED, id_map)
+
+
+if __name__ == "__main__":
+    generate_farmer_ids()
+
+
