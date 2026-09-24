@@ -1,6 +1,105 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Soil Advisory Platform</title><link rel="stylesheet" href="/static/styles.css"></head><body>
-<header class="topbar"><div><h1>Soil Advisory Platform</h1><p>Published predictions and management comparisons</p></div><a class="staff-link" href="/staff/login">Research / Staff Login</a></header>
-<main class="container"><section class="hero card"><h2>Get an advisory</h2><p>Only reviewed and published prediction outputs are available on this public interface.</p><div class="filters">
-<label>District<select id="district"><option value="">All</option></select></label><label>Crop<select id="crop"><option value="">All</option></select></label><label>Season<select id="season"><option value="">All</option></select></label><label>Scenario<select id="scenario"><option value="">All</option></select></label></div><button id="run">Show advisory</button></section>
-<section class="card"><h2>Published results</h2><div id="summary" class="muted">Select filters and show the advisory.</div><div class="table-wrap"><table id="results"><thead><tr><th>District</th><th>Municipality</th><th>Crop</th><th>Scenario</th><th>Predicted yield (t/ha)</th><th>N rate (kg/ha)</th><th>AE-N</th><th>PFP-N</th><th>Potential N reduction (kg/ha)</th><th>Prediction interval</th><th>Version</th></tr></thead><tbody></tbody></table></div></section>
-<section class="card"><h2>References</h2><p class="muted">Key studies supporting the agronomic evidence used in the advisory platform.</p><p><strong>Pandit, N. R., Gaihre, Y. K., Choudhary, D., Subedi, R., Thapa, S. B., Maharjan, S., Khadka, D., Vista, S. P., & Rusinamhodzi, L. (2022).</strong> Slow but sure: the potential of slow-release nitrogen fertilizers to increase crop productivity and farm profit in Nepal. <em>Journal of Plant Nutrition</em>. <a href="https://doi.org/10.1080/01904167.2022.2067053" target="_blank" rel="noopener noreferrer">https://doi.org/10.1080/01904167.2022.2067053</a></p></section></main><script src="/static/public.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nepal Soil & Nutrient Advisory</title>
+  <meta name="description" content="Evidence-based maize nutrient management advisory for Nepal based on reviewed trial evidence and published model outputs.">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-mark">SA</span><span><strong>Soil Advisory</strong><small>Nepal nutrient management evidence</small></span></a>
+  <nav>
+    <a href="#evidence">Evidence</a>
+    <a href="#advisory">Advisory</a>
+    <a href="#analytics">Analytics</a>
+    <a href="#methods">Methods</a>
+    <a href="#references">References</a>
+    <a class="staff-link" href="/staff/login">Research workspace</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <span class="eyebrow">Decision support from field evidence</span>
+        <h1>From nutrient-response trials to practical fertilizer decisions</h1>
+        <p class="lead">Explore reviewed advisory outputs for maize nutrient management. Public pages expose only approved prediction results; raw trial data, analytical scripts, trained models and draft outputs remain in the restricted research workspace.</p>
+        <div class="hero-actions"><a class="button" href="#advisory">Explore advisory</a><a class="button secondary" href="#methods">How results are produced</a></div>
+      </div>
+      <aside class="scope-card">
+        <span class="scope-label">Current public scope</span>
+        <strong>NSAF maize evidence</strong>
+        <p>Nitrogen response, yield, agronomic efficiency, partial factor productivity and potential mineral-N reduction.</p>
+        <div id="version-badge" class="version">Loading published version…</div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="evidence" class="section">
+    <div class="section-heading"><div><span class="eyebrow">Evidence base</span><h2>What is currently published</h2></div><p>The public layer summarizes approved analytical outputs rather than exposing research files.</p></div>
+    <div class="metrics">
+      <article><span id="metric-records">—</span><small>published records</small></article>
+      <article><span id="metric-districts">—</span><small>districts represented</small></article>
+      <article><span id="metric-scenarios">—</span><small>management scenarios</small></article>
+      <article><span id="metric-crops">—</span><small>crops currently published</small></article>
+    </div>
+    <div class="evidence-grid">
+      <article class="card"><span class="card-index">01</span><h3>Observed trial evidence</h3><p>Site × year × treatment observations establish measured yield response and nutrient-use-efficiency patterns before spatial extrapolation.</p></article>
+      <article class="card"><span class="card-index">02</span><h3>Agronomic analytics</h3><p>Yield response, relative yield, AE-N, PFP-N and marginal response are used to compare nutrient-management alternatives with explicit reference treatments.</p></article>
+      <article class="card"><span class="card-index">03</span><h3>Spatial advisory outputs</h3><p>Only reviewed predictions are released publicly. Digital soil information supports spatial extrapolation and is not presented as measured soil at every location.</p></article>
+    </div>
+  </section>
+
+  <section id="advisory" class="section alt">
+    <div class="section-heading"><div><span class="eyebrow">Published advisory</span><h2>Compare management scenarios</h2></div><p>Filter the approved results by geography, crop, season and management alternative.</p></div>
+    <div class="filter-panel">
+      <label>District<select id="district"><option value="">All districts</option></select></label>
+      <label>Crop<select id="crop"><option value="">All crops</option></select></label>
+      <label>Season<select id="season"><option value="">All seasons</option></select></label>
+      <label>Scenario<select id="scenario"><option value="">All scenarios</option></select></label>
+      <button id="run">Update results</button>
+    </div>
+    <div id="summary" class="result-summary">Loading approved results…</div>
+    <div id="result-cards" class="result-cards"></div>
+    <div class="table-card">
+      <div class="table-title"><div><h3>Detailed published results</h3><p>Values shown here come directly from the approved public prediction file.</p></div><a class="text-link" href="/downloads/published-predictions.csv">Download CSV</a></div>
+      <div class="table-wrap"><table id="results"><thead><tr><th>District</th><th>Municipality</th><th>Crop</th><th>Scenario</th><th>Predicted yield<br><small>t/ha</small></th><th>N rate<br><small>kg/ha</small></th><th>AE-N</th><th>PFP-N</th><th>Potential N reduction<br><small>kg/ha</small></th><th>Prediction interval</th><th>Version</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section id="analytics" class="section">
+    <div class="section-heading"><div><span class="eyebrow">Analytical interpretation</span><h2>Read the advisory as a comparison, not a single target</h2></div><p>The platform is organized around agronomically meaningful comparators.</p></div>
+    <div class="analytics-grid">
+      <article class="analysis-card"><h3>Yield</h3><p>Predicted grain yield is shown with its prediction interval where available, so uncertainty remains visible.</p></article>
+      <article class="analysis-card"><h3>Nitrogen use efficiency</h3><p>AE-N is used where a valid zero-N reference exists; PFP-N supports comparisons where that reference is not consistently available.</p></article>
+      <article class="analysis-card"><h3>Potential mineral-N reduction</h3><p>Lower-N alternatives are expressed relative to their comparator. This is a scenario estimate, not an observed fertilizer loss.</p></article>
+      <article class="analysis-card"><h3>Spatial extrapolation</h3><p>Spatial products extend trial evidence cautiously within the study domain. Modelled soil covariates do not replace measured trial-site soils.</p></article>
+    </div>
+  </section>
+
+  <section id="methods" class="section alt">
+    <div class="section-heading"><div><span class="eyebrow">Reproducible workflow</span><h2>Evidence pipeline</h2></div><p>The advisory separates source data, analytical processing, model outputs and public products.</p></div>
+    <div class="pipeline">
+      <div><b>1</b><strong>Trial data</strong><span>Site, treatment, yield and management observations</span></div>
+      <i>→</i><div><b>2</b><strong>Quality control</strong><span>Study-year checks, harmonisation and exclusions</span></div>
+      <i>→</i><div><b>3</b><strong>Agronomic analysis</strong><span>Yield response, relative yield, AE-N and PFP-N</span></div>
+      <i>→</i><div><b>4</b><strong>Spatial/model layer</strong><span>Response domains and scenario estimation</span></div>
+      <i>→</i><div><b>5</b><strong>Publication gate</strong><span>Reviewed outputs released to the public layer</span></div>
+    </div>
+    <div class="notice"><strong>Data governance:</strong> raw data, Python/R scripts, models, diagnostics and draft outputs are restricted. The public interface reads only deliberately published advisory outputs.</div>
+  </section>
+
+  <section id="references" class="section">
+    <div class="section-heading"><div><span class="eyebrow">Scientific basis</span><h2>References</h2></div><p>Studies directly relevant to the evidence and analytical framing of the platform.</p></div>
+    <div class="reference-list">
+      <article><span>2025</span><p><strong>Pandit, N. R., Adhikari, S., Vista, S. P., & Choudhary, D.</strong> Nitrogen Management Utilizing 4R Nutrient Stewardship: A Sustainable Strategy for Enhancing NUE, Reducing Maize Yield Gap and Increasing Farm Profitability. <em>Nitrogen, 6</em>(1), 7. <a href="https://doi.org/10.3390/nitrogen6010007" target="_blank" rel="noopener noreferrer">DOI</a></p></article>
+      <article><span>2022</span><p><strong>Pandit, N. R., Gaihre, Y. K., Choudhary, D., Subedi, R., Thapa, S. B., Maharjan, S., Khadka, D., Vista, S. P., & Rusinamhodzi, L.</strong> Slow but sure: the potential of slow-release nitrogen fertilizers to increase crop productivity and farm profit in Nepal. <em>Journal of Plant Nutrition</em>. <a href="https://doi.org/10.1080/01904167.2022.2067053" target="_blank" rel="noopener noreferrer">DOI</a></p></article>
+    </div>
+  </section>
+</main>
+<footer><div><strong>Soil Advisory Platform</strong><span>Evidence → analytics → reviewed advisory outputs</span></div><a href="/staff/login">Restricted research workspace</a></footer>
+<script src="/static/public.js"></script>
+</body></html>
