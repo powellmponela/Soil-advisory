@@ -1,0 +1,17 @@
+.env
+Data/
+data/
+models/
+outputs/
+*.joblib
+*.pkl
+*.pickle
+*.parquet
+*.gpkg
+*.tif
+*.tiff
+__pycache__/
+*.pyc
+.venv/
+venv/
+.vercel/
