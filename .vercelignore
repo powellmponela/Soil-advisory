@@ -1,0 +1,11 @@
+.env
+Data
+models
+outputs
+__pycache__
+*.joblib
+*.pkl
+*.pickle
+*.gpkg
+*.tif
+*.tiff
