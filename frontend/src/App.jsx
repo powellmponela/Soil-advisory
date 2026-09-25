@@ -1,35 +1,324 @@
 import { useEffect, useMemo, useState } from 'react';
-import Papa from 'papaparse';
+import { MapContainer, CircleMarker, TileLayer, Tooltip, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import './index.css';
 
-const NAMES={1:'Government NPK: urea 120 kg N/ha',2:'PCU 120 kg N/ha',3:'PCU 60 kg N/ha',4:'UDP 78 kg N/ha',5:'FYM + urea 60 kg N/ha',6:'N120 without P',7:'N0 + P60 + K40',8:'No fertilizer',9:'Improved urea timing, N120'};
-const NOTES={1:'Government-rate mineral N with P and K; urea is top-dressed.',2:'Polymer-coated urea at the government N rate, applied basally.',3:'Lower-N PCU option: 60 kg mineral N/ha with P and K.',4:'Urea deep placement (UDP): 78 kg N/ha with P and K, applied at planting.',5:'Integrated nutrient management: FYM plus 60 kg mineral N/ha with P and K.',6:'P-omission treatment used diagnostically; not a general fertilizer-saving recommendation.',7:'Zero-N treatment with P and K; used as the N-response reference.',8:'No-input control; used to describe the unfertilized yield floor.',9:'Government N rate with improved split timing at V6 and V10.'};
-const mean=(rows,key)=>{const x=rows.map(r=>Number(r[key])).filter(Number.isFinite);return x.length?x.reduce((a,b)=>a+b,0)/x.length:null};
-const fmt=(x,d=2)=>Number.isFinite(x)?x.toFixed(d):'—';
+const STRATEGY_LABELS = {
+  GR: 'Government N120',
+  N60: 'N60',
+  N180: 'N180',
+  N210: 'N210',
+  TIMING_V6_V10: 'V6/V10 timing',
+  FYM_N60: 'FYM + N60',
+  PCU_N120: 'PCU N120',
+  PCU_N60: 'PCU N60',
+  UDP_N78: 'UDP N78'
+};
 
-export default function App(){
- const [data,setData]=useState([]),[loading,setLoading]=useState(true),[district,setDistrict]=useState(''),[site,setSite]=useState(''),[strategy,setStrategy]=useState('3');
- useEffect(()=>{fetch('/nsaf_advisory_results.csv').then(r=>r.text()).then(t=>Papa.parse(t,{header:true,dynamicTyping:true,skipEmptyLines:true,complete:r=>{setData(r.data.filter(x=>x.District&&x.VDC&&x.treatment!==undefined));setLoading(false)}})).catch(()=>setLoading(false))},[]);
- const districts=useMemo(()=>[...new Set(data.map(x=>x.District))].sort(),[data]);
- useEffect(()=>{if(!district&&districts.length)setDistrict(districts[0])},[districts,district]);
- const sites=useMemo(()=>[...new Set(data.filter(x=>x.District===district).map(x=>x.VDC))].sort(),[data,district]);
- useEffect(()=>{if(sites.length&&!sites.includes(site))setSite(sites[0])},[sites,site]);
- const rows=useMemo(()=>data.filter(x=>x.District===district&&x.VDC===site),[data,district,site]);
- const strategies=useMemo(()=>[...new Set(rows.map(x=>Number(x.treatment)).filter(Number.isFinite))].sort((a,b)=>a-b),[rows]);
- useEffect(()=>{if(strategies.length&&!strategies.includes(Number(strategy)))setStrategy(String(strategies[0]))},[strategies,strategy]);
- const selected=rows.filter(x=>Number(x.treatment)===Number(strategy)), comp=rows.filter(x=>Number(x.treatment)===1), zero=rows.filter(x=>Number(x.treatment)===7);
- const y=mean(selected,'Yield_t_ha'), cy=mean(comp,'Yield_t_ha'), n=mean(selected,'N_kg_ha'), cn=mean(comp,'N_kg_ha'), p=mean(selected,'P2O5_kg_ha'), k=mean(selected,'K2O_kg_ha'), fym=mean(selected,'FYM_t_ha'), zy=mean(zero,'Yield_t_ha');
- const dy=Number.isFinite(y)&&Number.isFinite(cy)?y-cy:null, dyp=Number.isFinite(dy)&&cy?100*dy/cy:null, save=Number.isFinite(n)&&Number.isFinite(cn)?cn-n:null;
- const pfp=n>0?y*1000/n:null, ae=n>0&&Number.isFinite(zy)?(y-zy)*1000/n:null;
- const interpretation=()=>{if(!selected.length)return 'No observations are available for this combination.';if([6,7,8].includes(Number(strategy)))return 'This is primarily a diagnostic/reference treatment. Use it to understand nutrient response rather than as a stand-alone fertilizer strategy.';const a=Number.isFinite(dy)?(dy>=0?'Yield was '+fmt(dy)+' t/ha higher':'Yield was '+fmt(Math.abs(dy))+' t/ha lower'):'Yield comparison is unavailable';const b=Number.isFinite(save)?(save>0?' while using '+fmt(save,0)+' kg N/ha less':save<0?' while using '+fmt(Math.abs(save),0)+' kg N/ha more':' at the same mineral-N rate'):'';return a+' than the government N120-P-K comparator'+b+'. This is an observed site-level treatment comparison, not a universal recommendation.'};
- if(loading)return <main className="loading">Loading published NSAF advisory evidence…</main>;
- return <div><header className="public-header"><div><span className="kicker">NSAF maize • Nepal</span><h1>Soil & Nutrient Advisory</h1></div><a href="#method">Methodology</a></header><main>
- <section className="hero"><div><span className="kicker">Interactive public advisory</span><h2>Select a trial site and compare a nutrient-management strategy.</h2><p>The interface summarizes measured NSAF treatment performance at the selected site, including yield, mineral-N use and potential N saving relative to the government N120-P-K comparator.</p></div></section>
- <section className="selector"><label>District<select value={district} onChange={e=>{setDistrict(e.target.value);setSite('')}}>{districts.map(x=><option key={x}>{x}</option>)}</select></label><label>Trial site<select value={site} onChange={e=>setSite(e.target.value)}>{sites.map(x=><option key={x}>{x}</option>)}</select></label><label>Strategy<select value={strategy} onChange={e=>setStrategy(e.target.value)}>{strategies.map(x=><option key={x} value={x}>{NAMES[x]||'Treatment '+x}</option>)}</select></label></section>
- <section className="selection-title"><span>{district} / {site}</span><h2>{NAMES[Number(strategy)]||'Treatment '+strategy}</h2><p>{NOTES[Number(strategy)]}</p></section>
- <section className="metrics"><article><small>Observed yield</small><strong>{fmt(y)}</strong><span>t/ha</span></article><article><small>Yield vs government comparator</small><strong className={dy>=0?'positive':'negative'}>{Number.isFinite(dy)?(dy>=0?'+':'')+fmt(dy):'—'}</strong><span>{Number.isFinite(dyp)?(dyp>=0?'+':'')+fmt(dyp,1)+'%':'t/ha'}</span></article><article><small>Mineral N rate</small><strong>{fmt(n,0)}</strong><span>kg N/ha</span></article><article><small>Potential mineral-N reduction</small><strong className={save>=0?'positive':'negative'}>{fmt(save,0)}</strong><span>kg N/ha vs N120 comparator</span></article></section>
- <section className="two-col"><article className="panel"><span className="kicker">Strategy</span><h3>What this treatment entails</h3><dl><div><dt>N</dt><dd>{fmt(n,0)} kg/ha</dd></div><div><dt>P₂O₅</dt><dd>{fmt(p,0)} kg/ha</dd></div><div><dt>K₂O</dt><dd>{fmt(k,0)} kg/ha</dd></div><div><dt>FYM</dt><dd>{Number.isFinite(fym)?fmt(fym,1)+' t/ha':'—'}</dd></div><div><dt>PFP-N</dt><dd>{fmt(pfp,1)} kg grain/kg N</dd></div><div><dt>AE-N</dt><dd>{fmt(ae,1)} kg grain/kg N</dd></div></dl></article><article className="panel result"><span className="kicker">Result for this selection</span><h3>Yield and fertilizer implication</h3><p className="result-note">{interpretation()}</p><div className="compare"><div><small>Government comparator</small><b>{fmt(cy)} t/ha</b><span>{fmt(cn,0)} kg N/ha</span></div><div><small>Selected strategy</small><b>{fmt(y)} t/ha</b><span>{fmt(n,0)} kg N/ha</span></div></div></article></section>
- <section id="method" className="method"><span className="kicker">Methodology</span><h2>How to interpret the advisory</h2><p>Results are calculated from the NSAF site × treatment observations after the project cleaning and harmonisation workflow. For each selected site and strategy, the interface averages the available treatment observations. Yield change and potential mineral-N reduction are calculated against the government comparator (N120 with P and K). AE-N is calculated against the zero-N treatment supplied with P and K where that comparator is available; PFP-N is grain yield divided by mineral-N rate.</p><p>These are empirical trial comparisons. A positive mineral-N reduction means the selected treatment used less mineral N than the N120 comparator; it is not measured N loss avoided. Digital soil information and modelled spatial products are used separately for extrapolation beyond trial sites and are not treated as measured soil at every pixel.</p></section>
- <section className="method references"><span className="kicker">Scientific basis</span><h2>Reference</h2><p>Pandit, N. R., Gaihre, Y. K., Choudhary, D., Subedi, R., Thapa, S. B., Maharjan, S., Khadka, D., Vista, S. P., & Rusinamhodzi, L. (2022). <em>Slow but sure: the potential of slow-release nitrogen fertilizers to increase crop productivity and farm profit in Nepal.</em> Journal of Plant Nutrition. <a href="https://doi.org/10.1080/01904167.2022.2067053">DOI</a></p></section>
- </main><footer>Public advisory • approved analytical outputs only</footer></div>;
+const METRICS = {
+  yield: {
+    label: 'Yield difference from government recommendation',
+    field: 'predicted_yield_difference_from_GR_t_ha',
+    unit: 't/ha'
+  },
+  nreq: {
+    label: 'N required for same target yield',
+    field: 'N_required_for_same_target_yield_kg_ha',
+    unit: 'kg N/ha'
+  },
+  nchange: {
+    label: 'N reduction / increase for same target yield',
+    field: 'N_change_for_same_target_yield_kg_ha',
+    unit: 'kg N/ha'
+  },
+  ae: {
+    label: 'Predicted agronomic efficiency of N',
+    field: 'predicted_AE_N_kg_grain_per_kg_N',
+    unit: 'kg grain/kg N'
+  },
+  pfp: {
+    label: 'Predicted partial factor productivity of N',
+    field: 'predicted_PFP_N_kg_grain_per_kg_N',
+    unit: 'kg grain/kg N'
+  }
+};
+
+const number = (value) => {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+};
+const fmt = (value, digits = 1) => {
+  const n = number(value);
+  return n === null ? '—' : n.toFixed(digits);
+};
+const bool = (v) => v === true || String(v).toLowerCase() === 'true';
+
+function distance2(a, lat, lon) {
+  const x = number(a.lon) - lon;
+  const y = number(a.lat) - lat;
+  return x * x + y * y;
 }
+
+function PixelPicker({ onPick }) {
+  useMapEvents({
+    click(e) {
+      onPick(e.latlng.lat, e.latlng.lng);
+    }
+  });
+  return null;
+}
+
+function App() {
+  const [features, setFeatures] = useState([]);
+  const [loadError, setLoadError] = useState('');
+  const [strategy, setStrategy] = useState('PCU_N60');
+  const [target, setTarget] = useState('8');
+  const [metric, setMetric] = useState('nchange');
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    fetch('/advisory_pixels.geojson')
+      .then((r) => {
+        if (!r.ok) throw new Error('Pixel publication file is not available yet.');
+        return r.json();
+      })
+      .then((geo) => {
+        const rows = (geo.features || []).map((f) => ({
+          ...(f.properties || {}),
+          lon: f.geometry?.coordinates?.[0],
+          lat: f.geometry?.coordinates?.[1]
+        }));
+        setFeatures(rows.filter((r) => number(r.lat) !== null && number(r.lon) !== null));
+      })
+      .catch((e) => setLoadError(e.message));
+  }, []);
+
+  const strategies = useMemo(
+    () => [...new Set(features.map((r) => String(r.strategy)).filter(Boolean))],
+    [features]
+  );
+  const targets = useMemo(
+    () => [...new Set(features.map((r) => String(r.target_yield_t_ha)).filter(Boolean))]
+      .sort((a, b) => Number(a) - Number(b)),
+    [features]
+  );
+
+  useEffect(() => {
+    if (strategies.length && !strategies.includes(strategy)) setStrategy(strategies[0]);
+  }, [strategies, strategy]);
+  useEffect(() => {
+    if (targets.length && !targets.includes(target)) setTarget(targets[0]);
+  }, [targets, target]);
+
+  const filtered = useMemo(
+    () => features.filter(
+      (r) => String(r.strategy) === String(strategy) &&
+             String(r.target_yield_t_ha) === String(target) &&
+             bool(r.environmental_support)
+    ),
+    [features, strategy, target]
+  );
+
+  useEffect(() => {
+    if (filtered.length) setSelected(filtered[0]);
+    else setSelected(null);
+  }, [strategy, target, features]);
+
+  const center = useMemo(() => {
+    if (!filtered.length) return [28.3, 82.0];
+    const lat = filtered.reduce((s, r) => s + number(r.lat), 0) / filtered.length;
+    const lon = filtered.reduce((s, r) => s + number(r.lon), 0) / filtered.length;
+    return [lat, lon];
+  }, [filtered]);
+
+  const pickNearest = (lat, lon) => {
+    if (!filtered.length) return;
+    let best = filtered[0];
+    let bestD = distance2(best, lat, lon);
+    for (const row of filtered.slice(1)) {
+      const d = distance2(row, lat, lon);
+      if (d < bestD) {
+        best = row;
+        bestD = d;
+      }
+    }
+    setSelected(best);
+  };
+
+  const value = selected ? number(selected[METRICS[metric].field]) : null;
+  const nReduction = selected ? number(selected.N_reduction_for_same_target_yield_kg_ha) : null;
+  const nIncrease = selected ? number(selected.N_increase_for_same_target_yield_kg_ha) : null;
+  const yieldDiff = selected ? number(selected.predicted_yield_difference_from_GR_t_ha) : null;
+  const nRequired = selected ? number(selected.N_required_for_same_target_yield_kg_ha) : null;
+  const refN = selected ? number(selected.reference_N_demand_kg_ha) : null;
+  const ae = selected ? number(selected.predicted_AE_N_kg_grain_per_kg_N) : null;
+  const pfp = selected ? number(selected.predicted_PFP_N_kg_grain_per_kg_N) : null;
+
+  const interpretation = () => {
+    if (!selected) return 'Select a strategy and target yield, then click a modelled pixel on the map.';
+    const y = yieldDiff === null
+      ? 'Modelled yield difference is unavailable.'
+      : yieldDiff >= 0
+        ? 'Modelled yield is ' + fmt(yieldDiff, 2) + ' t/ha above the government comparator.'
+        : 'Modelled yield is ' + fmt(Math.abs(yieldDiff), 2) + ' t/ha below the government comparator.';
+    const n = nReduction !== null && nReduction > 0
+      ? ' Potential mineral-N reduction is ' + fmt(nReduction, 0) + ' kg N/ha for the same target yield.'
+      : nIncrease !== null && nIncrease > 0
+        ? ' The model indicates ' + fmt(nIncrease, 0) + ' kg N/ha more may be required for the same target yield.'
+        : '';
+    return y + n + ' This is a modelled target-setting estimate, not a field-specific fertilizer prescription.';
+  };
+
+  return (
+    <div>
+      <header className="public-header">
+        <div>
+          <span className="kicker">NSAF maize • Nepal</span>
+          <h1>Soil & Nutrient Advisory</h1>
+        </div>
+        <nav>
+          <a href="#map">Pixel advisory</a>
+          <a href="#method">Methodology</a>
+          <a className="staff-link" href="/staff/login">Research workspace</a>
+        </nav>
+      </header>
+
+      <main>
+        <section className="hero">
+          <div>
+            <span className="kicker">From trial response to spatial fertilizer target setting</span>
+            <h2>Query modelled fertilizer demand and yield response at a mapped pixel.</h2>
+            <p>
+              Choose a target yield and nutrient-management strategy, then click the map.
+              The public interface reports only modelled, environmentally supported pixels
+              produced by the spatial workflow.
+            </p>
+          </div>
+        </section>
+
+        {loadError && (
+          <section className="data-warning">
+            <strong>Pixel layer not published yet.</strong>
+            <span>
+              Run scripts/7_publish_web_gis.py locally, commit the generated advisory_pixels.geojson,
+              advisory_pixels.csv and advisory_metadata.json files, and push to main.
+            </span>
+          </section>
+        )}
+
+        <section id="map" className="map-workspace">
+          <div className="map-controls">
+            <label>
+              Target yield
+              <select value={target} onChange={(e) => setTarget(e.target.value)}>
+                {targets.map((x) => <option key={x} value={x}>{x} t/ha</option>)}
+              </select>
+            </label>
+            <label>
+              Strategy
+              <select value={strategy} onChange={(e) => setStrategy(e.target.value)}>
+                {strategies.map((x) => <option key={x} value={x}>{STRATEGY_LABELS[x] || x}</option>)}
+              </select>
+            </label>
+            <label>
+              Map variable
+              <select value={metric} onChange={(e) => setMetric(e.target.value)}>
+                {Object.entries(METRICS).map(([key, m]) => (
+                  <option key={key} value={key}>{m.label}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div className="map-layout">
+            <div className="map-card">
+              <div className="map-caption">
+                <div>
+                  <span className="kicker">Queryable GIS layer</span>
+                  <h2>{METRICS[metric].label}</h2>
+                </div>
+                <span>{filtered.length.toLocaleString()} supported pixels</span>
+              </div>
+
+              <MapContainer center={center} zoom={7} scrollWheelZoom className="pixel-map">
+                <TileLayer
+                  attribution="&copy; OpenStreetMap contributors"
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <PixelPicker onPick={pickNearest} />
+                {filtered.map((r) => (
+                  <CircleMarker
+                    key={String(r.pixel_id)}
+                    center={[number(r.lat), number(r.lon)]}
+                    radius={3}
+                    pathOptions={{ fillOpacity: 0.72, weight: 0 }}
+                    eventHandlers={{ click: () => setSelected(r) }}
+                  >
+                    <Tooltip>
+                      {STRATEGY_LABELS[r.strategy] || r.strategy}<br />
+                      {METRICS[metric].label}: {fmt(r[METRICS[metric].field], 1)} {METRICS[metric].unit}
+                    </Tooltip>
+                  </CircleMarker>
+                ))}
+              </MapContainer>
+            </div>
+
+            <aside className="pixel-result">
+              <span className="kicker">Selected pixel</span>
+              <h2>{selected ? (selected.palika || selected.district || selected.pixel_id) : 'Click the map'}</h2>
+              <p className="coordinates">
+                {selected ? fmt(selected.lat, 5) + ', ' + fmt(selected.lon, 5) : '—'}
+              </p>
+
+              <div className="primary-value">
+                <small>{METRICS[metric].label}</small>
+                <strong>{fmt(value, metric === 'yield' ? 2 : 1)}</strong>
+                <span>{METRICS[metric].unit}</span>
+              </div>
+
+              <dl>
+                <div><dt>Target yield</dt><dd>{selected ? fmt(selected.target_yield_t_ha, 1) + ' t/ha' : '—'}</dd></div>
+                <div><dt>Strategy</dt><dd>{selected ? (STRATEGY_LABELS[selected.strategy] || selected.strategy) : '—'}</dd></div>
+                <div><dt>Yield difference vs GR</dt><dd>{fmt(yieldDiff, 2)} t/ha</dd></div>
+                <div><dt>N required</dt><dd>{fmt(nRequired, 0)} kg N/ha</dd></div>
+                <div><dt>Reference N demand</dt><dd>{fmt(refN, 0)} kg N/ha</dd></div>
+                <div><dt>Potential N reduction</dt><dd>{fmt(nReduction, 0)} kg N/ha</dd></div>
+                <div><dt>AE-N</dt><dd>{fmt(ae, 1)}</dd></div>
+                <div><dt>PFP-N</dt><dd>{fmt(pfp, 1)}</dd></div>
+              </dl>
+
+              <p className="result-note">{interpretation()}</p>
+            </aside>
+          </div>
+        </section>
+
+        <section id="method" className="method">
+          <span className="kicker">Methodology</span>
+          <h2>How to interpret the pixel advisory</h2>
+          <p>
+            The map uses the same pixel-level outputs generated by the spatial modelling workflow.
+            NSAF treatment-response evidence is linked to DSM/NARC soil covariates and QUEFTS-derived
+            nutrient demand. Strategy-specific models estimate yield response and nutrient-use efficiency.
+          </p>
+          <p>
+            AE-N is used where an appropriate zero-N reference is available. PFP-N is used for FYM,
+            PCU and UDP strategies where that reference is not consistently available. Potential mineral-N
+            reduction is the modelled difference in N requirement for the same target yield; it is not a
+            measured reduction in nitrogen loss.
+          </p>
+          <p className="caution">
+            DSM values are predicted soil properties rather than direct measurements at each pixel.
+            Results are spatial response and target-setting estimates and should be interpreted with
+            model-support and local agronomic information.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        Public interface: modelled supported pixels only • Research data and models remain restricted
+      </footer>
+    </div>
+  );
+}
+
+export default App;
