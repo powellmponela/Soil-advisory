@@ -51,17 +51,19 @@ function TrialAnalysis() {
   const byDistrict = useMemo(() => {
     const map = {};
     rows.forEach((r) => {
-      if (!map[r.District]) map[r.District] = { count: 0, yieldSum: 0, aeSum: 0, aeN: 0 };
-      map[r.District].count++;
-      if (r.Yield_t_ha) map[r.District].yieldSum += Number(r.Yield_t_ha);
-      if (r.AE_N) { map[r.District].aeSum += Number(r.AE_N); map[r.District].aeN++; }
+      const dist = r.District || r.district;
+      if (!dist) return;
+      if (!map[dist]) map[dist] = { count: 0, yieldSum: 0, aeSum: 0, aeN: 0 };
+      map[dist].count++;
+      if (r.Yield_t_ha) map[dist].yieldSum += Number(r.Yield_t_ha);
+      if (r.AE_N) { map[dist].aeSum += Number(r.AE_N); map[dist].aeN++; }
     });
     return Object.entries(map).map(([district, d]) => ({
       district,
       count: d.count,
       meanYield: d.count ? d.yieldSum / d.count : null,
       meanAE: d.aeN ? d.aeSum / d.aeN : null,
-    })).sort((a, b) => a.district.localeCompare(b.district));
+    })).sort((a, b) => String(a.district || '').localeCompare(String(b.district || '')));
   }, [rows]);
 
   if (loading) return <div className="loading">Loading trial data…</div>;
@@ -313,7 +315,7 @@ function DSMPanel() {
     fetch('/spatial_advisory_results.csv')
       .then((r) => r.text())
       .then((txt) => Papa.parse(txt, { header: true, dynamicTyping: true, complete: (res) => {
-        setRows(res.data.filter((r) => r.province));
+        setRows((res.data || []).filter((r) => r && (r.district || r.District || r.province || r.Province)));
         setLoading(false);
       }}))
       .catch(() => setLoading(false));
@@ -324,17 +326,21 @@ function DSMPanel() {
   const districts = useMemo(() => {
     const map = {};
     rows.forEach((r) => {
-      if (!map[r.district]) map[r.district] = { n: 0, aeSum: 0, ndSum: 0 };
-      map[r.district].n++;
-      if (r.predicted_AE_N) map[r.district].aeSum += r.predicted_AE_N;
-      if (r.N_demand_kg_ha) map[r.district].ndSum += r.N_demand_kg_ha;
+      const dist = r.district || r.District;
+      if (!dist) return;
+      if (!map[dist]) map[dist] = { n: 0, aeSum: 0, ndSum: 0 };
+      map[dist].n++;
+      const aeVal = number(r.predicted_AE_N);
+      const ndVal = number(r.N_demand_kg_ha);
+      if (aeVal !== null) map[dist].aeSum += aeVal;
+      if (ndVal !== null) map[dist].ndSum += ndVal;
     });
     return Object.entries(map).map(([d, v]) => ({
       district: d,
       count: v.n,
       meanAE: v.n ? v.aeSum / v.n : null,
       meanNDemand: v.n ? v.ndSum / v.n : null,
-    })).sort((a, b) => a.district.localeCompare(b.district));
+    })).sort((a, b) => String(a.district || '').localeCompare(String(b.district || '')));
   }, [rows]);
 
   return (
