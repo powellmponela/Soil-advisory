@@ -22,3 +22,41 @@ __pycache__/
 .venv/
 venv/
 .vercel/
+
+# Generated dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Python generated files
+__pycache__/
+*.pyc
+
+# Local environments
+.venv/
+venv/
+
+# Local/private data
+Data/
+data/
+Literature/
+Other- ideas/
+logs/
+models/
+
+# Large/generated scientific files
+*.joblib
+*.pkl
+*.pickle
+*.parquet
+*.gpkg
+*.tif
+*.tiff
+
+# Archives
+*.zip
+
+# Deployment metadata
+.vercel/
+.env
+.Rhistory
