@@ -354,10 +354,10 @@ export default function Advisory() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <span className="kicker">NSAF Maize · Western Nepal · 4R Nutrient Stewardship</span>
-          <h2>Site-Specific Fertilizer &amp; Yield Target Advisory for Summer Maize</h2>
+          <span className="kicker">NSAF Maize · Mid-hill Western Nepal · 4R Nutrient Stewardship</span>
+          <h2>Site-Specific Fertilizer &amp; Yield Target Advisory for Maize in Mid-hill Western Nepal</h2>
           <p>
-            Empowering agricultural extension and policy planning with spatially targeted fertilizer and yield targets, response domain mapping, and optimized nutrient investment scenarios based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Western Nepal.
+            Empowering agricultural extension, policy planning, and smallholders with spatially targeted 4R fertilizer and yield targets, response domain mapping, and optimized nutrient investment scenarios based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Mid-hill Western Nepal.
           </p>
         </div>
       </section>
@@ -368,14 +368,14 @@ export default function Advisory() {
           <div>
             <span className="advisory-evidence-kicker">Data Source &amp; Evidence Base</span>
             <h3 style={{ margin: '.2rem 0 0', fontSize: '1.25rem', color: 'var(--dark)' }}>
-              NSAF Summer Maize Trials in Western Nepal
+              NSAF Summer Maize Trials in Mid-hill Western Nepal
             </h3>
           </div>
           <span className="advisory-evidence-tag">Pandit et al. (2025) 4R Stewardship</span>
         </div>
         
         <p className="advisory-evidence-desc">
-          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across summer maize hubs in Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to delineate spatial response domains, fertilizer targets, and yield-gap target setting estimates.
+          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across summer maize hubs in Mid-hill Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to delineate spatial response domains, fertilizer targets, and yield-gap target setting estimates.
         </p>
 
         <div className="pandit-summary-box">
@@ -401,6 +401,183 @@ export default function Advisory() {
                 <strong>V6/V10 Split Timing:</strong> Synchronized application saves <strong>41 kg N/ha</strong> for equivalent yield (+0.11 to +0.87 t/ha gain in responsive sites). <strong>FYM + N60:</strong> 6 t/ha farmyard manure + 60 kg N/ha maintains yield while reducing mineral N dependency by 50%.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4R Advisory Strategies Grid ── */}
+      <section className="advisory-strategies-section">
+        <div className="advisory-strategies-header">
+          <div>
+            <span className="advisory-evidence-kicker">4R Management Options</span>
+            <h3 style={{ margin: '.2rem 0 0', fontSize: '1.25rem', color: 'var(--dark)' }}>
+              4R Advisory Strategies &amp; Nutrient Target Options
+            </h3>
+          </div>
+          <span className="advisory-strategies-subtext">Click any strategy card to filter the GIS advisory map</span>
+        </div>
+
+        <div className="advisory-strategies-grid">
+          {/* Strategy 1: Government Recommendation (GR N120) */}
+          <div 
+            className={`strategy-card ${strategy === 'GR' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('strategy', strategy === 'GR' ? ALL : 'GR')}
+          >
+            <div className="strategy-card__header">
+              <span className="strategy-card__code">GR (Baseline)</span>
+              <span className="strategy-card__nrate">120 kg N/ha</span>
+            </div>
+            <h4 className="strategy-card__title">Government Recommendation (N120-P60-K40)</h4>
+            <div className="strategy-card__metrics">
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">AE-N Efficiency</span>
+                <span className="strategy-metric__val">19.9 kg/kg N</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">PFP-N</span>
+                <span className="strategy-metric__val">62 kg/kg N</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Target Yield</span>
+                <span className="strategy-metric__val">9.06 t/ha (Benchmark)</span>
+              </div>
+            </div>
+            <p className="strategy-card__desc">Conventional blanket 120-60-40 kg/ha split application reference benchmark.</p>
+          </div>
+
+          {/* Strategy 2: N60 (50% N Reduction) */}
+          <div 
+            className={`strategy-card ${strategy === 'N60' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('strategy', strategy === 'N60' ? ALL : 'N60')}
+          >
+            <div className="strategy-card__header">
+              <span className="strategy-card__code highlight-green">N60 Rate</span>
+              <span className="strategy-card__nrate">60 kg N/ha</span>
+            </div>
+            <h4 className="strategy-card__title">50% Mineral N Reduction (N60-P60-K40)</h4>
+            <div className="strategy-card__metrics">
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">AE-N Gain</span>
+                <span className="strategy-metric__val text-green">+35% (27.0 kg/kg N)</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">N Savings</span>
+                <span className="strategy-metric__val text-green">60 kg N/ha saved</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Yield Penalty</span>
+                <span className="strategy-metric__val">-0.77 t/ha (-8.5%)</span>
+              </div>
+            </div>
+            <p className="strategy-card__desc">Substantially higher efficiency per kg N applied for resource-constrained farmers.</p>
+          </div>
+
+          {/* Strategy 3: PCU N60 (Polymer-Coated Urea) */}
+          <div 
+            className={`strategy-card ${strategy === 'PCU_N60' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('strategy', strategy === 'PCU_N60' ? ALL : 'PCU_N60')}
+          >
+            <div className="strategy-card__header">
+              <span className="strategy-card__code highlight-blue">PCU N60 (Source)</span>
+              <span className="strategy-card__nrate">60 kg N/ha</span>
+            </div>
+            <h4 className="strategy-card__title">Polymer-Coated Urea @ 60 N</h4>
+            <div className="strategy-card__metrics">
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">PFP-N Efficiency</span>
+                <span className="strategy-metric__val text-blue">133 kg/kg N</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">N Savings</span>
+                <span className="strategy-metric__val text-blue">59 kg N/ha saved</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Yield Maintained</span>
+                <span className="strategy-metric__val">~GR Yield (-0.31 t/ha)</span>
+              </div>
+            </div>
+            <p className="strategy-card__desc">Controlled N release prevents leaching &amp; volatilization, maintaining yield with 50% less N.</p>
+          </div>
+
+          {/* Strategy 4: UDP N78 (Urea Deep Placement) */}
+          <div 
+            className={`strategy-card ${strategy === 'UDP_N78' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('strategy', strategy === 'UDP_N78' ? ALL : 'UDP_N78')}
+          >
+            <div className="strategy-card__header">
+              <span className="strategy-card__code highlight-purple">UDP N78 (Placement)</span>
+              <span className="strategy-card__nrate">78 kg N/ha</span>
+            </div>
+            <h4 className="strategy-card__title">Urea Deep Placement (Briquette)</h4>
+            <div className="strategy-card__metrics">
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">PFP-N Efficiency</span>
+                <span className="strategy-metric__val text-purple">98 kg/kg N</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">N Savings</span>
+                <span className="strategy-metric__val text-purple">42 kg N/ha (35% cut)</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Yield Difference</span>
+                <span className="strategy-metric__val">Zero penalty (-0.02 t/ha)</span>
+              </div>
+            </div>
+            <p className="strategy-card__desc">Root-zone placement places urea below soil surface, dramatically cutting N loss.</p>
+          </div>
+
+          {/* Strategy 5: TIMING_V6_V10 */}
+          <div 
+            className={`strategy-card ${strategy === 'TIMING_V6_V10' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('strategy', strategy === 'TIMING_V6_V10' ? ALL : 'TIMING_V6_V10')}
+          >
+            <div className="strategy-card__header">
+              <span className="strategy-card__code highlight-gold">V6/V10 Split (Timing)</span>
+              <span className="strategy-card__nrate">120 kg N/ha</span>
+            </div>
+            <h4 className="strategy-card__title">Synchronized Crop Growth Timing</h4>
+            <div className="strategy-card__metrics">
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">N Savings Eq.</span>
+                <span className="strategy-metric__val text-gold">41 kg N/ha saved</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Yield Response</span>
+                <span className="strategy-metric__val">+0.11 to +0.87 t/ha gain</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">AE-N</span>
+                <span className="strategy-metric__val">12.2 to 21.5 kg/kg N</span>
+              </div>
+            </div>
+            <p className="strategy-card__desc">Synchronizes N applications with peak crop N uptake windows (V6 &amp; V10 growth stages).</p>
+          </div>
+
+          {/* Strategy 6: FYM_N60 */}
+          <div 
+            className={`strategy-card ${strategy === 'FYM_N60' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('strategy', strategy === 'FYM_N60' ? ALL : 'FYM_N60')}
+          >
+            <div className="strategy-card__header">
+              <span className="strategy-card__code highlight-emerald">FYM 6t + N60 (Integrated)</span>
+              <span className="strategy-card__nrate">6 t FYM + 60 N</span>
+            </div>
+            <h4 className="strategy-card__title">Organic + Mineral Nutrient Integration</h4>
+            <div className="strategy-card__metrics">
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">PFP-N Efficiency</span>
+                <span className="strategy-metric__val text-emerald">119 kg/kg N</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Mineral N Cut</span>
+                <span className="strategy-metric__val text-emerald">56 kg N/ha (50% cut)</span>
+              </div>
+              <div className="strategy-metric">
+                <span className="strategy-metric__label">Soil Health</span>
+                <span className="strategy-metric__val">+Organic Matter &amp; Moisture</span>
+              </div>
+            </div>
+            <p className="strategy-card__desc">Integrates farmyard manure with reduced inorganic N to enhance long-term soil structure.</p>
           </div>
         </div>
       </section>

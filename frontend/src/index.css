@@ -610,6 +610,113 @@ code {
   border-radius: 4px;
 }
 
+/* ── 4R Advisory Strategies Section ── */
+.advisory-strategies-section {
+  width: min(1320px, calc(100% - 48px));
+  margin: 1.5rem auto 2rem;
+}
+.advisory-strategies-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.1rem;
+}
+.advisory-strategies-subtext {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--mid);
+}
+.advisory-strategies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.1rem;
+}
+.strategy-card {
+  background: #ffffff;
+  border: 1px solid #d4e8da;
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.03);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  user-select: none;
+}
+.strategy-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mid);
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+.strategy-card.active {
+  border: 2px solid var(--mid);
+  background: linear-gradient(135deg, #f2faf4 0%, #e6f5eb 100%);
+  box-shadow: 0 4px 14px rgba(39,98,70,.18);
+}
+.strategy-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .6rem;
+}
+.strategy-card__code {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  background: #e2ede4;
+  color: #1b5338;
+  padding: .2rem .55rem;
+  border-radius: 4px;
+}
+.strategy-card__code.highlight-green { background: #dcfce7; color: #15803d; }
+.strategy-card__code.highlight-blue { background: #dbeafe; color: #1d4ed8; }
+.strategy-card__code.highlight-purple { background: #f3e8ff; color: #7e22ce; }
+.strategy-card__code.highlight-gold { background: #fef3c7; color: #b45309; }
+.strategy-card__code.highlight-emerald { background: #d1fae5; color: #047857; }
+
+.strategy-card__nrate {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.strategy-card__title {
+  margin: 0 0 .75rem;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #1b2e20;
+}
+.strategy-card__metrics {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  background: #f8faf8;
+  border-radius: 6px;
+  padding: .6rem .75rem;
+  margin-bottom: .7rem;
+  border: 1px solid #e5f0e7;
+}
+.strategy-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .78rem;
+}
+.strategy-metric__label { color: #556b5a; font-weight: 500; }
+.strategy-metric__val { font-weight: 700; color: #1b2e20; }
+.strategy-metric__val.text-green { color: #15803d; }
+.strategy-metric__val.text-blue { color: #1d4ed8; }
+.strategy-metric__val.text-purple { color: #7e22ce; }
+.strategy-metric__val.text-gold { color: #b45309; }
+.strategy-metric__val.text-emerald { color: #047857; }
+
+.strategy-card__desc {
+  margin: 0;
+  font-size: .78rem;
+  line-height: 1.45;
+  color: #485c4e;
+}
+
 /* ── Stage-by-Stage Pipeline Section ── */
 .pipeline-section {
   width: min(1320px, calc(100% - 48px));
