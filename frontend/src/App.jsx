@@ -1,207 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Papa from 'papaparse';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Map, Activity, Sprout, Download, Database as DatabaseIcon, Workflow, LayoutDashboard } from 'lucide-react';
-import DatabaseView from './components/DatabaseView';
-import WorkflowManager from './components/WorkflowManager';
 import './index.css';
 
-function App() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('dashboard');
+const NAMES={1:'Government NPK: urea 120 kg N/ha',2:'PCU 120 kg N/ha',3:'PCU 60 kg N/ha',4:'UDP 78 kg N/ha',5:'FYM + urea 60 kg N/ha',6:'N120 without P',7:'N0 + P60 + K40',8:'No fertilizer',9:'Improved urea timing, N120'};
+const NOTES={1:'Government-rate mineral N with P and K; urea is top-dressed.',2:'Polymer-coated urea at the government N rate, applied basally.',3:'Lower-N PCU option: 60 kg mineral N/ha with P and K.',4:'Urea deep placement (UDP): 78 kg N/ha with P and K, applied at planting.',5:'Integrated nutrient management: FYM plus 60 kg mineral N/ha with P and K.',6:'P-omission treatment used diagnostically; not a general fertilizer-saving recommendation.',7:'Zero-N treatment with P and K; used as the N-response reference.',8:'No-input control; used to describe the unfertilized yield floor.',9:'Government N rate with improved split timing at V6 and V10.'};
+const mean=(rows,key)=>{const x=rows.map(r=>Number(r[key])).filter(Number.isFinite);return x.length?x.reduce((a,b)=>a+b,0)/x.length:null};
+const fmt=(x,d=2)=>Number.isFinite(x)?x.toFixed(d):'—';
 
-  useEffect(() => {
-    const loadCSV = async () => {
-      try {
-        const response = await fetch('/nsaf_advisory_results.csv');
-        const csvText = await response.text();
-        
-        Papa.parse(csvText, {
-          header: true,
-          dynamicTyping: true,
-          complete: (results) => {
-            const validData = results.data.filter(row => row.N_demand_kg_ha !== undefined);
-            setData(validData);
-            setLoading(false);
-          },
-          error: (error) => {
-            console.error('Error parsing CSV:', error);
-            setLoading(false);
-          }
-        });
-      } catch (err) {
-        console.error('Failed to fetch CSV', err);
-        setLoading(false);
-      }
-    };
-    
-    loadCSV();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="loader-container">
-        <div className="spinner"></div>
-        <p>Loading DSS Advisory Models...</p>
-      </div>
-    );
-  }
-
-  const avgNDemand = data.reduce((acc, curr) => acc + (curr.N_demand_kg_ha || 0), 0) / (data.length || 1);
-  const avgYieldGap = data.reduce((acc, curr) => acc + (curr.yield_gap_kg_ha || 0), 0) / (data.length || 1);
-  const avgAEN = data.reduce((acc, curr) => acc + (curr.predicted_AE_N || 0), 0) / (data.length || 1);
-
-  const chartData = data.slice(0, 50).map((d, i) => ({
-    name: `Site ${i+1}`,
-    NDemand: Math.max(0, d.N_demand_kg_ha || 0),
-    YieldGap: d.yield_gap_kg_ha || 0
-  }));
-
-  const renderDashboard = () => (
-    <>
-      <div className="glass-panel" style={{ marginBottom: '2rem' }}>
-        <h2 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={24} color="var(--accent-primary)" />
-          Overview Analytics
-        </h2>
-        
-        <div className="stat-grid">
-          <div className="stat-card">
-            <span className="stat-title">Avg N-Demand</span>
-            <span className="stat-value">{avgNDemand.toFixed(1)} <span style={{fontSize: '1rem', color: 'var(--text-secondary)'}}>kg/ha</span></span>
-          </div>
-          <div className="stat-card">
-            <span className="stat-title">Avg Yield Gap</span>
-            <span className="stat-value blue">{avgYieldGap.toFixed(1)} <span style={{fontSize: '1rem', color: 'var(--text-secondary)'}}>kg/ha</span></span>
-          </div>
-          <div className="stat-card">
-            <span className="stat-title">Avg AE-N</span>
-            <span className="stat-value purple">{avgAEN.toFixed(2)}</span>
-          </div>
-        </div>
-
-        <div style={{ marginTop: '2rem' }}>
-          <h3 style={{ marginBottom: '1rem' }}>Demand vs Yield Gap (Sample)</h3>
-          <div className="chart-container">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="colorNDemand" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--accent-primary)" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="var(--accent-primary)" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" vertical={false} />
-                <XAxis dataKey="name" stroke="var(--text-secondary)" tick={{fontSize: 12}} hide />
-                <YAxis stroke="var(--text-secondary)" tick={{fontSize: 12}} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px' }}
-                  itemStyle={{ color: 'var(--text-primary)' }}
-                />
-                <Area type="monotone" dataKey="NDemand" stroke="var(--accent-primary)" fillOpacity={1} fill="url(#colorNDemand)" />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-
-      <div className="glass-panel" style={{ height: '700px', padding: '1rem', display: 'flex', flexDirection: 'column' }}>
-        <h2 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem' }}>
-          <Map size={24} color="var(--accent-secondary)" />
-          Spatial Advisory Map
-        </h2>
-        <div className="map-container" style={{ flex: 1 }}>
-          <MapContainer center={[27.7, 85.3]} zoom={7} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            />
-            {data.slice(0, 300).map((point, idx) => {
-              const lat = point.latitude || (27.7 + (Math.random() - 0.5) * 2);
-              const lon = point.longitude || (85.3 + (Math.random() - 0.5) * 4);
-              return (
-              <CircleMarker 
-                key={idx}
-                center={[lat, lon]} 
-                radius={4}
-                pathOptions={{ 
-                  color: point.N_demand_kg_ha > 150 ? '#ef4444' : '#10b981',
-                  fillColor: point.N_demand_kg_ha > 150 ? '#ef4444' : '#10b981',
-                  fillOpacity: 0.7 
-                }}
-              >
-                <Popup>
-                  <div style={{ fontFamily: 'Outfit, sans-serif' }}>
-                    <h3 style={{ margin: '0 0 8px 0', borderBottom: '1px solid var(--border-color)', paddingBottom: '4px' }}>
-                      <Sprout size={16} style={{ verticalAlign: 'middle', marginRight: '4px', color: 'var(--accent-primary)' }}/>
-                      NSAF Advisory Plot
-                    </h3>
-                    <p style={{ margin: '4px 0' }}><strong>Yield Target:</strong> 8000 kg/ha</p>
-                    <p style={{ margin: '4px 0' }}><strong>Base Yield:</strong> {(point.base_yield_kg_ha || 0).toFixed(0)} kg/ha</p>
-                    <p style={{ margin: '4px 0' }}><strong>N-Demand:</strong> {(point.N_demand_kg_ha || 0).toFixed(1)} kg/ha</p>
-                    <p style={{ margin: '4px 0' }}><strong>Predicted AE-N:</strong> {(point.predicted_AE_N || 0).toFixed(2)}</p>
-                  </div>
-                </Popup>
-              </CircleMarker>
-              );
-            })}
-          </MapContainer>
-        </div>
-      </div>
-    </>
-  );
-
-  return (
-    <div className="dashboard-container">
-      {/* Sidebar Navigation */}
-      <div className="sidebar">
-        <div className="header">
-          <h1>Soil Advisory</h1>
-          <p>AURORA Decision Support System</p>
-        </div>
-
-        <div className="nav-menu">
-          <button 
-            className={`nav-item ${activeTab === 'dashboard' ? 'active' : ''}`}
-            onClick={() => setActiveTab('dashboard')}
-          >
-            <LayoutDashboard size={20} />
-            Analytics Dashboard
-          </button>
-          
-          <button 
-            className={`nav-item ${activeTab === 'database' ? 'active' : ''}`}
-            onClick={() => setActiveTab('database')}
-          >
-            <DatabaseIcon size={20} />
-            Data Inventory
-          </button>
-          
-          <button 
-            className={`nav-item ${activeTab === 'workflow' ? 'active' : ''}`}
-            onClick={() => setActiveTab('workflow')}
-          >
-            <Workflow size={20} />
-            Pipeline Workflow
-          </button>
-        </div>
-
-        <button className="btn" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }}>
-          <Download size={20} />
-          Export Report
-        </button>
-      </div>
-
-      {/* Main Content Area */}
-      <div className="main-content">
-        {activeTab === 'dashboard' && renderDashboard()}
-        {activeTab === 'database' && <DatabaseView />}
-        {activeTab === 'workflow' && <WorkflowManager />}
-      </div>
-    </div>
-  );
+export default function App(){
+ const [data,setData]=useState([]),[loading,setLoading]=useState(true),[district,setDistrict]=useState(''),[site,setSite]=useState(''),[strategy,setStrategy]=useState('3');
+ useEffect(()=>{fetch('/nsaf_advisory_results.csv').then(r=>r.text()).then(t=>Papa.parse(t,{header:true,dynamicTyping:true,skipEmptyLines:true,complete:r=>{setData(r.data.filter(x=>x.District&&x.VDC&&x.treatment!==undefined));setLoading(false)}})).catch(()=>setLoading(false))},[]);
+ const districts=useMemo(()=>[...new Set(data.map(x=>x.District))].sort(),[data]);
+ useEffect(()=>{if(!district&&districts.length)setDistrict(districts[0])},[districts,district]);
+ const sites=useMemo(()=>[...new Set(data.filter(x=>x.District===district).map(x=>x.VDC))].sort(),[data,district]);
+ useEffect(()=>{if(sites.length&&!sites.includes(site))setSite(sites[0])},[sites,site]);
+ const rows=useMemo(()=>data.filter(x=>x.District===district&&x.VDC===site),[data,district,site]);
+ const strategies=useMemo(()=>[...new Set(rows.map(x=>Number(x.treatment)).filter(Number.isFinite))].sort((a,b)=>a-b),[rows]);
+ useEffect(()=>{if(strategies.length&&!strategies.includes(Number(strategy)))setStrategy(String(strategies[0]))},[strategies,strategy]);
+ const selected=rows.filter(x=>Number(x.treatment)===Number(strategy)), comp=rows.filter(x=>Number(x.treatment)===1), zero=rows.filter(x=>Number(x.treatment)===7);
+ const y=mean(selected,'Yield_t_ha'), cy=mean(comp,'Yield_t_ha'), n=mean(selected,'N_kg_ha'), cn=mean(comp,'N_kg_ha'), p=mean(selected,'P2O5_kg_ha'), k=mean(selected,'K2O_kg_ha'), fym=mean(selected,'FYM_t_ha'), zy=mean(zero,'Yield_t_ha');
+ const dy=Number.isFinite(y)&&Number.isFinite(cy)?y-cy:null, dyp=Number.isFinite(dy)&&cy?100*dy/cy:null, save=Number.isFinite(n)&&Number.isFinite(cn)?cn-n:null;
+ const pfp=n>0?y*1000/n:null, ae=n>0&&Number.isFinite(zy)?(y-zy)*1000/n:null;
+ const interpretation=()=>{if(!selected.length)return 'No observations are available for this combination.';if([6,7,8].includes(Number(strategy)))return 'This is primarily a diagnostic/reference treatment. Use it to understand nutrient response rather than as a stand-alone fertilizer strategy.';const a=Number.isFinite(dy)?(dy>=0?'Yield was '+fmt(dy)+' t/ha higher':'Yield was '+fmt(Math.abs(dy))+' t/ha lower'):'Yield comparison is unavailable';const b=Number.isFinite(save)?(save>0?' while using '+fmt(save,0)+' kg N/ha less':save<0?' while using '+fmt(Math.abs(save),0)+' kg N/ha more':' at the same mineral-N rate'):'';return a+' than the government N120-P-K comparator'+b+'. This is an observed site-level treatment comparison, not a universal recommendation.'};
+ if(loading)return <main className="loading">Loading published NSAF advisory evidence…</main>;
+ return <div><header className="public-header"><div><span className="kicker">NSAF maize • Nepal</span><h1>Soil & Nutrient Advisory</h1></div><a href="#method">Methodology</a></header><main>
+ <section className="hero"><div><span className="kicker">Interactive public advisory</span><h2>Select a trial site and compare a nutrient-management strategy.</h2><p>The interface summarizes measured NSAF treatment performance at the selected site, including yield, mineral-N use and potential N saving relative to the government N120-P-K comparator.</p></div></section>
+ <section className="selector"><label>District<select value={district} onChange={e=>{setDistrict(e.target.value);setSite('')}}>{districts.map(x=><option key={x}>{x}</option>)}</select></label><label>Trial site<select value={site} onChange={e=>setSite(e.target.value)}>{sites.map(x=><option key={x}>{x}</option>)}</select></label><label>Strategy<select value={strategy} onChange={e=>setStrategy(e.target.value)}>{strategies.map(x=><option key={x} value={x}>{NAMES[x]||'Treatment '+x}</option>)}</select></label></section>
+ <section className="selection-title"><span>{district} / {site}</span><h2>{NAMES[Number(strategy)]||'Treatment '+strategy}</h2><p>{NOTES[Number(strategy)]}</p></section>
+ <section className="metrics"><article><small>Observed yield</small><strong>{fmt(y)}</strong><span>t/ha</span></article><article><small>Yield vs government comparator</small><strong className={dy>=0?'positive':'negative'}>{Number.isFinite(dy)?(dy>=0?'+':'')+fmt(dy):'—'}</strong><span>{Number.isFinite(dyp)?(dyp>=0?'+':'')+fmt(dyp,1)+'%':'t/ha'}</span></article><article><small>Mineral N rate</small><strong>{fmt(n,0)}</strong><span>kg N/ha</span></article><article><small>Potential mineral-N reduction</small><strong className={save>=0?'positive':'negative'}>{fmt(save,0)}</strong><span>kg N/ha vs N120 comparator</span></article></section>
+ <section className="two-col"><article className="panel"><span className="kicker">Strategy</span><h3>What this treatment entails</h3><dl><div><dt>N</dt><dd>{fmt(n,0)} kg/ha</dd></div><div><dt>P₂O₅</dt><dd>{fmt(p,0)} kg/ha</dd></div><div><dt>K₂O</dt><dd>{fmt(k,0)} kg/ha</dd></div><div><dt>FYM</dt><dd>{Number.isFinite(fym)?fmt(fym,1)+' t/ha':'—'}</dd></div><div><dt>PFP-N</dt><dd>{fmt(pfp,1)} kg grain/kg N</dd></div><div><dt>AE-N</dt><dd>{fmt(ae,1)} kg grain/kg N</dd></div></dl></article><article className="panel result"><span className="kicker">Result for this selection</span><h3>Yield and fertilizer implication</h3><p className="result-note">{interpretation()}</p><div className="compare"><div><small>Government comparator</small><b>{fmt(cy)} t/ha</b><span>{fmt(cn,0)} kg N/ha</span></div><div><small>Selected strategy</small><b>{fmt(y)} t/ha</b><span>{fmt(n,0)} kg N/ha</span></div></div></article></section>
+ <section id="method" className="method"><span className="kicker">Methodology</span><h2>How to interpret the advisory</h2><p>Results are calculated from the NSAF site × treatment observations after the project cleaning and harmonisation workflow. For each selected site and strategy, the interface averages the available treatment observations. Yield change and potential mineral-N reduction are calculated against the government comparator (N120 with P and K). AE-N is calculated against the zero-N treatment supplied with P and K where that comparator is available; PFP-N is grain yield divided by mineral-N rate.</p><p>These are empirical trial comparisons. A positive mineral-N reduction means the selected treatment used less mineral N than the N120 comparator; it is not measured N loss avoided. Digital soil information and modelled spatial products are used separately for extrapolation beyond trial sites and are not treated as measured soil at every pixel.</p></section>
+ <section className="method references"><span className="kicker">Scientific basis</span><h2>Reference</h2><p>Pandit, N. R., Gaihre, Y. K., Choudhary, D., Subedi, R., Thapa, S. B., Maharjan, S., Khadka, D., Vista, S. P., & Rusinamhodzi, L. (2022). <em>Slow but sure: the potential of slow-release nitrogen fertilizers to increase crop productivity and farm profit in Nepal.</em> Journal of Plant Nutrition. <a href="https://doi.org/10.1080/01904167.2022.2067053">DOI</a></p></section>
+ </main><footer>Public advisory • approved analytical outputs only</footer></div>;
 }
-
-export default App;
