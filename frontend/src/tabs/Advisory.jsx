@@ -355,9 +355,9 @@ export default function Advisory() {
       <section className="hero">
         <div>
           <span className="kicker">NSAF Maize · Western Nepal · 4R Nutrient Stewardship</span>
-          <h2>Site-Specific Soil &amp; Fertilizer Advisory for Summer Maize</h2>
+          <h2>Site-Specific Fertilizer &amp; Yield Target Advisory for Summer Maize</h2>
           <p>
-            Empowering smallholder farmers and agricultural extension with spatially targeted 4R nutrient recommendations, yield-gap reduction strategies, and optimized fertilizer investments based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Western Nepal.
+            Empowering agricultural extension and policy planning with spatially targeted fertilizer and yield targets, response domain mapping, and optimized nutrient investment scenarios based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Western Nepal.
           </p>
         </div>
       </section>
@@ -375,7 +375,7 @@ export default function Advisory() {
         </div>
         
         <p className="advisory-evidence-desc">
-          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across summer maize hubs in Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to derive site-specific fertilizer recommendations.
+          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across summer maize hubs in Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to delineate spatial response domains, fertilizer targets, and yield-gap target setting estimates.
         </p>
 
         <div className="pandit-summary-box">
@@ -576,9 +576,9 @@ export default function Advisory() {
           {/* Stage 6 */}
           <div className="pipeline-card">
             <div className="pipeline-card__badge">Stage 6</div>
-            <h4 className="pipeline-card__title">Public Advisory Target Setting</h4>
+            <h4 className="pipeline-card__title">Spatial Response &amp; Target-Setting Domains</h4>
             <ul className="pipeline-card__list">
-              <li><strong>Queryable GIS Layer:</strong> Delivers pixel-level 4R recommendations, predicted yield diff vs GR, and potential mineral N savings (e.g. 59 kg N/ha saved under PCU N60; 42 kg N/ha saved under UDP N78).</li>
+              <li><strong>Queryable GIS Layer:</strong> Delivers pixel-level fertilizer &amp; yield targets, response domain mapping, predicted yield diff vs GR, and potential mineral-N reduction estimates (e.g. 59 kg N/ha saved under PCU N60; 42 kg N/ha saved under UDP N78).</li>
             </ul>
           </div>
         </div>
