@@ -21,7 +21,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   MapContainer,
-  CircleMarker,
+  Rectangle,
   TileLayer,
   Tooltip,
   useMap,
@@ -90,8 +90,8 @@ function PixelPicker({ pool, onPick }) {
 // Location selectors
 // ---------------------------------------------------------------------------
 
-function LocationSelectors({ features, region, district, palika, onChange }) {
-  const { regions, districts, palikas } = useGeographyOptions(
+function LocationSelectors({ features, region, district, palika, strategy, targetYield, onChange }) {
+  const { regions, districts, palikas, strategies, targetYields } = useGeographyOptions(
     features, region, district
   );
 
@@ -108,6 +108,7 @@ function LocationSelectors({ features, region, district, palika, onChange }) {
           {regions.map((r) => <option key={r} value={r}>{r}</option>)}
         </select>
       </label>
+
       <label className="selector-label">
         <span>District</span>
         <select
@@ -120,6 +121,7 @@ function LocationSelectors({ features, region, district, palika, onChange }) {
           {districts.map((d) => <option key={d} value={d}>{d}</option>)}
         </select>
       </label>
+
       <label className="selector-label">
         <span>Palika</span>
         <select
@@ -130,6 +132,38 @@ function LocationSelectors({ features, region, district, palika, onChange }) {
         >
           <option value={ALL}>{district ? 'All palikas' : '— select district first —'}</option>
           {palikas.map((p) => <option key={p} value={p}>{p}</option>)}
+        </select>
+      </label>
+
+      <label className="selector-label">
+        <span>Strategy</span>
+        <select
+          id="sel-strategy"
+          value={strategy}
+          onChange={(e) => onChange('strategy', e.target.value)}
+        >
+          <option value={ALL}>All 4R strategies</option>
+          {strategies.map((s) => (
+            <option key={s} value={s}>
+              {STRATEGY_LABELS[s] || s}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="selector-label">
+        <span>Target Yield</span>
+        <select
+          id="sel-target-yield"
+          value={targetYield}
+          onChange={(e) => onChange('targetYield', e.target.value)}
+        >
+          <option value={ALL}>All target yields</option>
+          {targetYields.map((ty) => (
+            <option key={ty} value={ty}>
+              {ty} t/ha
+            </option>
+          ))}
         </select>
       </label>
     </div>
@@ -269,17 +303,19 @@ function PixelPanel({ row }) {
 export default function Advisory() {
   const { features, loadError, loading } = useAdvisoryData();
 
-  // Geography cascade state
-  const [region, setRegion]     = useState(ALL);
-  const [district, setDistrict] = useState(ALL);
-  const [palika, setPalika]     = useState(ALL);
+  // Geography & Strategy selection state
+  const [region, setRegion]           = useState(ALL);
+  const [district, setDistrict]       = useState(ALL);
+  const [palika, setPalika]           = useState(ALL);
+  const [strategy, setStrategy]       = useState(ALL);
+  const [targetYield, setTargetYield] = useState(ALL);
 
   // Pixel selection (click = locked)
   const [selected, setSelected] = useState(null);
   // Hover row (independent from selected)
   const [hovered, setHovered]   = useState(null);
 
-  const handleGeoChange = useCallback((level, value) => {
+  const handleFilterChange = useCallback((level, value) => {
     if (level === 'region') {
       setRegion(value);
       setDistrict(ALL);
@@ -287,14 +323,20 @@ export default function Advisory() {
     } else if (level === 'district') {
       setDistrict(value);
       setPalika(ALL);
-    } else {
+    } else if (level === 'palika') {
       setPalika(value);
+    } else if (level === 'strategy') {
+      setStrategy(value);
+    } else if (level === 'targetYield') {
+      setTargetYield(value);
     }
     setSelected(null);
   }, []);
 
-  // Filtered pixel pool based on geography selection
-  const { filtered, bounds } = useFilteredPixels(features, { region, district, palika });
+  // Filtered pixel pool based on geography & strategy selection
+  const { filtered, bounds } = useFilteredPixels(features, {
+    region, district, palika, strategy, targetYield,
+  });
 
   // Default map center
   const defaultCenter = [28.1, 82.5];
@@ -312,12 +354,54 @@ export default function Advisory() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <span className="kicker">NSAF maize · Nepal · Pixel-based advisory</span>
-          <h2>Pixel-based fertilizer and yield advisory</h2>
+          <span className="kicker">NSAF Maize · Western Nepal · 4R Nutrient Stewardship</span>
+          <h2>Site-Specific Soil &amp; Fertilizer Advisory for Spring Maize</h2>
           <p>
-            Explore trial-supported nitrogen targets, expected yield response and
-            potential mineral-N reduction for model-supported locations.
+            Empowering smallholder farmers and agricultural extension with spatially targeted 4R nutrient recommendations, yield-gap reduction strategies, and optimized fertilizer investments based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Western Nepal.
           </p>
+        </div>
+      </section>
+
+      {/* ── Data Source & Pandit 4R Research Summary Banner ── */}
+      <section className="advisory-evidence-banner">
+        <div className="advisory-evidence-header">
+          <div>
+            <span className="advisory-evidence-kicker">Data Source &amp; Evidence Base</span>
+            <h3 style={{ margin: '.2rem 0 0', fontSize: '1.25rem', color: 'var(--dark)' }}>
+              NSAF Spring Maize Trials in Western Nepal
+            </h3>
+          </div>
+          <span className="advisory-evidence-tag">Pandit et al. (2025) 4R Stewardship</span>
+        </div>
+        
+        <p className="advisory-evidence-desc">
+          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across spring maize hubs in Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to derive site-specific fertilizer recommendations.
+        </p>
+
+        <div className="pandit-summary-box">
+          <h4 className="pandit-summary-title">
+            <span>💡</span> Summary of Pandit 4R Nutrient Stewardship Research Findings
+          </h4>
+          <div className="pandit-summary-grid">
+            <div className="pandit-summary-item">
+              <span className="pandit-summary-badge">4R Rate &amp; Baseline</span>
+              <p>
+                <strong>Unfertilized baseline (0-0-0)</strong> background yield ranges from 3.3 to 7.2 t/ha. Reducing N from 120 to 60 kg/ha yields 8.29 t/ha (only 8.5% yield penalty vs Government Recommendation) while boosting Agronomic Efficiency of N (AE-N) by <strong>+35%</strong> (27.0 vs 19.9 kg grain/kg N). Over-application (180–210 kg N/ha) yields zero extra grain while reducing AE-N by up to 52%.
+              </p>
+            </div>
+            <div className="pandit-summary-item">
+              <span className="pandit-summary-badge">Source &amp; Placement</span>
+              <p>
+                <strong>Polymer-Coated Urea (PCU N60):</strong> Achieves peak efficiency of <strong>133 kg grain/kg mineral N</strong> (PFP-N), saving <strong>59 kg N/ha</strong> while maintaining target yield. <strong>Urea Deep Placement (UDP N78):</strong> Root-zone deep placement saves <strong>42 kg N/ha</strong> (35% N cut) with zero yield penalty.
+              </p>
+            </div>
+            <div className="pandit-summary-item">
+              <span className="pandit-summary-badge">Timing &amp; Organics</span>
+              <p>
+                <strong>V6/V10 Split Timing:</strong> Synchronized application saves <strong>41 kg N/ha</strong> for equivalent yield (+0.11 to +0.87 t/ha gain in responsive sites). <strong>FYM + N60:</strong> 6 t/ha farmyard manure + 60 kg N/ha maintains yield while reducing mineral N dependency by 50%.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -337,13 +421,15 @@ export default function Advisory() {
 
       {!loading && !loadError && (
         <section id="map" className="map-workspace">
-          {/* Location selectors */}
+          {/* Location & Strategy selectors */}
           <LocationSelectors
             features={features}
             region={region}
             district={district}
             palika={palika}
-            onChange={handleGeoChange}
+            strategy={strategy}
+            targetYield={targetYield}
+            onChange={handleFilterChange}
           />
 
           <div className="map-layout">
@@ -370,39 +456,49 @@ export default function Advisory() {
                 <BoundsFitter bounds={bounds} />
                 <PixelPicker pool={filtered} onPick={handlePick} />
 
-                {filtered.map((r) => (
-                  <CircleMarker
-                    key={String(r.pixel_id)}
-                    center={[number(r.lat), number(r.lon)]}
-                    radius={selected === r ? 7 : 4}
-                    pathOptions={{
-                      fillColor: markerColor(r),
-                      fillOpacity: selected === r ? 1 : 0.75,
-                      color: selected === r ? '#fff' : 'transparent',
-                      weight: selected === r ? 1.5 : 0,
-                    }}
-                    eventHandlers={{
-                      mouseover: () => setHovered(r),
-                      mouseout:  () => setHovered(null),
-                      click:     () => setSelected(r),
-                    }}
-                  >
-                    <Tooltip sticky>
-                      <HoverTooltipContent row={r} />
-                    </Tooltip>
-                  </CircleMarker>
-                ))}
+                {filtered.map((r) => {
+                  const lat = number(r.lat);
+                  const lon = number(r.lon);
+                  if (lat === null || lon === null) return null;
+                  const HALF_STEP = 0.009; // 0.018° cell size (~0.02° DSM pixel resolution)
+                  const bounds = [
+                    [lat - HALF_STEP, lon - HALF_STEP],
+                    [lat + HALF_STEP, lon + HALF_STEP],
+                  ];
+                  const isSelected = selected === r;
+                  return (
+                    <Rectangle
+                      key={String(r.pixel_id)}
+                      bounds={bounds}
+                      pathOptions={{
+                        fillColor: markerColor(r),
+                        fillOpacity: isSelected ? 0.95 : 0.7,
+                        color: isSelected ? '#102b1f' : '#ffffff',
+                        weight: isSelected ? 2 : 0.4,
+                      }}
+                      eventHandlers={{
+                        mouseover: () => setHovered(r),
+                        mouseout:  () => setHovered(null),
+                        click:     () => setSelected(r),
+                      }}
+                    >
+                      <Tooltip sticky>
+                        <HoverTooltipContent row={r} />
+                      </Tooltip>
+                    </Rectangle>
+                  );
+                })}
               </MapContainer>
 
               {/* Legend */}
               <div className="map-legend">
-                <span className="legend-title">Mineral-N reduction potential</span>
+                <span className="legend-title">Potential Mineral-N Reduction for Same Target Yield (vs GR N120)</span>
                 <div className="legend-items">
-                  <span><span className="legend-dot" style={{background:'#166534'}} />≥50 kg N/ha</span>
-                  <span><span className="legend-dot" style={{background:'#22c55e'}} />25–50 kg N/ha</span>
-                  <span><span className="legend-dot" style={{background:'#fbbf24'}} />10–25 kg N/ha</span>
-                  <span><span className="legend-dot" style={{background:'#f97316'}} />&lt;10 kg N/ha</span>
-                  <span><span className="legend-dot" style={{background:'#94a3b8'}} />No data</span>
+                  <span><span className="legend-dot" style={{background:'#166534'}} />≥50 kg N/ha reduction</span>
+                  <span><span className="legend-dot" style={{background:'#22c55e'}} />25–50 kg N/ha reduction</span>
+                  <span><span className="legend-dot" style={{background:'#fbbf24'}} />10–25 kg N/ha reduction</span>
+                  <span><span className="legend-dot" style={{background:'#f97316'}} />&lt;10 kg N/ha reduction</span>
+                  <span><span className="legend-dot" style={{background:'#94a3b8'}} />No data / Baseline</span>
                 </div>
               </div>
             </div>
@@ -412,6 +508,102 @@ export default function Advisory() {
           </div>
         </section>
       )}
+
+      {/* ── Stage-by-Stage Data & Models Section ── */}
+      <section className="pipeline-section">
+        <div className="pipeline-header">
+          <span className="advisory-evidence-kicker">Analytical Architecture &amp; Methodology</span>
+          <h3 style={{ margin: '.2rem 0 0', fontSize: '1.25rem', color: 'var(--dark)' }}>
+            Stage-by-Stage Data Sources &amp; Spatial Modelling Pipeline
+          </h3>
+          <p className="pipeline-subtitle">
+            How multi-year trial observations in Western Nepal are harmonized, modelled, and spatially extrapolated into pixel-level advisories.
+          </p>
+        </div>
+
+        <div className="pipeline-grid">
+          {/* Stage 1 */}
+          <div className="pipeline-card">
+            <div className="pipeline-card__badge">Stage 1</div>
+            <h4 className="pipeline-card__title">Data Harmonization &amp; Spatial Join</h4>
+            <ul className="pipeline-card__list">
+              <li><strong>Trial Data:</strong> 2,037 NSAF multi-year (2017–2019) spring maize trial plot observations across Western Nepal (Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, Kavre).</li>
+              <li><strong>DSM Soil Covariates:</strong> NARC Digital Soil Mapping 0.02° spatial rasters (pH, organic matter %, total N %, Olsen P, exchangeable K, sand/silt/clay, elevation).</li>
+              <li><strong>Nearest Join:</strong> Trial GPS coordinates linked to nearest DSM soil pixel centroids to pair crop response with local terrain &amp; soil properties.</li>
+            </ul>
+          </div>
+
+          {/* Stage 2 */}
+          <div className="pipeline-card">
+            <div className="pipeline-card__badge">Stage 2</div>
+            <h4 className="pipeline-card__title">Baseline &amp; Nutrient Omission Diagnostics</h4>
+            <ul className="pipeline-card__list">
+              <li><strong>Baseline Control (0-0-0):</strong> Establishes native background soil productivity across trial sites (ranging from 3.3 to 7.2 t/ha).</li>
+              <li><strong>Nutrient Omission (-N, -P, -K):</strong> Measures site-specific yield penalties when nitrogen, phosphorus, or potassium is omitted relative to full N120-P60-K40 Government Recommendation (GR).</li>
+            </ul>
+          </div>
+
+          {/* Stage 3 */}
+          <div className="pipeline-card">
+            <div className="pipeline-card__badge">Stage 3</div>
+            <h4 className="pipeline-card__title">4R Response &amp; NUE Evaluation</h4>
+            <ul className="pipeline-card__list">
+              <li><strong>N-Rate Response:</strong> Evaluates yield response curves and Agronomic Efficiency (AE-N) across 0, 60, 120, 180, and 210 kg N/ha rates.</li>
+              <li><strong>4R Innovations:</strong> Evaluates Polymer-Coated Urea (PCU N60), Urea Deep Placement (UDP N78), V6/V10 split timing, and 6 t/ha FYM + N60 integration for Partial Factor Productivity (PFP-N) and mineral N savings.</li>
+            </ul>
+          </div>
+
+          {/* Stage 4 */}
+          <div className="pipeline-card">
+            <div className="pipeline-card__badge">Stage 4</div>
+            <h4 className="pipeline-card__title">QUEFTS Mechanistic Demand Model</h4>
+            <ul className="pipeline-card__list">
+              <li><strong>Nutrient Balance:</strong> Quantitative Evaluation of Fertility of Tropical Soils (QUEFTS) calibrated with local DSM soil properties.</li>
+              <li><strong>Target-Yield Scenarios:</strong> Forecasts reference N demand for 6.0 t/ha (127 kg N/ha), 8.0 t/ha (227 kg N/ha), and 10.0 t/ha (327 kg N/ha) targets considering native soil supply.</li>
+            </ul>
+          </div>
+
+          {/* Stage 5 */}
+          <div className="pipeline-card">
+            <div className="pipeline-card__badge">Stage 5</div>
+            <h4 className="pipeline-card__title">Random Forest Spatial Extrapolation</h4>
+            <ul className="pipeline-card__list">
+              <li><strong>Machine Learning:</strong> Random Forest model trained on trial AE-N response contrasts with DSM soil &amp; terrain predictors.</li>
+              <li><strong>Domain Filtering:</strong> Restricts public advisory coverage to pixels with <code>environmental_support == True</code> within the trial environmental covariate space.</li>
+            </ul>
+          </div>
+
+          {/* Stage 6 */}
+          <div className="pipeline-card">
+            <div className="pipeline-card__badge">Stage 6</div>
+            <h4 className="pipeline-card__title">Public Advisory Target Setting</h4>
+            <ul className="pipeline-card__list">
+              <li><strong>Queryable GIS Layer:</strong> Delivers pixel-level 4R recommendations, predicted yield diff vs GR, and potential mineral N savings (e.g. 59 kg N/ha saved under PCU N60; 42 kg N/ha saved under UDP N78).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pandit Research Footnote ── */}
+      <div className="advisory-footnote">
+        <div className="advisory-footnote__content">
+          <span className="advisory-footnote__icon">📌</span>
+          <div className="advisory-footnote__text">
+            <strong>Evidence &amp; Citation Footnote:</strong> Underlying crop-response models, 4R nutrient stewardship frameworks, and spatial target-setting algorithms are derived from{' '}
+            <em>
+              Pandit, N. R., Adhikari, S., Vista, S. P., &amp; Choudhary, D. (2025). "Nitrogen Management Utilizing 4R Nutrient Stewardship: A Sustainable Strategy for Enhancing NUE, Reducing Maize Yield Gap and Increasing Farm Profitability." Nitrogen, 6(1), 7.
+            </em>{' '}
+            <a
+              href="https://doi.org/10.3390/nitrogen6010007"
+              target="_blank"
+              rel="noreferrer"
+              className="advisory-footnote__link"
+            >
+              https://doi.org/10.3390/nitrogen6010007
+            </a> based on multi-year NSAF spring maize trials in Western Nepal.
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

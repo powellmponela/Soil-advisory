@@ -65,19 +65,27 @@ export function useGeographyOptions(features, region, district) {
       .filter(Boolean)
   )].sort();
 
-  return { regions, districts, palikas };
+  const strategies = [...new Set(features.map((r) => r.strategy).filter(Boolean))].sort();
+
+  const targetYields = [...new Set(
+    features.map((r) => String(r.target_yield_t_ha)).filter((v) => v && v !== 'undefined')
+  )].sort((a, b) => Number(a) - Number(b));
+
+  return { regions, districts, palikas, strategies, targetYields };
 }
 
 /**
- * Filter and compute a bounding box for the given geography selection.
+ * Filter and compute a bounding box for the given geography & strategy selection.
  * Returns { filtered, bounds } where bounds is [[minLat, minLon], [maxLat, maxLon]]
  * or null when there's nothing to bound.
  */
-export function useFilteredPixels(features, { region, district, palika }) {
+export function useFilteredPixels(features, { region, district, palika, strategy, targetYield }) {
   const filtered = features.filter((r) => {
     if (region && r.province !== region) return false;
     if (district && r.district !== district) return false;
     if (palika && r.palika !== palika) return false;
+    if (strategy && r.strategy !== strategy) return false;
+    if (targetYield && String(r.target_yield_t_ha) !== String(targetYield)) return false;
     return true;
   });
 

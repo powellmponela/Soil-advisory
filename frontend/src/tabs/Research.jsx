@@ -21,12 +21,12 @@ import { fmt, number, STRATEGY_LABELS } from '../helpers';
 // ---------------------------------------------------------------------------
 
 const RESEARCH_TABS = [
-  { id: 'trial',    label: 'Trial Analysis' },
-  { id: 'nresponse',label: 'N-Response Curves' },
-  { id: 'quefts',   label: 'QUEFTS Diagnostics' },
-  { id: 'dsm',      label: 'DSM / Spatial Modelling' },
-  { id: 'scenario', label: 'Scenario Comparison' },
-  { id: 'method',   label: 'Methodology' },
+  { id: 'trial',    label: '1. Baseline & Trial Evidence' },
+  { id: 'nresponse',label: '2. N-Response & NUE' },
+  { id: 'quefts',   label: '3. QUEFTS Demand' },
+  { id: 'dsm',      label: '4. DSM Spatial Extrapolation' },
+  { id: 'scenario', label: '5. Fertilizer Reduction Scenarios' },
+  { id: 'method',   label: '6. Methodology & Documentation' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -70,6 +70,151 @@ function TrialAnalysis() {
 
   return (
     <div className="research-panel">
+
+      {/* ── Guiding Papers & Key Figures ───────────────────────────── */}
+      <div className="guiding-papers">
+        <div className="guiding-papers__header">
+          <h4 className="guiding-papers__heading">
+            <span className="guiding-papers__icon">📄</span> Guiding Papers &amp; Key Empirical Figures
+          </h4>
+          <span className="guiding-papers__badge">Peer-Reviewed Evidence</span>
+        </div>
+
+        {/* ── Key Figures Stat Badges Grid ── */}
+        <div className="key-figures-grid">
+          <div className="key-figure-card">
+            <div className="key-figure-card__value">+35%</div>
+            <div className="key-figure-card__label">AE-N Efficiency Gain</div>
+            <div className="key-figure-card__sub">N60 (27.0 kg grain/kg N) vs N120 GR (19.9 kg/kg)</div>
+          </div>
+          <div className="key-figure-card">
+            <div className="key-figure-card__value">59 kg N/ha</div>
+            <div className="key-figure-card__label">N Savings (PCU N60)</div>
+            <div className="key-figure-card__sub">Polymer-Coated Urea maintains GR yield with 50% N cut</div>
+          </div>
+          <div className="key-figure-card">
+            <div className="key-figure-card__value">42 kg N/ha</div>
+            <div className="key-figure-card__label">N Savings (UDP N78)</div>
+            <div className="key-figure-card__sub">Deep placement saves 35% mineral N with ~0 yield penalty</div>
+          </div>
+          <div className="key-figure-card">
+            <div className="key-figure-card__value">133 kg/kg</div>
+            <div className="key-figure-card__label">Peak PFP-N Efficiency</div>
+            <div className="key-figure-card__sub">Achieved under PCU N60 vs 62 kg/kg for conventional GR</div>
+          </div>
+          <div className="key-figure-card">
+            <div className="key-figure-card__value">3.3–7.2 t/ha</div>
+            <div className="key-figure-card__label">Unfertilized Baseline Spread</div>
+            <div className="key-figure-card__sub">Native background soil productivity range across trial sites</div>
+          </div>
+        </div>
+
+        <ol className="guiding-papers__list">
+          <li className="guiding-papers__item">
+            <div className="guiding-papers__citation">
+              <span className="guiding-papers__authors">Pandit, N. R., Adhikari, S., Vista, S. P., &amp; Choudhary, D.</span>{' '}
+              <span className="guiding-papers__year">(2025).</span>{' '}
+              <em className="guiding-papers__title">
+                Nitrogen Management Utilizing 4R Nutrient Stewardship: A Sustainable Strategy for
+                Enhancing NUE, Reducing Maize Yield Gap and Increasing Farm Profitability.
+              </em>{' '}
+              <span className="guiding-papers__journal">Nitrogen</span>,{' '}
+              <span className="guiding-papers__vol">6</span>(1), 7.{' '}
+              <a
+                href="https://doi.org/10.3390/nitrogen6010007"
+                target="_blank"
+                rel="noreferrer"
+                className="guiding-papers__doi"
+              >
+                https://doi.org/10.3390/nitrogen6010007
+              </a>
+            </div>
+
+            {/* Key figures callout for paper 1 */}
+            <div className="paper-key-figures">
+              <div className="paper-key-figures__title">💡 Key Figures &amp; Empirical Findings:</div>
+              <ul className="paper-key-figures__list">
+                <li>
+                  <strong>4R N-Rate Efficiency:</strong> Mean yield increases from 6.67 t/ha (0PK) → 8.29 t/ha (N60) → 9.06 t/ha (N120 GR). N60 uses 50% less inorganic N with only an 8.5% yield reduction while boosting AE-N by <strong>+35%</strong> (27.0 vs 19.9 kg grain/kg N).
+                </li>
+                <li>
+                  <strong>Over-application Penalties:</strong> N180 yields 9.02 t/ha (yield plateau reached) but drops AE-N by <strong>-34%</strong> (13.1 kg/kg N). N210 drops AE-N by <strong>-52%</strong> (9.7 kg/kg N).
+                </li>
+                <li>
+                  <strong>Enhanced Efficiency Technologies:</strong> Polymer-Coated Urea (PCU N60) achieves <strong>133 kg grain/kg mineral N PFP-N</strong> and saves <strong>59 kg N/ha</strong>. Urea Deep Placement (UDP N78) yields virtually identically to GR (-0.02 t/ha) while saving <strong>42 kg N/ha</strong> (35% reduction).
+                </li>
+                <li>
+                  <strong>Organic-Mineral &amp; Timing Integration:</strong> 6 t FYM + N60 yields 119 kg grain/kg mineral N PFP-N (saves 56 kg mineral N/ha). V6/V10 split application saves <strong>41 kg N/ha</strong> for equivalent yield (+0.11 to +0.87 t/ha gain at responsive sites).
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li className="guiding-papers__item">
+            <div className="guiding-papers__citation">
+              <span className="guiding-papers__authors">
+                Pandit, N. R., Choudhary, D., Maharjan, S., Dhakal, K., Vista, S. P., &amp; Gaihre, Y. K.
+              </span>{' '}
+              <span className="guiding-papers__year">(2022).</span>{' '}
+              <em className="guiding-papers__title">
+                Optimum Rate and Deep Placement of Nitrogen Fertilizer Improves Nitrogen Use
+                Efficiency and Tomato Yield in Nepal.
+              </em>{' '}
+              <span className="guiding-papers__journal">Soil Systems</span>,{' '}
+              <span className="guiding-papers__vol">6</span>(3), 72.{' '}
+              <a
+                href="https://doi.org/10.3390/soilsystems6030072"
+                target="_blank"
+                rel="noreferrer"
+                className="guiding-papers__doi"
+              >
+                https://doi.org/10.3390/soilsystems6030072
+              </a>
+            </div>
+            <div className="paper-key-figures">
+              <div className="paper-key-figures__title">💡 Key Figures &amp; Empirical Findings:</div>
+              <ul className="paper-key-figures__list">
+                <li>
+                  <strong>Root-Zone Placement Efficiency:</strong> Root-zone deep placement of nitrogen significantly reduced volatilization and leaching losses, increasing overall agronomic efficiency and crop yield compared to surface broadcast urea.
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li className="guiding-papers__item">
+            <div className="guiding-papers__citation">
+              <span className="guiding-papers__authors">
+                Pandit, N. R., et al.
+              </span>{' '}
+              <span className="guiding-papers__year">(2022).</span>{' '}
+              <em className="guiding-papers__title">
+                Field evaluation of slow-release nitrogen fertilizers and real-time nitrogen
+                management tools to improve grain yield and nitrogen use efficiency of spring maize in Nepal.
+              </em>{' '}
+              <span className="guiding-papers__journal">Heliyon</span>,{' '}
+              <span className="guiding-papers__vol">8</span>(5), e09566.{' '}
+              <a
+                href="https://doi.org/10.1016/j.heliyon.2022.e09566"
+                target="_blank"
+                rel="noreferrer"
+                className="guiding-papers__doi"
+              >
+                https://doi.org/10.1016/j.heliyon.2022.e09566
+              </a>
+            </div>
+            <div className="paper-key-figures">
+              <div className="paper-key-figures__title">💡 Key Figures &amp; Empirical Findings:</div>
+              <ul className="paper-key-figures__list">
+                <li>
+                  <strong>Slow-Release &amp; Real-Time Tools:</strong> Evaluated polymer-coated urea and leaf-color chart / SPAD real-time N tools for spring maize in Nepal, demonstrating significantly improved grain yield and NUE over farmer practices.
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+      {/* ────────────────────────────────────────────────────────────── */}
+
       <h3>NSAF Trial Summary by District</h3>
       <p className="research-note">
         {rows.length.toLocaleString()} trial observations from nsaf_advisory_results.csv.
@@ -586,11 +731,11 @@ export default function Research() {
     <div className="tab-content">
       <section className="hero research-hero">
         <div>
-          <span className="kicker">Technical workspace · Research only</span>
-          <h2>Research &amp; Analytical Workspace</h2>
+          <span className="kicker">Technical workspace · NSAF &amp; 4R Stewardship</span>
+          <h2>From trial response to spatial fertilizer target setting</h2>
           <p>
-            Trial analysis, N-response curves, QUEFTS diagnostics, DSM / spatial
-            modelling, scenario comparison and full technical methodology.
+            Localized production system recommendations integrated with national priorities endorsed for each hub.
+            Trial response analysis, N-response curves, QUEFTS diagnostics, DSM spatial modelling, and scenario comparison.
           </p>
         </div>
       </section>
