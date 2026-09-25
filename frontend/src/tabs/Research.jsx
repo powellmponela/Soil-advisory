@@ -21,12 +21,12 @@ import { fmt, number, STRATEGY_LABELS } from '../helpers';
 // ---------------------------------------------------------------------------
 
 const RESEARCH_TABS = [
-  { id: 'trial',    label: '1. Baseline & Trial Evidence' },
-  { id: 'nresponse',label: '2. N-Response & NUE' },
-  { id: 'quefts',   label: '3. QUEFTS Demand' },
-  { id: 'dsm',      label: '4. DSM Spatial Extrapolation' },
-  { id: 'scenario', label: '5. Fertilizer Reduction Scenarios' },
-  { id: 'method',   label: '6. Methodology & Documentation' },
+  { id: 'matrix',    label: '1. Input Data & Design Matrix' },
+  { id: 'equations', label: '2. 4R Equations & Estimations' },
+  { id: 'quefts',    label: '3. QUEFTS Demand Model' },
+  { id: 'dsm',       label: '4. DSM Spatial Extrapolation' },
+  { id: 'code',      label: '5. Model Code & Python Scripts' },
+  { id: 'method',    label: '6. Methodology & Documentation' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -253,6 +253,264 @@ function TrialAnalysis() {
           <Bar dataKey="meanYield" name="Mean yield" fill="var(--mid)" radius={[3,3,0,0]} />
         </BarChart>
       </ResponsiveContainer>
+
+      {/* ── Table 1 Design Matrix ── */}
+      <DesignMatrixTable />
+    </div>
+  );
+}
+
+/** Design Matrix Table 1 */
+function DesignMatrixTable() {
+  return (
+    <div className="table-container" style={{ marginTop: '2.5rem' }}>
+      <h3 style={{ marginBottom: '.5rem', color: 'var(--dark)' }}>Table 1: Agronomic Design Matrix &amp; Treatment Contrasts</h3>
+      <p className="research-note" style={{ marginBottom: '1rem' }}>
+        Complete experimental treatment contrasts mapping NSAF 2,037 trial plot observations to reference comparators and estimated agronomic quantities.
+      </p>
+      <table className="data-table">
+        <thead>
+          <tr>
+            <th>Year / Dataset</th>
+            <th>Agronomic Comparison</th>
+            <th>Treatment</th>
+            <th>Comparator / Reference</th>
+            <th>Agronomic Quantity Estimated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2017–2019 Trial</td>
+            <td>Unfertilized control</td>
+            <td>N0–P0–K0 (0-0-0)</td>
+            <td>Reference</td>
+            <td>Background grain yield without fertilizer input.</td>
+          </tr>
+          <tr>
+            <td>2017–2019 Trial</td>
+            <td>Nutrient Omission (-N)</td>
+            <td>N0–P60–K40</td>
+            <td>N0–P0–K0</td>
+            <td>Yield response to P+K in the absence of fertilizer N.</td>
+          </tr>
+          <tr>
+            <td>2017–2019 Trial</td>
+            <td>Yield response to N (GR)</td>
+            <td>N120–P60–K40 (GR)</td>
+            <td>N0–P60–K40 (-N)</td>
+            <td>Yield response to N and AE-N at 120 kg N ha⁻¹ (Govt Rec).</td>
+          </tr>
+          <tr>
+            <td>2017–2019 Trial</td>
+            <td>N-rate response curve</td>
+            <td>N0, N60, N120, N180, N210</td>
+            <td>P60–K40 background</td>
+            <td>N-response curve, marginal yield response, AE-N by rate, yield plateau.</td>
+          </tr>
+          <tr>
+            <td>2018–2019 Trial</td>
+            <td>4R N timing</td>
+            <td>N120–P60–K40 at V6/V10</td>
+            <td>N120 split knee/shoulder</td>
+            <td>Yield &amp; AE-N response to synchronized application timing.</td>
+          </tr>
+          <tr>
+            <td>2018 Trial</td>
+            <td>FYM + reduced mineral N</td>
+            <td>FYM 6 t ha⁻¹ + N60-P60-K40</td>
+            <td>N120–P60–K40 (GR)</td>
+            <td>Relative yield under FYM plus 50% mineral N; mineral-N reduction.</td>
+          </tr>
+          <tr>
+            <td>2018 Trial</td>
+            <td>Urea deep placement (UDP)</td>
+            <td>UDP N78–P60–K40</td>
+            <td>N120–P60–K40 (GR)</td>
+            <td>Yield &amp; NUE response to root-zone briquette placement at reduced N.</td>
+          </tr>
+          <tr>
+            <td>2018 Trial</td>
+            <td>Polymer-coated urea (PCU)</td>
+            <td>PCU N60–P60–K40</td>
+            <td>N120–P60–K40 (GR)</td>
+            <td>Yield &amp; PFP-N response to controlled release N at 50% reduced rate.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** 4R Equations & Estimations Panel */
+function FourREquations() {
+  return (
+    <div className="research-panel">
+      <h3>4R Mathematical Equations &amp; Estimations</h3>
+      <p className="research-note">
+        Core mathematical formulations used to estimate Agronomic Efficiency (AE-N), Partial Factor Productivity (PFP-N), QUEFTS nutrient demand, and 4R innovation contrasts.
+      </p>
+
+      <div className="equations-grid">
+        <div className="equation-card">
+          <div className="equation-card__header">
+            <span className="equation-card__tag">Agronomic Efficiency</span>
+            <h4>AE-N (Agronomic Efficiency of Nitrogen)</h4>
+          </div>
+          <div className="equation-card__formula">
+            <code>AE-N = (Y_yield_with_N - Y_0_without_N) / N_nitrogen_rate</code>
+          </div>
+          <p className="equation-card__desc">
+            Measures additional grain yield (kg grain) produced per kilogram of inorganic N applied relative to unfertilized or zero-N baseline.
+          </p>
+        </div>
+
+        <div className="equation-card">
+          <div className="equation-card__header">
+            <span className="equation-card__tag">Partial Factor Productivity</span>
+            <h4>PFP-N (Partial Factor Productivity of N)</h4>
+          </div>
+          <div className="equation-card__formula">
+            <code>PFP-N = Y_yield_with_N / N_mineral_nitrogen_rate</code>
+          </div>
+          <p className="equation-card__desc">
+            Calculates total harvested grain (kg grain) produced per kilogram of mineral N applied. Used for PCU, UDP, and FYM integrated strategies.
+          </p>
+        </div>
+
+        <div className="equation-card">
+          <div className="equation-card__header">
+            <span className="equation-card__tag">4R Timing Contrast</span>
+            <h4>ΔY_timing (Growth Stage Application Timing)</h4>
+          </div>
+          <div className="equation-card__formula">
+            <code>ΔY_timing = Y_V6/V10_split_application - Y_knee/shoulder_split_at_same_N_rate</code>
+          </div>
+          <p className="equation-card__desc">
+            Isolates the net yield gain or penalty achieved by synchronizing N applications at V6 and V10 growth stages at identical total N rates.
+          </p>
+        </div>
+
+        <div className="equation-card">
+          <div className="equation-card__header">
+            <span className="equation-card__tag">Organic-Mineral Integration</span>
+            <h4>NSV_reduced_N (Farmyard Manure N-Saving Value)</h4>
+          </div>
+          <div className="equation-card__formula">
+            <code>NSV_reduced_N = Y_6t_FYM_+_N60-P60-K40 - Y_N120-P60-K40_baseline</code>
+          </div>
+          <p className="equation-card__desc">
+            Tests whether integrating 6 t/ha farmyard manure with 60 kg N/ha maintains yield relative to full N120-P60-K40 mineral baseline.
+          </p>
+        </div>
+
+        <div className="equation-card">
+          <div className="equation-card__header">
+            <span className="equation-card__tag">QUEFTS Mechanistic Model</span>
+            <h4>N_QUEFTS (Target-Yield Reference N Demand)</h4>
+          </div>
+          <div className="equation-card__formula">
+            <code>N_demand = (Y_target_yield - Y_0_indigenous_soil_supply) / AE-N_optimal_efficiency</code>
+          </div>
+          <p className="equation-card__desc">
+            Forecasts reference mineral N requirement for regional target yields (6, 8, 10 t/ha) based on native soil supply derived from DSM soil properties.
+          </p>
+        </div>
+
+        <div className="equation-card">
+          <div className="equation-card__header">
+            <span className="equation-card__tag">Machine Learning Spatial Estimator</span>
+            <h4>RF_AE-N (Random Forest Extrapolator)</h4>
+          </div>
+          <div className="equation-card__formula">
+            <code>AE-N_hat = (1 / B) * Σ_b=1..B f_b(X_soil, terrain, climate)</code>
+          </div>
+          <p className="equation-card__desc">
+            Ensemble decision trees trained on trial treatment response contrasts and NARC DSM soil/terrain covariates to predict spatial AE-N surfaces.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Model Code & Python Scripts Panel */
+function ModelCodeScripts() {
+  return (
+    <div className="research-panel">
+      <h3>Model Code &amp; Executable Python Scripts</h3>
+      <p className="research-note">
+        Reproducible Python pipeline scripts used for spatial data harmonization, QUEFTS nutrient balance modeling, and Random Forest spatial extrapolation.
+      </p>
+
+      <div className="code-snippets-list">
+        <div className="code-snippet-card">
+          <div className="code-snippet-header">
+            <span>📄 scripts/1_harmonize_trials.py</span>
+            <span className="code-lang-tag">Python 3.10</span>
+          </div>
+          <pre className="code-block">
+{`import geopandas as gpd
+import pandas as pd
+
+# Load NSAF multi-year trial records (2017-2019)
+trials = pd.read_csv("data/nsaf_trials_raw.csv")
+
+# Spatial join GPS trial points with NARC DSM 0.02 deg centroids
+trials_gdf = gpd.GeoDataFrame(trials, geometry=gpd.points_from_xy(trials.lon, trials.lat))
+dsm_grid = gpd.read_file("data/narc_dsm_covariates.geojson")
+
+# Nearest spatial join to extract local soil pH, OM%, N%, Olsen P, K, texture
+joined_trials = gpd.sjoin_nearest(trials_gdf, dsm_grid, how="left")
+joined_trials.to_csv("outputs/harmonized_trial_dsm_dataset.csv", index=False)`}
+          </pre>
+        </div>
+
+        <div className="code-snippet-card">
+          <div className="code-snippet-header">
+            <span>📄 scripts/3_quefts_modelling.py</span>
+            <span className="code-lang-tag">Python / R</span>
+          </div>
+          <pre className="code-block">
+{`import numpy as np
+
+def quefts_n_demand(target_yield_t_ha, soil_om, soil_ph, native_n_supply):
+    """
+    Calculate QUEFTS reference N demand based on target yield and indigenous soil N supply.
+    """
+    crop_n_demand = target_yield_t_ha * 22.5  # kg N required per ton maize grain
+    net_n_required = max(0, crop_n_demand - native_n_supply)
+    recovery_efficiency = 0.50  # 50% recovery efficiency parameter
+    return net_n_required / recovery_efficiency
+
+# Calculate N demand for 6.0, 8.0, and 10.0 t/ha target yield scenarios
+dsm_pixels['N_demand_8.0'] = dsm_pixels.apply(
+    lambda r: quefts_n_demand(8.0, r['om_pct'], r['ph'], r['native_n']), axis=1
+)`}
+          </pre>
+        </div>
+
+        <div className="code-snippet-card">
+          <div className="code-snippet-header">
+            <span>📄 scripts/5_spatial_extrapolation.py</span>
+            <span className="code-lang-tag">Python Scikit-Learn</span>
+          </div>
+          <pre className="code-block">
+{`from sklearn.ensemble import RandomForestRegressor
+
+# Features: soil pH, OM%, total N%, Olsen P, K, sand/clay/silt, elevation
+X_train = trial_dataset[['ph', 'om_pct', 'total_n', 'olsen_p', 'exch_k', 'elevation']]
+y_train = trial_dataset['AE_N']
+
+# Train Random Forest NUE Extrapolator
+rf_model = RandomForestRegressor(n_estimators=500, max_depth=12, random_state=42)
+rf_model.fit(X_train, y_train)
+
+# Extrapolate to all 0.02 deg DSM pixels in Western Nepal domain
+dsm_pixels['predicted_AE_N'] = rf_model.predict(dsm_pixels[X_train.columns])
+dsm_pixels['environmental_support'] = dsm_pixels.apply(check_domain_support, axis=1)`}
+          </pre>
+        </div>
+      </div>
     </div>
   );
 }
@@ -716,14 +974,14 @@ function Methodology() {
 // ---------------------------------------------------------------------------
 
 export default function Research() {
-  const [activeTab, setActiveTab] = useState('trial');
+  const [activeTab, setActiveTab] = useState('matrix');
 
   const panels = {
-    trial:     <TrialAnalysis />,
-    nresponse: <NResponseCurves />,
+    matrix:    <TrialAnalysis />,
+    equations: <FourREquations />,
     quefts:    <QueftsDiagnostics />,
     dsm:       <DSMPanel />,
-    scenario:  <ScenarioComparison />,
+    code:      <ModelCodeScripts />,
     method:    <Methodology />,
   };
 

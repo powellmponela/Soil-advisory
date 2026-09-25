@@ -856,3 +856,111 @@ footer {
   .map-caption { flex-direction: column; align-items: flex-start; }
   .tab-btn { padding: .4rem .7rem; font-size: .85rem; }
 }
+
+/* ── 4R Equations Grid & Cards ── */
+.equations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.equation-card {
+  background: #ffffff;
+  border: 1px solid #d4e8da;
+  border-radius: 10px;
+  padding: 1.2rem 1.35rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.03);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.equation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.07);
+}
+.equation-card__header {
+  margin-bottom: .75rem;
+}
+.equation-card__tag {
+  display: inline-block;
+  background: #e2ede4;
+  color: #1b5338;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: .18rem .55rem;
+  border-radius: 4px;
+  margin-bottom: .35rem;
+}
+.equation-card h4 {
+  margin: 0;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.equation-card__formula {
+  background: #102b1f;
+  color: #a7f3d0;
+  padding: .7rem .9rem;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: .82rem;
+  overflow-x: auto;
+  margin-bottom: .75rem;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
+}
+.equation-card__formula code {
+  color: #a7f3d0;
+  font-family: inherit;
+}
+.equation-card__desc {
+  margin: 0;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: #3b4d40;
+}
+
+/* ── Code Snippets List & Cards ── */
+.code-snippets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.code-snippet-card {
+  background: #ffffff;
+  border: 1px solid #d4e8da;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,.03);
+}
+.code-snippet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f7f2;
+  border-bottom: 1px solid #d4e8da;
+  padding: .6rem 1rem;
+  font-size: .83rem;
+  font-weight: 600;
+  color: #1b2e20;
+}
+.code-lang-tag {
+  font-size: .7rem;
+  font-weight: 700;
+  background: #276246;
+  color: #fff;
+  padding: .15rem .5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.code-block {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  background: #0f2017;
+  color: #e2f5e8;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: .81rem;
+  line-height: 1.55;
+  overflow-x: auto;
+}
