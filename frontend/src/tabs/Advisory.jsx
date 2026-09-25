@@ -355,7 +355,7 @@ export default function Advisory() {
       <section className="hero">
         <div>
           <span className="kicker">NSAF Maize · Western Nepal · 4R Nutrient Stewardship</span>
-          <h2>Site-Specific Soil &amp; Fertilizer Advisory for Spring Maize</h2>
+          <h2>Site-Specific Soil &amp; Fertilizer Advisory for Summer Maize</h2>
           <p>
             Empowering smallholder farmers and agricultural extension with spatially targeted 4R nutrient recommendations, yield-gap reduction strategies, and optimized fertilizer investments based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Western Nepal.
           </p>
@@ -368,14 +368,14 @@ export default function Advisory() {
           <div>
             <span className="advisory-evidence-kicker">Data Source &amp; Evidence Base</span>
             <h3 style={{ margin: '.2rem 0 0', fontSize: '1.25rem', color: 'var(--dark)' }}>
-              NSAF Spring Maize Trials in Western Nepal
+              NSAF Summer Maize Trials in Western Nepal
             </h3>
           </div>
           <span className="advisory-evidence-tag">Pandit et al. (2025) 4R Stewardship</span>
         </div>
         
         <p className="advisory-evidence-desc">
-          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across spring maize hubs in Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to derive site-specific fertilizer recommendations.
+          This public advisory tool translates multi-year (2017–2019) crop-response data from <strong>Nepal Seed and Agro-Input Program (NSAF) field trials</strong> conducted across summer maize hubs in Western Nepal (including Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, and Kavre). Trial GPS observations are linked with <strong>NARC Digital Soil Mapping (DSM)</strong> rasters at 0.02° spatial resolution to derive site-specific fertilizer recommendations.
         </p>
 
         <div className="pandit-summary-box">
@@ -527,7 +527,7 @@ export default function Advisory() {
             <div className="pipeline-card__badge">Stage 1</div>
             <h4 className="pipeline-card__title">Data Harmonization &amp; Spatial Join</h4>
             <ul className="pipeline-card__list">
-              <li><strong>Trial Data:</strong> 2,037 NSAF multi-year (2017–2019) spring maize trial plot observations across Western Nepal (Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, Kavre).</li>
+              <li><strong>Trial Data:</strong> 2,037 NSAF multi-year (2017–2019) summer maize trial plot observations across Western Nepal (Surkhet, Dang, Doti, Palpa, Salyan, Makwanpur, Kavre).</li>
               <li><strong>DSM Soil Covariates:</strong> NARC Digital Soil Mapping 0.02° spatial rasters (pH, organic matter %, total N %, Olsen P, exchangeable K, sand/silt/clay, elevation).</li>
               <li><strong>Nearest Join:</strong> Trial GPS coordinates linked to nearest DSM soil pixel centroids to pair crop response with local terrain &amp; soil properties.</li>
             </ul>
@@ -600,7 +600,7 @@ export default function Advisory() {
               className="advisory-footnote__link"
             >
               https://doi.org/10.3390/nitrogen6010007
-            </a> based on multi-year NSAF spring maize trials in Western Nepal.
+            </a> based on multi-year NSAF summer maize trials in Western Nepal.
           </div>
         </div>
       </div>

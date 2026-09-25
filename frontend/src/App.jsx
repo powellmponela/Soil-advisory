@@ -19,8 +19,8 @@ export default function App() {
       {/* ── Global header ── */}
       <header className="public-header">
         <div className="header-brand">
-          <span className="kicker">NSAF Spring Maize · Western Nepal</span>
-          <h1>Spring Maize Soil &amp; Nutrient Advisory</h1>
+          <span className="kicker">NSAF Summer Maize · Western Nepal</span>
+          <h1>Summer Maize Soil &amp; Nutrient Advisory</h1>
         </div>
         <nav className="header-tabs" aria-label="Main navigation">
           {TABS.map((t) => (
