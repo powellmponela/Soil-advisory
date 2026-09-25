@@ -321,8 +321,6 @@ function DSMPanel() {
       .catch(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="loading">Loading spatial model data…</div>;
-
   const districts = useMemo(() => {
     const map = {};
     rows.forEach((r) => {
@@ -342,6 +340,8 @@ function DSMPanel() {
       meanNDemand: v.n ? v.ndSum / v.n : null,
     })).sort((a, b) => String(a.district || '').localeCompare(String(b.district || '')));
   }, [rows]);
+
+  if (loading) return <div className="loading">Loading spatial model data…</div>;
 
   return (
     <div className="research-panel">
