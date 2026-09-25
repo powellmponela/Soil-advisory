@@ -1,0 +1,26 @@
+{
+  "title": "Nepal Soil and Nutrient Advisory",
+  "product": "Modelled pixel-level fertilizer target-setting advisory",
+  "source_table": "outputs\\spatial_extrapolation\\western_ae_gains_map_table.csv",
+  "public_csv": "frontend\\public\\advisory_pixels.csv",
+  "public_geojson": "frontend\\public\\advisory_pixels.geojson",
+  "n_records": 11703,
+  "strategies": [
+    "FYM_N60",
+    "GR",
+    "N180",
+    "N210",
+    "N60",
+    "PCU_N120",
+    "PCU_N60",
+    "TIMING_V6_V10",
+    "UDP_N78"
+  ],
+  "target_yields_t_ha": [
+    6.0,
+    8.0,
+    10.0
+  ],
+  "interpretation": "Pixel values are modelled spatial response, nutrient-demand, and target-setting estimates. They are not direct soil measurements or field-specific fertilizer prescriptions.",
+  "support_rule": "Only records with environmental_support == True are included in the public product."
+}
