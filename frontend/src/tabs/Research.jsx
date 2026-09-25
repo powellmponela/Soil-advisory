@@ -731,7 +731,7 @@ export default function Research() {
     <div className="tab-content">
       <section className="hero research-hero">
         <div>
-          <span className="kicker">Technical workspace · NSAF &amp; 4R Stewardship</span>
+          <span className="kicker">Technical workspace · NSAF Spring Maize &amp; 4R Stewardship</span>
           <h2>From trial response to spatial fertilizer target setting</h2>
           <p>
             Localized production system recommendations integrated with national priorities endorsed for each hub.
