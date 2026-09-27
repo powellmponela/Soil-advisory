@@ -711,18 +711,66 @@ function FourREquations() {
     };
   }, [stageParcels, currentStage]);
 
-  // Nitrogen Response Curve data points
-  const nCurveData = useMemo(() => [
-    { nRate: 0, yield: 6.67, label: '0-0-0 Baseline', id: '0-0-0', active: selectedStageId === '0-0-0' || selectedStageId === '0-PK' },
-    { nRate: 60, yield: 8.29, label: 'N60 Reduced', id: 'N60', active: selectedStageId === 'N60' },
-    { nRate: 60, yield: 8.75, label: 'PCU N60 Controlled', id: 'PCU_N60', active: selectedStageId === 'PCU_N60' },
-    { nRate: 60, yield: 8.95, label: 'FYM + N60 Integrated', id: 'FYM_N60', active: selectedStageId === 'FYM_N60' },
-    { nRate: 78, yield: 9.04, label: 'UDP N78 Root-Zone', id: 'UDP_N78', active: selectedStageId === 'UDP_N78' },
-    { nRate: 120, yield: 9.06, label: 'GR Baseline N120', id: 'GR', active: selectedStageId === 'GR' },
-    { nRate: 120, yield: 9.17, label: 'V6/V10 Split Timing', id: 'TIMING_V6_V10', active: selectedStageId === 'TIMING_V6_V10' },
-    { nRate: 180, yield: 9.02, label: 'N180 Plateau', id: 'N180', active: selectedStageId === 'N180' },
-    { nRate: 210, yield: 8.71, label: 'N210 Penalty', id: 'N210', active: selectedStageId === 'N210' },
-  ], [selectedStageId]);
+  const is4RTech = ['PCU_N60', 'UDP_N78', 'FYM_N60', 'TIMING_V6_V10'].includes(selectedStageId);
+
+  // Nitrogen Response Curve:
+  // - Conventional Urea was tested across a 5-rate response series (0, 60, 120, 180, 210 kg N/ha).
+  // - 4R Technologies (PCU, UDP, FYM, Timing) were discrete single-rate evaluations:
+  //   * PCU was evaluated specifically at 60 kg N/ha (and 120 benchmark) — it does NOT have 78, 180, or 210 kg levels.
+  //   * UDP was evaluated specifically at 78 kg N/ha (root-zone briquette) — no 60, 180, or 210 kg levels.
+  //   * FYM + N60 was evaluated specifically at 60 kg N/ha + 6 t/ha manure.
+  const nCurveData = useMemo(() => {
+    const data = [
+      {
+        nRate: 0,
+        conventionalYield: 6.67,
+        label: '0-0-0 Baseline Control',
+        id: '0-0-0',
+        techYield: (selectedStageId === '0-0-0' || selectedStageId === '0-PK') ? 6.67 : null,
+      },
+      {
+        nRate: 60,
+        conventionalYield: 8.29,
+        label: 'N60 Conventional Urea',
+        id: 'N60',
+        techYield: selectedStageId === 'PCU_N60' ? 8.75 : selectedStageId === 'FYM_N60' ? 8.95 : selectedStageId === 'N60' ? 8.29 : null,
+      },
+      {
+        nRate: 120,
+        conventionalYield: 9.06,
+        label: 'GR Conventional Urea (N120)',
+        id: 'GR',
+        techYield: selectedStageId === 'TIMING_V6_V10' ? 9.17 : selectedStageId === 'GR' ? 9.06 : null,
+      },
+      {
+        nRate: 180,
+        conventionalYield: 9.02,
+        label: 'N180 Conventional (Plateau)',
+        id: 'N180',
+        techYield: selectedStageId === 'N180' ? 9.02 : null,
+      },
+      {
+        nRate: 210,
+        conventionalYield: 8.71,
+        label: 'N210 Conventional (Penalty)',
+        id: 'N210',
+        techYield: selectedStageId === 'N210' ? 8.71 : null,
+      },
+    ];
+
+    // If UDP N78 is selected, add it at 78 kg N/ha without breaking the conventional curve
+    if (selectedStageId === 'UDP_N78') {
+      data.splice(2, 0, {
+        nRate: 78,
+        conventionalYield: null,
+        label: 'UDP N78 Root-Zone Briquette',
+        id: 'UDP_N78',
+        techYield: 9.04,
+      });
+    }
+
+    return data;
+  }, [selectedStageId]);
 
   // Efficiency contrast bar data
   const efficiencyBarData = useMemo(() => TRIAL_STAGES_EVIDENCE.map((stg) => ({
@@ -1069,19 +1117,59 @@ function FourREquations() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '1.25rem' }}>
-            {/* Chart 1: Nitrogen-Response Curve */}
+            {/* Chart 1: Nitrogen-Response Curve & 4R Contrast */}
             <div style={{ background: '#ffffff', border: '1px solid #d4e8da', borderRadius: '10px', padding: '1.1rem', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.65rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.4rem', flexWrap: 'wrap', gap: '.4rem' }}>
                 <span style={{ fontWeight: 700, fontSize: '.9rem', color: '#0f4028' }}>
-                  Nitrogen Response Yield Curve (t/ha vs kg N/ha)
+                  {is4RTech
+                    ? `Conventional N Curve vs ${currentStage.treatment.split(' ')[0]} Technology`
+                    : 'Conventional Urea Nitrogen Response Curve (t/ha vs kg N/ha)'}
                 </span>
-                <span style={{ fontSize: '.74rem', background: '#eaf4ee', padding: '.15rem .5rem', borderRadius: '4px', color: '#15803d', fontWeight: 700 }}>
-                  Active Point: {currentStage.nRate} kg N/ha
+                <span style={{
+                  fontSize: '.74rem',
+                  background: is4RTech ? '#fef3c7' : '#eaf4ee',
+                  padding: '.15rem .5rem',
+                  borderRadius: '4px',
+                  color: is4RTech ? '#92400e' : '#15803d',
+                  fontWeight: 700,
+                }}>
+                  {selectedStageId === 'PCU_N60'
+                    ? 'PCU Tested at 60 kg N/ha (Single Rate Evaluation)'
+                    : selectedStageId === 'UDP_N78'
+                    ? 'UDP Tested at 78 kg N/ha (Single Placement Evaluation)'
+                    : selectedStageId === 'FYM_N60'
+                    ? 'FYM Integrated at 60 kg N/ha'
+                    : selectedStageId === 'TIMING_V6_V10'
+                    ? 'V6/V10 Split at 120 kg N/ha'
+                    : `Active Rate: ${currentStage.nRate} kg N/ha`}
                 </span>
               </div>
-              <p style={{ fontSize: '.78rem', color: '#4b6354', margin: '0 0 .75rem' }}>
-                Shows diminishing returns and over-application penalties, highlighting where the selected strategy ({currentStage.treatment.split(' ')[0]}) sits.
+
+              {/* Explicit clarification on trial levels */}
+              <p style={{ fontSize: '.78rem', color: '#4b6354', margin: '0 0 .75rem', lineHeight: '1.45' }}>
+                {selectedStageId === 'PCU_N60' ? (
+                  <span>
+                    <strong>Agronomic Note on Evaluation Levels:</strong> In NSAF trials, <em>Polymer-Coated Urea (PCU)</em> was evaluated specifically at <strong>60 kg N/ha</strong> (and 120 kg benchmark); PCU was <u>not</u> evaluated across the 78, 180, or 210 kg N rates. At 60 kg N/ha, PCU yields <strong>8.75 t/ha (+0.46 t/ha above conventional N60)</strong>, matching full GR yield with 50% less nitrogen.
+                  </span>
+                ) : selectedStageId === 'UDP_N78' ? (
+                  <span>
+                    <strong>Agronomic Note on Evaluation Levels:</strong> <em>Urea Deep Placement (UDP)</em> was evaluated specifically with root-zone briquettes at <strong>78 kg N/ha</strong>; it does not have 60, 180, or 210 kg rate levels. UDP delivers <strong>9.04 t/ha</strong>, matching GR yield while saving 42 kg mineral N/ha.
+                  </span>
+                ) : selectedStageId === 'FYM_N60' ? (
+                  <span>
+                    <strong>Agronomic Note on Evaluation Levels:</strong> <em>FYM + N60</em> was evaluated specifically at <strong>60 kg inorganic N/ha + 6 t/ha manure</strong>; it does not have 180 or 210 kg levels. Yields <strong>8.95 t/ha</strong> (+0.66 t/ha above conventional N60).
+                  </span>
+                ) : selectedStageId === 'TIMING_V6_V10' ? (
+                  <span>
+                    <strong>Agronomic Note on Evaluation Levels:</strong> <em>V6/V10 timing</em> was evaluated at <strong>120 kg N/ha</strong>, yielding <strong>9.17 t/ha</strong> (+0.11 t/ha over standard split).
+                  </span>
+                ) : (
+                  <span>
+                    Conventional inorganic urea was tested across a 5-rate response series (0, 60, 120, 180, 210 kg N/ha), showing diminishing returns beyond 120 kg N/ha and lodging penalties at 210 kg N/ha.
+                  </span>
+                )}
               </p>
+
               <div style={{ width: '100%', height: 290 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={nCurveData} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
@@ -1090,7 +1178,7 @@ function FourREquations() {
                       dataKey="nRate"
                       type="number"
                       domain={[0, 220]}
-                      ticks={[0, 60, 78, 120, 180, 210]}
+                      ticks={selectedStageId === 'UDP_N78' ? [0, 60, 78, 120, 180, 210] : [0, 60, 120, 180, 210]}
                       unit=" kg"
                       tick={{ fill: '#334155', fontSize: 11 }}
                     />
@@ -1101,7 +1189,15 @@ function FourREquations() {
                       tick={{ fill: '#334155', fontSize: 11 }}
                     />
                     <ReTooltip
-                      formatter={(val) => [`${Number(val).toFixed(2)} t/ha`, 'Yield']}
+                      formatter={(val, name) => {
+                        if (name === 'techYield' && val !== null) {
+                          return [`${Number(val).toFixed(2)} t/ha`, `${currentStage.treatment.split(' ')[0]} Technology Point`];
+                        }
+                        if (val !== null) {
+                          return [`${Number(val).toFixed(2)} t/ha`, 'Conventional Urea Rate Curve'];
+                        }
+                        return null;
+                      }}
                       labelFormatter={(n) => `${n} kg N/ha`}
                     />
                     {/* Native Baseline Reference Line */}
@@ -1110,23 +1206,60 @@ function FourREquations() {
                     <ReferenceLine y={9.06} stroke="#059669" strokeDasharray="3 3" label={{ value: 'GR Benchmark (9.06 t/ha)', position: 'insideTopLeft', fill: '#059669', fontSize: 11 }} />
                     {/* Highlighted active N rate line */}
                     <ReferenceLine x={currentStage.nRate} stroke="#e11d48" strokeWidth={1.5} strokeDasharray="2 2" />
+
+                    {/* Smooth Conventional Rate Response Curve (0 -> 60 -> 120 -> 180 -> 210) */}
                     <Line
                       type="monotone"
-                      dataKey="yield"
+                      dataKey="conventionalYield"
                       stroke="#276246"
                       strokeWidth={3}
+                      connectNulls={true}
+                      name="conventionalYield"
                       dot={(props) => {
-                        const isCurrent = props.payload.id === selectedStageId;
+                        const isCur = !is4RTech && props.payload.id === selectedStageId;
+                        if (props.payload.conventionalYield === null) return null;
                         return (
                           <circle
-                            key={props.index}
+                            key={`conv-${props.index}`}
                             cx={props.cx}
                             cy={props.cy}
-                            r={isCurrent ? 7 : 4}
-                            fill={isCurrent ? '#e11d48' : '#276246'}
+                            r={isCur ? 7 : 4}
+                            fill={isCur ? '#e11d48' : '#276246'}
                             stroke="#ffffff"
                             strokeWidth={2}
                           />
+                        );
+                      }}
+                    />
+
+                    {/* Discrete 4R Technology Contrast Point (PCU, UDP, FYM, Timing) */}
+                    <Line
+                      type="monotone"
+                      dataKey="techYield"
+                      stroke="transparent"
+                      name="techYield"
+                      dot={(props) => {
+                        if (props.payload.techYield === null) return null;
+                        return (
+                          <g key={`tech-${props.index}`}>
+                            <circle
+                              cx={props.cx}
+                              cy={props.cy}
+                              r={8}
+                              fill="#e11d48"
+                              stroke="#ffffff"
+                              strokeWidth={2.5}
+                            />
+                            <circle
+                              cx={props.cx}
+                              cy={props.cy}
+                              r={13}
+                              fill="none"
+                              stroke="#e11d48"
+                              strokeWidth={1.5}
+                              strokeDasharray="2 2"
+                            />
+                          </g>
                         );
                       }}
                     />
