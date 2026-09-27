@@ -1211,3 +1211,30 @@ footer {
   color: var(--green);
 }
 
+/* ── Trial Evidence File Upload Dropzone ── */
+.upload-dropzone {
+  border: 2px dashed #a7f3d0;
+  background: #f0f7f3;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.upload-dropzone:hover {
+  border-color: #276246;
+  background: #e6f3eb;
+}
+.upload-dropzone__title {
+  font-weight: 700;
+  color: #153d2b;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+.upload-dropzone__subtitle {
+  font-size: 0.8rem;
+  color: #52665a;
+}
+
+
