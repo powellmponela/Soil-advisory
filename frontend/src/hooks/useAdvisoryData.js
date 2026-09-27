@@ -12,10 +12,9 @@ export function useAdvisoryData() {
   const [loadError, setLoadError] = useState('');
   const [loading, setLoading] = useState(!_cache);
 
-  useEffect(() => {
-    if (_cache) return;          // already fetched
+  const fetchPixels = () => {
     setLoading(true);
-    fetch('/advisory_pixels.geojson')
+    fetch('/advisory_pixels.geojson?t=' + Date.now())
       .then((r) => {
         if (!r.ok) throw new Error('Pixel publication file is not available yet.');
         return r.json();
@@ -31,6 +30,22 @@ export function useAdvisoryData() {
         setLoadError(e.message);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    if (!_cache) {
+      fetchPixels();
+    }
+
+    const handlePublishEvent = () => {
+      _cache = null;
+      fetchPixels();
+    };
+
+    window.addEventListener('advisory-data-published', handlePublishEvent);
+    return () => {
+      window.removeEventListener('advisory-data-published', handlePublishEvent);
+    };
   }, []);
 
   return { features, loadError, loading };

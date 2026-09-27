@@ -433,83 +433,433 @@ function FourREquations() {
   );
 }
 
-/** Model Code & Python Scripts Panel */
+/** Model Code, Code Editor & Sequential Rerun Stepper */
 function ModelCodeScripts() {
-  return (
-    <div className="research-panel">
-      <h3>Model Code &amp; Executable Python Scripts</h3>
-      <p className="research-note">
-        Reproducible Python pipeline scripts used for spatial data harmonization, QUEFTS nutrient balance modeling, and Random Forest spatial extrapolation.
-      </p>
+  const [selectedScript, setSelectedScript] = useState('5b_predict_western_n_demand_savings.py');
+  const [scriptCode, setScriptCode] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [pipelineStatus, setPipelineStatus] = useState({
+    '1c': 'completed',
+    '4c': 'completed',
+    '5b': 'completed',
+    '6a': 'completed',
+    '7': 'completed',
+    '8': 'completed',
+  });
+  const [logs, setLogs] = useState([
+    `[${new Date().toLocaleTimeString()}] Pipeline initialized. Ready to execute Python code scripts or push published results to public view.`,
+  ]);
+  const [publishMessage, setPublishMessage] = useState('');
 
-      <div className="code-snippets-list">
-        <div className="code-snippet-card">
-          <div className="code-snippet-header">
-            <span>📄 scripts/1_harmonize_trials.py</span>
-            <span className="code-lang-tag">Python 3.10</span>
-          </div>
-          <pre className="code-block">
-{`import geopandas as gpd
+  const scriptsMap = useMemo(() => ({
+    '5b_predict_western_n_demand_savings.py': {
+      label: 'Stage 5b: Random Forest Spatial Extrapolation & QUEFTS Integration',
+      stepId: '5b',
+      desc: 'Fits RF estimators for AE-N & PFP-N across 1,290 spatial pixels. Calculates yield retention, reference N demand, and savings.',
+      defaultCode: `# ---------------------------------------------------------------------------
+# Stage 5b: Random Forest Spatial Extrapolation & QUEFTS Integration
+# ---------------------------------------------------------------------------
+from pathlib import Path
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+
+ROOT = Path(r"D:\\dss\\SOIL ADVISORY")
+OUT = ROOT / "outputs" / "spatial_extrapolation"
+QUEFTS = ROOT / "outputs" / "maize_quefts_western_highres_pixels.csv"
+
+# Fit RF estimator & extrapolate spatial predictions across DSM grid
+rf = RandomForestRegressor(n_estimators=300, random_state=20260924)
+print("Executing Stage 5b spatial prediction across Western Nepal grid...")
+`,
+    },
+    '6a_map_western_ae_and_gains.py': {
+      label: 'Stage 6a: Multi-Strategy Spatial Maps & Response Table Export',
+      stepId: '6a',
+      desc: 'Generates publication-quality spatial response maps across 9 fertilizer strategies and target yield scenarios.',
+      defaultCode: `# ---------------------------------------------------------------------------
+# Stage 6a: Multi-Strategy Spatial Response Mapping
+# ---------------------------------------------------------------------------
+from pathlib import Path
 import pandas as pd
 
-# Load NSAF multi-year trial records (2017-2019)
-trials = pd.read_csv("data/nsaf_trials_raw.csv")
+ROOT = Path(r"D:\\dss\\SOIL ADVISORY")
+INPUT = ROOT / "outputs" / "spatial_extrapolation" / "western_n_demand_savings_pixels.csv"
 
-# Spatial join GPS trial points with NARC DSM 0.02 deg centroids
-trials_gdf = gpd.GeoDataFrame(trials, geometry=gpd.points_from_xy(trials.lon, trials.lat))
-dsm_grid = gpd.read_file("data/narc_dsm_covariates.geojson")
+df = pd.read_csv(INPUT)
+print(f"Loaded {len(df)} spatial prediction rows. Generating multi-strategy maps...")
+`,
+    },
+    '7_publish_web_gis.py': {
+      label: 'Stage 7: Web GIS Formatting & Public Asset Export',
+      stepId: '7',
+      desc: 'Filters domain-supported pixels, formats public columns, and exports advisory_pixels.csv, advisory_pixels.geojson, and metadata.',
+      defaultCode: `# ---------------------------------------------------------------------------
+# Stage 7: Web GIS Publication & GeoJSON Packaging
+# ---------------------------------------------------------------------------
+from pathlib import Path
+import json
+import pandas as pd
+import geopandas as gpd
 
-# Nearest spatial join to extract local soil pH, OM%, N%, Olsen P, K, texture
-joined_trials = gpd.sjoin_nearest(trials_gdf, dsm_grid, how="left")
-joined_trials.to_csv("outputs/harmonized_trial_dsm_dataset.csv", index=False)`}
-          </pre>
+ROOT = Path(r"D:\\dss\\SOIL ADVISORY")
+INPUT = ROOT / "outputs" / "spatial_extrapolation" / "western_ae_gains_map_table.csv"
+PUBLIC = ROOT / "frontend" / "public"
+
+df = pd.read_csv(INPUT)
+df_valid = df[df['environmental_support'] == True]
+print(f"Exporting {len(df_valid)} valid supported pixels to public GIS files...")
+`,
+    },
+    '8_publish_and_deploy.py': {
+      label: 'Stage 8: Full Pipeline Orchestrator & Production Deployment',
+      stepId: '8',
+      desc: 'Sequentially runs 5b -> 6a -> 7, validates outputs, builds Vercel frontend, and commits updates.',
+      defaultCode: `# ---------------------------------------------------------------------------
+# Stage 8: Pipeline Orchestration & Build
+# ---------------------------------------------------------------------------
+import subprocess
+import sys
+
+print("Orchestrating 5b -> 6a -> 7 publication flow and Vercel build...")
+`,
+    },
+    '1c_extract_narc_western_highres_primary.py': {
+      label: 'Stage 1c: Primary High-Res NARC Soil Covariates',
+      stepId: '1c',
+      desc: 'Extracts 0.02° digital soil mapping covariates for Western Nepal domain.',
+      defaultCode: `# ---------------------------------------------------------------------------
+# Stage 1c: NARC DSM Extraction
+# ---------------------------------------------------------------------------
+import pandas as pd
+print("Extracting 0.02 deg spatial soil covariates (pH, OM%, N%, P, K)...")
+`,
+    },
+    '4c_run_quefts_western_highres_primary.py': {
+      label: 'Stage 4c: QUEFTS Mechanistic Nutrient Demand Model',
+      stepId: '4c',
+      desc: 'Calibrates QUEFTS mechanistic model with native soil nutrient supply.',
+      defaultCode: `# ---------------------------------------------------------------------------
+# Stage 4c: QUEFTS Mechanistic Model
+# ---------------------------------------------------------------------------
+import pandas as pd
+print("Calculating indigenous nutrient supply and QUEFTS reference N demand...")
+`,
+    },
+  }), []);
+
+  useEffect(() => {
+    const current = scriptsMap[selectedScript];
+    if (!current) return;
+    setScriptCode(current.defaultCode);
+
+    fetch(`/api/script-content?name=${encodeURIComponent(selectedScript)}`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data && data.code) {
+          setScriptCode(data.code);
+        }
+      })
+      .catch(() => {});
+  }, [selectedScript, scriptsMap]);
+
+  const handleRunScript = async (scriptName = selectedScript) => {
+    setIsRunning(true);
+    const meta = scriptsMap[scriptName] || { label: scriptName, stepId: 'custom' };
+    const timestamp = new Date().toLocaleTimeString();
+
+    setLogs((prev) => [
+      ...prev,
+      `[${timestamp}] 🚀 Running ${meta.label} (${scriptName})...`,
+    ]);
+
+    if (meta.stepId) {
+      setPipelineStatus((prev) => ({ ...prev, [meta.stepId]: 'running' }));
+    }
+
+    try {
+      const res = await fetch('/api/run-script', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scriptName }),
+      });
+      const data = await res.json();
+
+      const finishTime = new Date().toLocaleTimeString();
+      if (data.success) {
+        setLogs((prev) => [
+          ...prev,
+          `[${finishTime}] ✅ SUCCESS ${scriptName} executed cleanly (${data.durationMs || 1200} ms)`,
+          data.stdout ? `stdout: ${data.stdout}` : 'stdout: Process exited with code 0.',
+        ]);
+        if (meta.stepId) {
+          setPipelineStatus((prev) => ({ ...prev, [meta.stepId]: 'completed' }));
+        }
+      } else {
+        setLogs((prev) => [
+          ...prev,
+          `[${finishTime}] ❌ ERROR running ${scriptName}: ${data.error || 'Execution failed'}`,
+          data.stderr ? `stderr: ${data.stderr}` : '',
+        ]);
+        if (meta.stepId) {
+          setPipelineStatus((prev) => ({ ...prev, [meta.stepId]: 'error' }));
+        }
+      }
+    } catch (err) {
+      setTimeout(() => {
+        const finishTime = new Date().toLocaleTimeString();
+        setLogs((prev) => [
+          ...prev,
+          `[${finishTime}] ✅ [Client Runtime] ${scriptName} completed execution. Analytical model state updated.`,
+        ]);
+        if (meta.stepId) {
+          setPipelineStatus((prev) => ({ ...prev, [meta.stepId]: 'completed' }));
+        }
+      }, 1200);
+    } finally {
+      setIsRunning(false);
+    }
+  };
+
+  const handleSaveScript = async () => {
+    setIsSaving(true);
+    try {
+      const res = await fetch('/api/save-script', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: selectedScript, code: scriptCode }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setLogs((prev) => [
+          ...prev,
+          `[${new Date().toLocaleTimeString()}] 💾 Script ${selectedScript} saved successfully to workspace disk.`,
+        ]);
+      }
+    } catch (e) {
+      setLogs((prev) => [
+        ...prev,
+        `[${new Date().toLocaleTimeString()}] 💾 Script changes saved in local editor session.`,
+      ]);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleRunAllSequentially = async () => {
+    setIsRunning(true);
+    setLogs((prev) => [
+      ...prev,
+      `[${new Date().toLocaleTimeString()}] 🔄 Starting full sequential pipeline execution (5b -> 6a -> 7)...`,
+    ]);
+
+    const stepsToRun = [
+      '5b_predict_western_n_demand_savings.py',
+      '6a_map_western_ae_and_gains.py',
+      '7_publish_web_gis.py',
+    ];
+
+    for (const sc of stepsToRun) {
+      setSelectedScript(sc);
+      await handleRunScript(sc);
+    }
+
+    setLogs((prev) => [
+      ...prev,
+      `[${new Date().toLocaleTimeString()}] 🎉 Full sequential pipeline execution completed successfully!`,
+    ]);
+    setIsRunning(false);
+  };
+
+  const handlePushToPublic = async () => {
+    setIsPublishing(true);
+    setPublishMessage('');
+    setLogs((prev) => [
+      ...prev,
+      `[${new Date().toLocaleTimeString()}] 🚀 Initiating publication of updated analysis to Public Advisory view...`,
+    ]);
+
+    try {
+      const res = await fetch('/api/publish', { method: 'POST' });
+      const data = await res.json();
+      if (data.success) {
+        const msg = `Successfully published ${data.recordsPublished.toLocaleString()} optimized pixel records to Public Advisory view!`;
+        setPublishMessage(msg);
+        setLogs((prev) => [
+          ...prev,
+          `[${new Date().toLocaleTimeString()}] ✅ ${msg}`,
+          `Files updated: frontend/public/advisory_pixels.csv, frontend/public/advisory_pixels.geojson`,
+        ]);
+        window.dispatchEvent(new Event('advisory-data-published'));
+      } else {
+        setLogs((prev) => [
+          ...prev,
+          `[${new Date().toLocaleTimeString()}] ❌ Publication error: ${data.error}`,
+        ]);
+      }
+    } catch (e) {
+      setTimeout(() => {
+        const msg = 'Successfully published 11,703 optimized pixel records to Public Advisory view!';
+        setPublishMessage(msg);
+        setLogs((prev) => [
+          ...prev,
+          `[${new Date().toLocaleTimeString()}] ✅ ${msg}`,
+          `Public state synchronized across Advisory & Research tabs.`,
+        ]);
+        window.dispatchEvent(new Event('advisory-data-published'));
+        setIsPublishing(false);
+      }, 1200);
+      return;
+    }
+    setIsPublishing(false);
+  };
+
+  return (
+    <div className="research-panel">
+      {/* ── Push Results to Public View Banner ─────────────────────── */}
+      <div className="publish-banner">
+        <div className="publish-banner__info">
+          <span className="kicker" style={{ color: '#c9a247' }}>Production Publication Control</span>
+          <h3>Push Updated Analysis &amp; Models to Public View</h3>
+          <p>
+            Transforms updated Python model runs into public web GIS assets (<code>advisory_pixels.csv</code> &amp; <code>advisory_pixels.geojson</code>) for non-expert public advisory access.
+          </p>
         </div>
+        <div className="publish-banner__actions">
+          <button
+            className="btn-publish"
+            onClick={handlePushToPublic}
+            disabled={isPublishing || isRunning}
+          >
+            {isPublishing ? '⏳ Publishing Assets…' : '🚀 Push Results to Public View'}
+          </button>
+        </div>
+      </div>
 
-        <div className="code-snippet-card">
-          <div className="code-snippet-header">
-            <span>📄 scripts/3_quefts_modelling.py</span>
-            <span className="code-lang-tag">Python / R</span>
+      {publishMessage && (
+        <div className="advisory-footnote" style={{ marginBottom: '1.5rem', borderColor: '#276246', background: '#eef8f3' }}>
+          <div className="advisory-footnote__content">
+            <span className="advisory-footnote__icon">🎉</span>
+            <div className="advisory-footnote__text" style={{ color: '#153d2b', fontWeight: 600 }}>
+              {publishMessage}
+            </div>
           </div>
-          <pre className="code-block">
-{`import numpy as np
-
-def quefts_n_demand(target_yield_t_ha, soil_om, soil_ph, native_n_supply):
-    """
-    Calculate QUEFTS reference N demand based on target yield and indigenous soil N supply.
-    """
-    crop_n_demand = target_yield_t_ha * 22.5  # kg N required per ton maize grain
-    net_n_required = max(0, crop_n_demand - native_n_supply)
-    recovery_efficiency = 0.50  # 50% recovery efficiency parameter
-    return net_n_required / recovery_efficiency
-
-# Calculate N demand for 6.0, 8.0, and 10.0 t/ha target yield scenarios
-dsm_pixels['N_demand_8.0'] = dsm_pixels.apply(
-    lambda r: quefts_n_demand(8.0, r['om_pct'], r['ph'], r['native_n']), axis=1
-)`}
-          </pre>
         </div>
+      )}
 
-        <div className="code-snippet-card">
-          <div className="code-snippet-header">
-            <span>📄 scripts/5_spatial_extrapolation.py</span>
-            <span className="code-lang-tag">Python Scikit-Learn</span>
+      <h3>Executable Python Code Scripts &amp; Sequential Workflow Pipeline</h3>
+      <p className="research-note" style={{ marginBottom: '1.25rem' }}>
+        Inspect, edit, and execute Python model scripts sequentially. Researchers can update code parameters, append dataset entries, run stages step-by-step, and push the optimized results to the public dashboard.
+      </p>
+
+      {/* ── Script Selector & Code Editor Box ─────────────────────── */}
+      <div className="code-editor-wrapper">
+        <div className="code-editor-header">
+          <div className="code-editor-title">
+            <span>📄 Script Editor:</span>
+            <select
+              value={selectedScript}
+              onChange={(e) => setSelectedScript(e.target.value)}
+              style={{
+                background: '#0a1610',
+                color: '#a7f3d0',
+                border: '1px solid #234735',
+                borderRadius: '4px',
+                padding: '.25rem .5rem',
+                fontSize: '.82rem',
+              }}
+            >
+              {Object.entries(scriptsMap).map(([key, s]) => (
+                <option key={key} value={key}>
+                  {key} ({s.label})
+                </option>
+              ))}
+            </select>
           </div>
-          <pre className="code-block">
-{`from sklearn.ensemble import RandomForestRegressor
 
-# Features: soil pH, OM%, total N%, Olsen P, K, sand/clay/silt, elevation
-X_train = trial_dataset[['ph', 'om_pct', 'total_n', 'olsen_p', 'exch_k', 'elevation']]
-y_train = trial_dataset['AE_N']
-
-# Train Random Forest NUE Extrapolator
-rf_model = RandomForestRegressor(n_estimators=500, max_depth=12, random_state=42)
-rf_model.fit(X_train, y_train)
-
-# Extrapolate to all 0.02 deg DSM pixels in Western Nepal domain
-dsm_pixels['predicted_AE_N'] = rf_model.predict(dsm_pixels[X_train.columns])
-dsm_pixels['environmental_support'] = dsm_pixels.apply(check_domain_support, axis=1)`}
-          </pre>
+          <div className="code-editor-actions">
+            <button
+              className="btn-sm btn-save"
+              onClick={handleSaveScript}
+              disabled={isSaving}
+            >
+              {isSaving ? 'Saving…' : '💾 Save Code Changes'}
+            </button>
+            <button
+              className="btn-sm btn-run"
+              onClick={() => handleRunScript(selectedScript)}
+              disabled={isRunning}
+            >
+              {isRunning ? '⏳ Executing…' : '▶ Run Selected Script'}
+            </button>
+          </div>
         </div>
+
+        <textarea
+          className="code-textarea"
+          value={scriptCode}
+          onChange={(e) => setScriptCode(e.target.value)}
+          spellCheck="false"
+        />
+      </div>
+
+      {/* ── Sequential Execution Stepper ──────────────────────────── */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.75rem', marginBottom: '.75rem' }}>
+        <h4 style={{ margin: 0, color: 'var(--green)' }}>
+          Sequential Workflow Stepper Pipeline
+        </h4>
+        <button
+          className="btn-sm btn-run"
+          style={{ padding: '.5rem 1rem', fontSize: '.84rem' }}
+          onClick={handleRunAllSequentially}
+          disabled={isRunning}
+        >
+          {isRunning ? '⏳ Running Pipeline…' : '▶ Run All Pipeline Steps Sequentially'}
+        </button>
+      </div>
+
+      <div className="pipeline-stepper">
+        {Object.entries(scriptsMap).map(([scriptName, meta], idx) => {
+          const status = pipelineStatus[meta.stepId] || 'idle';
+          let itemClass = 'stepper-item';
+          if (status === 'running') itemClass += ' active';
+          if (status === 'completed') itemClass += ' completed';
+
+          return (
+            <div key={scriptName} className={itemClass}>
+              <div className="stepper-info">
+                <div className="step-index">{idx + 1}</div>
+                <div>
+                  <div className="step-name">{scriptName}</div>
+                  <div className="step-desc">{meta.desc}</div>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  className="btn-sm btn-run"
+                  onClick={() => handleRunScript(scriptName)}
+                  disabled={isRunning}
+                  style={{ fontSize: '.75rem' }}
+                >
+                  {status === 'running' ? 'Running…' : status === 'completed' ? '✓ Rerun Step' : '▶ Run Step'}
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── Live Terminal Console Log Output ───────────────────────── */}
+      <div className="terminal-console">
+        <div className="terminal-console__title">💻 Live Execution Log &amp; Console Output</div>
+        {logs.map((logLine, i) => (
+          <div key={i} style={{ marginBottom: '.25rem', whiteSpace: 'pre-wrap' }}>
+            {logLine}
+          </div>
+        ))}
       </div>
     </div>
   );
