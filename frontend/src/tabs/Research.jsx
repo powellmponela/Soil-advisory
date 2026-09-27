@@ -1990,15 +1990,15 @@ function DSMPanel() {
 
       {/* ── Summary Data Table ── */}
       <h4 style={{ marginTop: '1.5rem', color: 'var(--dark)' }}>
-        4. Spatial Pixels &amp; Estimations District Data Table ({currentAttr.label})
+        4. Spatial Parcels &amp; Estimations District Data Table ({currentAttr.label})
       </h4>
       <div className="table-container" style={{ marginTop: '.75rem' }}>
         <table className="data-table">
           <thead>
             <tr>
               <th>District</th>
-              <th>Total Pixels</th>
-              <th>Valid Supported Pixels</th>
+              <th>Total Land Parcels</th>
+              <th>Valid Supported Land Parcels</th>
               <th>RF Predicted {currentAttr.label} ({currentAttr.unit})</th>
               <th>QUEFTS N Demand (kg/ha)</th>
               <th>Mean Soil OM (%)</th>
@@ -2080,7 +2080,7 @@ function ScenarioComparison() {
         </label>
       </div>
       <p className="research-note">
-        Mean values across all modelled, environmentally-supported pixels for target yield = {target} t/ha.
+        Mean values across all modelled, environmentally-supported land parcels for target yield = {target} t/ha.
       </p>
       <ResponsiveContainer width="100%" height={340}>
         <BarChart data={chartData} margin={{ left: 10, right: 10, bottom: 80 }}>
@@ -2100,7 +2100,7 @@ function ScenarioComparison() {
           <thead>
             <tr>
               <th>Strategy</th>
-              <th>Pixels (n)</th>
+              <th>Land Parcels (n)</th>
               <th>Mean N reduction (kg/ha)</th>
               <th>Mean yield diff (t/ha)</th>
               <th>Mean AE-N</th>

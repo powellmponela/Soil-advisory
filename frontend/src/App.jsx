@@ -44,7 +44,7 @@ export default function App() {
       </main>
 
       <footer>
-        Public interface: modelled supported pixels only · Research data and models remain restricted
+        Public interface: modelled supported land parcels only · Research data and models remain restricted
       </footer>
     </div>
   );

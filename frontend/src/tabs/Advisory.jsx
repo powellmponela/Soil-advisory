@@ -198,11 +198,11 @@ function PixelPanel({ row }) {
   if (!row) {
     return (
       <aside className="pixel-result">
-        <span className="kicker">Selected pixel</span>
+        <span className="kicker">Selected parcel</span>
         <h2 className="pixel-heading">Click the map</h2>
         <p className="coordinates">—</p>
         <p className="result-note">
-          Hover over a pixel to preview values. Click to lock the detailed advisory panel.
+          Hover over a parcel to preview values. Click to lock the detailed advisory panel.
         </p>
       </aside>
     );
@@ -232,7 +232,7 @@ function PixelPanel({ row }) {
 
   return (
     <aside className="pixel-result">
-      <span className="kicker">Selected pixel</span>
+      <span className="kicker">Selected parcel</span>
       <h2 className="pixel-heading">{row.palika || row.district || row.pixel_id}</h2>
       <p className="coordinates">
         {fmt(row.lat, 5)}°N, {fmt(row.lon, 5)}°E
@@ -268,7 +268,7 @@ function PixelPanel({ row }) {
           </div>
         )}
         <div>
-          <dt>Pixel support</dt>
+          <dt>Parcel support</dt>
           <dd>{supportLabel}</dd>
         </div>
         <div>
@@ -280,7 +280,7 @@ function PixelPanel({ row }) {
       <p className="result-note">
         {yieldDiff !== null
           ? (yieldDiff >= 0
-            ? `This strategy yields ${fmt(yieldDiff, 2)} t/ha above the government comparator at this pixel.`
+            ? `This strategy yields ${fmt(yieldDiff, 2)} t/ha above the government comparator at this parcel.`
             : `This strategy yields ${fmt(Math.abs(yieldDiff), 2)} t/ha below the government comparator.`)
           : ''
         }
@@ -585,7 +585,7 @@ export default function Advisory() {
       {/* Data warning */}
       {loadError && (
         <section className="data-warning">
-          <strong>Pixel layer not available.</strong>
+          <strong>Parcel layer not available.</strong>
           <span>
             Run scripts/7_publish_web_gis.py, commit the generated files, and push to main.
           </span>
@@ -593,7 +593,7 @@ export default function Advisory() {
       )}
 
       {loading && (
-        <div className="loading">Loading advisory pixels…</div>
+        <div className="loading">Loading advisory parcels…</div>
       )}
 
       {!loading && !loadError && (
@@ -615,9 +615,9 @@ export default function Advisory() {
               <div className="map-caption">
                 <div>
                   <span className="kicker">Queryable GIS layer</span>
-                  <h2>Pixel advisory map</h2>
+                  <h2>Parcel advisory map</h2>
                 </div>
-                <span>{filtered.length.toLocaleString()} supported pixels</span>
+                <span>{filtered.length.toLocaleString()} supported land parcels</span>
               </div>
 
               <MapContainer
@@ -755,7 +755,7 @@ export default function Advisory() {
             <div className="pipeline-card__badge">Stage 6</div>
             <h4 className="pipeline-card__title">Spatial Response &amp; Target-Setting Domains</h4>
             <ul className="pipeline-card__list">
-              <li><strong>Queryable GIS Layer:</strong> Delivers pixel-level fertilizer &amp; yield targets, response domain mapping, predicted yield diff vs GR, and potential mineral-N reduction estimates (e.g. 59 kg N/ha saved under PCU N60; 42 kg N/ha saved under UDP N78).</li>
+              <li><strong>Queryable GIS Layer:</strong> Delivers parcel-level fertilizer &amp; yield targets, response domain mapping, predicted yield diff vs GR, and potential mineral-N reduction estimates (e.g. 59 kg N/ha saved under PCU N60; 42 kg N/ha saved under UDP N78).</li>
             </ul>
           </div>
         </div>
