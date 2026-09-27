@@ -274,7 +274,9 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
   const pfpField = number(row.predicted_PFP_N_kg_grain_per_kg_N);
   const stratN = number(row.strategy_N_rate_kg_ha);
   const support = row.environmental_support;
-  const retains = row.retains_95pct_GR;
+  const retentionFrac = number(row.predicted_yield_retention_fraction);
+  // Absolute predicted yield: baseline GR (9.06 t/ha) + predicted difference
+  const absoluteYield = yieldDiff !== null ? (9.06 + yieldDiff) : null;
 
   const mineralN = nred > 0
     ? `−${fmt(nred, 0)} kg N/ha (potential reduction)`
@@ -285,9 +287,6 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
   const supportLabel = support === true || String(support).toLowerCase() === 'true'
     ? 'Environmentally supported'
     : 'Not supported';
-  const retainLabel = retains === true || String(retains).toLowerCase() === 'true'
-    ? 'Retains ≥95% of GR yield'
-    : 'Below 95% GR yield retention';
 
   return (
     <aside className="pixel-result">
@@ -325,45 +324,56 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
 
       <dl>
         <div>
-          <dt>Expected yield difference vs Gov. Rec.</dt>
+          <dt>Absolute Predicted Yield</dt>
+          <dd style={{ fontWeight: 800, color: '#0f4028' }}>
+            {absoluteYield !== null ? `${fmt(absoluteYield, 2)} t/ha` : '—'}
+          </dd>
+        </div>
+        <div>
+          <dt>Absolute Yield difference vs GR</dt>
           <dd>{yieldDiff === null ? '—' :
             `${yieldDiff >= 0 ? '+' : ''}${fmt(yieldDiff, 2)} t/ha`}</dd>
         </div>
         <div>
-          <dt>Potential mineral-N change</dt>
+          <dt>Absolute mineral-N change</dt>
           <dd>{mineralN}</dd>
         </div>
         {ae !== null && (
           <div>
-            <dt>AE-N (agronomic efficiency)</dt>
+            <dt>Absolute AE-N</dt>
             <dd>{fmt(ae, 1)} kg grain / kg N</dd>
           </div>
         )}
         {pfpField !== null && (
           <div>
-            <dt>PFP-N (partial factor productivity)</dt>
+            <dt>Absolute PFP-N</dt>
             <dd>{fmt(pfpField, 1)} kg grain / kg N</dd>
+          </div>
+        )}
+        {retentionFrac !== null && (
+          <div>
+            <dt>Absolute Yield Retention</dt>
+            <dd>{fmt(retentionFrac * 100, 1)}% of GR</dd>
           </div>
         )}
         <div>
           <dt>Parcel support</dt>
           <dd>{supportLabel}</dd>
         </div>
-        <div>
-          <dt>Yield uncertainty</dt>
-          <dd>{retainLabel}</dd>
-        </div>
       </dl>
 
       <p className="result-note">
+        {absoluteYield !== null && (
+          <span>Absolute predicted grain yield is <strong>{fmt(absoluteYield, 2)} t/ha</strong>. </span>
+        )}
         {yieldDiff !== null
           ? (yieldDiff >= 0
-            ? `This strategy yields ${fmt(yieldDiff, 2)} t/ha above the government comparator at this parcel.`
-            : `This strategy yields ${fmt(Math.abs(yieldDiff), 2)} t/ha below the government comparator.`)
+            ? `This strategy yields +${fmt(yieldDiff, 2)} t/ha above the government comparator (9.06 t/ha) at this parcel.`
+            : `This strategy yields ${fmt(Math.abs(yieldDiff), 2)} t/ha below the government comparator (9.06 t/ha).`)
           : ''
         }
         {nred > 0
-          ? ` Potential mineral-N saving of ${fmt(nred, 0)} kg N/ha for the same target yield.`
+          ? ` Absolute mineral-N saving of ${fmt(nred, 0)} kg N/ha for the same target yield.`
           : nInc > 0
             ? ` The model indicates ${fmt(nInc, 0)} kg N/ha more may be required for the same target yield.`
             : ''

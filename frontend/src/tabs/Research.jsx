@@ -13,8 +13,29 @@ import {
   Tooltip as ReTooltip, Legend, ResponsiveContainer, ScatterChart,
   Scatter, ReferenceLine,
 } from 'recharts';
+import {
+  MapContainer,
+  Rectangle,
+  TileLayer,
+  Tooltip as LeafletTooltip,
+  useMap,
+} from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import { useAdvisoryData } from '../hooks/useAdvisoryData';
 import { fmt, number, STRATEGY_LABELS } from '../helpers';
+
+/** Fly/fit map to bounds whenever bounds change in Research maps */
+function ResearchMapBoundsHelper({ bounds }) {
+  const map = useMap();
+  useEffect(() => {
+    if (bounds && bounds.length) {
+      try {
+        map.fitBounds(bounds, { padding: [20, 20], maxZoom: 11 });
+      } catch (_) {}
+    }
+  }, [map, bounds]);
+  return null;
+}
 
 // ---------------------------------------------------------------------------
 // Internal helpers
@@ -454,8 +475,9 @@ function FourREquations() {
   const TRIAL_STAGES_EVIDENCE = useMemo(() => [
     {
       id: '0-0-0',
+      stageTag: 'Stage 1: Native Baseline',
       stageName: 'Stage 1: Native Baseline Control',
-      treatment: 'N0–P0–K0 (0-0-0)',
+      treatment: 'N0–P0–K0 (0-0-0 Native Control)',
       nRate: 0,
       yn: 6.67,
       y0: 6.67,
@@ -463,13 +485,16 @@ function FourREquations() {
       aeN: 0,
       pfpN: 0,
       nSavings: 0,
+      formula: 'Y_0 = f(Native Soil Nutrients) = f(INS, IPS, IKS) = 6.67 t/ha',
+      formulaDesc: 'Quantifies native unfertilized soil background productivity without any inorganic fertilizer or manure application. Serves as the fundamental reference comparator (Y_0 = 6.67 t/ha) for all fertilizer response calculations.',
       evidenceNote: 'Native unfertilized soil background productivity. Background grain yield without any fertilizer or manure inputs (observed trial spread: 3.3 to 7.2 t/ha).',
       citation: 'Pandit et al. (2025) Table 1 Design Matrix',
     },
     {
       id: '0-PK',
+      stageTag: 'Stage 2: Nutrient Omission',
       stageName: 'Stage 2: Nutrient Omission (-N)',
-      treatment: 'N0–P60–K40 (-N / 0-PK)',
+      treatment: 'N0–P60–K40 (-N / 0-PK Omission)',
       nRate: 0,
       yn: 6.67,
       y0: 6.67,
@@ -477,11 +502,14 @@ function FourREquations() {
       aeN: 0,
       pfpN: 0,
       nSavings: 0,
+      formula: 'ΔY_-N = Y_GR(N120-P60-K40) - Y_0PK(N0-P60-K40) = 9.06 - 6.67 = +2.39 t/ha',
+      formulaDesc: 'Isolates the specific crop yield limitation attributable to Nitrogen omission while maintaining adequate Phosphorus and Potassium background. Confirms N as the absolute primary yield-limiting nutrient across Western Nepal.',
       evidenceNote: 'Evaluates crop response to P+K background in the complete absence of N. Confirms N as the primary yield-limiting nutrient across Western Nepal maize soils.',
       citation: 'Pandit et al. (2025) Omission Trials',
     },
     {
       id: 'GR',
+      stageTag: 'Stage 3: Standard Recommendation',
       stageName: 'Stage 3: Standard Government Recommendation',
       treatment: 'N120–P60–K40 (GR Baseline)',
       nRate: 120,
@@ -491,11 +519,14 @@ function FourREquations() {
       aeN: 19.9,
       pfpN: 75.5,
       nSavings: 0,
+      formula: 'ΔY_N = Y_N_fertilized - Y_0_baseline = 9.06 - 6.67 = +2.39 t/ha | AE-N = 19.9 kg/kg',
+      formulaDesc: 'Standard blanket Government Recommendation (120-60-40 kg/ha split knee/shoulder). Serves as reference benchmark for yield (9.06 t/ha), AE-N (19.9 kg/kg N), and PFP-N (75.5 kg/kg).',
       evidenceNote: 'Standard blanket Government Recommendation (120-60-40 kg/ha split knee/shoulder). Serves as reference benchmark for yield (9.06 t/ha), AE-N, and N-savings.',
       citation: 'Pandit et al. (2025) Table 1 & NSAF Benchmarks',
     },
     {
       id: 'N60',
+      stageTag: 'Stage 4: 4R Rate Optimization',
       stageName: 'Stage 4: 4R Rate - 50% Mineral N Reduction',
       treatment: 'N60–P60–K40 (Reduced N Rate)',
       nRate: 60,
@@ -505,11 +536,14 @@ function FourREquations() {
       aeN: 27.0,
       pfpN: 138.2,
       nSavings: 60,
+      formula: 'AE-N = (Y_N60 - Y_0) / N_rate = (8.29 - 6.67) * 1000 / 60 = 27.0 kg grain / kg N',
+      formulaDesc: 'Measures additional grain yield per kilogram of inorganic N applied relative to unfertilized 0-0-0 baseline. N60 boosts AE-N by +35% over N120 (27.0 vs 19.9 kg/kg) while saving 60 kg mineral N/ha.',
       evidenceNote: '50% mineral N cut maintains 91.5% of GR yield (only 0.77 t/ha penalty) while boosting AE-N by +35% (27.0 vs 19.9 kg/kg N) and saving 60 kg N/ha.',
       citation: 'Pandit et al. (2025) Nitrogen Rate Response',
     },
     {
       id: 'PCU_N60',
+      stageTag: 'Stage 5: 4R Source - PCU',
       stageName: 'Stage 5: 4R Source - Polymer-Coated Urea (PCU)',
       treatment: 'PCU N60–P60–K40 (Controlled Release)',
       nRate: 60,
@@ -519,11 +553,14 @@ function FourREquations() {
       aeN: 34.7,
       pfpN: 145.8,
       nSavings: 59,
+      formula: 'NSV_tech = N_GR(120) - N_PCU(60) = 59 kg N/ha saved [Y_PCU 8.75 ≈ Y_GR 9.06 t/ha]',
+      formulaDesc: 'Controlled polymer-coated release synchronizes nitrogen supply with plant demand, drastically reducing ammonia volatilization and leaching. Delivers 8.75 t/ha yield with 50% less mineral N.',
       evidenceNote: 'Controlled release N fertilizer synchronizes release with crop demand, cutting volatilization/leaching. Matches GR yield with 50% N cut (saving 59 kg N/ha).',
       citation: 'Pandit et al. (2022) Heliyon & Pandit et al. (2025)',
     },
     {
       id: 'UDP_N78',
+      stageTag: 'Stage 6: 4R Placement - UDP',
       stageName: 'Stage 6: 4R Placement - Urea Deep Placement (UDP)',
       treatment: 'UDP N78–P60–K40 (Root-Zone Briquette)',
       nRate: 78,
@@ -533,11 +570,14 @@ function FourREquations() {
       aeN: 30.4,
       pfpN: 115.9,
       nSavings: 42,
+      formula: 'NSV_UDP = N_GR(120) - N_UDP(78) = 42 kg N/ha saved [ΔY = -0.02 t/ha ≈ 0 yield loss]',
+      formulaDesc: 'Root-zone deep placement (7-10 cm depth) of supergranule briquettes eliminates surface floodwater ammonia volatilization, saving 42 kg N/ha (35% cut) with virtually zero yield penalty.',
       evidenceNote: 'Root-zone deep briquette placement at 7-10 cm depth dramatically reduces ammonia volatilization, saving 42 kg N/ha (35% cut) with virtually zero yield penalty (-0.02 t/ha).',
       citation: 'Pandit et al. (2022) Soil Systems & Pandit et al. (2025)',
     },
     {
       id: 'TIMING_V6_V10',
+      stageTag: 'Stage 7: 4R Timing - Split',
       stageName: 'Stage 7: 4R Timing - Synchronized Growth Stage Timing',
       treatment: 'N120–P60–K40 at V6/V10 Split Timing',
       nRate: 120,
@@ -547,11 +587,14 @@ function FourREquations() {
       aeN: 20.8,
       pfpN: 76.4,
       nSavings: 41,
+      formula: 'ΔY_timing = Y_V6/V10_split - Y_conventional_split = 9.17 - 9.06 = +0.11 t/ha gain',
+      formulaDesc: 'Isolates the net yield gain achieved by synchronizing split N applications with peak maize vegetative uptake stages (V6: 6-leaf, V10: 10-leaf) at identical total fertilizer rates.',
       evidenceNote: 'Synchronizing split application at V6 (6-leaf) and V10 (10-leaf) peak N uptake stages yields +0.11 to +0.87 t/ha over standard knee/shoulder timing.',
       citation: 'Pandit et al. (2025) 4R Timing Contrast',
     },
     {
       id: 'FYM_N60',
+      stageTag: 'Stage 8: Organic-Mineral Integration',
       stageName: 'Stage 8: Organic-Mineral Integration',
       treatment: 'FYM 6 t/ha + N60–P60–K40',
       nRate: 60,
@@ -561,11 +604,14 @@ function FourREquations() {
       aeN: 38.0,
       pfpN: 149.2,
       nSavings: 56,
+      formula: 'NSV_FYM = N_GR(120) - N_mineral(60) = 60 kg mineral N/ha saved (50% reduction)',
+      formulaDesc: 'Tests integrated soil fertility management combining 6 t/ha farmyard manure with 60 kg inorganic N, maintaining 8.95 t/ha yield while replenishing soil organic matter and micronutrients.',
       evidenceNote: 'Integrating 6 t/ha farmyard manure with 60 kg inorganic N achieves 8.95 t/ha yield, replacing 56 kg/ha mineral N and boosting soil organic matter and moisture retention.',
       citation: 'Pandit et al. (2025) Organic-Mineral Integration',
     },
     {
       id: 'N180',
+      stageTag: 'Stage 9: Over-application Plateau',
       stageName: 'Stage 9: Over-application Plateau Test',
       treatment: 'N180–P60–K40 (Over-fertilization)',
       nRate: 180,
@@ -575,11 +621,14 @@ function FourREquations() {
       aeN: 13.1,
       pfpN: 50.1,
       nSavings: -60,
+      formula: 'Plateau Check: ΔY(N180 - N120) = 9.02 - 9.06 = -0.04 t/ha | AE-N collapses to 13.1 kg/kg',
+      formulaDesc: 'Demonstrates agronomic response plateau where adding +60 kg N/ha beyond GR produces zero yield gain (-0.04 t/ha) while AE-N drops by -34%, leading to financial waste and nitrate leaching.',
       evidenceNote: 'Yield plateau reached at 9.02 t/ha (no yield benefit over N120). AE-N drops by -34% (13.1 kg/kg), causing economic waste and environmental leaching risks.',
       citation: 'Pandit et al. (2025) N Response Plateau',
     },
     {
       id: 'N210',
+      stageTag: 'Stage 10: Luxury Consumption & Penalty',
       stageName: 'Stage 10: Luxury Consumption & Penalty Test',
       treatment: 'N210–P60–K40 (Extreme Excess)',
       nRate: 210,
@@ -589,12 +638,16 @@ function FourREquations() {
       aeN: 9.7,
       pfpN: 41.5,
       nSavings: -90,
+      formula: 'Penalty Check: ΔY(N210 - N120) = 8.71 - 9.06 = -0.35 t/ha | AE-N collapses to 9.7 kg/kg',
+      formulaDesc: 'Excessive nitrogen inputs trigger physiological penalties: lodging, excessive vegetative growth, delayed maturity, and reduced harvest index, causing yield to drop to 8.71 t/ha.',
       evidenceNote: 'Excessive nitrogen causes slight yield decline (8.71 t/ha) and severe efficiency collapse (-52% AE-N reduction to 9.7 kg/kg) from lodging and vegetative imbalance.',
       citation: 'Pandit et al. (2025) N Over-application Penalties',
     },
   ], []);
 
   const [selectedStageId, setSelectedStageId] = useState('GR');
+  const [explorerView, setExplorerView] = useState('all'); // 'all' | 'graphs' | 'table' | 'map'
+  const { features, loading: featuresLoading } = useAdvisoryData();
 
   const [params, setParams] = useState({
     yn: 9.06,           // t/ha yield with N (GR N120)
@@ -617,6 +670,70 @@ function FourREquations() {
     () => TRIAL_STAGES_EVIDENCE.find((s) => s.id === selectedStageId) || TRIAL_STAGES_EVIDENCE[2],
     [TRIAL_STAGES_EVIDENCE, selectedStageId]
   );
+
+  // Filter parcels for the selected strategy (or sampled baseline for 0-0-0 / 0-PK)
+  const stageParcels = useMemo(() => {
+    if (!features || !features.length) return [];
+    if (selectedStageId === '0-0-0' || selectedStageId === '0-PK') {
+      return features.slice(0, 1300);
+    }
+    const matched = features.filter((r) => r.strategy === selectedStageId);
+    return matched.length > 0 ? matched : features.slice(0, 1300);
+  }, [features, selectedStageId]);
+
+  // Compute spatial bounds for Leaflet map
+  const mapBounds = useMemo(() => {
+    const lats = stageParcels.map((r) => number(r.lat)).filter((n) => n !== null);
+    const lons = stageParcels.map((r) => number(r.lon)).filter((n) => n !== null);
+    if (!lats.length || !lons.length) return null;
+    return [
+      [Math.min(...lats) - 0.05, Math.min(...lons) - 0.05],
+      [Math.max(...lats) + 0.05, Math.max(...lons) + 0.05],
+    ];
+  }, [stageParcels]);
+
+  // Spatial metrics reporting absolute values
+  const spatialStats = useMemo(() => {
+    if (!stageParcels.length) return null;
+    const count = stageParcels.length;
+    const avgYieldDiff = stageParcels.reduce((acc, r) => acc + (number(r.predicted_yield_difference_from_GR_t_ha) || 0), 0) / count;
+    const validAE = stageParcels.map((r) => number(r.predicted_AE_N_kg_grain_per_kg_N)).filter((n) => n !== null);
+    const avgAE = validAE.length ? validAE.reduce((a, b) => a + b, 0) / validAE.length : currentStage.aeN;
+    const avgRed = stageParcels.reduce((acc, r) => acc + (number(r.N_reduction_for_same_target_yield_kg_ha) || 0), 0) / count;
+    const meanAbsoluteYield = 9.06 + avgYieldDiff;
+
+    return {
+      count,
+      avgYieldDiff,
+      avgAE,
+      avgRed,
+      meanAbsoluteYield,
+    };
+  }, [stageParcels, currentStage]);
+
+  // Nitrogen Response Curve data points
+  const nCurveData = useMemo(() => [
+    { nRate: 0, yield: 6.67, label: '0-0-0 Baseline', id: '0-0-0', active: selectedStageId === '0-0-0' || selectedStageId === '0-PK' },
+    { nRate: 60, yield: 8.29, label: 'N60 Reduced', id: 'N60', active: selectedStageId === 'N60' },
+    { nRate: 60, yield: 8.75, label: 'PCU N60 Controlled', id: 'PCU_N60', active: selectedStageId === 'PCU_N60' },
+    { nRate: 60, yield: 8.95, label: 'FYM + N60 Integrated', id: 'FYM_N60', active: selectedStageId === 'FYM_N60' },
+    { nRate: 78, yield: 9.04, label: 'UDP N78 Root-Zone', id: 'UDP_N78', active: selectedStageId === 'UDP_N78' },
+    { nRate: 120, yield: 9.06, label: 'GR Baseline N120', id: 'GR', active: selectedStageId === 'GR' },
+    { nRate: 120, yield: 9.17, label: 'V6/V10 Split Timing', id: 'TIMING_V6_V10', active: selectedStageId === 'TIMING_V6_V10' },
+    { nRate: 180, yield: 9.02, label: 'N180 Plateau', id: 'N180', active: selectedStageId === 'N180' },
+    { nRate: 210, yield: 8.71, label: 'N210 Penalty', id: 'N210', active: selectedStageId === 'N210' },
+  ], [selectedStageId]);
+
+  // Efficiency contrast bar data
+  const efficiencyBarData = useMemo(() => TRIAL_STAGES_EVIDENCE.map((stg) => ({
+    name: stg.treatment.split(' ')[0],
+    fullName: stg.treatment,
+    id: stg.id,
+    aeN: stg.aeN,
+    pfpN: stg.pfpN,
+    yield: stg.yn,
+    isSelected: stg.id === selectedStageId,
+  })), [TRIAL_STAGES_EVIDENCE, selectedStageId]);
 
   const handleSelectStage = (stageId) => {
     setSelectedStageId(stageId);
@@ -795,182 +912,530 @@ function FourREquations() {
         )}
       </div>
 
-      <h3>Agronomic Mathematical Equations &amp; Estimations</h3>
-      <p className="research-note" style={{ marginBottom: '1.25rem' }}>
-        Scientific mathematical formulations structured in experimental order: starting from native unfertilized baseline control (0-0-0), nutrient omission (-N / 0-PK), net fertilizer response, and 4R nutrient stewardship (Rate, Source, Timing, Placement).
-      </p>
-
-      <div className="equations-grid">
-        {/* ── CARD 1: Unfertilized Control (0-0-0) ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag" style={{ background: '#e0f2fe', color: '#0369a1' }}>Stage 1: Native Baseline (0-0-0)</span>
-            <h4>Y_0 (Unfertilized Native Soil Background Productivity)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>Y_0 = f(Native Soil Nutrients) = f(INS, IPS, IKS)</code>
-          </div>
-          <div style={{ background: '#f0f9ff', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#0369a1', marginBottom: '.5rem', border: '1px solid #bae6fd' }}>
-            📊 Native Baseline Yield Y_0: {fmt(params.y0, 2)} t/ha (Observed trial spread: 3.3 to 7.2 t/ha)
-          </div>
-          <p className="equation-card__desc">
-            Measures native soil fertility and background grain production without any inorganic fertilizer or manure application. Serves as the fundamental reference comparator ($Y_0$) for all response calculations.
+      {/* ── SELECTION-DRIVEN MATHEMATICAL FORMULATION & ESTIMATION CARD ── */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginTop: '1.5rem', marginBottom: '1rem' }}>
+        <div>
+          <h3 style={{ margin: 0, color: 'var(--green)' }}>Agronomic Mathematical Formulation &amp; Interactive Explorer</h3>
+          <p className="research-note" style={{ margin: '.35rem 0 0' }}>
+            Dynamic agronomic equations driven directly by the active stage selection. Explore absolute response curves, empirical contrast matrices, and spatial land parcel distributions across Western Nepal.
           </p>
         </div>
 
-        {/* ── CARD 2: Nutrient Omission (-N / 0-PK) ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag" style={{ background: '#fef3c7', color: '#92400e' }}>Stage 2: Nutrient Omission (-N)</span>
-            <h4>Y_0PK &amp; ΔY_-N (Nitrogen Limitation &amp; Response to PK Background)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>ΔY_-N_penalty = Y_GR(N120-P60-K40) - Y_0PK(N0-P60-K40)</code>
-          </div>
-          <div style={{ background: '#fffbeb', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#92400e', marginBottom: '.5rem', border: '1px solid #fde68a' }}>
-            📊 Calculated N Response over 0-PK: +{fmt(calculated.deltaY0pk, 2)} t/ha (Y_GR {fmt(params.yn, 2)} vs Y_0PK {fmt(params.y0pk, 2)} t/ha)
-          </div>
-          <p className="equation-card__desc">
-            Isolates specific crop yield limitation attributable to Nitrogen omission while maintaining adequate Phosphorus and Potassium background.
-          </p>
-        </div>
-
-        {/* ── CARD 3: Net Fertilizer N Response (ΔY_N) ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">Stage 3: Total Response</span>
-            <h4>ΔY_N (Net Nitrogen Yield Gain over 0-0-0 Baseline)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>ΔY_N = Y_N_fertilized - Y_0_unfertilized_baseline</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 Calculated Yield Gain ΔY_N: +{fmt(calculated.deltaY000, 2)} t/ha grain gain over native 0-0-0
-          </div>
-          <p className="equation-card__desc">
-            Quantifies the absolute grain yield increase resulting from standard Government Recommendation (GR: 120-60-40 kg/ha) above native unfertilized soil background.
-          </p>
-        </div>
-
-        {/* ── CARD 4: 4R Rate: Agronomic Efficiency (AE-N) ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">4R Right Rate</span>
-            <h4>AE-N (Agronomic Efficiency of Nitrogen)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>AE-N = (Y_yield_with_N - Y_0_without_N) / N_nitrogen_rate</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 Calculated AE-N: {fmt(calculated.aeN, 1)} kg grain / kg N (N120) | {fmt(calculated.aeNOpt, 1)} kg/kg (N60)
-          </div>
-          <p className="equation-card__desc">
-            Measures additional grain yield (kg grain) produced per kilogram of inorganic N applied relative to unfertilized 0-0-0 baseline. N60 boosts AE-N by +35% over N120.
-          </p>
-        </div>
-
-        {/* ── CARD 5: 4R Rate: Partial Factor Productivity (PFP-N) ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">4R Productivity</span>
-            <h4>PFP-N (Partial Factor Productivity of N)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>PFP-N = Y_total_harvested_grain / N_mineral_nitrogen_rate</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 Calculated PFP-N: {fmt(calculated.pfpN120, 1)} kg/kg (N120 GR) | {fmt(calculated.pfpN, 1)} kg grain / kg mineral N (N60)
-          </div>
-          <p className="equation-card__desc">
-            Calculates total harvested grain (kg grain) produced per kilogram of mineral N applied. Essential metric for comparing enhanced-efficiency sources (PCU) and reduced N rates.
-          </p>
-        </div>
-
-        {/* ── CARD 6: 4R Timing: V6/V10 Split ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">4R Right Timing</span>
-            <h4>ΔY_timing (Growth Stage Application Timing Response)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>ΔY_timing = Y_V6/V10_split - Y_knee/shoulder_split_at_same_N_rate</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 Calculated ΔY_timing: +{fmt(calculated.deltaTiming, 2)} t/ha gain at V6/V10 split
-          </div>
-          <p className="equation-card__desc">
-            Isolates the net yield gain achieved by synchronizing N applications with peak plant uptake stages (V6 and V10) at identical total fertilizer rates.
-          </p>
-        </div>
-
-        {/* ── CARD 7: 4R Source & Placement: UDP & PCU ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag" style={{ background: '#f3e8ff', color: '#7e22ce' }}>4R Source &amp; Placement</span>
-            <h4>NSV_tech (N-Saving Value of UDP Briquette &amp; PCU Controlled Release)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>N_saved = N_GR(120 kg/ha) - N_tech(60–78 kg/ha)  [where Y_tech ≈ Y_GR]</code>
-          </div>
-          <div style={{ background: '#faf5ff', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#7e22ce', marginBottom: '.5rem', border: '1px solid #e9d5ff' }}>
-            📊 PCU N60 Saves 59 kg N/ha (133 kg/kg PFP-N) | UDP N78 Saves 42 kg N/ha (~0 yield loss)
-          </div>
-          <p className="equation-card__desc">
-            Root-zone deep placement (UDP) and controlled polymer-coated release (PCU) prevent ammonia volatilization and leaching, matching GR yield with 35–50% less mineral N.
-          </p>
-        </div>
-
-        {/* ── CARD 8: Organic-Mineral Integration ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">Integrated Soil Fertility</span>
-            <h4>NSV_reduced_N (Farmyard Manure N-Saving Value)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>NSV_reduced_N = Y_6t_FYM_+_N60-P60-K40 - Y_N120-P60-K40_baseline</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 Calculated N Savings: {fmt(calculated.nSavingsFym, 0)} kg mineral N/ha saved (50% reduction)
-          </div>
-          <p className="equation-card__desc">
-            Tests whether integrating 6 t/ha farmyard manure with 60 kg N/ha maintains yield relative to full N120-P60-K40 mineral baseline.
-          </p>
-        </div>
-
-        {/* ── CARD 9: QUEFTS Mechanistic Model ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">QUEFTS Mechanistic Model</span>
-            <h4>N_QUEFTS (Target-Yield Reference N Demand)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>N_demand = (Y_target_yield - Y_0_indigenous_soil_supply) / (AE-N * RE_N)</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 Calculated QUEFTS Demand: {fmt(calculated.queftsNDemand, 0)} kg N/ha for {params.targetYield} t/ha target
-          </div>
-          <p className="equation-card__desc">
-            Forecasts reference mineral N requirement for regional target yields (6, 8, 10 t/ha) based on native soil supply derived from DSM soil properties.
-          </p>
-        </div>
-
-        {/* ── CARD 10: Random Forest Extrapolator ── */}
-        <div className="equation-card">
-          <div className="equation-card__header">
-            <span className="equation-card__tag">Machine Learning Spatial Estimator</span>
-            <h4>RF_AE-N (Random Forest Extrapolator)</h4>
-          </div>
-          <div className="equation-card__formula">
-            <code>AE-N_hat = (1 / B) * Σ_b=1..B f_b(X_soil, terrain, climate)</code>
-          </div>
-          <div style={{ background: '#f5f9f6', padding: '.5rem .75rem', borderRadius: '6px', fontSize: '.82rem', fontWeight: 700, color: '#153d2b', marginBottom: '.5rem', border: '1px solid #bce3cc' }}>
-            📊 RF Model Estimator R² = 0.842 | RMSE = 3.22 kg/kg
-          </div>
-          <p className="equation-card__desc">
-            Ensemble decision trees trained on trial treatment response contrasts and NARC DSM soil/terrain covariates to predict spatial AE-N surfaces.
-          </p>
+        {/* Explorer View Mode Switcher */}
+        <div style={{ display: 'flex', gap: '.35rem', background: '#f0f7f3', padding: '.3rem', borderRadius: '8px', border: '1px solid #cce5d5' }}>
+          <button
+            type="button"
+            onClick={() => setExplorerView('all')}
+            style={{
+              padding: '.4rem .75rem',
+              fontSize: '.8rem',
+              fontWeight: 700,
+              borderRadius: '6px',
+              border: 'none',
+              background: explorerView === 'all' ? '#0f4028' : 'transparent',
+              color: explorerView === 'all' ? '#ffffff' : '#276246',
+              cursor: 'pointer',
+              transition: 'all .2s ease',
+            }}
+          >
+            📊 All Explorers
+          </button>
+          <button
+            type="button"
+            onClick={() => setExplorerView('graphs')}
+            style={{
+              padding: '.4rem .75rem',
+              fontSize: '.8rem',
+              fontWeight: 700,
+              borderRadius: '6px',
+              border: 'none',
+              background: explorerView === 'graphs' ? '#0f4028' : 'transparent',
+              color: explorerView === 'graphs' ? '#ffffff' : '#276246',
+              cursor: 'pointer',
+              transition: 'all .2s ease',
+            }}
+          >
+            📈 Graphs &amp; Curves
+          </button>
+          <button
+            type="button"
+            onClick={() => setExplorerView('table')}
+            style={{
+              padding: '.4rem .75rem',
+              fontSize: '.8rem',
+              fontWeight: 700,
+              borderRadius: '6px',
+              border: 'none',
+              background: explorerView === 'table' ? '#0f4028' : 'transparent',
+              color: explorerView === 'table' ? '#ffffff' : '#276246',
+              cursor: 'pointer',
+              transition: 'all .2s ease',
+            }}
+          >
+            📋 Empirical Table
+          </button>
+          <button
+            type="button"
+            onClick={() => setExplorerView('map')}
+            style={{
+              padding: '.4rem .75rem',
+              fontSize: '.8rem',
+              fontWeight: 700,
+              borderRadius: '6px',
+              border: 'none',
+              background: explorerView === 'map' ? '#0f4028' : 'transparent',
+              color: explorerView === 'map' ? '#ffffff' : '#276246',
+              cursor: 'pointer',
+              transition: 'all .2s ease',
+            }}
+          >
+            🗺️ Spatial Map
+          </button>
         </div>
       </div>
+
+      {/* ── SINGLE ACTIVE SELECTION FORMULATION CARD (NO REPETITION) ── */}
+      <div className="equation-card" style={{ marginBottom: '1.75rem', border: '2px solid #276246', background: '#fbfdfc', boxShadow: '0 4px 14px rgba(15, 64, 40, 0.08)' }}>
+        <div className="equation-card__header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '.5rem' }}>
+          <span className="equation-card__tag" style={{ background: '#276246', color: '#ffffff', fontWeight: 800, padding: '.3rem .75rem', borderRadius: '4px' }}>
+            {currentStage.stageName}
+          </span>
+          <span style={{ fontSize: '.78rem', fontWeight: 800, color: '#166534', background: '#dcfce7', padding: '.25rem .65rem', borderRadius: '4px', border: '1px solid #86efac' }}>
+            Active Agronomic Strategy
+          </span>
+        </div>
+
+        <h4 style={{ margin: '.6rem 0 .5rem', fontSize: '1.2rem', color: '#0d2116' }}>
+          {currentStage.treatment} — Mathematical Formulation &amp; Absolute Evidence
+        </h4>
+
+        {/* High-Contrast Equation Formulation Box */}
+        <div className="equation-card__formula" style={{ margin: '.6rem 0 .9rem', background: '#eaf4ee', border: '1.5px solid #276246', borderRadius: '8px', padding: '.85rem 1.1rem' }}>
+          <code style={{ fontSize: '1.02rem', fontWeight: 800, color: '#064e3b', background: 'transparent' }}>
+            {currentStage.formula}
+          </code>
+        </div>
+
+        {/* Absolute Metrics Strip */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '.65rem', margin: '.75rem 0' }}>
+          <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '6px', padding: '.6rem .75rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Absolute Yield (Y_N)</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f4028' }}>{fmt(currentStage.yn, 2)} t/ha</div>
+          </div>
+          <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '6px', padding: '.6rem .75rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Gain vs 0-0-0 (ΔY_0)</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#15803d' }}>+{fmt(Math.max(0, currentStage.yn - 6.67), 2)} t/ha</div>
+          </div>
+          <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '6px', padding: '.6rem .75rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Gain vs 0-PK (ΔY_0PK)</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#15803d' }}>+{fmt(Math.max(0, currentStage.yn - 6.67), 2)} t/ha</div>
+          </div>
+          <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '6px', padding: '.6rem .75rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Absolute AE-N</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f4028' }}>
+              {fmt(currentStage.aeN, 1)} <small style={{ fontSize: '.68rem', fontWeight: 600 }}>kg/kg N</small>
+            </div>
+          </div>
+          <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '6px', padding: '.6rem .75rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Absolute PFP-N</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f4028' }}>
+              {fmt(currentStage.pfpN, 1)} <small style={{ fontSize: '.68rem', fontWeight: 600 }}>kg/kg N</small>
+            </div>
+          </div>
+          <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '6px', padding: '.6rem .75rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Mineral N Saved</div>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: currentStage.nSavings > 0 ? '#15803d' : currentStage.nSavings < 0 ? '#b91c1c' : '#4b6354' }}>
+              {currentStage.nSavings > 0 ? `+${currentStage.nSavings} kg/ha` : `${currentStage.nSavings} kg/ha`}
+            </div>
+          </div>
+        </div>
+
+        <p className="equation-card__desc" style={{ marginTop: '.65rem', color: '#1c2922', fontSize: '.88rem', lineHeight: '1.55' }}>
+          {currentStage.formulaDesc}
+        </p>
+        <div style={{ marginTop: '.6rem', fontSize: '.82rem', color: '#3f5647', borderTop: '1px dashed #d4e8da', paddingTop: '.55rem' }}>
+          <strong>Stage 1 Empirical Trial Calibration:</strong> {currentStage.evidenceNote} — <span style={{ fontWeight: 700, color: '#0f4028' }}>{currentStage.citation}</span>
+        </div>
+      </div>
+
+      {/* ── EXPLORER SECTION 1: GRAPHS & RESPONSE PROFILES ── */}
+      {(explorerView === 'all' || explorerView === 'graphs') && (
+        <div style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.85rem' }}>
+            <h4 style={{ margin: 0, color: 'var(--green)' }}>📈 Absolute Nitrogen Response Curves &amp; Efficiency Contrasts</h4>
+            <span style={{ fontSize: '.76rem', color: '#4b6354' }}>
+              Calibrated from 0-0-0 baseline to 210 kg N/ha (Pandit et al. 2025)
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '1.25rem' }}>
+            {/* Chart 1: Nitrogen-Response Curve */}
+            <div style={{ background: '#ffffff', border: '1px solid #d4e8da', borderRadius: '10px', padding: '1.1rem', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.65rem' }}>
+                <span style={{ fontWeight: 700, fontSize: '.9rem', color: '#0f4028' }}>
+                  Nitrogen Response Yield Curve (t/ha vs kg N/ha)
+                </span>
+                <span style={{ fontSize: '.74rem', background: '#eaf4ee', padding: '.15rem .5rem', borderRadius: '4px', color: '#15803d', fontWeight: 700 }}>
+                  Active Point: {currentStage.nRate} kg N/ha
+                </span>
+              </div>
+              <p style={{ fontSize: '.78rem', color: '#4b6354', margin: '0 0 .75rem' }}>
+                Shows diminishing returns and over-application penalties, highlighting where the selected strategy ({currentStage.treatment.split(' ')[0]}) sits.
+              </p>
+              <div style={{ width: '100%', height: 290 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={nCurveData} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e6f0e9" />
+                    <XAxis
+                      dataKey="nRate"
+                      type="number"
+                      domain={[0, 220]}
+                      ticks={[0, 60, 78, 120, 180, 210]}
+                      unit=" kg"
+                      tick={{ fill: '#334155', fontSize: 11 }}
+                    />
+                    <YAxis
+                      domain={[5.5, 10.0]}
+                      ticks={[6.0, 6.67, 7.5, 8.0, 8.5, 9.06, 9.5]}
+                      unit=" t"
+                      tick={{ fill: '#334155', fontSize: 11 }}
+                    />
+                    <ReTooltip
+                      formatter={(val) => [`${Number(val).toFixed(2)} t/ha`, 'Yield']}
+                      labelFormatter={(n) => `${n} kg N/ha`}
+                    />
+                    {/* Native Baseline Reference Line */}
+                    <ReferenceLine y={6.67} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: '0-0-0 Baseline (6.67 t/ha)', position: 'insideBottomLeft', fill: '#64748b', fontSize: 11 }} />
+                    {/* GR Benchmark Reference Line */}
+                    <ReferenceLine y={9.06} stroke="#059669" strokeDasharray="3 3" label={{ value: 'GR Benchmark (9.06 t/ha)', position: 'insideTopLeft', fill: '#059669', fontSize: 11 }} />
+                    {/* Highlighted active N rate line */}
+                    <ReferenceLine x={currentStage.nRate} stroke="#e11d48" strokeWidth={1.5} strokeDasharray="2 2" />
+                    <Line
+                      type="monotone"
+                      dataKey="yield"
+                      stroke="#276246"
+                      strokeWidth={3}
+                      dot={(props) => {
+                        const isCurrent = props.payload.id === selectedStageId;
+                        return (
+                          <circle
+                            key={props.index}
+                            cx={props.cx}
+                            cy={props.cy}
+                            r={isCurrent ? 7 : 4}
+                            fill={isCurrent ? '#e11d48' : '#276246'}
+                            stroke="#ffffff"
+                            strokeWidth={2}
+                          />
+                        );
+                      }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Chart 2: Agronomic Efficiency (AE-N) Contrast */}
+            <div style={{ background: '#ffffff', border: '1px solid #d4e8da', borderRadius: '10px', padding: '1.1rem', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.65rem' }}>
+                <span style={{ fontWeight: 700, fontSize: '.9rem', color: '#0f4028' }}>
+                  Agronomic Efficiency Contrast (AE-N: kg grain / kg N)
+                </span>
+                <span style={{ fontSize: '.74rem', background: '#fef3c7', padding: '.15rem .5rem', borderRadius: '4px', color: '#92400e', fontWeight: 700 }}>
+                  Selected AE-N: {fmt(currentStage.aeN, 1)} kg/kg
+                </span>
+              </div>
+              <p style={{ fontSize: '.78rem', color: '#4b6354', margin: '0 0 .75rem' }}>
+                N60, PCU, and FYM dramatically outperform GR (19.9 kg/kg) in fertilizer conversion efficiency.
+              </p>
+              <div style={{ width: '100%', height: 290 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={efficiencyBarData} margin={{ top: 10, right: 15, left: -10, bottom: 25 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e6f0e9" />
+                    <XAxis dataKey="name" angle={-35} textAnchor="end" interval={0} tick={{ fill: '#334155', fontSize: 10 }} />
+                    <YAxis unit=" kg" tick={{ fill: '#334155', fontSize: 11 }} />
+                    <ReTooltip
+                      formatter={(val, name, item) => [
+                        `${Number(val).toFixed(1)} kg/kg (Yield: ${item.payload.yield} t/ha)`,
+                        'AE-N',
+                      ]}
+                      labelFormatter={(_, item) => item?.[0]?.payload?.fullName || ''}
+                    />
+                    <Bar
+                      dataKey="aeN"
+                      shape={(props) => {
+                        const isCur = props.payload.id === selectedStageId;
+                        return (
+                          <rect
+                            x={props.x}
+                            y={props.y}
+                            width={props.width}
+                            height={props.height}
+                            fill={isCur ? '#e11d48' : '#276246'}
+                            rx={4}
+                            ry={4}
+                          />
+                        );
+                      }}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── EXPLORER SECTION 2: EMPIRICAL CONTRAST TABLE ── */}
+      {(explorerView === 'all' || explorerView === 'table') && (
+        <div style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.85rem', flexWrap: 'wrap', gap: '.5rem' }}>
+            <div>
+              <h4 style={{ margin: 0, color: 'var(--green)' }}>📋 Empirical Trial Evidence &amp; Response Contrast Matrix</h4>
+              <span style={{ fontSize: '.76rem', color: '#4b6354' }}>
+                Click any row in the matrix to immediately select and explore that agronomic strategy.
+              </span>
+            </div>
+            <span style={{ fontSize: '.76rem', background: '#dcfce7', color: '#166534', padding: '.2rem .6rem', borderRadius: '4px', fontWeight: 700 }}>
+              10 Calibrated Stages Starting from 0-0-0
+            </span>
+          </div>
+
+          <div style={{ overflowX: 'auto', background: '#ffffff', borderRadius: '10px', border: '1.5px solid #d4e8da', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '.83rem', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ background: '#f1f7f2', borderBottom: '2px solid #276246', color: '#0f4028' }}>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800 }}>Stage</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800 }}>Strategy &amp; Treatment</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>N Rate (kg/ha)</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>Yield (t/ha)</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>ΔY_0 vs 0-0-0</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>ΔY_0PK vs 0-PK</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>AE-N (kg/kg)</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>PFP-N (kg/kg)</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800, textAlign: 'right' }}>N Saved</th>
+                  <th style={{ padding: '.65rem .85rem', fontWeight: 800 }}>Physiological Mechanism</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TRIAL_STAGES_EVIDENCE.map((stg) => {
+                  const isCur = stg.id === selectedStageId;
+                  const delta0 = Math.max(0, stg.yn - 6.67);
+                  return (
+                    <tr
+                      key={stg.id}
+                      onClick={() => handleSelectStage(stg.id)}
+                      style={{
+                        background: isCur ? '#eaf5ee' : '#ffffff',
+                        borderBottom: '1px solid #e5ede7',
+                        cursor: 'pointer',
+                        transition: 'background .15s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isCur) e.currentTarget.style.background = '#f7fbf8';
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isCur) e.currentTarget.style.background = '#ffffff';
+                      }}
+                    >
+                      <td style={{ padding: '.65rem .85rem', fontWeight: isCur ? 800 : 600, color: isCur ? '#15803d' : '#334155', whiteSpace: 'nowrap' }}>
+                        {isCur && <span style={{ marginRight: '.35rem', color: '#15803d' }}>👉</span>}
+                        {stg.stageTag}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', fontWeight: 700, color: isCur ? '#0d2116' : '#1e293b' }}>
+                        {stg.treatment}
+                        {isCur && (
+                          <span style={{ marginLeft: '.5rem', fontSize: '.7rem', background: '#276246', color: '#ffffff', padding: '.1rem .4rem', borderRadius: '3px', fontWeight: 700 }}>
+                            ACTIVE
+                          </span>
+                        )}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 600, color: '#334155' }}>
+                        {stg.nRate}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 800, color: '#0f4028' }}>
+                        {fmt(stg.yn, 2)}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 700, color: delta0 > 0 ? '#15803d' : '#64748b' }}>
+                        {delta0 > 0 ? `+${fmt(delta0, 2)}` : '0.00'}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 700, color: delta0 > 0 ? '#15803d' : '#64748b' }}>
+                        {delta0 > 0 ? `+${fmt(delta0, 2)}` : '0.00'}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 700, color: stg.aeN > 20 ? '#15803d' : '#334155' }}>
+                        {fmt(stg.aeN, 1)}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 600, color: '#334155' }}>
+                        {fmt(stg.pfpN, 1)}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', textAlign: 'right', fontWeight: 700, color: stg.nSavings > 0 ? '#15803d' : stg.nSavings < 0 ? '#b91c1c' : '#64748b' }}>
+                        {stg.nSavings > 0 ? `+${stg.nSavings} kg` : stg.nSavings < 0 ? `${stg.nSavings} kg` : '0 kg'}
+                      </td>
+                      <td style={{ padding: '.65rem .85rem', fontSize: '.78rem', color: '#475569', maxWidth: '300px' }}>
+                        {stg.evidenceNote}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* ── EXPLORER SECTION 3: SPATIAL PARCEL MAP ── */}
+      {(explorerView === 'all' || explorerView === 'map') && (
+        <div style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.85rem', flexWrap: 'wrap', gap: '.5rem' }}>
+            <div>
+              <h4 style={{ margin: 0, color: 'var(--green)' }}>🗺️ Spatial Land Parcel Distribution Map (Western Nepal)</h4>
+              <span style={{ fontSize: '.76rem', color: '#4b6354' }}>
+                Spatial extrapolation across {currentStage.treatment}: {stageParcels.length.toLocaleString()} supported land parcels in Western Nepal.
+              </span>
+            </div>
+            <span style={{ fontSize: '.74rem', background: '#276246', color: '#ffffff', padding: '.2rem .65rem', borderRadius: '4px', fontWeight: 700 }}>
+              Resolution ~0.02° DSM Pixels
+            </span>
+          </div>
+
+          {/* Spatial Absolute KPIs Banner */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '.75rem', marginBottom: '1rem' }}>
+            <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Supported Parcels</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f4028' }}>
+                {stageParcels.length.toLocaleString()}
+              </div>
+            </div>
+            <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Mean Absolute Yield</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f4028' }}>
+                {spatialStats ? `${fmt(spatialStats.meanAbsoluteYield, 2)} t/ha` : '—'}
+              </div>
+            </div>
+            <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Mean Yield Diff vs GR</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: spatialStats && spatialStats.avgYieldDiff >= 0 ? '#15803d' : '#b91c1c' }}>
+                {spatialStats ? `${spatialStats.avgYieldDiff >= 0 ? '+' : ''}${fmt(spatialStats.avgYieldDiff, 2)} t/ha` : '—'}
+              </div>
+            </div>
+            <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Mean Absolute AE-N</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f4028' }}>
+                {spatialStats ? `${fmt(spatialStats.avgAE, 1)} kg/kg` : '—'}
+              </div>
+            </div>
+            <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Mean N Reduction</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#15803d' }}>
+                {spatialStats ? `${fmt(spatialStats.avgRed, 0)} kg N/ha` : '—'}
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Leaflet Map Card */}
+          <div style={{ background: '#ffffff', border: '1.5px solid #276246', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+            <div style={{ height: '440px', width: '100%', position: 'relative' }}>
+              {featuresLoading ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#276246', fontWeight: 700 }}>
+                  Loading spatial land parcel layer…
+                </div>
+              ) : (
+                <MapContainer
+                  center={[28.5, 81.8]}
+                  zoom={8}
+                  scrollWheelZoom
+                  style={{ height: '100%', width: '100%' }}
+                >
+                  <TileLayer
+                    attribution="&copy; OpenStreetMap contributors"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <ResearchMapBoundsHelper bounds={mapBounds} />
+
+                  {stageParcels.slice(0, 1000).map((r, idx) => {
+                    const lat = number(r.lat);
+                    const lon = number(r.lon);
+                    if (lat === null || lon === null) return null;
+                    const HALF_STEP = 0.009;
+                    const bounds = [
+                      [lat - HALF_STEP, lon - HALF_STEP],
+                      [lat + HALF_STEP, lon + HALF_STEP],
+                    ];
+                    const nred = number(r.N_reduction_for_same_target_yield_kg_ha);
+                    const diff = number(r.predicted_yield_difference_from_GR_t_ha);
+                    const absYield = diff !== null ? 9.06 + diff : null;
+                    const color = nred && nred >= 40 ? '#15803d' : diff && diff >= 0 ? '#22c55e' : diff && diff >= -0.5 ? '#eab308' : '#f97316';
+
+                    return (
+                      <Rectangle
+                        key={String(r.pixel_id || idx)}
+                        bounds={bounds}
+                        pathOptions={{
+                          fillColor: color,
+                          fillOpacity: 0.75,
+                          weight: 1,
+                          color: '#ffffff',
+                        }}
+                      >
+                        <LeafletTooltip direction="top" offset={[0, -5]} opacity={0.95}>
+                          <div style={{ fontSize: '.82rem', lineHeight: '1.4' }}>
+                            <strong style={{ color: '#0f4028' }}>{r.palika || r.district || 'Land Parcel'}</strong>
+                            <div style={{ color: '#475569', fontSize: '.75rem' }}>{r.district} · {r.province}</div>
+                            <div style={{ marginTop: '.25rem' }}>
+                              <span>Strategy: <strong>{STRATEGY_LABELS[r.strategy] || r.strategy}</strong></span>
+                            </div>
+                            {absYield !== null && (
+                              <div>
+                                <span>Absolute Yield: <strong>{fmt(absYield, 2)} t/ha</strong></span>
+                              </div>
+                            )}
+                            {diff !== null && (
+                              <div>
+                                <span>Yield diff vs GR: <strong>{diff >= 0 ? '+' : ''}{fmt(diff, 2)} t/ha</strong></span>
+                              </div>
+                            )}
+                            {nred > 0 && (
+                              <div style={{ color: '#15803d' }}>
+                                <span>Potential N saved: <strong>{fmt(nred, 0)} kg/ha</strong></span>
+                              </div>
+                            )}
+                          </div>
+                        </LeafletTooltip>
+                      </Rectangle>
+                    );
+                  })}
+                </MapContainer>
+              )}
+            </div>
+
+            {/* Map Legend */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8faf9', padding: '.65rem 1rem', borderTop: '1px solid #d4e8da', fontSize: '.78rem', flexWrap: 'wrap', gap: '.65rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+                <span style={{ fontWeight: 700, color: '#0f4028' }}>Map Response Scale:</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.35rem' }}>
+                  <span style={{ width: 12, height: 12, borderRadius: 2, background: '#15803d', display: 'inline-block' }} />
+                  <span>High N-Savings (≥40 kg/ha)</span>
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.35rem' }}>
+                  <span style={{ width: 12, height: 12, borderRadius: 2, background: '#22c55e', display: 'inline-block' }} />
+                  <span>Yield Gain vs GR (≥0 t/ha)</span>
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.35rem' }}>
+                  <span style={{ width: 12, height: 12, borderRadius: 2, background: '#eab308', display: 'inline-block' }} />
+                  <span>Slight Yield Deficit (&lt;0.5 t/ha)</span>
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.35rem' }}>
+                  <span style={{ width: 12, height: 12, borderRadius: 2, background: '#f97316', display: 'inline-block' }} />
+                  <span>Moderate Deficit</span>
+                </span>
+              </div>
+              <span style={{ color: '#64748b', fontStyle: 'italic' }}>
+                Hover/click parcels for localized coordinates &amp; agronomic metrics
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
