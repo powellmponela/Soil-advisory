@@ -1452,9 +1452,13 @@ function FourREquations() {
               </div>
             </div>
             <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
-              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>Mean Absolute AE-N</div>
+              <div style={{ fontSize: '.72rem', textTransform: 'uppercase', color: '#4b6354', fontWeight: 700 }}>
+                {['PCU_N60', 'UDP_N78', 'FYM_N60'].includes(selectedStageId) ? 'Trial PFP-N' : 'Mean Absolute AE-N'}
+              </div>
               <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f4028' }}>
-                {spatialStats ? `${fmt(spatialStats.avgAE, 1)} kg/kg` : '—'}
+                {['PCU_N60', 'UDP_N78', 'FYM_N60'].includes(selectedStageId)
+                  ? `${fmt(currentStage.pfpN, 1)} kg/kg`
+                  : (spatialStats ? `${fmt(spatialStats.avgAE, 1)} kg/kg` : '—')}
               </div>
             </div>
             <div style={{ background: '#ffffff', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem 1rem', textAlign: 'center' }}>
