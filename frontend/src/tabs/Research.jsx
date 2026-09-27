@@ -2223,11 +2223,10 @@ export default function Research() {
     <div className="tab-content">
       <section className="hero research-hero">
         <div>
-          <span className="kicker">Technical workspace · NSAF Summer Maize &amp; 4R Stewardship</span>
-          <h2>From trial response to spatial fertilizer target setting</h2>
+          <span className="kicker">Agronomic Science Workspace · Experimental Trial Diagnostics, QUEFTS Mechanistic Modeling &amp; Spatial Extrapolation</span>
+          <h2>Agronomic Response Diagnostics &amp; Spatial Fertilizer Target Setting</h2>
           <p>
-            Localized production system recommendations integrated with national priorities endorsed for each hub.
-            Trial response analysis, N-response curves, QUEFTS diagnostics, DSM spatial modelling, and scenario comparison.
+            Analytical research workspace for agronomists, soil scientists, and researchers. Includes experimental trial design matrix contrasts, 4R response equations ($AE_N$, $PFP_N$), QUEFTS mechanistic nutrient supply ($INS, IPS, IKS$), Random Forest spatial extrapolation, executable Python scripts, and evidence publication controls.
           </p>
         </div>
       </section>

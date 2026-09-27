@@ -354,10 +354,10 @@ export default function Advisory() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <span className="kicker">NSAF Maize · Mid-hill Western Nepal · 4R Nutrient Stewardship</span>
-          <h2>Site-Specific Fertilizer &amp; Yield Target Advisory for Maize in Mid-hill Western Nepal</h2>
+          <span className="kicker">Extension &amp; Practice Translation Workspace · Translating Agronomic Science into Actionable Practice</span>
+          <h2>Site-Specific Extension Advisory &amp; 4R Fertilizer Guidelines for Maize</h2>
           <p>
-            Empowering agricultural extension, policy planning, and smallholders with spatially targeted 4R fertilizer and yield targets, response domain mapping, and optimized nutrient investment scenarios based on multi-site NSAF crop response evidence and NARC Digital Soil Mapping across Mid-hill Western Nepal.
+            Translating multi-year NSAF crop-response evidence and NARC Digital Soil Mapping into site-specific fertilizer recommendations, 4R stewardship practice guides (Right Source, Right Rate, Right Time, Right Place), fertilizer bag requirements (Urea, DAP, MOP, FYM), and actionable field advice for extension agents, lead farmers, and local government agricultural officers in Western Nepal.
           </p>
         </div>
       </section>
