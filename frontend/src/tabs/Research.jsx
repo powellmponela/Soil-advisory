@@ -451,6 +451,151 @@ function DesignMatrixTable() {
 
 /** 4R Equations & Estimations Panel with Interactive Rerun Calculator */
 function FourREquations() {
+  const TRIAL_STAGES_EVIDENCE = useMemo(() => [
+    {
+      id: '0-0-0',
+      stageName: 'Stage 1: Native Baseline Control',
+      treatment: 'N0–P0–K0 (0-0-0)',
+      nRate: 0,
+      yn: 6.67,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 0,
+      pfpN: 0,
+      nSavings: 0,
+      evidenceNote: 'Native unfertilized soil background productivity. Background grain yield without any fertilizer or manure inputs (observed trial spread: 3.3 to 7.2 t/ha).',
+      citation: 'Pandit et al. (2025) Table 1 Design Matrix',
+    },
+    {
+      id: '0-PK',
+      stageName: 'Stage 2: Nutrient Omission (-N)',
+      treatment: 'N0–P60–K40 (-N / 0-PK)',
+      nRate: 0,
+      yn: 6.67,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 0,
+      pfpN: 0,
+      nSavings: 0,
+      evidenceNote: 'Evaluates crop response to P+K background in the complete absence of N. Confirms N as the primary yield-limiting nutrient across Western Nepal maize soils.',
+      citation: 'Pandit et al. (2025) Omission Trials',
+    },
+    {
+      id: 'GR',
+      stageName: 'Stage 3: Standard Government Recommendation',
+      treatment: 'N120–P60–K40 (GR Baseline)',
+      nRate: 120,
+      yn: 9.06,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 19.9,
+      pfpN: 75.5,
+      nSavings: 0,
+      evidenceNote: 'Standard blanket Government Recommendation (120-60-40 kg/ha split knee/shoulder). Serves as reference benchmark for yield (9.06 t/ha), AE-N, and N-savings.',
+      citation: 'Pandit et al. (2025) Table 1 & NSAF Benchmarks',
+    },
+    {
+      id: 'N60',
+      stageName: 'Stage 4: 4R Rate - 50% Mineral N Reduction',
+      treatment: 'N60–P60–K40 (Reduced N Rate)',
+      nRate: 60,
+      yn: 8.29,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 27.0,
+      pfpN: 138.2,
+      nSavings: 60,
+      evidenceNote: '50% mineral N cut maintains 91.5% of GR yield (only 0.77 t/ha penalty) while boosting AE-N by +35% (27.0 vs 19.9 kg/kg N) and saving 60 kg N/ha.',
+      citation: 'Pandit et al. (2025) Nitrogen Rate Response',
+    },
+    {
+      id: 'PCU_N60',
+      stageName: 'Stage 5: 4R Source - Polymer-Coated Urea (PCU)',
+      treatment: 'PCU N60–P60–K40 (Controlled Release)',
+      nRate: 60,
+      yn: 8.75,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 34.7,
+      pfpN: 145.8,
+      nSavings: 59,
+      evidenceNote: 'Controlled release N fertilizer synchronizes release with crop demand, cutting volatilization/leaching. Matches GR yield with 50% N cut (saving 59 kg N/ha).',
+      citation: 'Pandit et al. (2022) Heliyon & Pandit et al. (2025)',
+    },
+    {
+      id: 'UDP_N78',
+      stageName: 'Stage 6: 4R Placement - Urea Deep Placement (UDP)',
+      treatment: 'UDP N78–P60–K40 (Root-Zone Briquette)',
+      nRate: 78,
+      yn: 9.04,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 30.4,
+      pfpN: 115.9,
+      nSavings: 42,
+      evidenceNote: 'Root-zone deep briquette placement at 7-10 cm depth dramatically reduces ammonia volatilization, saving 42 kg N/ha (35% cut) with virtually zero yield penalty (-0.02 t/ha).',
+      citation: 'Pandit et al. (2022) Soil Systems & Pandit et al. (2025)',
+    },
+    {
+      id: 'TIMING_V6_V10',
+      stageName: 'Stage 7: 4R Timing - Synchronized Growth Stage Timing',
+      treatment: 'N120–P60–K40 at V6/V10 Split Timing',
+      nRate: 120,
+      yn: 9.17,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 20.8,
+      pfpN: 76.4,
+      nSavings: 41,
+      evidenceNote: 'Synchronizing split application at V6 (6-leaf) and V10 (10-leaf) peak N uptake stages yields +0.11 to +0.87 t/ha over standard knee/shoulder timing.',
+      citation: 'Pandit et al. (2025) 4R Timing Contrast',
+    },
+    {
+      id: 'FYM_N60',
+      stageName: 'Stage 8: Organic-Mineral Integration',
+      treatment: 'FYM 6 t/ha + N60–P60–K40',
+      nRate: 60,
+      yn: 8.95,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 38.0,
+      pfpN: 149.2,
+      nSavings: 56,
+      evidenceNote: 'Integrating 6 t/ha farmyard manure with 60 kg inorganic N achieves 8.95 t/ha yield, replacing 56 kg/ha mineral N and boosting soil organic matter and moisture retention.',
+      citation: 'Pandit et al. (2025) Organic-Mineral Integration',
+    },
+    {
+      id: 'N180',
+      stageName: 'Stage 9: Over-application Plateau Test',
+      treatment: 'N180–P60–K40 (Over-fertilization)',
+      nRate: 180,
+      yn: 9.02,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 13.1,
+      pfpN: 50.1,
+      nSavings: -60,
+      evidenceNote: 'Yield plateau reached at 9.02 t/ha (no yield benefit over N120). AE-N drops by -34% (13.1 kg/kg), causing economic waste and environmental leaching risks.',
+      citation: 'Pandit et al. (2025) N Response Plateau',
+    },
+    {
+      id: 'N210',
+      stageName: 'Stage 10: Luxury Consumption & Penalty Test',
+      treatment: 'N210–P60–K40 (Extreme Excess)',
+      nRate: 210,
+      yn: 8.71,
+      y0: 6.67,
+      y0pk: 6.67,
+      aeN: 9.7,
+      pfpN: 41.5,
+      nSavings: -90,
+      evidenceNote: 'Excessive nitrogen causes slight yield decline (8.71 t/ha) and severe efficiency collapse (-52% AE-N reduction to 9.7 kg/kg) from lodging and vegetative imbalance.',
+      citation: 'Pandit et al. (2025) N Over-application Penalties',
+    },
+  ], []);
+
+  const [selectedStageId, setSelectedStageId] = useState('GR');
+
   const [params, setParams] = useState({
     yn: 9.06,           // t/ha yield with N (GR N120)
     y0: 6.67,           // t/ha unfertilized 0-0-0 baseline yield
@@ -467,6 +612,28 @@ function FourREquations() {
   const [recalcCount, setRecalcCount] = useState(0);
   const [rerunStatus, setRerunStatus] = useState('');
   const [isPublishing, setIsPublishing] = useState(false);
+
+  const currentStage = useMemo(
+    () => TRIAL_STAGES_EVIDENCE.find((s) => s.id === selectedStageId) || TRIAL_STAGES_EVIDENCE[2],
+    [TRIAL_STAGES_EVIDENCE, selectedStageId]
+  );
+
+  const handleSelectStage = (stageId) => {
+    setSelectedStageId(stageId);
+    const stg = TRIAL_STAGES_EVIDENCE.find((s) => s.id === stageId);
+    if (!stg) return;
+
+    setParams((prev) => ({
+      ...prev,
+      yn: stg.yn,
+      y0: stg.y0,
+      y0pk: stg.y0pk,
+      nRate: stg.nRate > 0 ? stg.nRate : 120,
+      nRateOpt: stg.nRate > 0 && stg.nRate < 120 ? stg.nRate : 60,
+    }));
+
+    setRerunStatus(`📌 Loaded Stage 1 Trial Evidence for "${stg.stageName}" (${stg.treatment}): Observed Yield = ${stg.yn} t/ha, N Rate = ${stg.nRate} kg N/ha. Equations recalculated!`);
+  };
 
   // Computed agronomic response metrics starting from 0-0-0 baseline
   const calculated = useMemo(() => {
@@ -522,7 +689,7 @@ function FourREquations() {
           <div>
             <h4 style={{ margin: 0, color: 'var(--green)' }}>🔄 Interactive Agronomic Equation Rerun Calculator (0-0-0 Baseline → 4R)</h4>
             <p className="research-note" style={{ margin: 0 }}>
-              Adjust trial input parameters starting with native unfertilized control (0-0-0) to re-run mathematical equations and recalculate 4R estimations in real time.
+              Select an experimental stage/strategy from Stage 1 trial evidence below to automatically load empirical parameters and re-run mathematical equations in real time.
             </p>
           </div>
           <div style={{ display: 'flex', gap: '.5rem' }}>
@@ -532,6 +699,56 @@ function FourREquations() {
             <button className="btn-sm btn-save" style={{ padding: '.5rem 1rem', fontSize: '.82rem', background: '#c9a247', color: '#0d2116' }} onClick={handlePushPublic} disabled={isPublishing}>
               {isPublishing ? 'Publishing…' : '🚀 Push to Public View'}
             </button>
+          </div>
+        </div>
+
+        {/* ── STAGE 1 TRIAL EVIDENCE SELECTOR ── */}
+        <div style={{ background: '#eaf4ee', border: '1.5px solid #276246', borderRadius: '10px', padding: '.85rem 1.1rem', marginBottom: '1.25rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '.5rem', marginBottom: '.4rem' }}>
+            <label style={{ fontSize: '.82rem', fontWeight: 800, color: '#0b3d22', textTransform: 'uppercase', letterSpacing: '.04em' }}>
+              🧪 Select Agronomic Stage / Strategy (From Stage 1 Trial Evidence):
+            </label>
+            <span style={{ fontSize: '.74rem', fontWeight: 700, background: '#276246', color: '#ffffff', padding: '.15rem .55rem', borderRadius: '4px' }}>
+              Stage 1 Evidence Calibrated
+            </span>
+          </div>
+          <select
+            value={selectedStageId}
+            onChange={(e) => handleSelectStage(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '.6rem .85rem',
+              borderRadius: '6px',
+              border: '1.5px solid #276246',
+              fontSize: '.9rem',
+              fontWeight: 700,
+              color: '#0d2116',
+              background: '#ffffff',
+              cursor: 'pointer',
+              outline: 'none',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.04)',
+            }}
+          >
+            {TRIAL_STAGES_EVIDENCE.map((stg) => (
+              <option key={stg.id} value={stg.id}>
+                {stg.stageName} — {stg.treatment}
+              </option>
+            ))}
+          </select>
+
+          {/* Active Stage 1 Evidence Details Box */}
+          <div style={{ marginTop: '.65rem', padding: '.65rem .85rem', background: '#ffffff', borderRadius: '6px', border: '1px solid #cce5d5', fontSize: '.82rem', lineHeight: '1.5', color: '#1c2922' }}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '.35rem', fontWeight: 700, color: '#0d3822' }}>
+              <span>Treatment: {currentStage.treatment}</span>
+              <span>• Trial N Rate: {currentStage.nRate} kg N/ha</span>
+              <span>• Observed Yield: {currentStage.yn} t/ha</span>
+              {currentStage.nSavings !== 0 && (
+                <span>• Mineral N Savings: {currentStage.nSavings > 0 ? `+${currentStage.nSavings} kg/ha` : `${currentStage.nSavings} kg/ha`}</span>
+              )}
+            </div>
+            <div style={{ color: '#2b3e32' }}>
+              <strong>Stage 1 Empirical Trial Evidence:</strong> {currentStage.evidenceNote} <em>({currentStage.citation})</em>
+            </div>
           </div>
         </div>
 
@@ -545,15 +762,15 @@ function FourREquations() {
             <input type="number" step="0.1" value={params.y0pk} onChange={(e) => setParams({ ...params, y0pk: Number(e.target.value) })} />
           </div>
           <div className="data-form-group">
-            <label>Yield with Full N (Y_N, t/ha)</label>
+            <label>Yield with Selected Treatment (Y_N, t/ha)</label>
             <input type="number" step="0.1" value={params.yn} onChange={(e) => setParams({ ...params, yn: Number(e.target.value) })} />
           </div>
           <div className="data-form-group">
-            <label>Standard N Rate (kg N/ha)</label>
+            <label>Treatment N Rate (kg N/ha)</label>
             <input type="number" step="5" value={params.nRate} onChange={(e) => setParams({ ...params, nRate: Number(e.target.value) })} />
           </div>
           <div className="data-form-group">
-            <label>Reduced N Rate (kg N/ha)</label>
+            <label>Reduced N Rate for Contrast (kg N/ha)</label>
             <input type="number" step="5" value={params.nRateOpt} onChange={(e) => setParams({ ...params, nRateOpt: Number(e.target.value) })} />
           </div>
           <div className="data-form-group">
