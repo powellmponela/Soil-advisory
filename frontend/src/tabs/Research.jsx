@@ -6,7 +6,7 @@
 // methodology / technical documentation.
 // ---------------------------------------------------------------------------
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Papa from 'papaparse';
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid,
