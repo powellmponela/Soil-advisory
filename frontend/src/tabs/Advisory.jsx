@@ -194,16 +194,75 @@ function HoverTooltipContent({ row }) {
 // Pixel detail panel
 // ---------------------------------------------------------------------------
 
-function PixelPanel({ row }) {
+function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, region, palika, onClear }) {
   if (!row) {
+    const stratLabel = STRATEGY_LABELS[strategy] || strategy || 'All 4R Strategies';
+    const locLabel = palika || district || region || 'Western Nepal';
+    const yieldLabel = targetYield ? `${targetYield} t/ha` : 'All target yields (6, 8, 10 t/ha)';
+
     return (
-      <aside className="pixel-result">
-        <span className="kicker">Selected parcel</span>
-        <h2 className="pixel-heading">Click the map</h2>
-        <p className="coordinates">—</p>
-        <p className="result-note">
-          Hover over a parcel to preview values. Click to lock the detailed advisory panel.
+      <aside className="pixel-result" style={{ background: '#ffffff', borderRadius: '10px' }}>
+        <span className="kicker">Map Display Guide</span>
+        <h2 className="pixel-heading" style={{ fontSize: '1.45rem', marginBottom: '.35rem' }}>
+          Parcel Advisory Display
+        </h2>
+        
+        <p className="result-note" style={{ marginTop: '.25rem', marginBottom: '.9rem', fontSize: '.84rem', lineHeight: '1.55', color: '#1c2922' }}>
+          This map displays <strong>0.02° × 0.02° (~2 km)</strong> land parcels calibrated against multi-year NSAF summer maize trials and NARC Digital Soil Mapping across Western Nepal.
         </p>
+
+        {/* Current Filter Active Scope */}
+        <div style={{ background: '#f0f7f3', border: '1px solid #bce3cc', borderRadius: '8px', padding: '.75rem .9rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '.4rem', fontSize: '.8rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#4d6154', fontWeight: 600 }}>Active Domain:</span>
+            <strong style={{ color: '#0f4028' }}>{locLabel}</strong>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#4d6154', fontWeight: 600 }}>Supported Parcels:</span>
+            <strong style={{ color: '#0f4028' }}>{filteredCount.toLocaleString()} land parcels</strong>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#4d6154', fontWeight: 600 }}>Active 4R Strategy:</span>
+            <strong style={{ color: '#0f4028' }}>{stratLabel}</strong>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ color: '#4d6154', fontWeight: 600 }}>Target Yield:</span>
+            <strong style={{ color: '#0f4028' }}>{yieldLabel}</strong>
+          </div>
+        </div>
+
+        {/* What the Map Colors Represent */}
+        <h4 style={{ margin: '0 0 .5rem', fontSize: '.85rem', fontWeight: 700, color: '#0f4028', textTransform: 'uppercase', letterSpacing: '.03em' }}>
+          🎨 What Parcel Colors Show
+        </h4>
+        <p style={{ margin: '0 0 .6rem', fontSize: '.8rem', color: '#334438', lineHeight: '1.45' }}>
+          Colors represent <strong>Potential Mineral N Reduction (kg N/ha)</strong> vs standard Government Recommendation (120 kg N/ha):
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.1rem', fontSize: '.8rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#166534', flexShrink: 0 }} />
+            <span><strong style={{ color: '#166534' }}>≥50 kg N/ha saved</strong> (High efficiency gain)</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
+            <span><strong style={{ color: '#15803d' }}>25–50 kg N/ha saved</strong> (Moderate N savings)</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#fbbf24', flexShrink: 0 }} />
+            <span><strong style={{ color: '#b45309' }}>10–25 kg N/ha saved</strong> (Modest N reduction)</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316', flexShrink: 0 }} />
+            <span><strong style={{ color: '#c2410c' }}>&lt;10 kg N/ha</strong> (Standard rate / Baseline)</span>
+          </div>
+        </div>
+
+        {/* How to interact Callout */}
+        <div style={{ background: '#f8faf8', border: '1px solid #dbe8de', borderRadius: '6px', padding: '.75rem .9rem', fontSize: '.8rem', color: '#1b3a28', lineHeight: '1.5' }}>
+          <div style={{ fontWeight: 700, marginBottom: '.25rem' }}>💡 How to explore the map:</div>
+          <div>• <strong>Hover</strong> over any parcel to preview values.</div>
+          <div>• <strong>Click any parcel</strong> on the map to lock its site-specific N rate, yield gain, and advisory details.</div>
+        </div>
       </aside>
     );
   }
@@ -232,7 +291,26 @@ function PixelPanel({ row }) {
 
   return (
     <aside className="pixel-result">
-      <span className="kicker">Selected parcel</span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.35rem' }}>
+        <span className="kicker">Selected parcel</span>
+        {onClear && (
+          <button
+            onClick={onClear}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#0f4028',
+              fontSize: '.76rem',
+              fontWeight: 700,
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              padding: 0,
+            }}
+          >
+            ← Back to Map Overview
+          </button>
+        )}
+      </div>
       <h2 className="pixel-heading">{row.palika || row.district || row.pixel_id}</h2>
       <p className="coordinates">
         {fmt(row.lat, 5)}°N, {fmt(row.lon, 5)}°E
@@ -681,7 +759,16 @@ export default function Advisory() {
             </div>
 
             {/* Detail panel */}
-            <PixelPanel row={panelRow} />
+            <PixelPanel
+              row={panelRow}
+              strategy={strategy}
+              targetYield={targetYield}
+              filteredCount={filtered.length}
+              district={district}
+              region={region}
+              palika={palika}
+              onClear={() => setSelected(null)}
+            />
           </div>
         </section>
       )}
