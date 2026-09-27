@@ -906,19 +906,28 @@ footer {
   color: var(--dark);
 }
 .equation-card__formula {
-  background: #102b1f;
-  color: #a7f3d0;
-  padding: .7rem .9rem;
-  border-radius: 6px;
+  background: #f0f7f3 !important;
+  color: #064e3b !important;
+  border: 1.5px solid #a7d9b9 !important;
+  padding: .85rem 1rem !important;
+  border-radius: 8px !important;
   font-family: 'Fira Code', 'Courier New', monospace;
-  font-size: .82rem;
+  font-size: .88rem;
+  line-height: 1.6;
   overflow-x: auto;
   margin-bottom: .75rem;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,.2);
 }
 .equation-card__formula code {
-  color: #a7f3d0;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #064e3b !important;
+  padding: 0 !important;
+  border: none !important;
   font-family: inherit;
+  font-weight: 700;
+  font-size: 1em;
+  box-shadow: none !important;
+  display: inline-block;
 }
 .equation-card__desc {
   margin: 0;
