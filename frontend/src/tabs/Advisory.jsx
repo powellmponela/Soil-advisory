@@ -873,7 +873,29 @@ export default function Advisory() {
                   <span className="kicker">Queryable GIS layer</span>
                   <h2>Parcel advisory map</h2>
                 </div>
-                <span>{filtered.length.toLocaleString()} supported land parcels</span>
+
+                {/* Map Display Metric Switcher: N vs Yield on top of the map */}
+                <div className="map-metric-toggle-group">
+                  <span className="toggle-group-label">Map Metric:</span>
+                  <div className="map-metric-toggle">
+                    <button
+                      type="button"
+                      className={`metric-toggle-btn ${mapMetric === 'balance' ? 'active' : ''}`}
+                      onClick={() => setMapMetric('balance')}
+                    >
+                      <span style={{ fontSize: '.9rem' }}>⚡</span> Mineral-N Balance
+                    </button>
+                    <button
+                      type="button"
+                      className={`metric-toggle-btn ${mapMetric === 'yield' ? 'active' : ''}`}
+                      onClick={() => setMapMetric('yield')}
+                    >
+                      <span style={{ fontSize: '.9rem' }}>🌾</span> Yield Difference
+                    </button>
+                  </div>
+                </div>
+
+                <span className="parcel-count-badge">{filtered.length.toLocaleString()} supported land parcels</span>
               </div>
 
               <MapContainer
@@ -923,51 +945,13 @@ export default function Advisory() {
                 })}
               </MapContainer>
 
-              {/* Legend with Metric Switcher */}
+              {/* Legend */}
               <div className="map-legend">
-                <div className="legend-header">
-                  <span className="legend-title">
-                    {mapMetric === 'balance' 
-                      ? 'Net Mineral-N Balance vs GR (120 kg N/ha): Savings vs Extra N / Losses'
-                      : 'Yield Difference vs GR (9.06 t/ha): Gains vs Losses / Penalties'}
-                  </span>
-                  
-                  {/* Quick Metric Switch Buttons */}
-                  <div style={{ display: 'inline-flex', background: '#e8f3ed', padding: '3px', borderRadius: '6px', gap: '3px' }}>
-                    <button
-                      type="button"
-                      onClick={() => setMapMetric('balance')}
-                      style={{
-                        padding: '4px 10px',
-                        borderRadius: '4px',
-                        border: 'none',
-                        background: mapMetric === 'balance' ? '#0f4028' : 'transparent',
-                        color: mapMetric === 'balance' ? '#ffffff' : '#0f4028',
-                        cursor: 'pointer',
-                        fontWeight: 700,
-                        fontSize: '.75rem',
-                      }}
-                    >
-                      Mineral-N Balance
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setMapMetric('yield')}
-                      style={{
-                        padding: '4px 10px',
-                        borderRadius: '4px',
-                        border: 'none',
-                        background: mapMetric === 'yield' ? '#0f4028' : 'transparent',
-                        color: mapMetric === 'yield' ? '#ffffff' : '#0f4028',
-                        cursor: 'pointer',
-                        fontWeight: 700,
-                        fontSize: '.75rem',
-                      }}
-                    >
-                      Yield Diff vs GR
-                    </button>
-                  </div>
-                </div>
+                <span className="legend-title">
+                  {mapMetric === 'balance' 
+                    ? 'Net Mineral-N Balance vs GR (120 kg N/ha): Savings vs Extra N / Losses'
+                    : 'Yield Difference vs GR (9.06 t/ha): Gains vs Losses / Penalties'}
+                </span>
 
                 <div className="legend-items">
                   {mapMetric === 'balance' ? (

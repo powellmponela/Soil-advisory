@@ -197,21 +197,82 @@ code {
   border: 1px solid var(--line);
 }
 
-/* ── Map caption ── */
+/* ── Map caption (with top-of-map N vs Yield switch) ── */
 .map-caption {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  align-items: end;
-  padding: 1rem 1.2rem;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  background: #ffffff;
 }
 .map-caption h2 {
   font-family: 'Source Serif 4', serif;
   margin: .25rem 0 0;
   font-size: 1.55rem;
 }
-.map-caption > span { color: var(--muted); font-size: .85rem; }
+.map-caption > span,
+.parcel-count-badge {
+  color: #4d6154;
+  font-size: .84rem;
+  font-weight: 600;
+  background: #f0f7f3;
+  padding: .35rem .75rem;
+  border-radius: 6px;
+  border: 1px solid #cbe5d4;
+  white-space: nowrap;
+}
+
+/* ── Metric Switcher on top of the map ── */
+.map-metric-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  background: #f4faf6;
+  padding: .4rem .75rem;
+  border-radius: 8px;
+  border: 1.5px solid #bce3cc;
+}
+.toggle-group-label {
+  font-size: .74rem;
+  font-weight: 800;
+  color: #0f4028;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.map-metric-toggle {
+  display: inline-flex;
+  background: #e2ece6;
+  padding: 3px;
+  border-radius: 6px;
+  gap: 3px;
+}
+.metric-toggle-btn {
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: #0f4028;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: .8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  transition: all .15s ease;
+  white-space: nowrap;
+}
+.metric-toggle-btn:hover {
+  background: rgba(15, 64, 40, 0.08);
+}
+.metric-toggle-btn.active {
+  background: #0f4028;
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(15, 64, 40, 0.25);
+}
 
 /* ── Map ── */
 .pixel-map { height: 620px; width: 100%; background: #edf1eb; }
