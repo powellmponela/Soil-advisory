@@ -221,8 +221,8 @@ function HoverTooltipContent({ row }) {
   const mineralN = nred > 0 
     ? `−${fmt(nred, 0)} kg N/ha (Saved vs GR)`
     : nInc > 0 
-      ? `+${fmt(nInc, 0)} kg N/ha (Extra needed / Loss)`
-      : (stratN && stratN > 120 ? `+${stratN - 120} kg N/ha (Excess vs GR)` : '0 kg N/ha (Parity)');
+      ? `+${fmt(nInc, 0)} kg N/ha (Loss / Excess vs GR)`
+      : (stratN && stratN > 120 ? `+${stratN - 120} kg N/ha (Loss / Over-application vs GR)` : '0 kg N/ha (Parity)');
 
   const yieldDiffText = diff !== null
     ? (diff >= 0 ? `+${fmt(diff, 2)} t/ha (Gain vs GR)` : `${fmt(diff, 2)} t/ha (Loss vs GR)`)
@@ -347,7 +347,7 @@ function PixelPanel({
         </h4>
         <p style={{ margin: '0 0 .6rem', fontSize: '.8rem', color: '#334438', lineHeight: '1.45' }}>
           {mapMetric === 'balance'
-            ? 'Colors represent Net Mineral-N Balance (Savings vs Additional N Required / Excess) vs standard Government Recommendation (120 kg N/ha):'
+            ? 'Colors represent Net Mineral-N Balance (Savings vs Losses / Excess N) vs standard Government Recommendation (120 kg N/ha):'
             : 'Colors represent Yield Difference (Gains vs Losses / Penalties in t/ha) vs standard Government Recommendation (9.06 t/ha):'}
         </p>
         
@@ -371,11 +371,11 @@ function PixelPanel({
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316', flexShrink: 0 }} />
-              <span><strong style={{ color: '#c2410c' }}>10–30 kg N/ha extra needed</strong> (Loss / Over-application)</span>
+              <span><strong style={{ color: '#c2410c' }}>10–30 kg N/ha Loss</strong> (Moderate N loss / excess vs GR)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626', flexShrink: 0 }} />
-              <span><strong style={{ color: '#b91c1c' }}>&gt;30 kg N/ha extra needed</strong> (High loss / Heavy excess)</span>
+              <span><strong style={{ color: '#b91c1c' }}>&gt;30 kg N/ha Severe Loss</strong> (Heavy N loss / over-application vs GR)</span>
             </div>
           </div>
         ) : (
@@ -442,8 +442,8 @@ function PixelPanel({
   const mineralN = nred > 0
     ? `−${fmt(nred, 0)} kg N/ha (Mineral-N Saving vs GR)`
     : nInc > 0
-      ? `+${fmt(nInc, 0)} kg N/ha (Additional N Required / Deficit vs GR)`
-      : (stratN && stratN > 120 ? `+${stratN - 120} kg N/ha (Excess Over-application vs GR)` : '0 kg N/ha (Parity with GR)');
+      ? `+${fmt(nInc, 0)} kg N/ha (Mineral-N Loss / Excess vs GR)`
+      : (stratN && stratN > 120 ? `+${stratN - 120} kg N/ha (Mineral-N Loss / Over-application vs GR)` : '0 kg N/ha (Parity with GR)');
 
   const supportLabel = support === true || String(support).toLowerCase() === 'true'
     ? 'Environmentally supported'
@@ -540,8 +540,8 @@ function PixelPanel({
         {nred > 0
           ? ` Absolute mineral-N saving of ${fmt(nred, 0)} kg N/ha for the same target yield.`
           : nInc > 0
-            ? ` The model indicates ${fmt(nInc, 0)} kg N/ha more may be required to reach target yield at this location.`
-            : (stratN && stratN > 120 ? ` Applies ${stratN - 120} kg N/ha excess fertilizer relative to the standard government recommendation.` : '')
+            ? ` Incurs a mineral-N loss of ${fmt(nInc, 0)} kg N/ha (excess N required relative to GR to achieve target yield at this location).`
+            : (stratN && stratN > 120 ? ` Incurs a mineral-N loss of ${stratN - 120} kg N/ha from excess fertilizer application relative to the standard government recommendation.` : '')
         }
         {' '}This is a modelled target-setting estimate, not a field-specific prescription.
       </p>
@@ -611,9 +611,9 @@ export default function Advisory() {
       <section className="hero">
         <div>
           <span className="kicker">Extension &amp; Practice Translation Workspace · Translating Agronomic Science into Actionable Practice</span>
-          <h2>Site-Specific Extension Advisory &amp; 4R Fertilizer Guidelines for Maize</h2>
+          <h2>Site-Specific Extension Advisory &amp; 4R Fertilizer Targets for Maize</h2>
           <p>
-            Translating multi-year NSAF crop-response evidence and NARC Digital Soil Mapping into site-specific fertilizer recommendations, 4R stewardship practice guides (Right Source, Right Rate, Right Time, Right Place), fertilizer bag requirements (Urea, DAP, MOP, FYM), and actionable field advice for extension agents, lead farmers, and local government agricultural officers in Western Nepal.
+            Translating multi-year NSAF crop-response evidence and NARC Digital Soil Mapping into site-specific fertilizer targets, 4R stewardship practice guides (Right Source, Right Rate, Right Time, Right Place), fertilizer bag requirements (Urea, DAP, MOP, FYM), and actionable field advice for extension agents, lead farmers, and local government agricultural officers in Western Nepal.
           </p>
         </div>
       </section>
@@ -949,7 +949,7 @@ export default function Advisory() {
               <div className="map-legend">
                 <span className="legend-title">
                   {mapMetric === 'balance' 
-                    ? 'Net Mineral-N Balance vs GR (120 kg N/ha): Savings vs Extra N / Losses'
+                    ? 'Net Mineral-N Balance vs GR (120 kg N/ha): Savings vs Losses (Excess N)'
                     : 'Yield Difference vs GR (9.06 t/ha): Gains vs Losses / Penalties'}
                 </span>
 
@@ -960,8 +960,8 @@ export default function Advisory() {
                       <span><span className="legend-dot" style={{background:'#22c55e'}} />25–50 kg N/ha saved</span>
                       <span><span className="legend-dot" style={{background:'#84cc16'}} />10–25 kg N/ha saved</span>
                       <span><span className="legend-dot" style={{background:'#eab308'}} />Parity (±10 kg N/ha vs GR)</span>
-                      <span><span className="legend-dot" style={{background:'#f97316'}} />10–30 kg N/ha extra needed (Loss)</span>
-                      <span><span className="legend-dot" style={{background:'#dc2626'}} />&gt;30 kg N/ha extra needed / Excess</span>
+                      <span><span className="legend-dot" style={{background:'#f97316'}} />10–30 kg N/ha Loss / Excess vs GR</span>
+                      <span><span className="legend-dot" style={{background:'#dc2626'}} />&gt;30 kg N/ha Severe Loss / Heavy Excess</span>
                     </>
                   ) : (
                     <>
