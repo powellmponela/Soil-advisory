@@ -40,13 +40,44 @@ import { STRATEGY_LABELS, fmt, number, nearestRow } from '../helpers';
 
 const ALL = '';   // sentinel for "no filter"
 
-// Colour scale for map markers based on N reduction potential
-function markerColor(row) {
+// Colour scale for map markers accounting for BOTH savings and losses relative to GR
+function markerColor(row, mapMetric = 'balance') {
+  if (mapMetric === 'yield') {
+    const diff = number(row.predicted_yield_difference_from_GR_t_ha);
+    if (diff === null) return '#94a3b8';
+    if (diff >= 0.50) return '#166534'; // Substantial Yield Gain vs GR
+    if (diff >= 0.15) return '#22c55e'; // Moderate Yield Gain vs GR
+    if (diff >= 0.05) return '#84cc16'; // Modest Yield Gain vs GR
+    if (diff >= -0.05) return '#eab308'; // Parity with GR (±0.05 t/ha)
+    if (diff >= -0.35) return '#f97316'; // Moderate Yield Loss vs GR
+    return '#dc2626';                   // Substantial Yield Loss vs GR
+  }
+
+  // Default: Mineral-N Balance vs GR (Savings vs Additional N Required / Excess)
   const nred = number(row.N_reduction_for_same_target_yield_kg_ha);
-  if (nred === null) return '#94a3b8';
-  if (nred >= 50) return '#166534';
-  if (nred >= 25) return '#22c55e';
-  if (nred >= 10) return '#fbbf24';
+  const nInc = number(row.N_increase_for_same_target_yield_kg_ha);
+  const testedDiff = number(row.tested_N_change_vs_GR_kg_ha);
+
+  // Direct mineral N savings vs GR
+  if (nred !== null && nred >= 50) return '#166534'; // High N savings (≥50 kg N/ha)
+  if (nred !== null && nred >= 25) return '#22c55e'; // Moderate N savings (25–50 kg N/ha)
+  if (nred !== null && nred >= 10) return '#84cc16'; // Modest N savings (10–25 kg N/ha)
+
+  // Baseline parity with GR (within ±10 kg N/ha)
+  if ((nred === null || nred < 10) && (nInc === null || nInc < 10) && (testedDiff === null || Math.abs(testedDiff) < 10)) {
+    return '#eab308';
+  }
+
+  // Moderate loss / additional N needed / over-application
+  if ((nInc !== null && nInc >= 10 && nInc < 30) || (testedDiff !== null && testedDiff > 0 && testedDiff <= 60 && (!nred || nred < 10))) {
+    return '#f97316';
+  }
+
+  // Substantial loss / large N deficit / heavy excess (e.g. N210 +90 kg N/ha or severe QUEFTS deficit)
+  if ((nInc !== null && nInc >= 30) || (testedDiff !== null && testedDiff > 60)) {
+    return '#dc2626';
+  }
+
   return '#f97316';
 }
 
@@ -87,7 +118,7 @@ function PixelPicker({ pool, onPick }) {
 }
 
 // ---------------------------------------------------------------------------
-// Location selectors
+// Location & Strategy selectors (Strategy & Yield upper row, Geography lower row)
 // ---------------------------------------------------------------------------
 
 function LocationSelectors({ features, region, district, palika, strategy, targetYield, onChange }) {
@@ -97,75 +128,81 @@ function LocationSelectors({ features, region, district, palika, strategy, targe
 
   return (
     <div className="location-selectors">
-      <label className="selector-label">
-        <span>Region</span>
-        <select
-          id="sel-region"
-          value={region}
-          onChange={(e) => onChange('region', e.target.value)}
-        >
-          <option value={ALL}>All regions</option>
-          {regions.map((r) => <option key={r} value={r}>{r}</option>)}
-        </select>
-      </label>
+      {/* Upper Row: Strategy and Target Yield */}
+      <div className="selector-row-primary">
+        <label className="selector-label">
+          <span>Strategy</span>
+          <select
+            id="sel-strategy"
+            value={strategy}
+            onChange={(e) => onChange('strategy', e.target.value)}
+          >
+            <option value={ALL}>All 4R strategies</option>
+            {strategies.map((s) => (
+              <option key={s} value={s}>
+                {STRATEGY_LABELS[s] || s}
+              </option>
+            ))}
+          </select>
+        </label>
 
-      <label className="selector-label">
-        <span>District</span>
-        <select
-          id="sel-district"
-          value={district}
-          onChange={(e) => onChange('district', e.target.value)}
-          disabled={!region}
-        >
-          <option value={ALL}>{region ? 'All districts' : '— select region first —'}</option>
-          {districts.map((d) => <option key={d} value={d}>{d}</option>)}
-        </select>
-      </label>
+        <label className="selector-label">
+          <span>Target Yield</span>
+          <select
+            id="sel-target-yield"
+            value={targetYield}
+            onChange={(e) => onChange('targetYield', e.target.value)}
+          >
+            <option value={ALL}>All target yields</option>
+            {targetYields.map((ty) => (
+              <option key={ty} value={ty}>
+                {ty} t/ha
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
 
-      <label className="selector-label">
-        <span>Palika</span>
-        <select
-          id="sel-palika"
-          value={palika}
-          onChange={(e) => onChange('palika', e.target.value)}
-          disabled={!district}
-        >
-          <option value={ALL}>{district ? 'All palikas' : '— select district first —'}</option>
-          {palikas.map((p) => <option key={p} value={p}>{p}</option>)}
-        </select>
-      </label>
+      {/* Lower Row: Region, District, Palika */}
+      <div className="selector-row-secondary">
+        <label className="selector-label">
+          <span>Region</span>
+          <select
+            id="sel-region"
+            value={region}
+            onChange={(e) => onChange('region', e.target.value)}
+          >
+            <option value={ALL}>All regions</option>
+            {regions.map((r) => <option key={r} value={r}>{r}</option>)}
+          </select>
+        </label>
 
-      <label className="selector-label">
-        <span>Strategy</span>
-        <select
-          id="sel-strategy"
-          value={strategy}
-          onChange={(e) => onChange('strategy', e.target.value)}
-        >
-          <option value={ALL}>All 4R strategies</option>
-          {strategies.map((s) => (
-            <option key={s} value={s}>
-              {STRATEGY_LABELS[s] || s}
-            </option>
-          ))}
-        </select>
-      </label>
+        <label className="selector-label">
+          <span>District</span>
+          <select
+            id="sel-district"
+            value={district}
+            onChange={(e) => onChange('district', e.target.value)}
+            disabled={!region}
+          >
+            <option value={ALL}>{region ? 'All districts' : '— select region first —'}</option>
+            {districts.map((d) => <option key={d} value={d}>{d}</option>)}
+          </select>
+        </label>
 
-      <label className="selector-label">
-        <span>Target Yield</span>
-        <select
-          id="sel-target-yield"
-          value={targetYield}
-          onChange={(e) => onChange('targetYield', e.target.value)}
-        >
-          <option value={ALL}>All target yields</option>
-          {targetYields.map((ty) => (
-            <option key={ty} value={ty}>
-              {ty} t/ha
-            </option>
-          ))}
-        </select>
-      </label>
+        <label className="selector-label">
+          <span>Palika</span>
+          <select
+            id="sel-palika"
+            value={palika}
+            onChange={(e) => onChange('palika', e.target.value)}
+            disabled={!district}
+          >
+            <option value={ALL}>{district ? 'All palikas' : '— select district first —'}</option>
+            {palikas.map((p) => <option key={p} value={p}>{p}</option>)}
+          </select>
+        </label>
+      </div>
     </div>
   );
 }
@@ -177,16 +214,33 @@ function LocationSelectors({ features, region, district, palika, strategy, targe
 function HoverTooltipContent({ row }) {
   const nred = number(row.N_reduction_for_same_target_yield_kg_ha);
   const nInc = number(row.N_increase_for_same_target_yield_kg_ha);
-  const mineralN = nred > 0 ? `−${fmt(nred, 0)} kg N/ha` :
-                   nInc > 0 ? `+${fmt(nInc, 0)} kg N/ha` : '—';
+  const stratN = number(row.strategy_N_rate_kg_ha);
+  const diff = number(row.predicted_yield_difference_from_GR_t_ha);
+  const absYield = diff !== null ? 9.06 + diff : null;
+
+  const mineralN = nred > 0 
+    ? `−${fmt(nred, 0)} kg N/ha (Saved vs GR)`
+    : nInc > 0 
+      ? `+${fmt(nInc, 0)} kg N/ha (Extra needed / Loss)`
+      : (stratN && stratN > 120 ? `+${stratN - 120} kg N/ha (Excess vs GR)` : '0 kg N/ha (Parity)');
+
+  const yieldDiffText = diff !== null
+    ? (diff >= 0 ? `+${fmt(diff, 2)} t/ha (Gain vs GR)` : `${fmt(diff, 2)} t/ha (Loss vs GR)`)
+    : '—';
+
   return (
-    <>
-      <strong>{row.palika || '—'}</strong>
-      <br />{row.district}
-      <br />N target: {fmt(row.strategy_N_rate_kg_ha, 0)} kg/ha
-      <br />Yield diff vs GR: {fmt(row.predicted_yield_difference_from_GR_t_ha, 2)} t/ha
-      <br />Mineral-N Δ: {mineralN}
-    </>
+    <div style={{ fontSize: '.82rem', lineHeight: '1.45' }}>
+      <strong style={{ fontSize: '.9rem', color: '#0f4028' }}>{row.palika || '—'}</strong>
+      <div style={{ color: '#64748b', fontSize: '.75rem', marginBottom: '.25rem' }}>{row.district} · {row.province}</div>
+      <div>Strategy: <strong>{STRATEGY_LABELS[row.strategy] || row.strategy}</strong> ({fmt(stratN, 0)} kg N/ha)</div>
+      {absYield !== null && <div>Absolute Yield: <strong>{fmt(absYield, 2)} t/ha</strong></div>}
+      <div style={{ marginTop: '.2rem' }}>
+        Yield vs GR: <strong style={{ color: diff >= 0 ? '#166534' : '#dc2626' }}>{yieldDiffText}</strong>
+      </div>
+      <div>
+        Mineral-N Δ vs GR: <strong style={{ color: nred > 0 ? '#166534' : (nInc > 0 || (stratN && stratN > 120)) ? '#dc2626' : '#0f4028' }}>{mineralN}</strong>
+      </div>
+    </div>
   );
 }
 
@@ -194,7 +248,18 @@ function HoverTooltipContent({ row }) {
 // Pixel detail panel
 // ---------------------------------------------------------------------------
 
-function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, region, palika, onClear }) {
+function PixelPanel({
+  row,
+  strategy,
+  targetYield,
+  filteredCount = 0,
+  district,
+  region,
+  palika,
+  onClear,
+  mapMetric = 'balance',
+  onMetricChange,
+}) {
   if (!row) {
     const stratLabel = STRATEGY_LABELS[strategy] || strategy || 'All 4R Strategies';
     const locLabel = palika || district || region || 'Western Nepal';
@@ -231,29 +296,125 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
           </div>
         </div>
 
-        {/* What the Map Colors Represent */}
+        {/* Map Display Metric Toggle */}
+        <div style={{ marginBottom: '1rem' }}>
+          <div style={{ fontSize: '.75rem', fontWeight: 700, color: '#4d6154', textTransform: 'uppercase', marginBottom: '.35rem', letterSpacing: '.04em' }}>
+            Select Map Display Metric:
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.4rem' }}>
+            <button
+              type="button"
+              onClick={() => onMetricChange && onMetricChange('balance')}
+              style={{
+                padding: '.55rem .6rem',
+                borderRadius: '6px',
+                border: '1.5px solid #276246',
+                background: mapMetric === 'balance' ? '#0f4028' : '#ffffff',
+                color: mapMetric === 'balance' ? '#ffffff' : '#0f4028',
+                fontWeight: 700,
+                fontSize: '.78rem',
+                cursor: 'pointer',
+                textAlign: 'center',
+                transition: 'all .15s ease',
+              }}
+            >
+              Mineral-N Balance
+            </button>
+            <button
+              type="button"
+              onClick={() => onMetricChange && onMetricChange('yield')}
+              style={{
+                padding: '.55rem .6rem',
+                borderRadius: '6px',
+                border: '1.5px solid #276246',
+                background: mapMetric === 'yield' ? '#0f4028' : '#ffffff',
+                color: mapMetric === 'yield' ? '#ffffff' : '#0f4028',
+                fontWeight: 700,
+                fontSize: '.78rem',
+                cursor: 'pointer',
+                textAlign: 'center',
+                transition: 'all .15s ease',
+              }}
+            >
+              Yield Diff vs GR
+            </button>
+          </div>
+        </div>
+
+        {/* What Parcel Colors Show: Savings vs Losses */}
         <h4 style={{ margin: '0 0 .5rem', fontSize: '.85rem', fontWeight: 700, color: '#0f4028', textTransform: 'uppercase', letterSpacing: '.03em' }}>
-          🎨 What Parcel Colors Show
+          🎨 What Parcel Colors Show ({mapMetric === 'balance' ? 'N Savings & Losses' : 'Yield Gains & Losses'})
         </h4>
         <p style={{ margin: '0 0 .6rem', fontSize: '.8rem', color: '#334438', lineHeight: '1.45' }}>
-          Colors represent <strong>Potential Mineral N Reduction (kg N/ha)</strong> vs standard Government Recommendation (120 kg N/ha):
+          {mapMetric === 'balance'
+            ? 'Colors represent Net Mineral-N Balance (Savings vs Additional N Required / Excess) vs standard Government Recommendation (120 kg N/ha):'
+            : 'Colors represent Yield Difference (Gains vs Losses / Penalties in t/ha) vs standard Government Recommendation (9.06 t/ha):'}
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.1rem', fontSize: '.8rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#166534', flexShrink: 0 }} />
-            <span><strong style={{ color: '#166534' }}>≥50 kg N/ha saved</strong> (High efficiency gain)</span>
+        
+        {mapMetric === 'balance' ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.1rem', fontSize: '.8rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#166534', flexShrink: 0 }} />
+              <span><strong style={{ color: '#166534' }}>≥50 kg N/ha saved</strong> (High efficiency gain)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
+              <span><strong style={{ color: '#15803d' }}>25–50 kg N/ha saved</strong> (Moderate N savings)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#84cc16', flexShrink: 0 }} />
+              <span><strong style={{ color: '#4d7c0f' }}>10–25 kg N/ha saved</strong> (Modest N reduction)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#eab308', flexShrink: 0 }} />
+              <span><strong style={{ color: '#b45309' }}>Parity (±10 kg N/ha)</strong> (Standard rate / Baseline)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316', flexShrink: 0 }} />
+              <span><strong style={{ color: '#c2410c' }}>10–30 kg N/ha extra needed</strong> (Loss / Over-application)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626', flexShrink: 0 }} />
+              <span><strong style={{ color: '#b91c1c' }}>&gt;30 kg N/ha extra needed</strong> (High loss / Heavy excess)</span>
+            </div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
-            <span><strong style={{ color: '#15803d' }}>25–50 kg N/ha saved</strong> (Moderate N savings)</span>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.1rem', fontSize: '.8rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#166534', flexShrink: 0 }} />
+              <span><strong style={{ color: '#166534' }}>≥+0.50 t/ha Gain</strong> (Substantial yield advantage)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
+              <span><strong style={{ color: '#15803d' }}>+0.15 to +0.50 t/ha Gain</strong> (Moderate yield advantage)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#84cc16', flexShrink: 0 }} />
+              <span><strong style={{ color: '#4d7c0f' }}>+0.05 to +0.15 t/ha Gain</strong> (Modest yield advantage)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#eab308', flexShrink: 0 }} />
+              <span><strong style={{ color: '#b45309' }}>Parity (±0.05 t/ha)</strong> (Yield parity with GR)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316', flexShrink: 0 }} />
+              <span><strong style={{ color: '#c2410c' }}>−0.05 to −0.35 t/ha Loss</strong> (Moderate yield penalty)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626', flexShrink: 0 }} />
+              <span><strong style={{ color: '#b91c1c' }}>&lt;−0.35 t/ha Severe Loss</strong> (Substantial yield penalty)</span>
+            </div>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#fbbf24', flexShrink: 0 }} />
-            <span><strong style={{ color: '#b45309' }}>10–25 kg N/ha saved</strong> (Modest N reduction)</span>
+        )}
+
+        {/* Agronomic Trade-offs Note */}
+        <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '.75rem .9rem', marginBottom: '1rem', fontSize: '.79rem', color: '#78350f', lineHeight: '1.45' }}>
+          <strong>⚖️ Agronomic Trade-offs (Savings vs Losses vs GR):</strong>
+          <div style={{ marginTop: '.35rem' }}>
+            • <strong>Yield Losses &amp; Extra N:</strong> Lower rates (N60) reduce mineral fertilizer costs, but cause an average yield loss of ~0.50 t/ha below GR across Western Nepal, and in low-fertility parcels require additional N to sustain 8–10 t/ha. Over-application (N180, N210) adds 60–90 kg N/ha excess with zero extra yield and can cause lodging-induced losses (up to −1.13 t/ha).
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316', flexShrink: 0 }} />
-            <span><strong style={{ color: '#c2410c' }}>&lt;10 kg N/ha</strong> (Standard rate / Baseline)</span>
+          <div style={{ marginTop: '.35rem' }}>
+            • <strong>Efficiency Gains:</strong> Enhanced 4R options (PCU, UDP, V6/V10 timing) achieve 25–59 kg N/ha savings while sustaining yield or providing gains up to +0.87 t/ha.
           </div>
         </div>
 
@@ -261,7 +422,7 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
         <div style={{ background: '#f8faf8', border: '1px solid #dbe8de', borderRadius: '6px', padding: '.75rem .9rem', fontSize: '.8rem', color: '#1b3a28', lineHeight: '1.5' }}>
           <div style={{ fontWeight: 700, marginBottom: '.25rem' }}>💡 How to explore the map:</div>
           <div>• <strong>Hover</strong> over any parcel to preview values.</div>
-          <div>• <strong>Click any parcel</strong> on the map to lock its site-specific N rate, yield gain, and advisory details.</div>
+          <div>• <strong>Click any parcel</strong> on the map to lock its site-specific N rate, yield difference (gain/loss), and advisory details.</div>
         </div>
       </aside>
     );
@@ -279,10 +440,10 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
   const absoluteYield = yieldDiff !== null ? (9.06 + yieldDiff) : null;
 
   const mineralN = nred > 0
-    ? `−${fmt(nred, 0)} kg N/ha (potential reduction)`
+    ? `−${fmt(nred, 0)} kg N/ha (Mineral-N Saving vs GR)`
     : nInc > 0
-      ? `+${fmt(nInc, 0)} kg N/ha (more N may be needed)`
-      : '—';
+      ? `+${fmt(nInc, 0)} kg N/ha (Additional N Required / Deficit vs GR)`
+      : (stratN && stratN > 120 ? `+${stratN - 120} kg N/ha (Excess Over-application vs GR)` : '0 kg N/ha (Parity with GR)');
 
   const supportLabel = support === true || String(support).toLowerCase() === 'true'
     ? 'Environmentally supported'
@@ -331,12 +492,16 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
         </div>
         <div>
           <dt>Absolute Yield difference vs GR</dt>
-          <dd>{yieldDiff === null ? '—' :
-            `${yieldDiff >= 0 ? '+' : ''}${fmt(yieldDiff, 2)} t/ha`}</dd>
+          <dd style={{ fontWeight: 800, color: yieldDiff !== null && yieldDiff >= 0 ? '#166534' : '#dc2626' }}>
+            {yieldDiff === null ? '—' :
+              `${yieldDiff >= 0 ? '+' : ''}${fmt(yieldDiff, 2)} t/ha (${yieldDiff >= 0 ? 'Yield Gain vs GR' : 'Yield Loss vs GR'})`}
+          </dd>
         </div>
         <div>
           <dt>Absolute mineral-N change</dt>
-          <dd>{mineralN}</dd>
+          <dd style={{ fontWeight: 700, color: nred > 0 ? '#166534' : (nInc > 0 || (stratN && stratN > 120)) ? '#dc2626' : '#0f4028' }}>
+            {mineralN}
+          </dd>
         </div>
         {ae !== null && (
           <div>
@@ -369,14 +534,14 @@ function PixelPanel({ row, strategy, targetYield, filteredCount = 0, district, r
         {yieldDiff !== null
           ? (yieldDiff >= 0
             ? `This strategy yields +${fmt(yieldDiff, 2)} t/ha above the government comparator (9.06 t/ha) at this parcel.`
-            : `This strategy yields ${fmt(Math.abs(yieldDiff), 2)} t/ha below the government comparator (9.06 t/ha).`)
+            : `This strategy yields ${fmt(Math.abs(yieldDiff), 2)} t/ha below the government comparator (9.06 t/ha) representing a yield trade-off at this site.`)
           : ''
         }
         {nred > 0
           ? ` Absolute mineral-N saving of ${fmt(nred, 0)} kg N/ha for the same target yield.`
           : nInc > 0
-            ? ` The model indicates ${fmt(nInc, 0)} kg N/ha more may be required for the same target yield.`
-            : ''
+            ? ` The model indicates ${fmt(nInc, 0)} kg N/ha more may be required to reach target yield at this location.`
+            : (stratN && stratN > 120 ? ` Applies ${stratN - 120} kg N/ha excess fertilizer relative to the standard government recommendation.` : '')
         }
         {' '}This is a modelled target-setting estimate, not a field-specific prescription.
       </p>
@@ -397,6 +562,9 @@ export default function Advisory() {
   const [palika, setPalika]           = useState(ALL);
   const [strategy, setStrategy]       = useState(ALL);
   const [targetYield, setTargetYield] = useState(ALL);
+
+  // Metric switch: 'balance' (Net Mineral-N Balance) | 'yield' (Yield Difference vs GR)
+  const [mapMetric, setMapMetric]     = useState('balance');
 
   // Pixel selection (click = locked)
   const [selected, setSelected] = useState(null);
@@ -736,7 +904,7 @@ export default function Advisory() {
                       key={String(r.pixel_id)}
                       bounds={bounds}
                       pathOptions={{
-                        fillColor: markerColor(r),
+                        fillColor: markerColor(r, mapMetric),
                         fillOpacity: isSelected ? 0.95 : 0.7,
                         color: isSelected ? '#102b1f' : '#ffffff',
                         weight: isSelected ? 2 : 0.4,
@@ -755,14 +923,72 @@ export default function Advisory() {
                 })}
               </MapContainer>
 
-              {/* Legend */}
+              {/* Legend with Metric Switcher */}
               <div className="map-legend">
-                <span className="legend-title">Potential Mineral-N Reduction for Same Target Yield (vs GR N120)</span>
+                <div className="legend-header">
+                  <span className="legend-title">
+                    {mapMetric === 'balance' 
+                      ? 'Net Mineral-N Balance vs GR (120 kg N/ha): Savings vs Extra N / Losses'
+                      : 'Yield Difference vs GR (9.06 t/ha): Gains vs Losses / Penalties'}
+                  </span>
+                  
+                  {/* Quick Metric Switch Buttons */}
+                  <div style={{ display: 'inline-flex', background: '#e8f3ed', padding: '3px', borderRadius: '6px', gap: '3px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setMapMetric('balance')}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        background: mapMetric === 'balance' ? '#0f4028' : 'transparent',
+                        color: mapMetric === 'balance' ? '#ffffff' : '#0f4028',
+                        cursor: 'pointer',
+                        fontWeight: 700,
+                        fontSize: '.75rem',
+                      }}
+                    >
+                      Mineral-N Balance
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMapMetric('yield')}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        background: mapMetric === 'yield' ? '#0f4028' : 'transparent',
+                        color: mapMetric === 'yield' ? '#ffffff' : '#0f4028',
+                        cursor: 'pointer',
+                        fontWeight: 700,
+                        fontSize: '.75rem',
+                      }}
+                    >
+                      Yield Diff vs GR
+                    </button>
+                  </div>
+                </div>
+
                 <div className="legend-items">
-                  <span><span className="legend-dot" style={{background:'#166534'}} />≥50 kg N/ha reduction</span>
-                  <span><span className="legend-dot" style={{background:'#22c55e'}} />25–50 kg N/ha reduction</span>
-                  <span><span className="legend-dot" style={{background:'#fbbf24'}} />10–25 kg N/ha reduction</span>
-                  <span><span className="legend-dot" style={{background:'#f97316'}} />&lt;10 kg N/ha reduction</span>
+                  {mapMetric === 'balance' ? (
+                    <>
+                      <span><span className="legend-dot" style={{background:'#166534'}} />≥50 kg N/ha saved (High efficiency)</span>
+                      <span><span className="legend-dot" style={{background:'#22c55e'}} />25–50 kg N/ha saved</span>
+                      <span><span className="legend-dot" style={{background:'#84cc16'}} />10–25 kg N/ha saved</span>
+                      <span><span className="legend-dot" style={{background:'#eab308'}} />Parity (±10 kg N/ha vs GR)</span>
+                      <span><span className="legend-dot" style={{background:'#f97316'}} />10–30 kg N/ha extra needed (Loss)</span>
+                      <span><span className="legend-dot" style={{background:'#dc2626'}} />&gt;30 kg N/ha extra needed / Excess</span>
+                    </>
+                  ) : (
+                    <>
+                      <span><span className="legend-dot" style={{background:'#166534'}} />≥+0.50 t/ha Gain vs GR</span>
+                      <span><span className="legend-dot" style={{background:'#22c55e'}} />+0.15 to +0.50 t/ha Gain</span>
+                      <span><span className="legend-dot" style={{background:'#84cc16'}} />+0.05 to +0.15 t/ha Gain</span>
+                      <span><span className="legend-dot" style={{background:'#eab308'}} />Parity (±0.05 t/ha vs GR)</span>
+                      <span><span className="legend-dot" style={{background:'#f97316'}} />−0.05 to −0.35 t/ha Loss</span>
+                      <span><span className="legend-dot" style={{background:'#dc2626'}} />&lt;−0.35 t/ha Severe Loss</span>
+                    </>
+                  )}
                   <span><span className="legend-dot" style={{background:'#94a3b8'}} />No data / Baseline</span>
                 </div>
               </div>
@@ -778,6 +1004,8 @@ export default function Advisory() {
               region={region}
               palika={palika}
               onClear={() => setSelected(null)}
+              mapMetric={mapMetric}
+              onMetricChange={setMapMetric}
             />
           </div>
         </section>
