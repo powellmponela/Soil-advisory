@@ -347,15 +347,15 @@ function PixelPanel({
         </h4>
         <p style={{ margin: '0 0 .6rem', fontSize: '.8rem', color: '#334438', lineHeight: '1.45' }}>
           {mapMetric === 'balance'
-            ? 'Colors represent Net Mineral-N Balance (Savings vs Losses / Excess N) vs standard Government Recommendation (120 kg N/ha):'
-            : 'Colors represent Yield Difference (Gains vs Losses / Penalties in t/ha) vs standard Government Recommendation (9.06 t/ha):'}
+            ? 'Colors represent Net Mineral-N Balance vs Government Recommendation (120 kg N/ha). Negative values indicate N Savings (cash saved & zero runoff), while positive values indicate N Losses / Excess:'
+            : 'Colors represent Yield Difference vs Government Recommendation (9.06 t/ha). Positive values indicate Yield Gains, while negative values indicate Yield Losses / Penalties:'}
         </p>
         
         {mapMetric === 'balance' ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.1rem', fontSize: '.8rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#166534', flexShrink: 0 }} />
-              <span><strong style={{ color: '#166534' }}>≥50 kg N/ha saved</strong> (High efficiency gain)</span>
+              <span><strong style={{ color: '#166534' }}>≥50 kg N/ha saved</strong> (High efficiency / negative balance)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
@@ -382,7 +382,7 @@ function PixelPanel({
           <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginBottom: '1.1rem', fontSize: '.8rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#166534', flexShrink: 0 }} />
-              <span><strong style={{ color: '#166534' }}>≥+0.50 t/ha Gain</strong> (Substantial yield advantage)</span>
+              <span><strong style={{ color: '#166534' }}>≥+0.50 t/ha Gain</strong> (Substantial yield advantage vs GR)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
@@ -398,23 +398,29 @@ function PixelPanel({
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f97316', flexShrink: 0 }} />
-              <span><strong style={{ color: '#c2410c' }}>−0.05 to −0.35 t/ha Loss</strong> (Moderate yield penalty)</span>
+              <span><strong style={{ color: '#c2410c' }}>−0.05 to −0.35 t/ha Loss</strong> (Moderate yield penalty vs GR)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
               <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#dc2626', flexShrink: 0 }} />
-              <span><strong style={{ color: '#b91c1c' }}>&lt;−0.35 t/ha Severe Loss</strong> (Substantial yield penalty)</span>
+              <span><strong style={{ color: '#b91c1c' }}>&lt;−0.35 t/ha Severe Loss</strong> (Substantial yield penalty vs GR)</span>
             </div>
           </div>
         )}
 
-        {/* Agronomic Trade-offs Note */}
-        <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '.75rem .9rem', marginBottom: '1rem', fontSize: '.79rem', color: '#78350f', lineHeight: '1.45' }}>
-          <strong>⚖️ Agronomic Trade-offs (Savings vs Losses vs GR):</strong>
+        {/* Agronomic Trade-offs Note: Why some sites are negative */}
+        <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '.75rem .9rem', marginBottom: '1rem', fontSize: '.79rem', color: '#78350f', lineHeight: '1.5' }}>
+          <strong>⚖️ Why Some Sites Show Negative Responses (Trade-offs):</strong>
           <div style={{ marginTop: '.35rem' }}>
-            • <strong>Yield Losses &amp; Extra N:</strong> Lower rates (N60) reduce mineral fertilizer costs, but cause an average yield loss of ~0.50 t/ha below GR across Western Nepal, and in low-fertility parcels require additional N to sustain 8–10 t/ha. Over-application (N180, N210) adds 60–90 kg N/ha excess with zero extra yield and can cause lodging-induced losses (up to −1.13 t/ha).
+            • <strong>Under-Fertilization Penalty (N60):</strong> Halving N cuts fertilizer cost and eliminates leaching, but causes yield loss in <strong>97.7% of parcels</strong> (mean −0.50 t/ha, reaching −1.76 t/ha) because soils with low OM (&lt;1.5%) lack native mineralization to sustain 8 t/ha maize.
           </div>
           <div style={{ marginTop: '.35rem' }}>
-            • <strong>Efficiency Gains:</strong> Enhanced 4R options (PCU, UDP, V6/V10 timing) achieve 25–59 kg N/ha savings while sustaining yield or providing gains up to +0.87 t/ha.
+            • <strong>Over-Fertilization Penalty (N210):</strong> Pushing N to 210 kg/ha causes <strong>negative yield differences in 57.4% of parcels</strong> (down to −1.13 t/ha) due to lodging from spring convective squalls, mutual shading, and cold-delayed maturity, while dumping +90 kg N/ha excess into water tables.
+          </div>
+          <div style={{ marginTop: '.35rem' }}>
+            • <strong>Moisture Risk (Timing V6/V10):</strong> Splits achieve +0.21 t/ha gain in 86.8% of sites, but <strong>13.2% show negative yields</strong> (down to −0.69 t/ha) in rainfed parcels where dry spells prevent urea dissolution at V8–V10.
+          </div>
+          <div style={{ marginTop: '.35rem' }}>
+            • <strong>Efficiency Frontiers (PCU N60 &amp; UDP N78):</strong> 87–94% of parcels retain ≥95% of GR yield while cutting 42–60 kg N/ha. Slight negative yields (−0.06 to −0.14 t/ha) are restricted to heavy clays or cold mid-hill soils.
           </div>
         </div>
 
@@ -422,7 +428,7 @@ function PixelPanel({
         <div style={{ background: '#f8faf8', border: '1px solid #dbe8de', borderRadius: '6px', padding: '.75rem .9rem', fontSize: '.8rem', color: '#1b3a28', lineHeight: '1.5' }}>
           <div style={{ fontWeight: 700, marginBottom: '.25rem' }}>💡 How to explore the map:</div>
           <div>• <strong>Hover</strong> over any parcel to preview values.</div>
-          <div>• <strong>Click any parcel</strong> on the map to lock its site-specific N rate, yield difference (gain/loss), and advisory details.</div>
+          <div>• <strong>Click any parcel</strong> on the map to lock its site-specific N rate, yield difference (gain/loss), and trade-off assessment.</div>
         </div>
       </aside>
     );
@@ -527,7 +533,49 @@ function PixelPanel({
         </div>
       </dl>
 
-      <p className="result-note">
+      {/* Dynamic Site Trade-off Assessment Box */}
+      <div style={{ background: '#f8faf9', border: '1px solid #cce5d5', borderRadius: '8px', padding: '.75rem .85rem', marginTop: '.75rem', fontSize: '.79rem', lineHeight: '1.45' }}>
+        <div style={{ fontWeight: 700, color: '#0f4028', marginBottom: '.3rem', display: 'flex', alignItems: 'center', gap: '.35rem' }}>
+          <span>⚖️</span> Site Trade-off &amp; Risk Profile:
+        </div>
+        {row.strategy === 'N60' && (
+          <div style={{ color: '#78350f' }}>
+            <strong>• Under-Fertilization Penalty:</strong> Saves 60 kg N/ha, but incurs a yield penalty of {yieldDiff !== null ? `${fmt(yieldDiff, 2)} t/ha` : '−0.50 t/ha'} vs GR. Low indigenous OM (&lt;1.5%) limits native mineralization during stem elongation.
+          </div>
+        )}
+        {row.strategy === 'N210' && (
+          <div style={{ color: '#991b1b' }}>
+            <strong>• Over-Fertilization Penalty (57% Regional Loss):</strong> Adds +90 kg N/ha excess loss. Triggers lodging from spring storm squalls, delayed maturity, and cob rots (yield diff: {yieldDiff !== null ? `${fmt(yieldDiff, 2)} t/ha` : '−0.05 t/ha'}).
+          </div>
+        )}
+        {row.strategy === 'N180' && (
+          <div style={{ color: '#9a3412' }}>
+            <strong>• Diminishing Returns &amp; Leaching:</strong> Adds +60 kg N/ha mineral loss with minimal/zero yield gain; 21.7% of regional parcels experience negative returns or lodging.
+          </div>
+        )}
+        {row.strategy === 'TIMING_V6_V10' && (
+          <div style={{ color: '#166534' }}>
+            <strong>• Moisture-Dependent Split:</strong> Expected gain of {yieldDiff !== null ? `${yieldDiff >= 0 ? '+' : ''}${fmt(yieldDiff, 2)} t/ha` : '+0.21 t/ha'} under irrigation; vulnerable to negative yield (down to −0.69 t/ha in 13.2% of sites) if dry spells stall urea dissolution at V8–V10.
+          </div>
+        )}
+        {row.strategy === 'PCU_N60' && (
+          <div style={{ color: '#1e40af' }}>
+            <strong>• Controlled-Release Efficiency:</strong> Peak PFP-N (133 kg/kg N) and 59 kg N/ha savings; 87.4% of parcels retain ≥95% of GR yield. Modest early-season lag may occur in cooler mid-hill valleys.
+          </div>
+        )}
+        {row.strategy === 'UDP_N78' && (
+          <div style={{ color: '#6b21a8' }}>
+            <strong>• Root-Zone Deep Placement:</strong> 93.9% of parcels maintain ≥95% GR yield while saving 42 kg N/ha; minor negative response restricted to heavy clays.
+          </div>
+        )}
+        {row.strategy === 'FYM_N60' && (
+          <div style={{ color: '#047857' }}>
+            <strong>• Organic-Mineral Balance:</strong> Replaces 56 kg/ha chemical N while improving soil water retention and buffering against both leaching and dry spells.
+          </div>
+        )}
+      </div>
+
+      <p className="result-note" style={{ marginTop: '.75rem' }}>
         {absoluteYield !== null && (
           <span>Absolute predicted grain yield is <strong>{fmt(absoluteYield, 2)} t/ha</strong>. </span>
         )}
@@ -610,8 +658,8 @@ export default function Advisory() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <span className="kicker">Extension &amp; Practice Translation Workspace · Translating Agronomic Science into Actionable Practice</span>
-          <h2>Site-Specific Extension Advisory &amp; 4R Fertilizer Targets for Maize</h2>
+          <span className="kicker">Extension &amp; Target Setting Workspace · Translating Agronomic Science into Actionable Practice</span>
+          <h2>Site-Specific Extension Target Setting &amp; 4R Fertilizer Targets for Maize</h2>
           <p>
             Translating multi-year NSAF crop-response evidence and NARC Digital Soil Mapping into site-specific fertilizer targets, 4R stewardship practice guides (Right Source, Right Rate, Right Time, Right Place), fertilizer bag requirements (Urea, DAP, MOP, FYM), and actionable field advice for extension agents, lead farmers, and local government agricultural officers in Western Nepal.
           </p>
@@ -994,6 +1042,151 @@ export default function Advisory() {
           </div>
         </section>
       )}
+
+      {/* ── Cross-Site Trade-offs & Spatial Negative Responses Diagnostics ── */}
+      <section className="pipeline-section" style={{ background: '#ffffff', borderRadius: '12px', border: '1px solid #cce5d5', padding: '1.75rem', marginTop: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
+        <div className="pipeline-header" style={{ marginBottom: '1.25rem' }}>
+          <span className="advisory-evidence-kicker">Multi-Site Trade-off Diagnostics · 11,703 Evaluated Land Parcels</span>
+          <h3 style={{ margin: '.2rem 0 0', fontSize: '1.35rem', color: 'var(--dark)' }}>
+            ⚖️ Cross-Site Trade-offs &amp; Spatial Negative Responses Analysis
+          </h3>
+          <p className="pipeline-subtitle" style={{ fontSize: '.86rem', color: '#334438' }}>
+            Empirical evaluation of why certain sites experience <strong>negative yield differences</strong> vs the Government Recommendation (GR: 120 kg N/ha) and why others achieve substantial <strong>mineral N savings vs severe excess losses</strong> across Western Nepal.
+          </p>
+        </div>
+
+        {/* 4 Trade-off Mechanism Cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div style={{ background: '#fef7ee', border: '1px solid #fed7aa', borderRadius: '8px', padding: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontWeight: 800, color: '#c2410c', fontSize: '.88rem', marginBottom: '.35rem' }}>
+              <span>⚠️</span> 1. Under-Fertilization Penalty (N60)
+            </div>
+            <div style={{ fontSize: '.8rem', color: '#7c2d12', lineHeight: '1.45' }}>
+              <strong>97.7% of parcels</strong> have a negative yield difference (mean −0.50 t/ha, down to −1.76 t/ha in Dang). While saving 60 kg N/ha and cutting leaching to zero, soils with &lt;1.5% OM cannot supply enough native N during rapid stem elongation.
+            </div>
+          </div>
+
+          <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', padding: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontWeight: 800, color: '#b91c1c', fontSize: '.88rem', marginBottom: '.35rem' }}>
+              <span>🛑</span> 2. Over-Fertilization Penalty (N210)
+            </div>
+            <div style={{ fontSize: '.8rem', color: '#7f1d1d', lineHeight: '1.45' }}>
+              <strong>57.4% of parcels</strong> suffer negative yields vs GR (down to −1.13 t/ha). Adding +90 kg N/ha triggers excessive vegetative growth, mutual shading, delayed silking into monsoon rains, and stalk lodging during pre-monsoon squalls.
+            </div>
+          </div>
+
+          <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px', padding: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontWeight: 800, color: '#15803d', fontSize: '.88rem', marginBottom: '.35rem' }}>
+              <span>💧</span> 3. Moisture-Dependent Split (V6/V10)
+            </div>
+            <div style={{ fontSize: '.8rem', color: '#14532d', lineHeight: '1.45' }}>
+              <strong>86.8% positive response</strong> (+0.21 t/ha mean gain under irrigation). However, <strong>13.2% suffer negative yield</strong> (down to −0.69 t/ha) in rainfed parcels where dry spells stall urea dissolution at V8–V10 floral initiation.
+            </div>
+          </div>
+
+          <div style={{ background: '#f5f3ff', border: '1px solid #ddd6fe', borderRadius: '8px', padding: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontWeight: 800, color: '#6d28d9', fontSize: '.88rem', marginBottom: '.35rem' }}>
+              <span>🏆</span> 4. High-Retention 4R (UDP &amp; PCU)
+            </div>
+            <div style={{ fontSize: '.8rem', color: '#4c1d95', lineHeight: '1.45' }}>
+              <strong>87% to 94% of parcels</strong> maintain ≥95% of GR yield while cutting 42–60 kg N/ha. Minor negative yield differences (−0.06 to −0.14 t/ha) are restricted to heavy clays or cold mid-hill valleys with slower diffusion.
+            </div>
+          </div>
+        </div>
+
+        {/* Empirical Trade-off Summary Table */}
+        <div style={{ overflowX: 'auto', marginBottom: '1.5rem' }}>
+          <table className="data-table" style={{ width: '100%', fontSize: '.82rem' }}>
+            <thead>
+              <tr style={{ background: '#f4f8f5' }}>
+                <th style={{ textAlign: 'left', padding: '.65rem .85rem' }}>4R Strategy</th>
+                <th style={{ textAlign: 'right', padding: '.65rem .85rem' }}>Mean Yield Diff vs GR</th>
+                <th style={{ textAlign: 'right', padding: '.65rem .85rem' }}>Sites with Yield Loss (&lt;0)</th>
+                <th style={{ textAlign: 'right', padding: '.65rem .85rem' }}>Retaining ≥95% GR Yield</th>
+                <th style={{ textAlign: 'right', padding: '.65rem .85rem' }}>Mineral-N Balance vs GR</th>
+                <th style={{ textAlign: 'left', padding: '.65rem .85rem' }}>Agronomic Trade-off &amp; Risk Profile</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style={{ fontWeight: 700, padding: '.6rem .85rem' }}>N60 (60 kg N/ha)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#dc2626', padding: '.6rem .85rem' }}>−0.50 t/ha</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#dc2626', padding: '.6rem .85rem' }}>97.7% (1,302/1,332)</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>45.7%</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>−60.0 kg N/ha (Saved)</td>
+                <td style={{ padding: '.6rem .85rem', color: '#475569' }}>Cuts fertilizer cost by 50% &amp; eliminates leaching, but incurs unavoidable yield sacrifice on low-OM soils.</td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 700, padding: '.6rem .85rem' }}>UDP N78 (Root-Zone Briquette)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#475569', padding: '.6rem .85rem' }}>−0.06 t/ha</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>56.3% (750/1,332)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>93.9%</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>−42.0 kg N/ha (Saved)</td>
+                <td style={{ padding: '.6rem .85rem', color: '#475569' }}>Near-zero yield loss with 35% N cut; eliminates surface floodwater volatilization. Slight lags in clay soils.</td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 700, padding: '.6rem .85rem' }}>PCU N60 (Polymer-Coated)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#475569', padding: '.6rem .85rem' }}>−0.14 t/ha</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>71.4% (951/1,332)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>87.4%</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>−60.0 kg N/ha (Saved)</td>
+                <td style={{ padding: '.6rem .85rem', color: '#475569' }}>Highest PFP-N (136 kg/kg N); minor early vegetative lag in cold mid-hill soils offset by massive leaching reduction.</td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 700, padding: '.6rem .85rem' }}>Timing V6/V10 (Synchronized Split)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>+0.21 t/ha</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>13.2% (171/1,293)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>97.0%</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>0.0 kg N/ha (Parity)</td>
+                <td style={{ padding: '.6rem .85rem', color: '#475569' }}>High win-rate (+0.21 to +0.87 t/ha gain); negative responses occur where dry spells trap urea on dry topsoil.</td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 700, padding: '.6rem .85rem' }}>N180 (180 kg N/ha)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534', padding: '.6rem .85rem' }}>+0.18 t/ha</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>21.7% (289/1,332)</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>98.1%</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#dc2626', padding: '.6rem .85rem' }}>+60.0 kg N/ha (Loss)</td>
+                <td style={{ padding: '.6rem .85rem', color: '#475569' }}>Plateau effect: 21.7% sites see no benefit or negative yield; dumps 60 kg N/ha excess into shallow aquifers.</td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 700, padding: '.6rem .85rem' }}>N210 (210 kg N/ha)</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#dc2626', padding: '.6rem .85rem' }}>−0.05 t/ha</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#dc2626', padding: '.6rem .85rem' }}>57.4% (765/1,332)</td>
+                <td style={{ textAlign: 'right', padding: '.6rem .85rem' }}>94.8%</td>
+                <td style={{ textAlign: 'right', fontWeight: 700, color: '#dc2626', padding: '.6rem .85rem' }}>+90.0 kg N/ha (Loss)</td>
+                <td style={{ padding: '.6rem .85rem', color: '#475569' }}>Severe over-application penalty: stalk lodging, delayed silking, fungal cob rots, and severe economic/N losses.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Regional Spatial Contrasts */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+          <div style={{ background: '#f8faf9', border: '1px solid #d4e8da', borderRadius: '8px', padding: '.9rem 1rem' }}>
+            <h5 style={{ margin: '0 0 .35rem', color: '#0f4028', fontSize: '.85rem' }}>🏔️ High-Altitude Mid-Hills (Rolpa &amp; Rukum-East)</h5>
+            <p style={{ margin: 0, fontSize: '.78rem', color: '#334438', lineHeight: '1.45' }}>
+              • <strong>89.7% to 100% negative response to N210</strong> (mean −0.26 to −0.32 t/ha). Lower thermal units delay grain filling; high N pushes harvest into early monsoon rains, inducing fungal ear rot.
+              <br />• Moderate N60 penalty (−0.43 to −0.58 t/ha).
+            </p>
+          </div>
+
+          <div style={{ background: '#f8faf9', border: '1px solid #d4e8da', borderRadius: '8px', padding: '.9rem 1rem' }}>
+            <h5 style={{ margin: '0 0 .35rem', color: '#0f4028', fontSize: '.85rem' }}>⛰️ Terraced Mid-Hills (Palpa, Pyuthan, Arghakhanchi)</h5>
+            <p style={{ margin: 0, fontSize: '.78rem', color: '#334438', lineHeight: '1.45' }}>
+              • <strong>Steepest yield drops under N60 (−0.61 to −0.78 t/ha)</strong> across all evaluated districts due to severely depleted terrace soils and low organic matter (&lt;1.2%).
+              <br />• Highly responsive to split timing (V6/V10) provided pre-monsoon showers or irrigation prevent soil drying.
+            </p>
+          </div>
+
+          <div style={{ background: '#f8faf9', border: '1px solid #d4e8da', borderRadius: '8px', padding: '.9rem 1rem' }}>
+            <h5 style={{ margin: '0 0 .35rem', color: '#0f4028', fontSize: '.85rem' }}>🌾 Inner Terai &amp; Lowlands (Dang, Banke, Bardiya, Kapilbastu)</h5>
+            <p style={{ margin: 0, fontSize: '.78rem', color: '#334438', lineHeight: '1.45' }}>
+              • <strong>Rapid N leaching &amp; volatilization:</strong> High temperatures accelerate broadcast urea loss; highest response to UDP and PCU.
+              <br />• <strong>Potassium limitation:</strong> 320-plot on-farm survey confirms farmers apply only 17.8 kg K₂O/ha, creating an agronomic ceiling where N responses plateau prematurely.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ── Stage-by-Stage Data & Models Section ── */}
       <section className="pipeline-section">

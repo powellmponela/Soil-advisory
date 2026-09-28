@@ -7,7 +7,7 @@ import Advisory from './tabs/Advisory';
 import Research from './tabs/Research';
 
 const TABS = [
-  { id: 'advisory',  label: 'Advisory' },
+  { id: 'advisory',  label: 'Target Setting' },
   { id: 'research',  label: 'Research' },
 ];
 
@@ -20,7 +20,7 @@ export default function App() {
       <header className="public-header">
         <div className="header-brand">
           <span className="kicker">NSAF Maize · Mid-hill Western Nepal</span>
-          <h1>Site-Specific Fertilizer &amp; Yield Target Advisory for Maize in Mid-hill Western Nepal</h1>
+          <h1>Site-Specific Fertilizer &amp; Yield Target Setting for Maize in Mid-hill Western Nepal</h1>
         </div>
         <nav className="header-tabs" aria-label="Main navigation">
           {TABS.map((t) => (
