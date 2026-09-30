@@ -31,6 +31,12 @@ import {
   evaluateDistrictTradeoffs,
   evaluateSiteYearTreatmentTrials,
 } from '../helpers';
+import ResearchAuthGate, {
+  getStoredAuth,
+  clearAuth,
+  ROLE_CONFIG,
+  AdminRoleManagerModal,
+} from '../components/ResearchAuthGate';
 
 /** Fly/fit map to bounds whenever bounds change in Research maps */
 function ResearchMapBoundsHelper({ bounds }) {
@@ -63,7 +69,7 @@ const RESEARCH_TABS = [
 // ---------------------------------------------------------------------------
 
 /** Trial analysis – NSAF raw trial data summary, Site-Year-Treatment Explorer & Evidence Loader */
-function TrialAnalysis() {
+function TrialAnalysis({ userRole = 'view', userEmail = null, onSwitchRole, onOpenAdminModal }) {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [trialPlots, setTrialPlots] = useState([]);
@@ -73,6 +79,12 @@ function TrialAnalysis() {
   const [uploadMessage, setUploadMessage] = useState('');
   const [isPublishing, setIsPublishing] = useState(false);
   const fileInputRef = useRef(null);
+
+  // Existing Data Viewer state
+  const [showExistingData, setShowExistingData] = useState(false);
+  const [existingDataSearch, setExistingDataSearch] = useState('');
+  const [existingDataYear, setExistingDataYear] = useState('ALL');
+  const [existingDataPage, setExistingDataPage] = useState(1);
 
   // Interactive Site-Year-Treatment trial filter state
   const [filterYear, setFilterYear] = useState('ALL');
@@ -97,6 +109,28 @@ function TrialAnalysis() {
     Yield_t_ha: 8.4,
     AE_N: 24.5,
   });
+
+  // Filtered plot records for instant Existing Data Viewer
+  const displayedExistingPlots = useMemo(() => {
+    let list = trialPlots;
+    if (existingDataYear !== 'ALL') {
+      list = list.filter((r) => String(r.year) === String(existingDataYear));
+    }
+    if (existingDataSearch.trim()) {
+      const q = existingDataSearch.toLowerCase();
+      list = list.filter((r) => {
+        return (
+          String(r.district || '').toLowerCase().includes(q) ||
+          String(r.site || '').toLowerCase().includes(q) ||
+          String(r.strategy || '').toLowerCase().includes(q) ||
+          String(r.treatment_code || '').toLowerCase().includes(q) ||
+          String(r.treatment_role || '').toLowerCase().includes(q) ||
+          String(r.year || '').includes(q)
+        );
+      });
+    }
+    return list;
+  }, [trialPlots, existingDataYear, existingDataSearch]);
 
   useEffect(() => {
     // 1. Load DSM-linked advisory results
@@ -267,24 +301,207 @@ function TrialAnalysis() {
 
   return (
     <div className="research-panel">
-      {/* ── File Upload / Drag-and-Drop Trial Evidence Loader Zone ──── */}
-      <div
-        className="upload-dropzone"
-        onClick={() => fileInputRef.current && fileInputRef.current.click()}
-      >
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileUpload}
-          accept=".csv,.txt,.json"
-          style={{ display: 'none' }}
-        />
-        <div className="upload-dropzone__title">
-          📂 Drag &amp; Drop or Click to Load Additional Trial Evidence CSV Data
+      {/* ── Evidence Ingestion & Existing Dataset Explorer ──── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #276246',
+        borderRadius: '12px',
+        padding: '1.25rem',
+        marginBottom: '1.5rem',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+      }}>
+        {/* Header & Role Info */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '.75rem', marginBottom: '1rem' }}>
+          <div>
+            <div style={{ fontSize: '.76rem', fontWeight: 800, textTransform: 'uppercase', color: '#133e2b', letterSpacing: '0.04em' }}>
+              📁 Evidence Ingestion &amp; Active Dataset Explorer
+            </div>
+            <h3 style={{ margin: '.2rem 0 0', color: '#0f4028', fontSize: '1.15rem' }}>
+              Multi-Year Trial Plot Evidence Base ({trialPlots.length.toLocaleString()} Verified Observations Loaded)
+            </h3>
+          </div>
+          <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => setShowExistingData(!showExistingData)}
+              className="btn-sm"
+              style={{
+                background: showExistingData ? '#0f4028' : '#eaf4ee',
+                color: showExistingData ? '#ffffff' : '#0f4028',
+                border: '1.5px solid #276246',
+                fontWeight: 700,
+                padding: '.45rem .85rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+              }}
+            >
+              {showExistingData ? '🔼 Hide Existing Data Table' : `👁️ View Existing Data (${trialPlots.length.toLocaleString()} Plots)`}
+            </button>
+            <a
+              href="/trial_site_year_treatment.csv"
+              download="trial_site_year_treatment.csv"
+              className="btn-sm"
+              style={{
+                textDecoration: 'none',
+                background: '#ffffff',
+                color: '#276246',
+                border: '1.5px solid #276246',
+                fontWeight: 700,
+                padding: '.45rem .85rem',
+                borderRadius: '6px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '.3rem',
+              }}
+            >
+              📥 Download CSV
+            </a>
+          </div>
         </div>
-        <div className="upload-dropzone__subtitle">
-          Supports multi-year plot observations, GPS trial coordinates, and soil sample CSV datasets. Automatically parses and updates research analytics.
+
+        {/* Upload Dropzone (Permission-Gated by Role) */}
+        <div
+          className="upload-dropzone"
+          style={{
+            cursor: userRole === 'edit' ? 'pointer' : 'default',
+            opacity: userRole === 'edit' ? 1 : 0.9,
+            borderStyle: userRole === 'edit' ? 'dashed' : 'solid',
+            borderColor: userRole === 'edit' ? '#276246' : '#94a3b8',
+            background: userRole === 'edit' ? '#f4f9f6' : '#f8fafc',
+          }}
+          onClick={() => {
+            if (userRole === 'edit') {
+              fileInputRef.current && fileInputRef.current.click();
+            } else if (userRole === 'view') {
+              setUploadMessage('ℹ️ You are in View (Read-Only) role. Click "View Existing Data" above to inspect all records, or request Edit role from Admin Powell Mponela.');
+            } else {
+              setUploadMessage('ℹ️ Suggest role: You can propose new trial observations below using the contribution form.');
+            }
+          }}
+        >
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileUpload}
+            accept=".csv,.txt,.json"
+            style={{ display: 'none' }}
+            disabled={userRole !== 'edit'}
+          />
+          <div className="upload-dropzone__title">
+            {userRole === 'edit'
+              ? '📂 Drag & Drop or Click to Load Additional Trial Evidence CSV Data'
+              : userRole === 'suggest'
+              ? '✍️ Suggest Role: Propose additional trial observations via the form below'
+              : '👁️ View Role: Read-only access to 1,933 verified trial observations'}
+          </div>
+          <div className="upload-dropzone__subtitle">
+            {userRole === 'edit'
+              ? 'Supports multi-year plot observations, GPS coordinates, and soil sample CSVs. Automatically parses and updates research analytics.'
+              : 'Existing dataset contains 1,933 verified plots across 2017 (512), 2018 (574), and 2019 (847) in 8 mid-hill districts.'}
+          </div>
         </div>
+
+        {/* Collapsible Instant Existing Data Table Viewer */}
+        {showExistingData && (
+          <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid #d1e3d7' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '.65rem', marginBottom: '.85rem' }}>
+              <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '.78rem', fontWeight: 800, color: '#133e2b' }}>Filter Year:</span>
+                {['ALL', '2017', '2018', '2019'].map((yr) => (
+                  <button
+                    key={yr}
+                    type="button"
+                    onClick={() => { setExistingDataYear(yr); setExistingDataPage(1); }}
+                    style={{
+                      padding: '.25rem .6rem',
+                      borderRadius: '4px',
+                      fontSize: '.75rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      border: existingDataYear === yr ? '1.5px solid #0f4028' : '1px solid #cbd5e1',
+                      background: existingDataYear === yr ? '#0f4028' : '#ffffff',
+                      color: existingDataYear === yr ? '#ffffff' : '#334155',
+                    }}
+                  >
+                    {yr === 'ALL' ? 'All (1,933)' : `${yr} (${trialPlots.filter(p => String(p.year) === yr).length})`}
+                  </button>
+                ))}
+              </div>
+              <input
+                type="text"
+                placeholder="🔍 Search district, site, strategy, treatment..."
+                value={existingDataSearch}
+                onChange={(e) => { setExistingDataSearch(e.target.value); setExistingDataPage(1); }}
+                style={{
+                  padding: '.35rem .75rem',
+                  fontSize: '.82rem',
+                  borderRadius: '6px',
+                  border: '1px solid #276246',
+                  width: '240px',
+                  outline: 'none',
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '.4rem', fontSize: '.76rem', color: '#475569' }}>
+              <span>Showing {displayedExistingPlots.length ? (existingDataPage - 1) * 50 + 1 : 0}–{Math.min(displayedExistingPlots.length, existingDataPage * 50)} of {displayedExistingPlots.length.toLocaleString()} matching records</span>
+              <div style={{ display: 'flex', gap: '.3rem', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  disabled={existingDataPage <= 1}
+                  onClick={() => setExistingDataPage(p => Math.max(1, p - 1))}
+                  style={{ padding: '.2rem .5rem', fontSize: '.72rem', cursor: 'pointer' }}
+                >
+                  ◀ Prev
+                </button>
+                <span>Page {existingDataPage} / {Math.ceil(displayedExistingPlots.length / 50) || 1}</span>
+                <button
+                  type="button"
+                  disabled={existingDataPage >= Math.ceil(displayedExistingPlots.length / 50)}
+                  onClick={() => setExistingDataPage(p => p + 1)}
+                  style={{ padding: '.2rem .5rem', fontSize: '.72rem', cursor: 'pointer' }}
+                >
+                  Next ▶
+                </button>
+              </div>
+            </div>
+
+            <div className="table-container" style={{ maxHeight: '360px', overflowY: 'auto' }}>
+              <table className="data-table" style={{ fontSize: '.78rem' }}>
+                <thead>
+                  <tr style={{ background: '#eaf4ee', position: 'sticky', top: 0, zIndex: 1 }}>
+                    <th>#</th>
+                    <th>Year</th>
+                    <th>District</th>
+                    <th>Site / VDC</th>
+                    <th>Treatment Code</th>
+                    <th>Treatment Role</th>
+                    <th>Strategy</th>
+                    <th style={{ textAlign: 'right' }}>N Rate (kg/ha)</th>
+                    <th style={{ textAlign: 'right' }}>Yield (t/ha)</th>
+                    <th>Coordinates</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayedExistingPlots.slice((existingDataPage - 1) * 50, existingDataPage * 50).map((r, idx) => (
+                    <tr key={idx}>
+                      <td style={{ color: '#64748b' }}>{(existingDataPage - 1) * 50 + idx + 1}</td>
+                      <td><strong>{r.year}</strong></td>
+                      <td>{r.district}</td>
+                      <td>{r.site}</td>
+                      <td><code>{r.treatment_code}</code></td>
+                      <td>{r.treatment_role}</td>
+                      <td><span style={{ fontWeight: 700, color: '#0f4028' }}>{STRATEGY_LABELS[r.strategy] || r.strategy}</span></td>
+                      <td style={{ textAlign: 'right' }}>{fmt(r.n_rate_kg_ha, 0)}</td>
+                      <td style={{ textAlign: 'right', fontWeight: 700, color: '#166534' }}>{fmt(r.grain_yield_t_ha, 2)}</td>
+                      <td style={{ fontSize: '.72rem', color: '#64748b' }}>{fmt(r.latitude, 4)}, {fmt(r.longitude, 4)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
 
       {uploadMessage && (
@@ -299,7 +516,8 @@ function TrialAnalysis() {
             className="btn-sm btn-run"
             style={{ padding: '.5rem 1rem', fontSize: '.82rem', marginLeft: '1rem', whiteSpace: 'nowrap' }}
             onClick={handlePushUpdatedEvidence}
-            disabled={isPublishing}
+            disabled={isPublishing || userRole !== 'edit'}
+            title={userRole !== 'edit' ? 'Requires Edit role (Admin Powell Mponela) to publish to production' : 'Push updated evidence to public view'}
           >
             {isPublishing ? '⏳ Publishing…' : '🚀 Push Updated Evidence to Public View'}
           </button>
@@ -3754,23 +3972,116 @@ function Methodology() {
 }
 
 // ---------------------------------------------------------------------------
-// Research tab (main export)
+// Research tab (main export with multi-role auth gate)
 // ---------------------------------------------------------------------------
 
 export default function Research() {
+  const [auth, setAuth] = useState(() => getStoredAuth());
   const [activeTab, setActiveTab] = useState('matrix');
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+
+  if (!auth) {
+    return (
+      <div className="tab-content">
+        <ResearchAuthGate onLogin={(role, email) => setAuth({ role, email })} />
+      </div>
+    );
+  }
+
+  const roleCfg = ROLE_CONFIG[auth.role] || ROLE_CONFIG.view;
+  const isPowellAdmin = auth.email === 'powellmponel@gmail.com' || auth.role === 'edit';
 
   const panels = {
-    matrix:    <TrialAnalysis />,
-    equations: <FourREquations />,
-    quefts:    <QueftsDiagnostics />,
-    dsm:       <DSMPanel />,
-    code:      <ModelCodeScripts />,
-    method:    <Methodology />,
+    matrix:    <TrialAnalysis userRole={auth.role} userEmail={auth.email} onSwitchRole={() => { clearAuth(); setAuth(null); }} onOpenAdminModal={() => setIsAdminModalOpen(true)} />,
+    equations: <FourREquations userRole={auth.role} />,
+    quefts:    <QueftsDiagnostics userRole={auth.role} />,
+    dsm:       <DSMPanel userRole={auth.role} />,
+    code:      <ModelCodeScripts userRole={auth.role} />,
+    method:    <Methodology userRole={auth.role} />,
   };
 
   return (
     <div className="tab-content">
+      {/* ── Active Role & Admin Management Bar ── */}
+      <div style={{
+        background: roleCfg.badgeBg,
+        border: `1.5px solid ${roleCfg.badgeBorder}`,
+        padding: '.75rem 1.25rem',
+        borderRadius: '10px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '.75rem',
+        margin: '1rem auto 1.5rem',
+        maxWidth: '1240px',
+        width: 'calc(100% - 36px)',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+          <span style={{ fontSize: '1.35rem' }}>{roleCfg.icon}</span>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <span style={{ fontWeight: 800, color: roleCfg.badgeColor, fontSize: '.92rem' }}>
+                Active Role: {roleCfg.label}
+              </span>
+              {auth.email && (
+                <span style={{ fontSize: '.76rem', background: 'rgba(0,0,0,0.06)', padding: '.15rem .45rem', borderRadius: '4px', color: '#334155' }}>
+                  {auth.email}
+                </span>
+              )}
+            </div>
+            <div style={{ fontSize: '.76rem', color: '#475569', marginTop: '.15rem' }}>
+              {roleCfg.description}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center' }}>
+          {isPowellAdmin && (
+            <button
+              type="button"
+              onClick={() => setIsAdminModalOpen(true)}
+              className="btn-sm"
+              style={{
+                background: '#0f4028',
+                color: '#ffffff',
+                border: 'none',
+                fontSize: '.78rem',
+                fontWeight: 700,
+                padding: '.4rem .8rem',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '.35rem',
+                boxShadow: '0 2px 6px rgba(15, 64, 40, 0.2)',
+              }}
+            >
+              👑 Grant Roles &amp; Requests
+            </button>
+          )}
+
+          <button
+            type="button"
+            onClick={() => { clearAuth(); setAuth(null); }}
+            className="btn-sm"
+            style={{
+              background: '#ffffff',
+              border: '1px solid #cbd5e1',
+              color: '#334155',
+              fontSize: '.78rem',
+              fontWeight: 700,
+              padding: '.4rem .75rem',
+              borderRadius: '6px',
+              cursor: 'pointer',
+            }}
+          >
+            🔒 Sign Out
+          </button>
+        </div>
+      </div>
+
       <section className="hero research-hero">
         <div>
           <span className="kicker">Agronomic Science Workspace · Experimental Trial Diagnostics, QUEFTS Mechanistic Modeling &amp; Spatial Extrapolation</span>
@@ -3797,6 +4108,12 @@ export default function Research() {
           {panels[activeTab]}
         </main>
       </div>
+
+      {/* Admin Role Granting Modal for Powell Mponela */}
+      <AdminRoleManagerModal
+        isOpen={isAdminModalOpen}
+        onClose={() => setIsAdminModalOpen(false)}
+      />
     </div>
   );
 }
