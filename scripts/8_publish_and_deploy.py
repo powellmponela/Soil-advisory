@@ -58,7 +58,7 @@ def main():
     print("SOIL ADVISORY: MODEL -> GIS -> GITHUB -> VERCEL")
     print("=" * 72)
 
-    print("\n[1/7] Sync GitHub")
+    print("\n[1/8] Sync GitHub")
 
     run([
         "git",
@@ -68,7 +68,7 @@ def main():
         "main",
     ])
 
-    print("\n[2/7] Run pixel modelling workflow")
+    print("\n[2/8] Run pixel modelling workflow")
 
     for script in PIPELINE:
 
@@ -82,22 +82,28 @@ def main():
             str(script),
         ])
 
-    print("\n[3/7] Validate analytical outputs")
+    print("\n[3/8] Validate analytical outputs")
 
     for path in REQUIRED_OUTPUTS:
         validate_file(path)
 
-    print("\n[4/7] Install frontend dependencies")
+    import shutil
+
+    npm_bin = shutil.which("npm.cmd") if sys.platform.startswith("win") else shutil.which("npm")
+    if not npm_bin:
+        npm_bin = "npm.cmd" if sys.platform.startswith("win") else "npm"
+
+    print("\n[4/8] Install frontend dependencies")
 
     run(
-        ["npm", "install"],
+        [npm_bin, "install"],
         cwd=FRONTEND,
     )
 
-    print("\n[5/7] Build Vercel frontend")
+    print("\n[5/8] Build Vercel frontend")
 
     run(
-        ["npm", "run", "build"],
+        [npm_bin, "run", "build"],
         cwd=FRONTEND,
     )
 
@@ -111,7 +117,7 @@ def main():
 
     print("Frontend build OK")
 
-    print("\n[6/7] Publish to GitHub")
+    print("\n[6/8] Publish to GitHub")
 
     run([
         "git",
@@ -124,6 +130,7 @@ def main():
         "frontend/package-lock.json",
         "scripts/7_publish_web_gis.py",
         "scripts/8_publish_and_deploy.py",
+        "scripts/verify_web_deployment.py",
         "vercel.json",
     ])
 
@@ -162,7 +169,7 @@ def main():
             "main",
         ])
 
-    print("\n[7/7] Final status")
+    print("\n[7/8] Final git status")
 
     run([
         "git",
@@ -170,13 +177,21 @@ def main():
         "--short",
     ])
 
+    print("\n[8/8] Automated web verification & live site check")
+    verify_script = SCRIPTS / "verify_web_deployment.py"
+    if verify_script.exists():
+        run([
+            sys.executable,
+            str(verify_script),
+        ])
+
     print("\n" + "=" * 72)
-    print("PUBLICATION COMPLETE")
+    print("PUBLICATION & WEB VERIFICATION COMPLETE")
     print("=" * 72)
 
     print(
-        "\nGitHub main has been updated."
-        "\nVercel should automatically redeploy:"
+        "\nGitHub main is current and verified."
+        "\nVercel live deployment:"
         "\nhttps://soiladvisory.vercel.app/"
     )
 
