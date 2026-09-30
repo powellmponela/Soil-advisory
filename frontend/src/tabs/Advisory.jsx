@@ -692,8 +692,8 @@ export default function Advisory() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <span className="kicker">Extension &amp; Target Setting Workspace · Translating Agronomic Science into Actionable Practice</span>
-          <h2>Site-Specific Extension Target Setting &amp; 4R Fertilizer Targets for Maize</h2>
+          <span className="kicker">Fertilizer Management and Maize Yield Targets in Western Mid-hills</span>
+          <h2>Extension &amp; Target Setting Workspace · Translating Agronomic Science into Actionable Practice</h2>
           <p>
             Translating multi-year NSAF crop-response evidence and NARC Digital Soil Mapping into site-specific fertilizer targets, 4R stewardship practice guides (Right Source, Right Rate, Right Time, Right Place), fertilizer bag requirements (Urea, DAP, MOP, FYM), and actionable field advice for extension agents, lead farmers, and local government agricultural officers in Western Nepal.
           </p>

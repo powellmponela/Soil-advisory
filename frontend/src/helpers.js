@@ -37,15 +37,21 @@ export const distance2 = (row, lat, lon) => {
  * Human-readable strategy labels keyed by strategy code.
  */
 export const STRATEGY_LABELS = {
-  GR:           'Government N120',
-  N60:          'N60',
-  N180:         'N180',
-  N210:         'N210',
-  TIMING_V6_V10:'V6/V10 timing',
-  FYM_N60:      'FYM + N60',
-  PCU_N120:     'PCU N120',
-  PCU_N60:      'PCU N60',
-  UDP_N78:      'UDP N78',
+  GR:             'Government N120',
+  N60:            'N60',
+  N180:           'N180',
+  N210:           'N210',
+  TIMING_V6_V10:  'V6/V10 timing',
+  FYM_N60:        'FYM + N60',
+  PCU_N120:       'PCU N120',
+  PCU_N60:        'PCU N60',
+  UDP_N78:        'UDP N78',
+  '0-0-0':        'Unfertilized Control (0-0-0)',
+  '0-PK':         'N Omission (0-PK)',
+  '0-NK':         'P Omission (0-NK)',
+  '0-NP':         'K Omission (0-NP)',
+  micronutrients: 'Zn + S Micronutrients',
+  ks_treatment:   'K + S Treatment',
 };
 
 /**
@@ -231,6 +237,8 @@ export const evaluateSiteYearTreatmentTrials = (rows = [], filters = {}) => {
 
   const { year, district, site } = filters;
   const filtered = rows.filter((r) => {
+    // 2018 demos are analysed separately from core trial (Table 1 design matrix)
+    if (String(r.year) === '2018' && String(r.strategy || '').startsWith('demo_')) return false;
     if (year && String(r.year) !== String(year)) return false;
     if (district && (r.district || r.District) !== district) return false;
     if (site && (r.site || r.VDC) !== site) return false;

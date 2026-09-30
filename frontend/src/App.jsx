@@ -19,8 +19,8 @@ export default function App() {
       {/* ── Global header ── */}
       <header className="public-header">
         <div className="header-brand">
-          <span className="kicker">NSAF Maize · Mid-hill Western Nepal</span>
-          <h1>Site-Specific Fertilizer &amp; Yield Target Setting for Maize in Mid-hill Western Nepal</h1>
+          <span className="kicker">Fertilizer Management and Maize Yield Targets in Western Mid-hills</span>
+          <h1>Extension &amp; Target Setting Workspace · Translating Agronomic Science into Actionable Practice</h1>
         </div>
         <nav className="header-tabs" aria-label="Main navigation">
           {TABS.map((t) => (
