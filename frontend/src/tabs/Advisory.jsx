@@ -692,7 +692,7 @@ export default function Advisory() {
       {/* Hero */}
       <section className="hero">
         <div>
-          <h2>Extension &amp; Target Setting Workspace · Translating Agronomic Science into Actionable Practice</h2>
+          <h2>Translating Agronomic Science into Actionable Practice</h2>
           <p>
             Transforms multi-year NSAF crop-response evidence and NARC Digital Soil Mapping into localized nutrient targets, 4R practice guides (Right Source, Right Rate, Right Time, Right Place), and exact fertilizer bag requirements (Urea, DAP, MOP, FYM) for field officers, lead farmers, and local agricultural planners.
           </p>
